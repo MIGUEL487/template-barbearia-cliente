@@ -14,6 +14,7 @@ import {
   ChevronLeft,
   ArrowRight,
   ShieldCheck,
+  Search,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { formatCurrency } from "@/lib/utils";
@@ -125,125 +126,153 @@ function MeuAgendamentoContent() {
   return (
     <main className="min-h-screen bg-bg text-text py-12 px-4">
       <div className="max-w-2xl mx-auto space-y-6">
+        {/* Top Header */}
         <div className="flex items-center justify-between">
-          <Link href="/" className="inline-flex items-center gap-1.5 text-xs text-text-muted hover:text-text font-medium">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 text-text px-5 py-2.5 rounded-full text-xs font-semibold transition-colors shadow-sm"
+          >
             <ChevronLeft className="w-4 h-4 text-accent" />
             <span>Voltar ao site</span>
           </Link>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 text-xs font-serif font-bold text-text">
             <Scissors className="w-4 h-4 text-accent" />
-            <span className="font-serif font-bold text-sm">Barbearia Premium</span>
+            <span>Meu Agendamento</span>
           </div>
         </div>
 
-        <div className="bg-surface border border-border p-6 rounded-md shadow-card">
-          <h1 className="font-serif text-2xl font-bold text-text mb-1">Meu Agendamento</h1>
-          <p className="text-xs text-text-muted mb-4">
-            Consulte, reagende ou cancele sua reserva utilizando o código seguro recebido.
-          </p>
+        {/* Busca por Token */}
+        <div className="bg-surface rounded-[32px] p-8 shadow-soft space-y-4">
+          <div>
+            <h1 className="font-serif text-2xl font-bold text-text">Consultar Reserva</h1>
+            <p className="text-xs text-text-muted mt-1">
+              Digite ou cole o código que você recebeu ao confirmar seu horário.
+            </p>
+          </div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-3">
             <input
               type="text"
-              placeholder="Cole seu código ou token de reserva aqui..."
+              placeholder="Cole seu código de reserva aqui..."
               value={tokenInput}
               onChange={(e) => setTokenInput(e.target.value)}
-              className="flex-1 bg-surface-2 border border-border rounded-sm px-3.5 py-2 text-xs text-text outline-none focus:border-accent"
+              className="flex-1 bg-surface-2 rounded-full px-6 py-3.5 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
             />
             <button
               onClick={() => setActiveToken(tokenInput)}
-              className="bg-accent hover:bg-accent-hover text-accent-contrast px-4 py-2 rounded-sm text-xs font-bold transition-all"
+              className="bg-accent hover:bg-accent-hover text-accent-contrast px-8 py-3.5 rounded-full text-xs font-bold shadow-glow transition-all active:scale-95 flex items-center justify-center gap-2"
             >
-              Consultar
+              <Search className="w-4 h-4" />
+              <span>Consultar</span>
             </button>
           </div>
         </div>
 
+        {/* Mensagem de Status */}
         {statusMessage && (
           <div
-            className={`p-4 rounded-sm text-xs flex items-start gap-2.5 ${
+            className={`p-4 rounded-[20px] text-xs flex items-center gap-2.5 ${
               statusMessage.type === "success"
-                ? "bg-emerald-500/10 border border-emerald-500/30 text-emerald-400"
-                : "bg-danger/10 border border-danger/30 text-danger"
+                ? "bg-emerald-500/10 text-emerald-400"
+                : "bg-danger/10 text-danger"
             }`}
           >
-            {statusMessage.type === "success" ? <CheckCircle2 className="w-4 h-4 mt-0.5" /> : <AlertCircle className="w-4 h-4 mt-0.5" />}
+            {statusMessage.type === "success" ? (
+              <CheckCircle2 className="w-4 h-4 shrink-0" />
+            ) : (
+              <AlertCircle className="w-4 h-4 shrink-0" />
+            )}
             <span>{statusMessage.text}</span>
           </div>
         )}
 
         {isLoading && (
           <div className="flex justify-center py-8">
-            <span className="w-6 h-6 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+            <span className="w-7 h-7 border-2 border-accent border-t-transparent rounded-full animate-spin" />
           </div>
         )}
 
+        {/* Detalhes do Agendamento */}
         {booking && (
-          <div className="bg-surface border border-accent/40 rounded-lg p-6 shadow-premium space-y-5">
-            <div className="flex justify-between items-start border-b border-border pb-4">
+          <div className="bg-surface rounded-[32px] p-8 shadow-soft space-y-6 animate-in fade-in">
+            <div className="flex justify-between items-start pb-5 border-b border-hairline">
               <div>
-                <span className="text-[10px] uppercase font-bold tracking-wider text-text-muted">Status do Agendamento</span>
-                <div className="flex items-center gap-2 mt-1">
-                  <span className={`w-2.5 h-2.5 rounded-full ${booking.status === "confirmed" ? "bg-emerald-400" : booking.status === "hold" ? "bg-amber-400" : "bg-danger"}`} />
-                  <strong className="text-base font-serif capitalize text-text">{booking.status}</strong>
-                </div>
+                <span className="text-[10px] uppercase font-bold tracking-wider text-text-muted block mb-1">
+                  Status da Reserva
+                </span>
+                <span
+                  className={`inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
+                    booking.status === "confirmed"
+                      ? "bg-emerald-500/15 text-emerald-400"
+                      : booking.status === "hold"
+                      ? "bg-accent-soft text-accent"
+                      : "bg-danger/15 text-danger"
+                  }`}
+                >
+                  {booking.status}
+                </span>
               </div>
 
               <div className="text-right">
-                <span className="text-[10px] text-text-muted block">Valor Total</span>
-                <strong className="text-accent text-base">{formatCurrency(booking.total_price)}</strong>
+                <span className="text-[10px] text-text-muted block mb-1">Valor Total</span>
+                <strong className="text-accent font-serif text-xl">{formatCurrency(booking.total_price)}</strong>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 text-xs">
-              <div>
-                <span className="text-text-muted block">Cliente:</span>
-                <strong className="text-text">{booking.customer_name}</strong>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+              <div className="bg-surface-2 rounded-2xl p-4">
+                <span className="text-text-muted block text-[11px] mb-0.5">Cliente</span>
+                <strong className="text-text text-sm font-serif">{booking.customer_name}</strong>
               </div>
-              <div>
-                <span className="text-text-muted block">Profissional:</span>
-                <strong className="text-text">{booking.barber_name}</strong>
+
+              <div className="bg-surface-2 rounded-2xl p-4">
+                <span className="text-text-muted block text-[11px] mb-0.5">Profissional</span>
+                <strong className="text-text text-sm font-serif">{booking.barber_name}</strong>
               </div>
-              <div className="col-span-2">
-                <span className="text-text-muted block">Data e Horário:</span>
-                <strong className="text-text">{new Date(booking.starts_at).toLocaleString("pt-BR")}</strong>
+
+              <div className="sm:col-span-2 bg-surface-2 rounded-2xl p-4">
+                <span className="text-text-muted block text-[11px] mb-0.5">Data e Horário</span>
+                <strong className="text-text text-sm font-mono">
+                  {new Date(booking.starts_at).toLocaleString("pt-BR", { dateStyle: "long", timeStyle: "short" })}
+                </strong>
               </div>
-              <div className="col-span-2">
-                <span className="text-text-muted block">Serviços:</span>
-                <span className="text-text font-medium">{booking.services?.join(", ")}</span>
+
+              <div className="sm:col-span-2 bg-surface-2 rounded-2xl p-4">
+                <span className="text-text-muted block text-[11px] mb-0.5">Serviços Contratados</span>
+                <span className="text-text font-semibold">{booking.services?.join(", ")}</span>
               </div>
             </div>
 
-            {/* Reagendamento Modal/Form */}
+            {/* Painel de Reagendamento */}
             {isRescheduling && (
-              <div className="p-4 bg-surface-2 border border-border rounded-sm space-y-3">
-                <h4 className="font-semibold text-xs text-text">Escolha a Nova Data e Horário:</h4>
-                <div className="grid grid-cols-2 gap-2">
+              <div className="p-6 bg-surface-2 rounded-[24px] space-y-4">
+                <h4 className="font-serif font-bold text-sm text-text">Escolha a Nova Data e Horário:</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <input
                     type="date"
                     min={new Date().toISOString().split("T")[0]}
                     value={newDate}
                     onChange={(e) => setNewDate(e.target.value)}
-                    className="bg-surface border border-border rounded-sm px-2.5 py-1.5 text-xs text-text outline-none"
+                    className="bg-surface rounded-full px-5 py-2.5 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none"
                   />
                   <input
                     type="time"
                     value={newTime}
                     onChange={(e) => setNewTime(e.target.value)}
-                    className="bg-surface border border-border rounded-sm px-2.5 py-1.5 text-xs text-text outline-none"
+                    className="bg-surface rounded-full px-5 py-2.5 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none"
                   />
                 </div>
-                <div className="flex justify-end gap-2 pt-1">
+                <div className="flex justify-end gap-3 pt-2">
                   <button
                     onClick={() => setIsRescheduling(false)}
-                    className="px-3 py-1 border border-border rounded-sm text-xs hover:bg-surface"
+                    className="px-5 py-2 text-xs font-semibold text-text-muted hover:text-text rounded-full"
                   >
                     Cancelar
                   </button>
                   <button
                     onClick={handleReschedule}
-                    className="bg-accent hover:bg-accent-hover text-accent-contrast px-3 py-1 rounded-sm text-xs font-bold"
+                    className="bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-2.5 rounded-full text-xs font-bold shadow-glow transition-all active:scale-95"
                   >
                     Confirmar Novo Horário
                   </button>
@@ -251,12 +280,12 @@ function MeuAgendamentoContent() {
               </div>
             )}
 
-            {/* Ações */}
-            <div className="flex items-center justify-end gap-3 pt-4 border-t border-border">
+            {/* Ações em Pílula */}
+            <div className="flex items-center justify-end gap-3 pt-4 border-t border-hairline">
               {booking.can_reschedule && !isRescheduling && (
                 <button
                   onClick={() => setIsRescheduling(true)}
-                  className="px-4 py-2 border border-border rounded-sm text-xs font-semibold hover:bg-surface-2 text-text transition-colors"
+                  className="bg-surface-2 hover:bg-surface-3 text-text px-6 py-2.5 rounded-full text-xs font-bold transition-colors"
                 >
                   Reagendar Horário
                 </button>
@@ -265,7 +294,7 @@ function MeuAgendamentoContent() {
               {booking.can_cancel && (
                 <button
                   onClick={handleCancel}
-                  className="px-4 py-2 bg-danger/10 hover:bg-danger/20 text-danger border border-danger/30 rounded-sm text-xs font-semibold transition-colors"
+                  className="bg-danger/15 hover:bg-danger/25 text-danger px-6 py-2.5 rounded-full text-xs font-bold transition-colors"
                 >
                   Cancelar Agendamento
                 </button>
