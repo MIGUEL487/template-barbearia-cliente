@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start -p 3002",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check:env": "node --env-file=.env.local scripts/check-env.mjs || node scripts/check-env.mjs",
+    "tokens:check": "node scripts/check-tokens.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.46.1",
