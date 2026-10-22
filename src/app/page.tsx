@@ -254,17 +254,17 @@ export default function HomePage() {
           {/* ─── HOME ─── */}
           {currentPage === "home" && (
             <motion.div key="home" variants={pageVariants} initial="initial" animate="animate" exit="exit">
-              {/* Hero com Imagem de Fundo Escurecida */}
+              {/* Hero com Imagem de Fundo Escurecida e Opacidade Baixa */}
               <section className="px-4 md:px-8 pt-6 pb-8 max-w-7xl mx-auto">
-                <div className="relative rounded-[32px] md:rounded-[44px] overflow-hidden min-h-[75vh] flex items-center justify-center">
-                  {/* Imagem de Fundo */}
+                <div className="relative rounded-[32px] md:rounded-[44px] overflow-hidden min-h-[75vh] flex items-center justify-center bg-black shadow-soft border border-hairline">
+                  {/* Imagem de Fundo com Opacidade Baixa */}
                   <img
                     src="/hero-bg.jpg"
                     alt="Barbearia"
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover opacity-25 select-none pointer-events-none"
                   />
-                  {/* Overlay Escuro */}
-                  <div className="absolute inset-0 bg-black/72 backdrop-blur-[1px]" />
+                  {/* Overlay Escuro (Quadrado Preto com Opacidade ~70%) */}
+                  <div className="absolute inset-0 bg-black/70 backdrop-blur-[1px]" />
 
                   {/* Conteúdo */}
                   <motion.div
@@ -498,10 +498,10 @@ export default function HomePage() {
                     </h1>
                   </motion.div>
 
-                  {/* Hero Image repetida para sobre */}
-                  <motion.div variants={scaleIn} className="relative rounded-[32px] overflow-hidden h-64 md:h-80 mb-12">
-                    <img src="/hero-bg.jpg" alt="Barbearia" className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-black/60" />
+                  {/* Hero Image repetida para sobre com baixa opacidade */}
+                  <motion.div variants={scaleIn} className="relative rounded-[32px] overflow-hidden h-64 md:h-80 mb-12 bg-black border border-hairline">
+                    <img src="/hero-bg.jpg" alt="Barbearia" className="w-full h-full object-cover opacity-25 select-none pointer-events-none" />
+                    <div className="absolute inset-0 bg-black/70 backdrop-blur-[1px]" />
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 px-5 py-2.5 rounded-full text-white/80 text-xs font-medium backdrop-blur-sm">
                         <CheckCircle2 className="w-3.5 h-3.5" />
