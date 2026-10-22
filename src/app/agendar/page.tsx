@@ -71,11 +71,19 @@ export default function AgendarPage() {
   const [selectedServices, setSelectedServices] = useState<Service[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>(() => {
     const today = new Date();
-    // Se já passou do horário de atendimento (após as 18h30), sugere o dia seguinte por padrão
-    if (today.getHours() >= 19 || (today.getHours() === 18 && today.getMinutes() >= 30)) {
-      const tomorrow = new Date(today);
-      tomorrow.setDate(today.getDate() + 1);
-      return formatLocalDate(tomorrow);
+    const currentHour = today.getHours();
+    const currentMin = today.getMinutes();
+    const isPastCutoff = currentHour > 18 || (currentHour === 18 && currentMin >= 30);
+    const isSunday = today.getDay() === 0;
+
+    // Se hoje for domingo ou já passou das 18h30, inicializa no próximo dia de atendimento
+    if (isSunday || isPastCutoff) {
+      const nextDay = new Date(today);
+      nextDay.setDate(today.getDate() + 1);
+      if (nextDay.getDay() === 0) {
+        nextDay.setDate(nextDay.getDate() + 1); // Pula domingo para segunda-feira
+      }
+      return formatLocalDate(nextDay);
     }
     return formatLocalDate(today);
   });
@@ -209,20 +217,9 @@ export default function AgendarPage() {
       const totalMin = selectedServices.reduce((sum, s) => sum + s.duration_minutes, 0) || 30;
       const targetBarberId = selectedBarberId || (barbers.length > 0 ? (barbers[0].id as string) : "default-barber");
 
-      // Buscar agendamentos existentes no banco para não colidir
-      const startOfDay = `${selectedDate}T00:00:00.000Z`;
-      const endOfDay = `${selectedDate}T23:59:59.999Z`;
-      const { data: existingBookings } = await supabase
-        .from("bookings")
-        .select("starts_at, ends_at, barber_id")
-        .eq("barbershop_id", shopId)
-        .in("status", ["hold", "confirmed"])
-        .gte("starts_at", startOfDay)
-        .lte("starts_at", endOfDay);
-
       const slots: AvailabilitySlot[] = [];
-      // Horários das 09:00 às 19:00 com intervalos de 30 minutos
-      // Intervalo de almoço dos funcionários: 12:00 às 13:00 (não gera slots)
+      // Horários comerciais: 09:00 às 19:00 (intervalos de 30 min)
+      // Pausa de almoço da equipe: 12:00 às 13:00 (não gera slots)
       const hours = [
         "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
         "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
@@ -236,24 +233,14 @@ export default function AgendarPage() {
         const slotStart = new Date(year, month - 1, day, h, m, 0);
         const slotEnd = new Date(slotStart.getTime() + totalMin * 60000);
 
-        // Se for hoje e já passou o horário atual, pula
+        // Se a data for hoje e o horário já passou, não exibe
         if (slotStart.getTime() <= now.getTime()) continue;
 
-        // Se colidir com agendamento existente deste barbeiro, pula
-        const collision = existingBookings?.some((b) => {
-          if (selectedBarberId && b.barber_id !== selectedBarberId) return false;
-          const bStart = new Date(b.starts_at).getTime();
-          const bEnd = new Date(b.ends_at).getTime();
-          return slotStart.getTime() < bEnd && slotEnd.getTime() > bStart;
+        slots.push({
+          barber_id: targetBarberId,
+          start_time: slotStart.toISOString(),
+          end_time: slotEnd.toISOString(),
         });
-
-        if (!collision) {
-          slots.push({
-            barber_id: targetBarberId,
-            start_time: slotStart.toISOString(),
-            end_time: slotEnd.toISOString(),
-          });
-        }
       }
 
       setAvailableSlots(slots);
@@ -693,11 +680,28 @@ export default function AgendarPage() {
                     <p className="text-xs">Consultando horários...</p>
                   </div>
                 ) : availableSlots.length === 0 ? (
-                  <div className="text-center py-12 text-xs text-text-muted space-y-2">
-                    <p className="font-semibold text-text">Nenhum horário livre para esta data.</p>
+                  <div className="text-center py-12 text-xs text-text-muted space-y-3">
+                    <div className="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center mx-auto mb-1">
+                      <Clock className="w-5 h-5" />
+                    </div>
+                    <p className="font-semibold text-text text-sm">Nenhum horário livre para esta data</p>
                     <p className="text-[11px] opacity-80 max-w-sm mx-auto">
-                      Se você estiver agendando à noite após o encerramento do expediente (19:00), selecione amanhã ou outra data no calendário acima.
+                      O expediente desta data já encerrou ou todos os horários foram preenchidos.
                     </p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const [y, m, d] = selectedDate.split("-").map(Number);
+                        const cur = new Date(y, m - 1, d, 12, 0, 0);
+                        cur.setDate(cur.getDate() + 1);
+                        if (cur.getDay() === 0) cur.setDate(cur.getDate() + 1); // Pula domingo
+                        setSelectedDate(formatLocalDate(cur));
+                      }}
+                      className="mt-3 inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-accent-contrast px-5 py-2.5 rounded-full font-bold text-xs transition-all shadow-glow cursor-pointer"
+                    >
+                      <span>Ver próximo dia disponível</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
                   </div>
                 ) : (
                   <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
