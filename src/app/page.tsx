@@ -19,7 +19,7 @@ import {
   Star,
 } from "lucide-react";
 import { supabase, getBarbershopId, getMissingClientEnvVars } from "@/lib/supabase";
-import { formatCurrency, formatDuration } from "@/lib/utils";
+import { formatCurrency, formatDuration, fixMojibake } from "@/lib/utils";
 import { useEffect } from "react";
 
 /* ─────────── tipos ─────────── */
@@ -114,7 +114,17 @@ export default function HomePage() {
           .eq("barbershop_id", shopId)
           .maybeSingle();
 
-        if (setRes) setSettings(setRes);
+        if (setRes) {
+          setSettings({
+            ...setRes,
+            brand_name: fixMojibake(setRes.brand_name),
+            brand_tagline: fixMojibake(setRes.brand_tagline),
+            hero_title: fixMojibake(setRes.hero_title),
+            hero_subtitle: fixMojibake(setRes.hero_subtitle),
+            about_text: fixMojibake(setRes.about_text),
+            about_location: fixMojibake(setRes.about_location),
+          });
+        }
 
         const { data: srvRes } = await supabase
           .from("public_services")
@@ -122,14 +132,30 @@ export default function HomePage() {
           .eq("barbershop_id", shopId)
           .order("price", { ascending: true });
 
-        if (srvRes) setServices(srvRes);
+        if (srvRes) {
+          setServices(
+            srvRes.map((s) => ({
+              ...s,
+              name: fixMojibake(s.name),
+              description: s.description ? fixMojibake(s.description) : null,
+            }))
+          );
+        }
 
         const { data: barbRes } = await supabase
           .from("public_barbers")
           .select("*")
           .eq("barbershop_id", shopId);
 
-        if (barbRes) setBarbers(barbRes);
+        if (barbRes) {
+          setBarbers(
+            barbRes.map((b) => ({
+              ...b,
+              name: fixMojibake(b.name),
+              bio: b.bio ? fixMojibake(b.bio) : null,
+            }))
+          );
+        }
 
         const { data: faqRes } = await supabase
           .from("public_faq_items")
@@ -137,7 +163,15 @@ export default function HomePage() {
           .eq("barbershop_id", shopId)
           .order("sort_order", { ascending: true });
 
-        if (faqRes) setFaq(faqRes);
+        if (faqRes) {
+          setFaq(
+            faqRes.map((f) => ({
+              ...f,
+              question: fixMojibake(f.question),
+              answer: fixMojibake(f.answer),
+            }))
+          );
+        }
       } catch (err: unknown) {
         console.error(err);
       } finally {

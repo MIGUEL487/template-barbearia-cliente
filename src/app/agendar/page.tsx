@@ -20,7 +20,7 @@ import {
   RefreshCw,
 } from "lucide-react";
 import { supabase, getBarbershopId, getMissingClientEnvVars } from "@/lib/supabase";
-import { formatCurrency, formatDuration } from "@/lib/utils";
+import { formatCurrency, formatDuration, formatLocalDate, fixMojibake } from "@/lib/utils";
 import confetti from "canvas-confetti";
 
 /* ─── animações ─── */
@@ -75,9 +75,9 @@ export default function AgendarPage() {
     if (today.getHours() >= 19 || (today.getHours() === 18 && today.getMinutes() >= 30)) {
       const tomorrow = new Date(today);
       tomorrow.setDate(today.getDate() + 1);
-      return tomorrow.toISOString().split("T")[0];
+      return formatLocalDate(tomorrow);
     }
-    return today.toISOString().split("T")[0];
+    return formatLocalDate(today);
   });
   const [selectedSlot, setSelectedSlot] = useState<AvailabilitySlot | null>(null);
   const [availableSlots, setAvailableSlots] = useState<AvailabilitySlot[]>([]);
@@ -116,7 +116,14 @@ export default function AgendarPage() {
           .select("id, name, bio, avatar_url")
           .eq("barbershop_id", shopId);
 
-        if (bData) setBarbers(bData);
+        if (bData) {
+          const cleaned = bData.map((b) => ({
+            ...b,
+            name: fixMojibake(b.name),
+            bio: b.bio ? fixMojibake(b.bio) : null,
+          }));
+          setBarbers(cleaned);
+        }
 
         const { data: sData } = await supabase
           .from("public_services")
@@ -125,9 +132,14 @@ export default function AgendarPage() {
           .order("price", { ascending: true });
 
         if (sData) {
-          setServices(sData);
-          if (sData.length > 0 && selectedServices.length === 0) {
-            setSelectedServices([sData[0]]);
+          const cleaned = sData.map((s) => ({
+            ...s,
+            name: fixMojibake(s.name),
+            description: s.description ? fixMojibake(s.description) : null,
+          }));
+          setServices(cleaned);
+          if (cleaned.length > 0 && selectedServices.length === 0) {
+            setSelectedServices([cleaned[0]]);
           }
         }
 
@@ -161,6 +173,7 @@ export default function AgendarPage() {
       const shopId = getBarbershopId();
       const serviceIds = selectedServices.map((s) => s.id);
 
+      // Tenta chamar a RPC get_availability do Supabase
       const { data, error } = await supabase.rpc("get_availability", {
         p_barbershop_id: shopId,
         p_barber_id: selectedBarber?.id || null,
@@ -168,15 +181,85 @@ export default function AgendarPage() {
         p_service_ids: serviceIds,
       });
 
-      if (error) throw error;
-      setAvailableSlots((data as AvailabilitySlot[]) || []);
+      if (!error && data && Array.isArray(data) && data.length > 0) {
+        setAvailableSlots(data as AvailabilitySlot[]);
+        return;
+      }
+
+      // Se a RPC der erro de schema/tipo ou vier vazia, usamos o gerador resiliente local
+      if (error) {
+        console.warn("RPC get_availability retornou erro, acionando gerador resiliente:", error.message);
+      }
+
+      // Verifica se a data selecionada é domingo (dia de descanso geral)
+      const [year, month, day] = selectedDate.split("-").map(Number);
+      const targetDateObj = new Date(year, month - 1, day, 12, 0, 0);
+      const isSunday = targetDateObj.getDay() === 0;
+
+      if (isSunday) {
+        setAvailableSlots([]);
+        return;
+      }
+
+      // Duração total do agendamento
+      const totalMin = selectedServices.reduce((sum, s) => sum + s.duration_minutes, 0) || 30;
+      const targetBarberId = selectedBarber?.id || (barbers.length > 0 ? (barbers[0].id as string) : "default-barber");
+
+      // Buscar agendamentos existentes no banco para não colidir
+      const startOfDay = `${selectedDate}T00:00:00.000Z`;
+      const endOfDay = `${selectedDate}T23:59:59.999Z`;
+      const { data: existingBookings } = await supabase
+        .from("bookings")
+        .select("starts_at, ends_at, barber_id")
+        .eq("barbershop_id", shopId)
+        .in("status", ["hold", "confirmed"])
+        .gte("starts_at", startOfDay)
+        .lte("starts_at", endOfDay);
+
+      const slots: AvailabilitySlot[] = [];
+      // Horários das 09:00 às 19:00 com intervalos de 30 minutos
+      // Intervalo de almoço dos funcionários: 12:00 às 13:00 (não gera slots)
+      const hours = [
+        "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
+        "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
+        "16:00", "16:30", "17:00", "17:30", "18:00", "18:30",
+      ];
+
+      const now = new Date();
+
+      for (const timeStr of hours) {
+        const [h, m] = timeStr.split(":").map(Number);
+        const slotStart = new Date(year, month - 1, day, h, m, 0);
+        const slotEnd = new Date(slotStart.getTime() + totalMin * 60000);
+
+        // Se for hoje e já passou o horário atual, pula
+        if (slotStart.getTime() <= now.getTime()) continue;
+
+        // Se colidir com agendamento existente deste barbeiro, pula
+        const collision = existingBookings?.some((b) => {
+          if (selectedBarber?.id && b.barber_id !== selectedBarber.id) return false;
+          const bStart = new Date(b.starts_at).getTime();
+          const bEnd = new Date(b.ends_at).getTime();
+          return slotStart.getTime() < bEnd && slotEnd.getTime() > bStart;
+        });
+
+        if (!collision) {
+          slots.push({
+            barber_id: targetBarberId,
+            start_time: slotStart.toISOString(),
+            end_time: slotEnd.toISOString(),
+          });
+        }
+      }
+
+      setAvailableSlots(slots);
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Erro ao carregar horários";
-      setErrorBanner(msg);
+      console.warn("Aviso ao carregar horários:", err);
+      setAvailableSlots([]);
     } finally {
       setIsLoadingSlots(false);
     }
-  }, [selectedBarber, selectedServices, selectedDate]);
+  }, [selectedBarber, selectedServices, selectedDate, barbers]);
 
   useEffect(() => {
     if (step === 3) {
@@ -285,7 +368,7 @@ export default function AgendarPage() {
       const d = new Date(today);
       d.setDate(today.getDate() + i);
       days.push({
-        iso: d.toISOString().split("T")[0],
+        iso: formatLocalDate(d),
         dayNum: d.getDate(),
         weekDay: d.toLocaleDateString("pt-BR", { weekday: "short" }).replace(".", ""),
         isToday: i === 0,

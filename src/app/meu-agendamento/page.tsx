@@ -18,7 +18,7 @@ import {
   Search,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
-import { formatCurrency } from "@/lib/utils";
+import { formatCurrency, fixMojibake } from "@/lib/utils";
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -65,7 +65,17 @@ function MeuAgendamentoContent() {
       });
 
       if (error) throw error;
-      setBooking(data as BookingDetail);
+      if (data) {
+        const d = data as BookingDetail;
+        setBooking({
+          ...d,
+          barber_name: fixMojibake(d.barber_name),
+          customer_name: fixMojibake(d.customer_name),
+          services: Array.isArray(d.services) ? d.services.map((s) => fixMojibake(s)) : [],
+        });
+      } else {
+        setBooking(null);
+      }
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Agendamento não encontrado ou token inválido";
       setStatusMessage({ type: "error", text: msg });
