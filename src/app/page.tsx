@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -20,7 +20,6 @@ import {
 } from "lucide-react";
 import { supabase, getBarbershopId, getMissingClientEnvVars } from "@/lib/supabase";
 import { formatCurrency, formatDuration, fixMojibake } from "@/lib/utils";
-import { useEffect } from "react";
 
 /* ─────────── tipos ─────────── */
 
@@ -96,7 +95,7 @@ export default function HomePage() {
   const [currentPage, setCurrentPage] = useState<PageId>("home");
   const [openFaqId, setOpenFaqId] = useState<string | null>(null);
 
-  const missingEnv = getMissingClientEnvVars();
+  const missingEnv = useMemo(() => getMissingClientEnvVars(), []);
 
   useEffect(() => {
     if (missingEnv.length > 0) {

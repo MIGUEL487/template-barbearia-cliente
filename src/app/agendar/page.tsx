@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -98,7 +98,7 @@ export default function AgendarPage() {
   const [holdExpiresAt, setHoldExpiresAt] = useState<string | null>(null);
   const [countdownSeconds, setCountdownSeconds] = useState<number>(600);
 
-  const missingEnv = getMissingClientEnvVars();
+  const missingEnv = useMemo(() => getMissingClientEnvVars(), []);
 
   useEffect(() => {
     if (missingEnv.length > 0) {
@@ -138,9 +138,7 @@ export default function AgendarPage() {
             description: s.description ? fixMojibake(s.description) : null,
           }));
           setServices(cleaned);
-          if (cleaned.length > 0 && selectedServices.length === 0) {
-            setSelectedServices([cleaned[0]]);
-          }
+          setSelectedServices((prev) => (prev.length === 0 && cleaned.length > 0 ? [cleaned[0]] : prev));
         }
 
         const { data: setRes } = await supabase
@@ -162,6 +160,12 @@ export default function AgendarPage() {
     fetchInitialData();
   }, [missingEnv]);
 
+  const selectedBarberId = selectedBarber?.id || null;
+  const selectedServiceIdsKey = useMemo(
+    () => selectedServices.map((s) => s.id).sort().join(","),
+    [selectedServices]
+  );
+
   const fetchAvailability = useCallback(async () => {
     if (!selectedDate || selectedServices.length === 0) return;
 
@@ -176,7 +180,7 @@ export default function AgendarPage() {
       // Tenta chamar a RPC get_availability do Supabase
       const { data, error } = await supabase.rpc("get_availability", {
         p_barbershop_id: shopId,
-        p_barber_id: selectedBarber?.id || null,
+        p_barber_id: selectedBarberId,
         p_date: selectedDate,
         p_service_ids: serviceIds,
       });
@@ -203,7 +207,7 @@ export default function AgendarPage() {
 
       // Duração total do agendamento
       const totalMin = selectedServices.reduce((sum, s) => sum + s.duration_minutes, 0) || 30;
-      const targetBarberId = selectedBarber?.id || (barbers.length > 0 ? (barbers[0].id as string) : "default-barber");
+      const targetBarberId = selectedBarberId || (barbers.length > 0 ? (barbers[0].id as string) : "default-barber");
 
       // Buscar agendamentos existentes no banco para não colidir
       const startOfDay = `${selectedDate}T00:00:00.000Z`;
@@ -237,7 +241,7 @@ export default function AgendarPage() {
 
         // Se colidir com agendamento existente deste barbeiro, pula
         const collision = existingBookings?.some((b) => {
-          if (selectedBarber?.id && b.barber_id !== selectedBarber.id) return false;
+          if (selectedBarberId && b.barber_id !== selectedBarberId) return false;
           const bStart = new Date(b.starts_at).getTime();
           const bEnd = new Date(b.ends_at).getTime();
           return slotStart.getTime() < bEnd && slotEnd.getTime() > bStart;
@@ -259,13 +263,13 @@ export default function AgendarPage() {
     } finally {
       setIsLoadingSlots(false);
     }
-  }, [selectedBarber, selectedServices, selectedDate, barbers]);
+  }, [selectedBarberId, selectedDate, selectedServiceIdsKey, barbers, selectedServices]);
 
   useEffect(() => {
     if (step === 3) {
       fetchAvailability();
     }
-  }, [step, fetchAvailability]);
+  }, [step, selectedDate, selectedBarberId, selectedServiceIdsKey]);
 
   // Contagem regressiva de Hold
   useEffect(() => {
@@ -360,9 +364,9 @@ export default function AgendarPage() {
     }
   };
 
-  // Gerador de datas próximas
-  const getUpcomingDays = () => {
-    const days = [];
+  // Gerador de datas próximas (memoizado para performance e estabilidade de render)
+  const upcomingDays = useMemo(() => {
+    const days: { iso: string; dayNum: number; weekDay: string; isToday: boolean }[] = [];
     const today = new Date();
     for (let i = 0; i < 14; i++) {
       const d = new Date(today);
@@ -375,7 +379,7 @@ export default function AgendarPage() {
       });
     }
     return days;
-  };
+  }, []);
 
   const stepsHeader = [
     { num: 1, label: "Profissional" },
@@ -639,7 +643,7 @@ export default function AgendarPage() {
               {/* Calendário Circular */}
               <div className="bg-surface rounded-[28px] p-6">
                 <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none justify-start md:justify-center">
-                  {getUpcomingDays().map((d) => {
+                  {upcomingDays.map((d) => {
                     const isSelected = selectedDate === d.iso;
                     return (
                       <motion.button
@@ -666,7 +670,7 @@ export default function AgendarPage() {
               </div>
 
               {/* Horários em Pílulas */}
-              <div className="bg-surface rounded-[28px] p-8">
+              <div className="bg-surface rounded-[28px] p-8 mb-24">
                 <div className="flex items-center justify-between mb-6 pb-4 border-b border-hairline">
                   <div className="flex items-center gap-2 text-xs font-bold text-text">
                     <Clock className="w-4 h-4 text-accent" />
