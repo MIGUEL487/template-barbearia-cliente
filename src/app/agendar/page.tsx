@@ -71,6 +71,12 @@ export default function AgendarPage() {
   const [selectedServices, setSelectedServices] = useState<Service[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>(() => {
     const today = new Date();
+    // Se já passou do horário de atendimento (após as 18h30), sugere o dia seguinte por padrão
+    if (today.getHours() >= 19 || (today.getHours() === 18 && today.getMinutes() >= 30)) {
+      const tomorrow = new Date(today);
+      tomorrow.setDate(today.getDate() + 1);
+      return tomorrow.toISOString().split("T")[0];
+    }
     return today.toISOString().split("T")[0];
   });
   const [selectedSlot, setSelectedSlot] = useState<AvailabilitySlot | null>(null);
@@ -600,8 +606,11 @@ export default function AgendarPage() {
                     <p className="text-xs">Consultando horários...</p>
                   </div>
                 ) : availableSlots.length === 0 ? (
-                  <div className="text-center py-12 text-xs text-text-muted">
-                    Nenhum horário livre nesta data. Selecione outro dia.
+                  <div className="text-center py-12 text-xs text-text-muted space-y-2">
+                    <p className="font-semibold text-text">Nenhum horário livre para esta data.</p>
+                    <p className="text-[11px] opacity-80 max-w-sm mx-auto">
+                      Se você estiver agendando à noite após o encerramento do expediente (19:00), selecione amanhã ou outra data no calendário acima.
+                    </p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
