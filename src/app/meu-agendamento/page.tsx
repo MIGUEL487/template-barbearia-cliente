@@ -3,6 +3,7 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Scissors,
   Calendar,
@@ -18,6 +19,11 @@ import {
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { formatCurrency } from "@/lib/utils";
+
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
+};
 
 interface BookingDetail {
   id: string;
@@ -124,30 +130,36 @@ function MeuAgendamentoContent() {
   };
 
   return (
-    <main className="min-h-screen bg-bg text-text py-12 px-4">
-      <div className="max-w-2xl mx-auto space-y-6">
-        {/* Top Header */}
-        <div className="flex items-center justify-between">
+    <main className="min-h-screen bg-bg text-text">
+      {/* Header Fixo */}
+      <header className="fixed top-0 inset-x-0 z-50 bg-bg/80 backdrop-blur-xl border-b border-hairline">
+        <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 text-text px-5 py-2.5 rounded-full text-xs font-semibold transition-colors shadow-sm"
+            className="inline-flex items-center gap-2 text-text-muted hover:text-text text-xs font-medium transition-colors"
           >
-            <ChevronLeft className="w-4 h-4 text-accent" />
-            <span>Voltar ao site</span>
+            <ChevronLeft className="w-4 h-4" />
+            <span>Voltar</span>
           </Link>
-
           <div className="flex items-center gap-2 text-xs font-serif font-bold text-text">
             <Scissors className="w-4 h-4 text-accent" />
             <span>Meu Agendamento</span>
           </div>
         </div>
+      </header>
 
+      <div className="max-w-2xl mx-auto px-4 pt-24 pb-12 space-y-6">
         {/* Busca por Token */}
-        <div className="bg-surface rounded-[32px] p-8 shadow-soft space-y-4">
+        <motion.div
+          className="bg-surface rounded-[28px] p-8 space-y-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
           <div>
             <h1 className="font-serif text-2xl font-bold text-text">Consultar Reserva</h1>
             <p className="text-xs text-text-muted mt-1">
-              Digite ou cole o código que você recebeu ao confirmar seu horário.
+              Digite ou cole o código que você recebeu ao confirmar.
             </p>
           </div>
 
@@ -159,33 +171,39 @@ function MeuAgendamentoContent() {
               onChange={(e) => setTokenInput(e.target.value)}
               className="flex-1 bg-surface-2 rounded-full px-6 py-3.5 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
             />
-            <button
+            <motion.button
               onClick={() => setActiveToken(tokenInput)}
-              className="bg-accent hover:bg-accent-hover text-accent-contrast px-8 py-3.5 rounded-full text-xs font-bold shadow-glow transition-all active:scale-95 flex items-center justify-center gap-2"
+              className="bg-accent hover:bg-accent-hover text-accent-contrast px-8 py-3.5 rounded-full text-xs font-bold transition-all flex items-center justify-center gap-2"
+              whileTap={{ scale: 0.95 }}
             >
               <Search className="w-4 h-4" />
               <span>Consultar</span>
-            </button>
+            </motion.button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Mensagem de Status */}
-        {statusMessage && (
-          <div
-            className={`p-4 rounded-[20px] text-xs flex items-center gap-2.5 ${
-              statusMessage.type === "success"
-                ? "bg-emerald-500/10 text-emerald-400"
-                : "bg-danger/10 text-danger"
-            }`}
-          >
-            {statusMessage.type === "success" ? (
-              <CheckCircle2 className="w-4 h-4 shrink-0" />
-            ) : (
-              <AlertCircle className="w-4 h-4 shrink-0" />
-            )}
-            <span>{statusMessage.text}</span>
-          </div>
-        )}
+        <AnimatePresence>
+          {statusMessage && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className={`p-4 rounded-[20px] text-xs flex items-center gap-2.5 ${
+                statusMessage.type === "success"
+                  ? "bg-emerald-500/10 text-emerald-400"
+                  : "bg-danger/10 text-danger"
+              }`}
+            >
+              {statusMessage.type === "success" ? (
+                <CheckCircle2 className="w-4 h-4 shrink-0" />
+              ) : (
+                <AlertCircle className="w-4 h-4 shrink-0" />
+              )}
+              <span>{statusMessage.text}</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {isLoading && (
           <div className="flex justify-center py-8">
@@ -194,114 +212,131 @@ function MeuAgendamentoContent() {
         )}
 
         {/* Detalhes do Agendamento */}
-        {booking && (
-          <div className="bg-surface rounded-[32px] p-8 shadow-soft space-y-6 animate-in fade-in">
-            <div className="flex justify-between items-start pb-5 border-b border-hairline">
-              <div>
-                <span className="text-[10px] uppercase font-bold tracking-wider text-text-muted block mb-1">
-                  Status da Reserva
-                </span>
-                <span
-                  className={`inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
-                    booking.status === "confirmed"
-                      ? "bg-emerald-500/15 text-emerald-400"
-                      : booking.status === "hold"
-                      ? "bg-accent-soft text-accent"
-                      : "bg-danger/15 text-danger"
-                  }`}
-                >
-                  {booking.status}
-                </span>
-              </div>
-
-              <div className="text-right">
-                <span className="text-[10px] text-text-muted block mb-1">Valor Total</span>
-                <strong className="text-accent font-serif text-xl">{formatCurrency(booking.total_price)}</strong>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-              <div className="bg-surface-2 rounded-2xl p-4">
-                <span className="text-text-muted block text-[11px] mb-0.5">Cliente</span>
-                <strong className="text-text text-sm font-serif">{booking.customer_name}</strong>
-              </div>
-
-              <div className="bg-surface-2 rounded-2xl p-4">
-                <span className="text-text-muted block text-[11px] mb-0.5">Profissional</span>
-                <strong className="text-text text-sm font-serif">{booking.barber_name}</strong>
-              </div>
-
-              <div className="sm:col-span-2 bg-surface-2 rounded-2xl p-4">
-                <span className="text-text-muted block text-[11px] mb-0.5">Data e Horário</span>
-                <strong className="text-text text-sm font-mono">
-                  {new Date(booking.starts_at).toLocaleString("pt-BR", { dateStyle: "long", timeStyle: "short" })}
-                </strong>
-              </div>
-
-              <div className="sm:col-span-2 bg-surface-2 rounded-2xl p-4">
-                <span className="text-text-muted block text-[11px] mb-0.5">Serviços Contratados</span>
-                <span className="text-text font-semibold">{booking.services?.join(", ")}</span>
-              </div>
-            </div>
-
-            {/* Painel de Reagendamento */}
-            {isRescheduling && (
-              <div className="p-6 bg-surface-2 rounded-[24px] space-y-4">
-                <h4 className="font-serif font-bold text-sm text-text">Escolha a Nova Data e Horário:</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <input
-                    type="date"
-                    min={new Date().toISOString().split("T")[0]}
-                    value={newDate}
-                    onChange={(e) => setNewDate(e.target.value)}
-                    className="bg-surface rounded-full px-5 py-2.5 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none"
-                  />
-                  <input
-                    type="time"
-                    value={newTime}
-                    onChange={(e) => setNewTime(e.target.value)}
-                    className="bg-surface rounded-full px-5 py-2.5 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none"
-                  />
+        <AnimatePresence>
+          {booking && (
+            <motion.div
+              className="bg-surface rounded-[28px] p-8 space-y-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <div className="flex justify-between items-start pb-5 border-b border-hairline">
+                <div>
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-text-muted block mb-1">
+                    Status da Reserva
+                  </span>
+                  <span
+                    className={`inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
+                      booking.status === "confirmed"
+                        ? "bg-emerald-500/15 text-emerald-400"
+                        : booking.status === "hold"
+                        ? "bg-accent/10 text-accent"
+                        : "bg-danger/15 text-danger"
+                    }`}
+                  >
+                    {booking.status}
+                  </span>
                 </div>
-                <div className="flex justify-end gap-3 pt-2">
-                  <button
-                    onClick={() => setIsRescheduling(false)}
-                    className="px-5 py-2 text-xs font-semibold text-text-muted hover:text-text rounded-full"
+
+                <div className="text-right">
+                  <span className="text-[10px] text-text-muted block mb-1">Valor Total</span>
+                  <strong className="text-accent font-serif text-xl">{formatCurrency(booking.total_price)}</strong>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div className="bg-surface-2 rounded-[20px] p-4">
+                  <span className="text-text-muted block text-[11px] mb-0.5">Cliente</span>
+                  <strong className="text-text text-sm font-serif">{booking.customer_name}</strong>
+                </div>
+
+                <div className="bg-surface-2 rounded-[20px] p-4">
+                  <span className="text-text-muted block text-[11px] mb-0.5">Profissional</span>
+                  <strong className="text-text text-sm font-serif">{booking.barber_name}</strong>
+                </div>
+
+                <div className="sm:col-span-2 bg-surface-2 rounded-[20px] p-4">
+                  <span className="text-text-muted block text-[11px] mb-0.5">Data e Horário</span>
+                  <strong className="text-text text-sm font-mono">
+                    {new Date(booking.starts_at).toLocaleString("pt-BR", { dateStyle: "long", timeStyle: "short" })}
+                  </strong>
+                </div>
+
+                <div className="sm:col-span-2 bg-surface-2 rounded-[20px] p-4">
+                  <span className="text-text-muted block text-[11px] mb-0.5">Serviços</span>
+                  <span className="text-text font-semibold">{booking.services?.join(", ")}</span>
+                </div>
+              </div>
+
+              {/* Reagendamento */}
+              <AnimatePresence>
+                {isRescheduling && (
+                  <motion.div
+                    className="p-6 bg-surface-2 rounded-[24px] space-y-4"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                  >
+                    <h4 className="font-serif font-bold text-sm text-text">Nova Data e Horário:</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="date"
+                        min={new Date().toISOString().split("T")[0]}
+                        value={newDate}
+                        onChange={(e) => setNewDate(e.target.value)}
+                        className="bg-surface rounded-full px-5 py-2.5 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none"
+                      />
+                      <input
+                        type="time"
+                        value={newTime}
+                        onChange={(e) => setNewTime(e.target.value)}
+                        className="bg-surface rounded-full px-5 py-2.5 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none"
+                      />
+                    </div>
+                    <div className="flex justify-end gap-3 pt-2">
+                      <button
+                        onClick={() => setIsRescheduling(false)}
+                        className="px-5 py-2 text-xs font-semibold text-text-muted hover:text-text rounded-full"
+                      >
+                        Cancelar
+                      </button>
+                      <button
+                        onClick={handleReschedule}
+                        className="bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-2.5 rounded-full text-xs font-bold transition-all active:scale-95"
+                      >
+                        Confirmar Novo Horário
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Ações */}
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-hairline">
+                {booking.can_reschedule && !isRescheduling && (
+                  <motion.button
+                    onClick={() => setIsRescheduling(true)}
+                    className="bg-surface-2 hover:bg-surface-3 text-text px-6 py-2.5 rounded-full text-xs font-bold transition-colors"
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Reagendar
+                  </motion.button>
+                )}
+
+                {booking.can_cancel && (
+                  <motion.button
+                    onClick={handleCancel}
+                    className="bg-danger/15 hover:bg-danger/25 text-danger px-6 py-2.5 rounded-full text-xs font-bold transition-colors"
+                    whileTap={{ scale: 0.95 }}
                   >
                     Cancelar
-                  </button>
-                  <button
-                    onClick={handleReschedule}
-                    className="bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-2.5 rounded-full text-xs font-bold shadow-glow transition-all active:scale-95"
-                  >
-                    Confirmar Novo Horário
-                  </button>
-                </div>
+                  </motion.button>
+                )}
               </div>
-            )}
-
-            {/* Ações em Pílula */}
-            <div className="flex items-center justify-end gap-3 pt-4 border-t border-hairline">
-              {booking.can_reschedule && !isRescheduling && (
-                <button
-                  onClick={() => setIsRescheduling(true)}
-                  className="bg-surface-2 hover:bg-surface-3 text-text px-6 py-2.5 rounded-full text-xs font-bold transition-colors"
-                >
-                  Reagendar Horário
-                </button>
-              )}
-
-              {booking.can_cancel && (
-                <button
-                  onClick={handleCancel}
-                  className="bg-danger/15 hover:bg-danger/25 text-danger px-6 py-2.5 rounded-full text-xs font-bold transition-colors"
-                >
-                  Cancelar Agendamento
-                </button>
-              )}
-            </div>
-          </div>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </main>
   );

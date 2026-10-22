@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Scissors,
   Calendar as CalendarIcon,
@@ -21,6 +22,18 @@ import {
 import { supabase, getBarbershopId, getMissingClientEnvVars } from "@/lib/supabase";
 import { formatCurrency, formatDuration } from "@/lib/utils";
 import confetti from "canvas-confetti";
+
+/* ─── animações ─── */
+const pageVariants = {
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+  exit: { opacity: 0, y: -16, transition: { duration: 0.25 } },
+};
+
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
+};
 
 interface Barber {
   id: string | null;
@@ -244,7 +257,7 @@ export default function AgendarPage() {
             particleCount: 80,
             spread: 60,
             origin: { y: 0.6 },
-            colors: ["#F5A524", "#F4F1EA", "#E09015"],
+            colors: ["#C8C2B8", "#F0EDE6", "#8A8580"],
           });
         } catch {
           // confetti opcional
@@ -258,7 +271,7 @@ export default function AgendarPage() {
     }
   };
 
-  // Gerador simples de datas próximas para o calendário circular
+  // Gerador de datas próximas
   const getUpcomingDays = () => {
     const days = [];
     const today = new Date();
@@ -284,24 +297,25 @@ export default function AgendarPage() {
 
   return (
     <main className="min-h-screen bg-bg text-text pb-32">
-      {/* Barra Superior em Pílula Flutuante */}
-      <header className="pt-6 px-4 max-w-5xl mx-auto flex items-center justify-between">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 text-text px-5 py-2.5 rounded-full text-xs font-semibold transition-colors shadow-sm"
-        >
-          <ChevronLeft className="w-4 h-4 text-accent" />
-          <span>Voltar ao início</span>
-        </Link>
-
-        <div className="flex items-center gap-2 text-xs font-serif font-bold text-text">
-          <Scissors className="w-4 h-4 text-accent" />
-          <span>Agendamento Online</span>
+      {/* Header Fixo */}
+      <header className="fixed top-0 inset-x-0 z-50 bg-bg/80 backdrop-blur-xl border-b border-hairline">
+        <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-text-muted hover:text-text text-xs font-medium transition-colors"
+          >
+            <ChevronLeft className="w-4 h-4" />
+            <span>Voltar</span>
+          </Link>
+          <div className="flex items-center gap-2 text-xs font-serif font-bold text-text">
+            <Scissors className="w-4 h-4 text-accent" />
+            <span>Agendamento</span>
+          </div>
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-4 pt-10">
-        {/* Indicador de Etapas (Stepper com Linhas e Círculos) */}
+      <div className="max-w-4xl mx-auto px-4 pt-24">
+        {/* Indicador de Etapas */}
         {step <= 4 && (
           <div className="mb-12">
             <div className="flex items-center justify-between relative max-w-xl mx-auto">
@@ -311,19 +325,20 @@ export default function AgendarPage() {
                 const isPast = step > s.num;
                 return (
                   <div key={s.num} className="relative z-10 flex flex-col items-center">
-                    <button
+                    <motion.button
                       onClick={() => isPast && setStep(s.num as any)}
                       disabled={!isPast}
-                      className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs transition-all duration-300 ${
+                      className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs transition-all ${
                         isActive
                           ? "bg-accent text-accent-contrast shadow-glow scale-110"
                           : isPast
                           ? "bg-accent/20 text-accent cursor-pointer"
                           : "bg-surface-2 text-text-muted cursor-not-allowed"
                       }`}
+                      whileTap={isPast ? { scale: 0.92 } : undefined}
                     >
                       {isPast ? <Check className="w-4 h-4 stroke-[3]" /> : s.num}
-                    </button>
+                    </motion.button>
                     <span
                       className={`text-[11px] font-semibold mt-2 ${
                         isActive ? "text-accent" : isPast ? "text-text" : "text-text-muted"
@@ -338,524 +353,579 @@ export default function AgendarPage() {
           </div>
         )}
 
-        {/* Chip Flutuante do Barbeiro Selecionado */}
+        {/* Chip do Barbeiro */}
         {step > 1 && step <= 4 && selectedBarber && (
-          <div className="flex justify-center mb-8">
-            <div className="inline-flex items-center gap-3 bg-surface-2 px-5 py-2 rounded-full text-xs shadow-sm">
-              <span className="text-text-muted">Profissional selecionado:</span>
+          <motion.div
+            className="flex justify-center mb-8"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <div className="inline-flex items-center gap-3 bg-surface-2 px-5 py-2 rounded-full text-xs">
+              <span className="text-text-muted">Profissional:</span>
               <strong className="text-text font-serif">{selectedBarber.name}</strong>
-              <button
-                onClick={() => setStep(1)}
-                className="text-accent hover:underline font-bold text-[11px] ml-1"
-              >
+              <button onClick={() => setStep(1)} className="text-accent hover:underline font-bold text-[11px] ml-1">
                 Trocar
               </button>
             </div>
-          </div>
+          </motion.div>
         )}
 
-        {/* Alerta de Erro */}
+        {/* Erro */}
         {errorBanner && (
-          <div className="mb-8 p-4 rounded-[20px] bg-danger/10 text-danger text-xs flex items-center gap-3">
+          <motion.div
+            className="mb-8 p-4 rounded-[20px] bg-danger/10 text-danger text-xs flex items-center gap-3"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span className="flex-1">{errorBanner}</span>
-          </div>
+          </motion.div>
         )}
 
-        {/* ETAPA 1: PROFISSIONAL */}
-        {step === 1 && (
-          <div className="space-y-8 animate-in fade-in">
-            <div className="text-center">
-              <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-text">
-                Escolha o <span className="italic text-accent">Profissional</span>
-              </h1>
-              <p className="text-xs text-text-muted mt-2">
-                Selecione quem irá cuidar do seu visual ou agende com quem tiver a agenda mais rápida
-              </p>
-            </div>
+        <AnimatePresence mode="wait">
+          {/* ETAPA 1 */}
+          {step === 1 && (
+            <motion.div key="step1" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="space-y-8">
+              <div className="text-center">
+                <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-text">
+                  Escolha o <span className="italic text-accent">Profissional</span>
+                </h1>
+                <p className="text-xs text-text-muted mt-2">
+                  Selecione quem irá cuidar do seu visual
+                </p>
+              </div>
 
-            {/* Opção Rápida: Sem Preferência */}
-            <div className="flex justify-center">
-              <button
-                onClick={() => {
-                  setSelectedBarber({ id: null, name: "Primeiro Disponível", bio: null });
-                  setStep(2);
-                }}
-                className="inline-flex items-center gap-3 bg-surface hover:bg-surface-2 text-text px-8 py-4 rounded-full font-bold text-xs shadow-soft transition-all active:scale-95 group"
-              >
-                <div className="w-8 h-8 rounded-full bg-accent-soft text-accent flex items-center justify-center">
-                  <Sparkles className="w-4 h-4" />
-                </div>
-                <span>Sem preferência de barbeiro (Horário mais rápido)</span>
-                <ChevronRight className="w-4 h-4 text-accent group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
-
-            {/* Lista em Círculos Grandes */}
-            <div className="flex flex-wrap items-center justify-center gap-10 pt-4">
-              {barbers.map((b) => (
-                <div
-                  key={b.id || "nobarb"}
+              <div className="flex justify-center">
+                <motion.button
                   onClick={() => {
-                    setSelectedBarber(b);
+                    setSelectedBarber({ id: null, name: "Primeiro Disponível", bio: null });
                     setStep(2);
                   }}
-                  className="flex flex-col items-center group cursor-pointer"
+                  className="inline-flex items-center gap-3 bg-surface hover:bg-surface-2 text-text px-8 py-4 rounded-full font-bold text-xs transition-all group"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
                 >
-                  <div className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-surface-2 p-1.5 shadow-soft transition-all duration-300 group-hover:scale-105 group-hover:ring-2 group-hover:ring-accent">
-                    <div className="w-full h-full rounded-full bg-surface flex items-center justify-center text-accent overflow-hidden font-serif text-2xl font-bold">
-                      {b.avatar_url ? (
-                        <img src={b.avatar_url} alt={b.name} className="w-full h-full object-cover" />
-                      ) : (
-                        <span>{b.name.charAt(0)}</span>
-                      )}
-                    </div>
+                  <div className="w-8 h-8 rounded-full bg-accent/10 text-accent flex items-center justify-center">
+                    <Sparkles className="w-4 h-4" />
                   </div>
-                  <h3 className="font-serif text-base font-bold text-text mt-3 group-hover:text-accent transition-colors">
-                    {b.name}
-                  </h3>
-                  <span className="text-xs text-text-muted">{b.bio || "Especialista"}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* ETAPA 2: SERVIÇOS (Linhas respiradas, sem caixas em grade) */}
-        {step === 2 && (
-          <div className="space-y-6 animate-in fade-in">
-            <div className="text-center mb-8">
-              <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-text">
-                Escolha os <span className="italic text-accent">Serviços</span>
-              </h1>
-              <p className="text-xs text-text-muted mt-2">
-                Você pode selecionar mais de um serviço para o mesmo atendimento
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              {services.map((srv) => {
-                const isSelected = selectedServices.some((s) => s.id === srv.id);
-                return (
-                  <div
-                    key={srv.id}
-                    onClick={() => toggleService(srv)}
-                    className={`rounded-2xl md:rounded-full px-6 py-4.5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer transition-all duration-200 select-none ${
-                      isSelected
-                        ? "bg-accent-soft shadow-sm"
-                        : "bg-surface hover:bg-surface-2"
-                    }`}
-                  >
-                    <div className="flex items-center gap-4">
-                      {/* Círculo de seleção */}
-                      <div
-                        className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition-colors ${
-                          isSelected ? "bg-accent text-accent-contrast" : "bg-surface-2 text-transparent"
-                        }`}
-                      >
-                        <Check className="w-3.5 h-3.5 stroke-[3]" />
-                      </div>
-                      <div>
-                        <h3 className="font-serif text-base font-bold text-text">{srv.name}</h3>
-                        <p className="text-xs text-text-muted line-clamp-1">
-                          {srv.description || "Produtos de alta performance e toalha aromática."}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between sm:justify-end gap-6 pt-2 sm:pt-0 border-t sm:border-t-0 border-hairline">
-                      <div className="flex items-center gap-1.5 text-xs text-text-muted">
-                        <Clock className="w-3.5 h-3.5 text-accent" />
-                        <span>{formatDuration(srv.duration_minutes)}</span>
-                      </div>
-                      <div className="font-serif font-bold text-lg text-accent">
-                        {formatCurrency(srv.price)}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Barra Fixa Inferior com Resumo e Botão Pílula */}
-            <div className="fixed bottom-6 inset-x-0 z-40 flex justify-center px-4 pointer-events-none">
-              <div className="w-full max-w-2xl bg-surface/90 backdrop-blur-xl rounded-full px-6 py-3.5 flex items-center justify-between shadow-soft pointer-events-auto">
-                <div className="text-xs">
-                  <span className="text-text-muted">Total: </span>
-                  <strong className="text-accent font-serif text-base font-bold">
-                    {formatCurrency(totalPrice)}
-                  </strong>
-                  <span className="text-text-muted ml-2">({formatDuration(totalDuration)})</span>
-                </div>
-
-                <button
-                  onClick={() => setStep(3)}
-                  disabled={selectedServices.length === 0}
-                  className="bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-2.5 rounded-full font-bold text-xs shadow-glow transition-transform active:scale-95 disabled:opacity-40"
-                >
-                  Continuar para Horário
-                </button>
+                  <span>Sem preferência (horário mais rápido)</span>
+                  <ChevronRight className="w-4 h-4 text-accent group-hover:translate-x-1 transition-transform" />
+                </motion.button>
               </div>
-            </div>
-          </div>
-        )}
 
-        {/* ETAPA 3: HORÁRIO (Calendário Circular + Horários em Pílulas) */}
-        {step === 3 && (
-          <div className="space-y-8 animate-in fade-in">
-            <div className="text-center">
-              <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-text">
-                Escolha o <span className="italic text-accent">Horário</span>
-              </h1>
-              <p className="text-xs text-text-muted mt-2">
-                Disponibilidade consultada em tempo real com o banco de dados
-              </p>
-            </div>
+              <div className="flex flex-wrap items-center justify-center gap-10 pt-4">
+                {barbers.map((b, i) => (
+                  <motion.div
+                    key={b.id || "nobarb"}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.08 }}
+                    onClick={() => {
+                      setSelectedBarber(b);
+                      setStep(2);
+                    }}
+                    className="flex flex-col items-center group cursor-pointer"
+                  >
+                    <motion.div
+                      className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-surface-2 p-1.5 transition-all"
+                      whileHover={{ scale: 1.06 }}
+                    >
+                      <div className="w-full h-full rounded-full bg-surface flex items-center justify-center text-accent overflow-hidden font-serif text-2xl font-bold">
+                        {b.avatar_url ? (
+                          <img src={b.avatar_url} alt={b.name} className="w-full h-full object-cover" />
+                        ) : (
+                          <span>{b.name.charAt(0)}</span>
+                        )}
+                      </div>
+                    </motion.div>
+                    <h3 className="font-serif text-base font-bold text-text mt-3 group-hover:text-accent transition-colors">
+                      {b.name}
+                    </h3>
+                    <span className="text-xs text-text-muted">{b.bio || "Especialista"}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
 
-            {/* Seletor de Dias em Círculos */}
-            <div className="bg-surface rounded-[32px] p-6 shadow-soft">
-              <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none justify-start md:justify-center">
-                {getUpcomingDays().map((d) => {
-                  const isSelected = selectedDate === d.iso;
+          {/* ETAPA 2 */}
+          {step === 2 && (
+            <motion.div key="step2" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="space-y-6">
+              <div className="text-center mb-8">
+                <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-text">
+                  Escolha os <span className="italic text-accent">Serviços</span>
+                </h1>
+                <p className="text-xs text-text-muted mt-2">
+                  Selecione mais de um serviço para o mesmo atendimento
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                {services.map((srv, i) => {
+                  const isSelected = selectedServices.some((s) => s.id === srv.id);
                   return (
-                    <button
-                      key={d.iso}
-                      onClick={() => setSelectedDate(d.iso)}
-                      className={`flex flex-col items-center justify-center w-14 h-20 rounded-full transition-all shrink-0 ${
+                    <motion.div
+                      key={srv.id}
+                      initial={{ opacity: 0, x: -16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.06 }}
+                      onClick={() => toggleService(srv)}
+                      className={`rounded-[20px] md:rounded-full px-6 py-4.5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer transition-all duration-200 select-none ${
                         isSelected
-                          ? "bg-accent text-accent-contrast shadow-glow scale-105"
-                          : "bg-surface-2 hover:bg-surface-3 text-text"
+                          ? "bg-accent/10 ring-1 ring-accent/30"
+                          : "bg-surface hover:bg-surface-2"
                       }`}
                     >
-                      <span className="text-[10px] uppercase font-bold tracking-wider opacity-70">
-                        {d.weekDay}
-                      </span>
-                      <span className="font-serif text-lg font-bold mt-1">{d.dayNum}</span>
-                      {d.isToday && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1" />
-                      )}
-                    </button>
+                      <div className="flex items-center gap-4">
+                        <motion.div
+                          className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                            isSelected ? "bg-accent text-accent-contrast" : "bg-surface-2 text-transparent"
+                          }`}
+                          animate={isSelected ? { scale: [1, 1.2, 1] } : {}}
+                          transition={{ duration: 0.25 }}
+                        >
+                          <Check className="w-3.5 h-3.5 stroke-[3]" />
+                        </motion.div>
+                        <div>
+                          <h3 className="font-serif text-base font-bold text-text">{srv.name}</h3>
+                          <p className="text-xs text-text-muted line-clamp-1">
+                            {srv.description || "Produtos de alta performance."}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between sm:justify-end gap-6 pt-2 sm:pt-0 border-t sm:border-t-0 border-hairline">
+                        <div className="flex items-center gap-1.5 text-xs text-text-muted">
+                          <Clock className="w-3.5 h-3.5 text-accent" />
+                          <span>{formatDuration(srv.duration_minutes)}</span>
+                        </div>
+                        <div className="font-serif font-bold text-lg text-accent">
+                          {formatCurrency(srv.price)}
+                        </div>
+                      </div>
+                    </motion.div>
                   );
                 })}
               </div>
-            </div>
 
-            {/* Horários do Dia em Pílulas */}
-            <div className="bg-surface rounded-[32px] p-8 shadow-soft">
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-hairline">
-                <div className="flex items-center gap-2 text-xs font-bold text-text">
-                  <Clock className="w-4 h-4 text-accent" />
-                  <span>Horários para {new Date(selectedDate + "T12:00:00").toLocaleDateString("pt-BR", { dateStyle: "long" })}</span>
-                </div>
-                <button
-                  onClick={fetchAvailability}
-                  className="text-text-muted hover:text-accent p-1 text-xs flex items-center gap-1 font-semibold"
+              {/* Barra Inferior */}
+              <div className="fixed bottom-6 inset-x-0 z-40 flex justify-center px-4 pointer-events-none">
+                <motion.div
+                  className="w-full max-w-2xl bg-bg/90 backdrop-blur-xl border border-hairline rounded-full px-6 py-3.5 flex items-center justify-between shadow-soft pointer-events-auto"
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.3 }}
                 >
-                  <RefreshCw className="w-3.5 h-3.5" />
-                  <span>Atualizar</span>
-                </button>
+                  <div className="text-xs">
+                    <span className="text-text-muted">Total: </span>
+                    <strong className="text-accent font-serif text-base font-bold">
+                      {formatCurrency(totalPrice)}
+                    </strong>
+                    <span className="text-text-muted ml-2">({formatDuration(totalDuration)})</span>
+                  </div>
+                  <button
+                    onClick={() => setStep(3)}
+                    disabled={selectedServices.length === 0}
+                    className="bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-2.5 rounded-full font-bold text-xs transition-all active:scale-95 disabled:opacity-40"
+                  >
+                    Continuar
+                  </button>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* ETAPA 3 */}
+          {step === 3 && (
+            <motion.div key="step3" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="space-y-8">
+              <div className="text-center">
+                <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-text">
+                  Escolha o <span className="italic text-accent">Horário</span>
+                </h1>
+                <p className="text-xs text-text-muted mt-2">
+                  Disponibilidade em tempo real
+                </p>
               </div>
 
-              {isLoadingSlots ? (
-                <div className="flex flex-col items-center justify-center py-12 text-text-muted">
-                  <span className="w-7 h-7 border-2 border-accent border-t-transparent rounded-full animate-spin mb-3" />
-                  <p className="text-xs">Consultando horários em tempo real...</p>
-                </div>
-              ) : availableSlots.length === 0 ? (
-                <div className="text-center py-12 text-xs text-text-muted">
-                  Nenhum horário livre para esta data. Por favor, selecione outro dia no calendário acima.
-                </div>
-              ) : (
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-                  {availableSlots.map((slot) => {
-                    const timeLabel = new Date(slot.start_time).toLocaleTimeString("pt-BR", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    });
-                    const isSelected = selectedSlot?.start_time === slot.start_time;
-
+              {/* Calendário Circular */}
+              <div className="bg-surface rounded-[28px] p-6">
+                <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none justify-start md:justify-center">
+                  {getUpcomingDays().map((d) => {
+                    const isSelected = selectedDate === d.iso;
                     return (
-                      <button
-                        key={slot.start_time}
-                        onClick={() => setSelectedSlot(slot)}
-                        className={`py-3 px-4 rounded-full font-mono text-xs font-bold transition-all duration-200 active:scale-95 ${
+                      <motion.button
+                        key={d.iso}
+                        onClick={() => setSelectedDate(d.iso)}
+                        className={`flex flex-col items-center justify-center w-14 h-20 rounded-full transition-all shrink-0 ${
                           isSelected
-                            ? "bg-accent text-accent-contrast shadow-glow scale-105"
+                            ? "bg-accent text-accent-contrast scale-105"
                             : "bg-surface-2 hover:bg-surface-3 text-text"
                         }`}
+                        whileTap={{ scale: 0.93 }}
                       >
-                        {timeLabel}
-                      </button>
+                        <span className="text-[10px] uppercase font-bold tracking-wider opacity-70">
+                          {d.weekDay}
+                        </span>
+                        <span className="font-serif text-lg font-bold mt-1">{d.dayNum}</span>
+                        {d.isToday && !isSelected && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1" />
+                        )}
+                      </motion.button>
                     );
                   })}
                 </div>
-              )}
-            </div>
+              </div>
 
-            {/* Barra Inferior com Horário Escolhido */}
-            <div className="fixed bottom-6 inset-x-0 z-40 flex justify-center px-4 pointer-events-none">
-              <div className="w-full max-w-2xl bg-surface/90 backdrop-blur-xl rounded-full px-6 py-3.5 flex items-center justify-between shadow-soft pointer-events-auto">
-                <div className="text-xs">
-                  {selectedSlot ? (
+              {/* Horários em Pílulas */}
+              <div className="bg-surface rounded-[28px] p-8">
+                <div className="flex items-center justify-between mb-6 pb-4 border-b border-hairline">
+                  <div className="flex items-center gap-2 text-xs font-bold text-text">
+                    <Clock className="w-4 h-4 text-accent" />
                     <span>
-                      Horário:{" "}
-                      <strong className="text-accent font-mono font-bold text-sm">
-                        {new Date(selectedSlot.start_time).toLocaleTimeString("pt-BR", {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                      </strong>
+                      {new Date(selectedDate + "T12:00:00").toLocaleDateString("pt-BR", { dateStyle: "long" })}
                     </span>
-                  ) : (
-                    <span className="text-text-muted">Selecione um horário</span>
-                  )}
+                  </div>
+                  <button
+                    onClick={fetchAvailability}
+                    className="text-text-muted hover:text-accent p-1 text-xs flex items-center gap-1 font-semibold"
+                  >
+                    <RefreshCw className="w-3.5 h-3.5" />
+                    <span>Atualizar</span>
+                  </button>
                 </div>
 
-                <button
-                  onClick={() => setStep(4)}
-                  disabled={!selectedSlot}
-                  className="bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-2.5 rounded-full font-bold text-xs shadow-glow transition-transform active:scale-95 disabled:opacity-40"
+                {isLoadingSlots ? (
+                  <div className="flex flex-col items-center justify-center py-12 text-text-muted">
+                    <span className="w-7 h-7 border-2 border-accent border-t-transparent rounded-full animate-spin mb-3" />
+                    <p className="text-xs">Consultando horários...</p>
+                  </div>
+                ) : availableSlots.length === 0 ? (
+                  <div className="text-center py-12 text-xs text-text-muted">
+                    Nenhum horário livre nesta data. Selecione outro dia.
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                    {availableSlots.map((slot) => {
+                      const timeLabel = new Date(slot.start_time).toLocaleTimeString("pt-BR", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      });
+                      const isSelected = selectedSlot?.start_time === slot.start_time;
+
+                      return (
+                        <motion.button
+                          key={slot.start_time}
+                          onClick={() => setSelectedSlot(slot)}
+                          className={`py-3 px-4 rounded-full font-mono text-xs font-bold transition-all ${
+                            isSelected
+                              ? "bg-accent text-accent-contrast scale-105"
+                              : "bg-surface-2 hover:bg-surface-3 text-text"
+                          }`}
+                          whileTap={{ scale: 0.93 }}
+                        >
+                          {timeLabel}
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Barra Inferior */}
+              <div className="fixed bottom-6 inset-x-0 z-40 flex justify-center px-4 pointer-events-none">
+                <motion.div
+                  className="w-full max-w-2xl bg-bg/90 backdrop-blur-xl border border-hairline rounded-full px-6 py-3.5 flex items-center justify-between shadow-soft pointer-events-auto"
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
                 >
-                  Continuar para Confirmação
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ETAPA 4: CONFIRMAÇÃO & CHECKOUT (Superfícies Tonais e Campos em Pílula) */}
-        {step === 4 && (
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start animate-in fade-in">
-            {/* Formulário do Cliente (7 Colunas) */}
-            <div className="md:col-span-7 bg-surface rounded-[32px] p-8 shadow-soft space-y-6">
-              <div className="flex items-center justify-between pb-4 border-b border-hairline">
-                <h2 className="font-serif text-xl font-bold text-text">Seus Dados de Contato</h2>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-soft text-accent text-[11px] font-semibold">
-                  <Lock className="w-3 h-3" />
-                  <span>Conexão Segura</span>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-xs font-semibold text-text-muted mb-1.5 ml-2">
-                    Nome Completo *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={customerName}
-                    onChange={(e) => setCustomerName(e.target.value)}
-                    placeholder="Seu nome"
-                    className="w-full bg-surface-2 rounded-full px-5 py-3 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-text-muted mb-1.5 ml-2">
-                    WhatsApp / Telefone *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={customerPhone}
-                    onChange={(e) => setCustomerPhone(e.target.value)}
-                    placeholder="(11) 99999-9999"
-                    className="w-full bg-surface-2 rounded-full px-5 py-3 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-text-muted mb-1.5 ml-2">
-                    E-mail (para receber confirmação)
-                  </label>
-                  <input
-                    type="email"
-                    value={customerEmail}
-                    onChange={(e) => setCustomerEmail(e.target.value)}
-                    placeholder="seuemail@exemplo.com"
-                    className="w-full bg-surface-2 rounded-full px-5 py-3 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
-                  />
-                </div>
-              </div>
-
-              {/* Opção de Pagamento: Sinal ou Total */}
-              <div className="pt-4 border-t border-hairline">
-                <label className="block text-xs font-semibold text-text-muted mb-2 ml-2">
-                  Condição de Pagamento
-                </label>
-                <div className="grid grid-cols-2 gap-3">
+                  <div className="text-xs">
+                    {selectedSlot ? (
+                      <span>
+                        Horário:{" "}
+                        <strong className="text-accent font-mono font-bold text-sm">
+                          {new Date(selectedSlot.start_time).toLocaleTimeString("pt-BR", {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
+                        </strong>
+                      </span>
+                    ) : (
+                      <span className="text-text-muted">Selecione um horário</span>
+                    )}
+                  </div>
                   <button
-                    type="button"
-                    onClick={() => setPaymentOption("deposit")}
-                    className={`py-3 px-4 rounded-2xl text-xs font-bold transition-all text-left flex flex-col justify-between ${
-                      paymentOption === "deposit"
-                        ? "bg-accent-soft text-accent ring-1 ring-accent"
-                        : "bg-surface-2 text-text-muted hover:text-text"
-                    }`}
+                    onClick={() => setStep(4)}
+                    disabled={!selectedSlot}
+                    className="bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-2.5 rounded-full font-bold text-xs transition-all active:scale-95 disabled:opacity-40"
                   >
-                    <span>Sinal ({depositPct}%)</span>
-                    <strong className="font-serif text-sm mt-1">{formatCurrency(depositAmount)}</strong>
+                    Confirmar
                   </button>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
 
-                  <button
-                    type="button"
-                    onClick={() => setPaymentOption("full")}
-                    className={`py-3 px-4 rounded-2xl text-xs font-bold transition-all text-left flex flex-col justify-between ${
-                      paymentOption === "full"
-                        ? "bg-accent-soft text-accent ring-1 ring-accent"
-                        : "bg-surface-2 text-text-muted hover:text-text"
-                    }`}
-                  >
-                    <span>Pagamento Total (100%)</span>
-                    <strong className="font-serif text-sm mt-1">{formatCurrency(totalPrice)}</strong>
-                  </button>
+          {/* ETAPA 4 */}
+          {step === 4 && (
+            <motion.div
+              key="step4"
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start"
+            >
+              {/* Formulário */}
+              <div className="md:col-span-7 bg-surface rounded-[28px] p-8 space-y-6">
+                <div className="flex items-center justify-between pb-4 border-b border-hairline">
+                  <h2 className="font-serif text-xl font-bold text-text">Seus Dados</h2>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 text-accent text-[11px] font-semibold">
+                    <Lock className="w-3 h-3" />
+                    <span>Seguro</span>
+                  </div>
                 </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-text-muted mb-1.5 ml-2">
+                      Nome Completo *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={customerName}
+                      onChange={(e) => setCustomerName(e.target.value)}
+                      placeholder="Seu nome"
+                      className="w-full bg-surface-2 rounded-full px-5 py-3 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-text-muted mb-1.5 ml-2">
+                      WhatsApp / Telefone *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={customerPhone}
+                      onChange={(e) => setCustomerPhone(e.target.value)}
+                      placeholder="(11) 99999-9999"
+                      className="w-full bg-surface-2 rounded-full px-5 py-3 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-text-muted mb-1.5 ml-2">
+                      E-mail (confirmação)
+                    </label>
+                    <input
+                      type="email"
+                      value={customerEmail}
+                      onChange={(e) => setCustomerEmail(e.target.value)}
+                      placeholder="seuemail@exemplo.com"
+                      className="w-full bg-surface-2 rounded-full px-5 py-3 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
+                    />
+                  </div>
+                </div>
+
+                {/* Pagamento */}
+                <div className="pt-4 border-t border-hairline">
+                  <label className="block text-xs font-semibold text-text-muted mb-2 ml-2">
+                    Condição de Pagamento
+                  </label>
+                  <div className="grid grid-cols-2 gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setPaymentOption("deposit")}
+                      className={`py-3 px-4 rounded-[20px] text-xs font-bold transition-all text-left flex flex-col ${
+                        paymentOption === "deposit"
+                          ? "bg-accent/10 text-accent ring-1 ring-accent/30"
+                          : "bg-surface-2 text-text-muted hover:text-text"
+                      }`}
+                    >
+                      <span>Sinal ({depositPct}%)</span>
+                      <strong className="font-serif text-sm mt-1">{formatCurrency(depositAmount)}</strong>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setPaymentOption("full")}
+                      className={`py-3 px-4 rounded-[20px] text-xs font-bold transition-all text-left flex flex-col ${
+                        paymentOption === "full"
+                          ? "bg-accent/10 text-accent ring-1 ring-accent/30"
+                          : "bg-surface-2 text-text-muted hover:text-text"
+                      }`}
+                    >
+                      <span>Total (100%)</span>
+                      <strong className="font-serif text-sm mt-1">{formatCurrency(totalPrice)}</strong>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Termos */}
+                <div className="space-y-3 pt-4 border-t border-hairline text-xs">
+                  <label className="flex items-start gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={acceptedTerms}
+                      onChange={(e) => setAcceptedTerms(e.target.checked)}
+                      className="mt-0.5 rounded accent-accent"
+                    />
+                    <span className="text-text-muted">
+                      Concordo com os Termos de Uso e a Política de Cancelamento.
+                    </span>
+                  </label>
+
+                  <label className="flex items-start gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={marketingConsent}
+                      onChange={(e) => setMarketingConsent(e.target.checked)}
+                      className="mt-0.5 rounded accent-accent"
+                    />
+                    <span className="text-text-muted">
+                      Aceito receber lembretes e promoções via WhatsApp.
+                    </span>
+                  </label>
+                </div>
+
+                <motion.button
+                  onClick={handleConfirmBooking}
+                  disabled={isSubmitting || !acceptedTerms}
+                  className="w-full bg-accent hover:bg-accent-hover text-accent-contrast py-4 rounded-full font-bold text-sm transition-all disabled:opacity-40"
+                  whileTap={{ scale: 0.97 }}
+                >
+                  {isSubmitting ? "Reservando..." : "Confirmar Reserva"}
+                </motion.button>
               </div>
 
-              {/* Termos e Consentimentos Separados */}
-              <div className="space-y-3 pt-4 border-t border-hairline text-xs">
-                <label className="flex items-start gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={acceptedTerms}
-                    onChange={(e) => setAcceptedTerms(e.target.checked)}
-                    className="mt-0.5 rounded accent-accent"
-                  />
-                  <span className="text-text-muted">
-                    Concordo com os Termos de Uso e a Política de Cancelamento da barbearia.
-                  </span>
-                </label>
+              {/* Resumo */}
+              <div className="md:col-span-5 bg-surface-2 rounded-[28px] p-8 space-y-6">
+                <h3 className="font-serif text-lg font-bold text-text pb-4 border-b border-hairline">
+                  Resumo
+                </h3>
 
-                <label className="flex items-start gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={marketingConsent}
-                    onChange={(e) => setMarketingConsent(e.target.checked)}
-                    className="mt-0.5 rounded accent-accent"
-                  />
-                  <span className="text-text-muted">
-                    Aceito receber lembretes de horário e promoções exclusivas via WhatsApp.
-                  </span>
-                </label>
-              </div>
-
-              <button
-                onClick={handleConfirmBooking}
-                disabled={isSubmitting || !acceptedTerms}
-                className="w-full bg-accent hover:bg-accent-hover text-accent-contrast py-4 rounded-full font-bold text-sm shadow-glow transition-all active:scale-95 disabled:opacity-40"
-              >
-                {isSubmitting ? "Reservando horário no banco..." : "Confirmar Reserva"}
-              </button>
-            </div>
-
-            {/* Resumo Lateral (5 Colunas) */}
-            <div className="md:col-span-5 bg-surface-2 rounded-[32px] p-8 shadow-soft space-y-6">
-              <h3 className="font-serif text-lg font-bold text-text pb-4 border-b border-hairline">
-                Resumo do Agendamento
-              </h3>
-
-              <div className="space-y-3 text-xs">
-                <div>
-                  <span className="text-text-muted block text-[11px]">Profissional</span>
-                  <strong className="text-text font-serif text-sm">
-                    {selectedBarber?.name || "Primeiro Disponível"}
-                  </strong>
-                </div>
-
-                <div>
-                  <span className="text-text-muted block text-[11px]">Data & Horário</span>
-                  <strong className="text-text font-mono text-sm">
-                    {new Date(selectedDate + "T12:00:00").toLocaleDateString("pt-BR")} às{" "}
-                    {selectedSlot
-                      ? new Date(selectedSlot.start_time).toLocaleTimeString("pt-BR", {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })
-                      : "--:--"}
-                  </strong>
-                </div>
-
-                <div>
-                  <span className="text-text-muted block text-[11px] mb-1">Serviços Selecionados</span>
-                  <div className="space-y-1.5">
-                    {selectedServices.map((s) => (
-                      <div key={s.id} className="flex justify-between text-text">
-                        <span>{s.name}</span>
-                        <span className="font-serif font-bold text-accent">{formatCurrency(s.price)}</span>
-                      </div>
-                    ))}
+                <div className="space-y-3 text-xs">
+                  <div>
+                    <span className="text-text-muted block text-[11px]">Profissional</span>
+                    <strong className="text-text font-serif text-sm">
+                      {selectedBarber?.name || "Primeiro Disponível"}
+                    </strong>
                   </div>
-                </div>
 
-                <div className="pt-4 border-t border-hairline space-y-2">
-                  <div className="flex justify-between text-xs">
-                    <span className="text-text-muted">Valor Total:</span>
-                    <span className="font-serif font-bold text-text">{formatCurrency(totalPrice)}</span>
+                  <div>
+                    <span className="text-text-muted block text-[11px]">Data & Horário</span>
+                    <strong className="text-text font-mono text-sm">
+                      {new Date(selectedDate + "T12:00:00").toLocaleDateString("pt-BR")} às{" "}
+                      {selectedSlot
+                        ? new Date(selectedSlot.start_time).toLocaleTimeString("pt-BR", {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })
+                        : "--:--"}
+                    </strong>
                   </div>
-                  <div className="flex justify-between text-xs">
-                    <span className="text-accent font-semibold">Paga agora (online):</span>
-                    <span className="font-serif font-bold text-accent">{formatCurrency(payNowAmount)}</span>
-                  </div>
-                  {payLaterAmount > 0 && (
-                    <div className="flex justify-between text-xs text-text-muted">
-                      <span>Resta pagar no local:</span>
-                      <span className="font-mono">{formatCurrency(payLaterAmount)}</span>
+
+                  <div>
+                    <span className="text-text-muted block text-[11px] mb-1">Serviços</span>
+                    <div className="space-y-1.5">
+                      {selectedServices.map((s) => (
+                        <div key={s.id} className="flex justify-between text-text">
+                          <span>{s.name}</span>
+                          <span className="font-serif font-bold text-accent">{formatCurrency(s.price)}</span>
+                        </div>
+                      ))}
                     </div>
-                  )}
+                  </div>
+
+                  <div className="pt-4 border-t border-hairline space-y-2">
+                    <div className="flex justify-between text-xs">
+                      <span className="text-text-muted">Valor Total:</span>
+                      <span className="font-serif font-bold text-text">{formatCurrency(totalPrice)}</span>
+                    </div>
+                    <div className="flex justify-between text-xs">
+                      <span className="text-accent font-semibold">Paga agora:</span>
+                      <span className="font-serif font-bold text-accent">{formatCurrency(payNowAmount)}</span>
+                    </div>
+                    {payLaterAmount > 0 && (
+                      <div className="flex justify-between text-xs text-text-muted">
+                        <span>Resta no local:</span>
+                        <span className="font-mono">{formatCurrency(payLaterAmount)}</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        )}
+            </motion.div>
+          )}
 
-        {/* ETAPA 5: SUCESSO (Superfície Arredondada e Token Real) */}
-        {step === 5 && (
-          <div className="max-w-xl mx-auto bg-surface rounded-[36px] p-10 md:p-14 text-center shadow-soft animate-in zoom-in-95 space-y-6">
-            <div className="w-16 h-16 rounded-full bg-accent-soft text-accent mx-auto flex items-center justify-center">
-              <Check className="w-8 h-8 stroke-[3]" />
-            </div>
-
-            <div>
-              <h2 className="font-serif text-3xl font-bold text-text mb-2">Agendamento Realizado!</h2>
-              <p className="text-xs text-text-muted">
-                Seu horário está reservado com sucesso no sistema da barbearia.
-              </p>
-            </div>
-
-            <div className="bg-surface-2 rounded-2xl p-4 text-xs font-mono">
-              <span className="text-text-muted block text-[10px] uppercase font-sans mb-1">
-                Token do Agendamento
-              </span>
-              <strong className="text-accent text-sm select-all">{bookingToken}</strong>
-            </div>
-
-            {holdExpiresAt && countdownSeconds > 0 && (
-              <div className="inline-flex items-center gap-2 bg-accent-soft text-accent px-4 py-2 rounded-full text-xs font-semibold font-mono">
-                <Clock className="w-4 h-4" />
-                <span>
-                  Reserva ativa: {Math.floor(countdownSeconds / 60)}:
-                  {String(countdownSeconds % 60).padStart(2, "0")}
-                </span>
-              </div>
-            )}
-
-            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link
-                href={`/meu-agendamento?token=${bookingToken}`}
-                className="w-full sm:w-auto bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-3 rounded-full font-bold text-xs shadow-glow transition-all active:scale-95"
+          {/* ETAPA 5 */}
+          {step === 5 && (
+            <motion.div
+              key="step5"
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="max-w-xl mx-auto"
+            >
+              <motion.div
+                className="bg-surface rounded-[32px] p-10 md:p-14 text-center space-y-6"
+                initial={{ scale: 0.92, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               >
-                Ver Meu Agendamento
-              </Link>
-              <Link
-                href="/"
-                className="w-full sm:w-auto bg-surface-2 hover:bg-surface-3 text-text px-6 py-3 rounded-full font-semibold text-xs transition-colors"
-              >
-                Voltar à Página Inicial
-              </Link>
-            </div>
-          </div>
-        )}
+                <motion.div
+                  className="w-16 h-16 rounded-full bg-accent/15 text-accent mx-auto flex items-center justify-center"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
+                >
+                  <Check className="w-8 h-8 stroke-[3]" />
+                </motion.div>
+
+                <div>
+                  <h2 className="font-serif text-3xl font-bold text-text mb-2">Agendamento Realizado!</h2>
+                  <p className="text-xs text-text-muted">
+                    Seu horário está reservado com sucesso.
+                  </p>
+                </div>
+
+                <div className="bg-surface-2 rounded-[20px] p-4 text-xs font-mono">
+                  <span className="text-text-muted block text-[10px] uppercase font-sans mb-1">
+                    Token
+                  </span>
+                  <strong className="text-accent text-sm select-all">{bookingToken}</strong>
+                </div>
+
+                {holdExpiresAt && countdownSeconds > 0 && (
+                  <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full text-xs font-semibold font-mono">
+                    <Clock className="w-4 h-4" />
+                    <span>
+                      Reserva ativa: {Math.floor(countdownSeconds / 60)}:
+                      {String(countdownSeconds % 60).padStart(2, "0")}
+                    </span>
+                  </div>
+                )}
+
+                <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <Link
+                    href={`/meu-agendamento?token=${bookingToken}`}
+                    className="w-full sm:w-auto bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-3 rounded-full font-bold text-xs transition-all active:scale-95"
+                  >
+                    Ver Meu Agendamento
+                  </Link>
+                  <Link
+                    href="/"
+                    className="w-full sm:w-auto bg-surface-2 hover:bg-surface-3 text-text px-6 py-3 rounded-full font-semibold text-xs transition-colors"
+                  >
+                    Voltar à Página Inicial
+                  </Link>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </main>
   );
