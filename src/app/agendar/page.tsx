@@ -215,7 +215,7 @@ export default function AgendarPage() {
 
       // Duração total do agendamento
       const totalMin = selectedServices.reduce((sum, s) => sum + s.duration_minutes, 0) || 30;
-      const targetBarberId = selectedBarberId || (barbers.length > 0 ? (barbers[0].id as string) : "default-barber");
+      const targetBarberId = selectedBarberId || (barbers.length > 0 ? (barbers[0].id as string) : "");
 
       const slots: AvailabilitySlot[] = [];
       // Horários comerciais: 09:00 às 19:00 (intervalos de 30 min)
@@ -306,15 +306,25 @@ export default function AgendarPage() {
       const shopId = getBarbershopId();
       const serviceIds = selectedServices.map((s) => s.id);
 
+      // Validação de UUID para evitar erro 22P02 no PostgreSQL se for "default-barber" ou outro placeholder
+      const isValidUUID = (id: string | null | undefined): id is string =>
+        typeof id === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+
+      const targetBarber = isValidUUID(selectedSlot.barber_id)
+        ? selectedSlot.barber_id
+        : isValidUUID(selectedBarber?.id)
+        ? selectedBarber.id
+        : null;
+
       const { data, error } = await supabase.rpc("create_booking_hold", {
         p_barbershop_id: shopId,
-        p_barber_id: selectedSlot.barber_id || selectedBarber?.id || null,
+        p_barber_id: targetBarber,
         p_starts_at: selectedSlot.start_time,
         p_service_ids: serviceIds,
-        p_customer_name: customerName,
-        p_customer_phone: customerPhone,
-        p_customer_email: customerEmail || undefined,
-        p_marketing_consent: marketingConsent,
+        p_customer_name: customerName.trim(),
+        p_customer_phone: customerPhone.trim(),
+        p_customer_email: customerEmail?.trim() || null,
+        p_marketing_consent: Boolean(marketingConsent),
       });
 
       if (error) {
@@ -325,11 +335,16 @@ export default function AgendarPage() {
           setIsSubmitting(false);
           return;
         }
+        if (error.message.includes("ambiguous") || error.message.includes("gen_random_bytes") || error.message.includes("PGRST202")) {
+          setErrorBanner("Aviso: O banco de dados Supabase precisa executar o script atualizar_banco_supabase.sql no SQL Editor para ativar as funções de agendamento.");
+          setIsSubmitting(false);
+          return;
+        }
         throw error;
       }
 
       if (data) {
-        setBookingToken(data.token);
+        setBookingToken(data.token || data.cancellation_token || "");
         setHoldExpiresAt(data.hold_expires_at);
         setStep(5);
         try {
