@@ -602,31 +602,6 @@ export default function AgendarPage() {
                   );
                 })}
               </div>
-
-              {/* Barra Inferior */}
-              <div className="fixed bottom-6 inset-x-0 z-40 flex justify-center px-4 pointer-events-none">
-                <motion.div
-                  className="w-full max-w-2xl bg-bg/90 backdrop-blur-xl border border-hairline rounded-full px-6 py-3.5 flex items-center justify-between shadow-soft pointer-events-auto"
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <div className="text-xs">
-                    <span className="text-text-muted">Total: </span>
-                    <strong className="text-accent font-serif text-base font-bold">
-                      {formatCurrency(totalPrice)}
-                    </strong>
-                    <span className="text-text-muted ml-2">({formatDuration(totalDuration)})</span>
-                  </div>
-                  <button
-                    onClick={() => setStep(3)}
-                    disabled={selectedServices.length === 0}
-                    className="bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-2.5 rounded-full font-bold text-xs transition-all active:scale-95 disabled:opacity-40"
-                  >
-                    Continuar
-                  </button>
-                </motion.div>
-              </div>
             </motion.div>
           )}
 
@@ -744,38 +719,6 @@ export default function AgendarPage() {
                     })}
                   </div>
                 )}
-              </div>
-
-              {/* Barra Inferior */}
-              <div className="fixed bottom-6 inset-x-0 z-40 flex justify-center px-4 pointer-events-none">
-                <motion.div
-                  className="w-full max-w-2xl bg-bg/90 backdrop-blur-xl border border-hairline rounded-full px-6 py-3.5 flex items-center justify-between shadow-soft pointer-events-auto"
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                >
-                  <div className="text-xs">
-                    {selectedSlot ? (
-                      <span>
-                        Horário:{" "}
-                        <strong className="text-accent font-mono font-bold text-sm">
-                          {new Date(selectedSlot.start_time).toLocaleTimeString("pt-BR", {
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })}
-                        </strong>
-                      </span>
-                    ) : (
-                      <span className="text-text-muted">Selecione um horário</span>
-                    )}
-                  </div>
-                  <button
-                    onClick={() => setStep(4)}
-                    disabled={!selectedSlot}
-                    className="bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-2.5 rounded-full font-bold text-xs transition-all active:scale-95 disabled:opacity-40"
-                  >
-                    Confirmar
-                  </button>
-                </motion.div>
               </div>
             </motion.div>
           )}
@@ -1042,6 +985,84 @@ export default function AgendarPage() {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Barra Inferior Fixa Global para Etapas 2 e 3 (fora do AnimatePresence com transform dos steps) */}
+      <AnimatePresence>
+        {(step === 2 || step === 3) && (
+          <motion.div
+            key="bottom-floating-bar"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 24 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed bottom-6 inset-x-0 z-40 flex justify-center px-4 pointer-events-none"
+          >
+            <div className="w-full max-w-2xl bg-bg/90 backdrop-blur-xl border border-hairline rounded-full px-6 py-3.5 flex items-center justify-between shadow-soft pointer-events-auto">
+              <AnimatePresence mode="wait">
+                {step === 2 && (
+                  <motion.div
+                    key="step2-total-content"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.22, ease: "easeOut" }}
+                    className="flex items-center justify-between w-full"
+                  >
+                    <div className="text-xs">
+                      <span className="text-text-muted">Total: </span>
+                      <strong className="text-accent font-serif text-base font-bold">
+                        {formatCurrency(totalPrice)}
+                      </strong>
+                      <span className="text-text-muted ml-2">({formatDuration(totalDuration)})</span>
+                    </div>
+                    <button
+                      onClick={() => setStep(3)}
+                      disabled={selectedServices.length === 0}
+                      className="bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-2.5 rounded-full font-bold text-xs transition-all active:scale-95 disabled:opacity-40 cursor-pointer"
+                    >
+                      Continuar
+                    </button>
+                  </motion.div>
+                )}
+
+                {step === 3 && (
+                  <motion.div
+                    key="step3-slot-content"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.22, ease: "easeOut" }}
+                    className="flex items-center justify-between w-full"
+                  >
+                    <div className="text-xs">
+                      {selectedSlot ? (
+                        <span>
+                          Horário:{" "}
+                          <strong className="text-accent font-mono font-bold text-sm">
+                            {new Date(selectedSlot.start_time).toLocaleTimeString("pt-BR", {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            })}
+                          </strong>
+                        </span>
+                      ) : (
+                        <span className="text-text-muted">Selecione um horário</span>
+                      )}
+                    </div>
+                    <button
+                      onClick={() => setStep(4)}
+                      disabled={!selectedSlot}
+                      className="bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-2.5 rounded-full font-bold text-xs transition-all active:scale-95 disabled:opacity-40 cursor-pointer"
+                    >
+                      Confirmar
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
