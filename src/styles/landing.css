@@ -1,6 +1,6 @@
 /* Public site — quiet editorial composition. Booking behavior is unchanged. */
 :root {
-  --page-gutter: clamp(20px, 4vw, 64px);
+  --page-gutter: 24px;
   --page-width: 1280px;
 }
 .site-header,
@@ -18,8 +18,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 28px;
-  padding-block: 20px;
+  gap: 32px;
+  padding-block: 24px;
   background: var(--bg);
   border-bottom: 1px solid var(--hairline);
 }
@@ -35,7 +35,7 @@
 .brand span {
   font-family: var(--font-sans), sans-serif;
   font-size: 12px;
-  margin-top: 7px;
+  margin-top: 8px;
   color: var(--text-muted);
   letter-spacing: 0.02em;
 }
@@ -46,14 +46,14 @@
   font-size: 14px;
 }
 .site-nav a {
-  padding: 10px 0;
+  padding: 8px 0;
   position: relative;
 }
 .site-nav a::after,
 .text-link::after {
   content: "";
   position: absolute;
-  bottom: 6px;
+  bottom: 8px;
   left: 0;
   right: 0;
   height: 1px;
@@ -76,8 +76,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 14px 22px;
+  gap: 16px;
+  padding: 16px 24px;
   border-radius: 8px;
   font-size: 15px;
   font-family: var(--font-sans), sans-serif;
@@ -101,18 +101,18 @@
 }
 .cta.small {
   font-size: 14px;
-  padding: 12px 18px;
-  min-height: 44px;
+  padding: 16px 16px;
+  min-height: 48px;
 }
 .menu-toggle {
   display: none;
 }
 .skip {
   position: fixed;
-  left: 20px;
+  left: 24px;
   top: -80px;
   z-index: 60;
-  padding: 12px 20px;
+  padding: 16px 24px;
   background: var(--text);
   color: var(--bg);
 }
@@ -123,23 +123,23 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  min-height: 48px;
   font-size: 15px;
   border-bottom: 1px solid var(--border);
   padding-block: 8px;
 }
 .hero {
-  padding-block: 76px 88px;
+  padding-block: 80px 88px;
   overflow: hidden;
 }
 .hero-bottom {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(40px, 5vw, 80px);
+  gap: var(--space-8);
   align-items: center;
 }
 .hero-copy {
-  padding-block: 20px;
+  padding-block: 24px;
 }
 .hero .hero-location {
   font-family: var(--font-sans), sans-serif;
@@ -161,7 +161,7 @@
 .hero-copy > p:not(.hero-location) {
   font-size: 18px;
   line-height: 1.7;
-  margin: 28px 0 32px;
+  margin: 32px 0 32px;
   max-width: 40ch;
   color: var(--text-muted);
 }
@@ -192,11 +192,11 @@
   font-family: var(--font-sans), sans-serif;
   font-size: 12px;
   color: var(--text-muted);
-  padding-top: 12px;
+  padding-top: 16px;
   line-height: 1.6;
 }
 .hero-art > .photo-watermark {
-  bottom: 46px;
+  bottom: 48px;
 }
 .ambient-loop {
   --play: paused;
@@ -233,8 +233,8 @@
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-  gap: 12px 48px;
-  padding-block: 30px;
+  gap: 16px 48px;
+  padding-block: 32px;
   border-block: 1px solid var(--hairline);
   background: transparent;
 }
@@ -283,7 +283,7 @@
   column-gap: 32px;
   row-gap: 8px;
   align-items: baseline;
-  padding: 26px 0;
+  padding: 24px 0;
   border-top: 1px solid var(--hairline);
   min-height: 112px;
 }
@@ -331,7 +331,7 @@
 .team-section {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
-  gap: 70px;
+  gap: 72px;
   background: transparent;
 }
 .team-section > div > p {
@@ -343,7 +343,7 @@
 .team-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px;
+  gap: 32px;
 }
 .portrait-placeholder {
   aspect-ratio: 4/5;
@@ -365,7 +365,7 @@
   font-family: var(--font-serif), Georgia, serif;
   font-size: 23px;
   font-weight: 400;
-  margin: 20px 0 8px;
+  margin: 24px 0 8px;
   line-height: 1.3;
 }
 .team-member p {
@@ -375,8 +375,8 @@
 .team-member a {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
-  padding-block: 12px;
+  min-height: 48px;
+  padding-block: 16px;
   margin-top: 8px;
   font-size: 14px;
   text-decoration: underline;
@@ -417,12 +417,12 @@
   display: block;
   font-size: 12px;
   color: var(--text-muted);
-  margin-top: 6px;
+  margin-top: 8px;
 }
 .reviews-section {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
-  gap: 70px;
+  gap: 72px;
   background: transparent;
   border-top: 1px solid var(--hairline);
 }
@@ -457,7 +457,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 24px;
   padding-top: 24px;
   margin-top: 24px;
   border-top: 1px solid var(--hairline);
@@ -469,7 +469,7 @@
   gap: 24px;
 }
 .quote-controls button {
-  min-height: 44px;
+  min-height: 48px;
   font-family: var(--font-sans), sans-serif;
   font-size: 14px;
   color: var(--text);
@@ -482,7 +482,7 @@
 .how-section {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
-  gap: 32px 70px;
+  gap: 32px 72px;
   border-top: 1px solid var(--hairline);
 }
 .how-section h2 {
@@ -491,13 +491,13 @@
 .how-section ol {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px 32px;
+  gap: 32px 32px;
   align-content: start;
 }
 .how-section li {
   display: flex;
   align-items: baseline;
-  gap: 14px;
+  gap: 16px;
   padding: 0;
   background: transparent;
   min-height: 48px;
@@ -520,7 +520,7 @@
 .contact-section {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
-  gap: 40px 70px;
+  gap: 40px 72px;
   background: transparent;
   border-top: 1px solid var(--hairline);
 }
@@ -530,7 +530,7 @@
   font-style: normal;
   line-height: 1.7;
   max-width: 35ch;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 .contact-section p {
   font-size: 15px;
@@ -554,12 +554,12 @@
 .faq-section {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
-  gap: 70px;
+  gap: 72px;
   border-top: 1px solid var(--hairline);
 }
 .faq-section details {
   border-bottom: 1px solid var(--hairline);
-  padding: 20px 0;
+  padding: 24px 0;
 }
 .faq-section summary {
   font-family: var(--font-sans), sans-serif;
@@ -568,7 +568,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-  min-height: 44px;
+  min-height: 48px;
   font-size: 18px;
   line-height: 1.5;
 }
@@ -614,12 +614,12 @@
   font-size: 12px;
   line-height: 1.7;
   color: var(--text-muted);
-  margin-top: 28px;
+  margin-top: 32px;
 }
 .site-footer a {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  min-height: 48px;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -638,7 +638,7 @@
   font-weight: 400;
   line-height: 1.15;
   letter-spacing: -0.025em;
-  margin: 40px 0 28px;
+  margin: 40px 0 32px;
 }
 .booking-shell h2 {
   font-family: var(--font-serif), Georgia, serif;
@@ -652,15 +652,15 @@
   font-size: 14px;
   line-height: 1.7;
   color: var(--text-muted);
-  margin: 28px 0;
-  padding: 18px 0;
+  margin: 32px 0;
+  padding: 16px 0;
   border-block: 1px solid var(--hairline);
   background: transparent;
 }
 .step-progress {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  gap: 16px;
   margin-top: 32px;
 }
 .step-progress li {
@@ -679,14 +679,14 @@
   height: 2px;
   background: var(--accent);
   width: 28px;
-  margin-top: 4px;
+  margin-top: 8px;
 }
 .choice {
   display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 20px 16px;
-  margin: 12px 0;
+  gap: 16px;
+  padding: 24px 16px;
+  margin: 16px 0;
   border: 1px solid var(--hairline);
   border-radius: 8px;
   background: transparent;
@@ -725,7 +725,7 @@
   align-items: center;
   justify-content: center;
   gap: 24px;
-  padding: 18px 24px calc(18px + env(safe-area-inset-bottom));
+  padding: 16px 24px calc(16px + env(safe-area-inset-bottom));
   background: var(--bg);
   border-top: 1px solid var(--border);
 }
@@ -739,17 +739,17 @@
   font-size: 12px;
   font-weight: 400;
   color: var(--text-muted);
-  margin-top: 4px;
+  margin-top: 8px;
 }
 .time-choices {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   flex-wrap: wrap;
   margin-block: 24px;
 }
 .time-choices button {
   font-family: var(--font-sans), sans-serif;
-  padding: 12px 20px;
+  padding: 16px 24px;
   background: transparent;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -762,7 +762,7 @@
 .field-label {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   margin-block: 24px;
   font-family: var(--font-sans), sans-serif;
 }
@@ -778,7 +778,7 @@
 .booking-summary {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px;
+  gap: 16px;
   padding-block: 24px;
   border-block: 1px solid var(--hairline);
   background: transparent;
@@ -807,16 +807,16 @@
 }
 @media (max-width: 1023px) {
   .site-header {
-    gap: 20px;
+    gap: 24px;
   }
   .site-nav {
-    gap: 14px;
+    gap: 16px;
   }
   .site-nav a {
     font-size: 13px;
   }
   .hero-bottom {
-    gap: 36px;
+    gap: 40px;
   }
   .hero h1 {
     font-size: 52px;
@@ -833,7 +833,7 @@
     grid-template-columns: 1fr 1.2fr;
   }
   .service-row {
-    column-gap: 20px;
+    column-gap: 24px;
   }
   .gallery-piece img {
     height: 300px;
@@ -858,7 +858,7 @@
   }
   .menu-toggle {
     display: block;
-    padding: 8px 0 8px 12px;
+    padding: 8px 0 8px 16px;
     font-family: var(--font-sans), sans-serif;
     font-size: 15px;
   }
@@ -873,28 +873,28 @@
     right: 0;
     flex-direction: column;
     align-items: stretch;
-    gap: 4px;
-    padding: 20px;
+    gap: 8px;
+    padding: 24px;
     background: var(--bg);
     border-bottom: 1px solid var(--border);
   }
   .site-nav a {
     font-size: 16px;
-    min-height: 44px;
+    min-height: 48px;
   }
   .hero {
-    padding-block: 44px 56px;
+    padding-block: 48px 56px;
   }
   .hero-bottom {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 40px;
   }
   .hero-copy {
     padding: 0;
   }
   .hero .hero-location {
     font-size: 13px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
   .hero h1 {
     font-size: 42px;
@@ -902,7 +902,7 @@
   .hero-copy > p:not(.hero-location) {
     font-size: 16px;
     line-height: 1.7;
-    margin: 24px 0 28px;
+    margin: 24px 0 32px;
   }
   .hero-art > .ambient-loop {
     aspect-ratio: 5/4;
@@ -911,11 +911,11 @@
     font-size: 12px;
   }
   .actions {
-    gap: 12px 20px;
+    gap: 16px 24px;
   }
   .cta {
     font-size: 14px;
-    padding: 14px 18px;
+    padding: 16px 16px;
   }
   .text-link {
     font-size: 14px;
@@ -932,11 +932,11 @@
   }
   .section-heading > p {
     font-size: 16px;
-    margin-top: 20px;
+    margin-top: 24px;
   }
   .proof {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 24px;
     padding-block: 24px;
   }
   .proof > p:first-child {
@@ -957,7 +957,7 @@
   .service-row {
     grid-template-columns: minmax(0, 1fr) auto;
     column-gap: 16px;
-    row-gap: 6px;
+    row-gap: 8px;
     min-height: 120px;
     padding: 24px 0;
   }
@@ -991,10 +991,10 @@
   }
   .team-section > div > p {
     max-width: 40ch;
-    margin-top: 20px;
+    margin-top: 24px;
   }
   .team-list {
-    gap: 20px;
+    gap: 24px;
   }
   .team-member h3 {
     font-size: 21px;
@@ -1015,8 +1015,8 @@
     width: auto;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    gap: 20px;
-    padding-bottom: 12px;
+    gap: 24px;
+    padding-bottom: 16px;
   }
   .gallery-piece {
     flex: 0 0 85%;
@@ -1040,13 +1040,13 @@
   }
   .quote-controls {
     padding-top: 16px;
-    margin-top: 20px;
+    margin-top: 24px;
   }
   .quote-controls > div {
     gap: 24px;
   }
   .review-heading p {
-    margin-top: 20px;
+    margin-top: 24px;
     font-size: 13px;
   }
   .how-section h2 {
@@ -1059,7 +1059,7 @@
     font-size: 15px;
   }
   .how-section li {
-    gap: 12px;
+    gap: 16px;
   }
   .contact-section address {
     font-size: 17px;
@@ -1077,18 +1077,18 @@
     display: block;
   }
   .final-cta .cta {
-    margin-top: 28px;
+    margin-top: 32px;
   }
   .site-footer {
-    padding-block: 28px 110px;
+    padding-block: 32px 112px;
   }
   .site-footer > div {
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
     font-size: 14px;
   }
   .site-footer > p {
-    margin-top: 20px;
+    margin-top: 24px;
   }
   .mobile-actions {
     display: flex;
@@ -1097,8 +1097,8 @@
     left: 0;
     right: 0;
     z-index: 35;
-    gap: 12px;
-    padding: 10px 20px calc(10px + env(safe-area-inset-bottom));
+    gap: 16px;
+    padding: 8px 24px calc(8px + env(safe-area-inset-bottom));
     background: var(--bg);
     border-top: 1px solid var(--hairline);
   }
@@ -1108,8 +1108,8 @@
     align-items: center;
     justify-content: center;
     flex: 1;
-    min-height: 44px;
-    padding: 10px;
+    min-height: 48px;
+    padding: 8px;
     font-size: 14px;
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -1121,7 +1121,7 @@
     color: white;
   }
   .booking-shell {
-    padding: 28px 20px 150px;
+    padding: 32px 24px 152px;
   }
   .booking-shell h1 {
     font-size: 38px;
@@ -1130,7 +1130,7 @@
     font-size: 28px;
   }
   .booking-actions {
-    gap: 12px;
+    gap: 16px;
     justify-content: space-between;
     padding-inline: 16px;
   }
@@ -1139,7 +1139,7 @@
     font-size: 12px;
   }
   .booking-actions .cta {
-    padding: 12px 14px;
+    padding: 16px 16px;
     font-size: 14px;
   }
   .booking-actions > button:not(.cta) {
@@ -1153,7 +1153,7 @@
     font-size: 12px;
   }
   .choice {
-    padding: 18px 14px;
+    padding: 16px 16px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1205,6 +1205,32 @@
   border-radius: 8px;
 }
 
-.site-nav a{min-height:44px;display:inline-flex;align-items:center}
+.site-nav a{min-height:48px;display:inline-flex;align-items:center}
 /* Secondary service/contact copy remains body-sized on mobile as well. */
 .service-row p,.contact-section p{font-size:16px}
+
+@media(min-width:1024px){:root{--page-gutter:48px}}
+@media(max-width:767px){:root{--page-gutter:16px}}
+/* Supplied media: stable boxes, local responsive encodings, no autoplay download. */
+.shop-image { position:relative; height:100%; overflow:hidden; }
+.shop-image picture { display:block; height:100%; }
+.shop-image img { width:100%; height:100%; object-fit:cover; }
+.hero-art .shop-image { width:100%; }
+.gallery-rail { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.gallery-piece .reveal-mask { height:400px; overflow:hidden; }
+.gallery-piece:has(img[alt^="Troféu"]) img { object-fit:contain; background:var(--surface); }
+.films-section { border-top:1px solid var(--hairline); }
+.films-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:32px; max-width:800px; margin-inline:auto; }
+.film-frame { position:relative; overflow:hidden; background:var(--surface); aspect-ratio:9/16; }
+.film-frame video { width:100%; height:100%; object-fit:cover; }
+.film-frame .photo-watermark { bottom:64px; }
+.shop-film figcaption { margin-top:16px; font-size:16px; }
+.shop-film button { margin-top:8px; padding:8px 16px; border:1px solid var(--border); border-radius:8px; font-size:14px; }
+.brand.brand-with-logo { flex-direction:row; }
+.brand.brand-with-logo > span { font:inherit; color:inherit; margin:0; }
+@media(max-width:767px){
+ .gallery-piece .reveal-mask { height:360px; }
+ .films-grid { gap:16px; }
+ .shop-film figcaption { min-height:64px; }
+ .shop-film button { width:100%; padding-inline:8px; }
+}

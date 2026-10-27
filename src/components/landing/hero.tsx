@@ -1,5 +1,4 @@
-import { PhotoWatermark } from "@/components/demo-watermark";
-import Image from "next/image";
+import { ShopImage } from "./shop-image";
 import Link from "next/link";
 import { shop } from "@/config/demo";
 export function Hero() {
@@ -29,17 +28,10 @@ export function Hero() {
         </div>
         <figure className="hero-art">
           <div className="ambient-loop">
-            <Image
-              src="/demo/auto-stilo/interior.svg"
-              width={1600}
-              height={1200}
-              priority
-              alt="Ilustração do espaço da Auto Stilo"
-            />
+            <ShopImage name="espaco" priority alt="Recepção da Auto Stilo, com balcão preto e iluminação geométrica" />
           </div>
-          <PhotoWatermark />
           <figcaption>
-            O espaço Auto Stilo · ilustração de apresentação
+            O espaço Auto Stilo · Monte Sião
           </figcaption>
         </figure>
       </div>

@@ -1,7 +1,7 @@
 import { ReviewCarousel } from "./review-carousel";
-import { PhotoWatermark } from "@/components/demo-watermark";
+import { ShopImage } from "./shop-image";
+import { ShopVideos } from "./shop-videos";
 import { Faq } from "./faq";
-import Image from "next/image";
 import Link from "next/link";
 import { shop } from "@/config/demo";
 export function Proof() {
@@ -27,6 +27,7 @@ export function Proof() {
 }
 export function Gallery() {
   return (
+    <>
     <section id="galeria" className="section gallery-section">
       <div className="section-heading">
         <h2>
@@ -47,29 +48,22 @@ export function Gallery() {
           role="region"
           aria-label="Galeria do espaço, use as setas para rolar"
         >
-          {[
-            ["interior", "Luz que desenha o espaço"],
-            ["detalhe", "Precisão em cada detalhe"],
-          ].map(([src, title], i) => (
-            <figure className="gallery-piece" key={i}>
-              <div className="reveal-mask">
-                <Image
-                  src={`/demo/auto-stilo/${src}.svg`}
-                  width={src === "interior" ? 1600 : 960}
-                  height={1200}
-                  alt={title + " — ilustração de apresentação"}
-                />
-                {i === 0 && <PhotoWatermark />}
-              </div>
-              <figcaption>
-                {title}
-                <small>Ilustração · foto real em breve</small>
-              </figcaption>
+          {([
+            ["corte-perfil", "Perfil e precisão", "Corte e barba em detalhe"],
+            ["corte-nuca", "Acabamento que faz diferença", "Vista posterior do corte"],
+            ["acabamento", "O cuidado de perto", "Acabamento com máquina durante o atendimento"],
+            ["reconhecimento", "Uma história de cuidado", "Troféu e certificado de reconhecimento da Auto Stilo"],
+          ] as const).map(([name, title, alt]) => (
+            <figure className="gallery-piece" key={name}>
+              <div className="reveal-mask"><ShopImage name={name} alt={alt} /></div>
+              <figcaption>{title}<small>Imagem fornecida pela Auto Stilo</small></figcaption>
             </figure>
           ))}
         </div>
       </div>
     </section>
+    <ShopVideos />
+    </>
   );
 }
 export function Reviews() {
