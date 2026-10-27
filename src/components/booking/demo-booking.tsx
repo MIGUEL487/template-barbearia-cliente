@@ -1,5 +1,6 @@
 "use client";
 import {useState} from 'react';
+import {DemoBadge} from '@/components/demo-watermark';
 import Link from 'next/link';
 import {AnimatePresence,motion,useReducedMotion} from 'framer-motion';
 import {demoServices,demoBarbers} from '@/config/demo';
@@ -10,6 +11,6 @@ export function DemoBooking(){const [step,setStep]=useState(0);const [barber,set
  {step===1&&<fieldset><legend>Escolha um serviço de exemplo</legend>{demoServices.map(s=><label className="choice" key={s.id}><input type="radio" name="service" checked={service===s.id} onChange={()=>setService(s.id)}/><span><strong>{s.name}</strong><small>{s.duration_minutes} min · R$ {s.price.toFixed(2)}</small></span></label>)}</fieldset>}
  {step===2&&<fieldset><legend>Data e horário ilustrativos</legend><label className="field-label">Data<input type="date" value={date} min={new Date().toLocaleDateString('en-CA')} onChange={e=>setDate(e.target.value)} required/></label><div className="time-choices">{['09:00','10:30','14:00','15:30','17:00'].map(t=><button type="button" aria-pressed={time===t} key={t} onClick={()=>setTime(t)}>{t}</button>)}</div><p>Estes horários são simulados; não representam a agenda da barbearia.</p></fieldset>}
  {step===3&&<div><h2>Resumo da simulação</h2><dl className="booking-summary"><dt>Serviço</dt><dd>{s.name}</dd><dt>Profissional</dt><dd>{demoBarbers.find(b=>b.id===barber)?.name}</dd><dt>Quando</dt><dd>{date.split('-').reverse().join('/')} às {time}</dd><dt>Valor de exemplo</dt><dd>R$ {s.price.toFixed(2)}</dd></dl><label className="choice"><input type="checkbox" checked={accepted} onChange={e=>setAccepted(e.target.checked)}/>Entendo que este agendamento é apenas uma demonstração.</label></div>}
- {step===4&&<div className="demo-success" role="status"><span aria-hidden="true">✓</span><p>Você concluiu a experiência de agendamento.<br/>Nenhuma reserva foi criada.</p><Link className="cta" href="/meu-agendamento?token=demo">Ver agendamento de exemplo</Link><p>Para um horário real, entre em contato com a barbearia.</p></div>}
+ {step===4&&<div className="demo-success" role="status"><DemoBadge/><span aria-hidden="true">✓</span><p>Você concluiu a experiência de agendamento.<br/>Nenhuma reserva foi criada.</p><Link className="cta" href="/meu-agendamento?token=demo">Ver agendamento de exemplo</Link><p>Para um horário real, entre em contato com a barbearia.</p></div>}
  </motion.div></AnimatePresence>{step<4&&<div className="booking-actions"><p>{s.name}<strong>R$ {s.price.toFixed(2)} · exemplo</strong></p>{step>0&&<button type="button" onClick={()=>setStep(step-1)}>Voltar</button>}<button className="cta" disabled={(step===2&&(!date||!time))||(step===3&&!accepted)} onClick={()=>setStep(step+1)}>{step===3?'Concluir simulação':'Continuar'}</button></div>}</main>
 }
