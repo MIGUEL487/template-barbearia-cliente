@@ -5,8 +5,10 @@ const display = localFont({ src: "../../fonts/display.woff2", variable: "--font-
 const manrope = localFont({ src: "../../fonts/body.woff2", variable: "--font-sans", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Barbearia Premium — Tradição & Estilo Masculino",
-  description: "Cortes clássicos, barba na toalha quente e atendimento exclusivo. Agende seu horário online em segundos.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://auto-stilo.example"),
+  openGraph: { title: "Auto Stilo — Barbearia", description: "Seu estilo. Sua assinatura. Monte Sião, MG.", locale: "pt_BR", type: "website" },
+  title: "Auto Stilo — Barbearia em Monte Sião",
+  description: "Auto Stilo em Monte Sião: corte, barba e cuidado nos detalhes. Conheça o espaço e experimente o agendamento.",
 };
 
 export default function RootLayout({

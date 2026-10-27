@@ -20,12 +20,6 @@ export function getBarbershopId(): string {
   return process.env.NEXT_PUBLIC_BARBERSHOP_ID || DEFAULT_BARBERSHOP_ID;
 }
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  if (typeof window === "undefined" && process.env.NODE_ENV === "production") {
-    console.error("FATAL: NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_ANON_KEY são obrigatórias.");
-  }
-}
-
 // Inicializa cliente Supabase
 export const supabase = createClient(
   supabaseUrl || "https://unconfigured-project.supabase.co",
