@@ -15,7 +15,8 @@
     "deploy:cf": "wrangler deploy",
     "postbuild": "node scripts/headers.mjs",
     "test:qa": "node scripts/qa.mjs",
-    "spacing:check": "node scripts/check-spacing.mjs"
+    "spacing:check": "node scripts/check-spacing.mjs",
+    "test:media": "node scripts/qa-media.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.46.1",
