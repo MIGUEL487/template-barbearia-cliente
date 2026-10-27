@@ -1,0 +1,33 @@
+{
+  "fontCoverage": [
+    {
+      "font": "Fraunces-400.ttf",
+      "tested": "ãáâéêíóôõúçàR$",
+      "missing": []
+    },
+    {
+      "font": "Fraunces-500.ttf",
+      "tested": "ãáâéêíóôõúçàR$",
+      "missing": []
+    },
+    {
+      "font": "Manrope-400.ttf",
+      "tested": "ãáâéêíóôõúçàR$",
+      "missing": []
+    }
+  ],
+  "protectedPaths": [
+    "wrangler.jsonc",
+    "public/_headers",
+    "scripts",
+    "src/config",
+    "src/lib",
+    "src/app/robots.ts",
+    "src/app/sitemap.ts",
+    "src/app/agendar/page.tsx",
+    "src/app/meu-agendamento/page.tsx",
+    "docs/DEPLOY-CLOUDFLARE.md"
+  ],
+  "unchanged": true,
+  "comparedTo": "d882e4d"
+}

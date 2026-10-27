@@ -1204,3 +1204,7 @@
 .booking-live .rounded-full:where(button, a, input, select) {
   border-radius: 8px;
 }
+
+.site-nav a{min-height:44px;display:inline-flex;align-items:center}
+/* Secondary service/contact copy remains body-sized on mobile as well. */
+.service-row p,.contact-section p{font-size:16px}
