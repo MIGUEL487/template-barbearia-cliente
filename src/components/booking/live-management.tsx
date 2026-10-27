@@ -1,4 +1,5 @@
 "use client";
+import type { Variants } from "framer-motion";
 
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
@@ -20,7 +21,7 @@ import {
 import { supabase } from "@/lib/supabase";
 import { formatCurrency, fixMojibake } from "@/lib/utils";
 
-const fadeUp = {
+const fadeUp: Variants = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
 };

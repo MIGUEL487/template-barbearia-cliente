@@ -1,31 +1,11 @@
-# Barbearia Template — Site Público & Agendamento (`template-barbearia-cliente`)
+# Auto Stilo — redesign Black
 
-Repositório público do sistema premium de barbearia: landing page institucional de alto padrão, carrossel de fotos, depoimentos, sobre, FAQ e wizard de agendamento online com proteção contra overbooking e hold temporário.
+Trabalho na branch `redesign-black`. Design preto/violeta compartilhado; nenhum banco real foi alterado e nenhum deploy foi feito.
 
-## Stack
-- **Framework:** Next.js (App Router) + TypeScript
-- **Estilização:** Tailwind CSS + Design Tokens (`design-tokens.css`)
-- **Animações:** Motion (Framer Motion) com respeito a `prefers-reduced-motion`
-- **Banco de Dados:** Supabase (PostgreSQL, exclusivamente via chave pública anon e RPCs)
+Instalar com Node 24 (ou Node 22.6+) e `npm ci`. Desenvolver com `npm run dev` (cliente 3002, dono 3001). Cliente entra automaticamente em demo sem Supabase; painel exige login real e não tem bypass. Não executar reset/migrations/seed em banco real sem autorização.
 
-## Instalação e Execução Local
+Validar: `npm run typecheck`, `npm run lint`, `npm run tokens:check`, `npm run build`. Dono também tem `npm run build:cf`, `npm run test:security` e `npm run test:authorization` com fixture local. Preview Workers: `npm run preview:cf` (cliente 8787, dono 8788).
 
-```bash
-# Instalar dependências
-npm install
+QA visual: `npm run test:qa`, com Chromium em `/usr/bin/chromium` (cliente aceita CHROMIUM_PATH). Dono requer mock local e build de fixture descritos no relatório; nunca usar credenciais reais nesse teste. Resultados e capturas em docs/qa.
 
-# Configurar variáveis de ambiente
-cp .env.example .env.local
-
-# Iniciar servidor de desenvolvimento
-npm run dev
-```
-
-Abra [http://localhost:3000](http://localhost:3000) no navegador.
-
-## Scripts Disponíveis
-- `npm run dev`: Inicia o servidor local de desenvolvimento.
-- `npm run build`: Gera o build de produção.
-- `npm run lint`: Executa a verificação estática com ESLint.
-- `npm run typecheck`: Validação rigorosa de tipagem com TypeScript.
-- `npm test`: Executa os testes automatizados.
+Leia [relatório](docs/REPORT.md), [deploy Cloudflare](docs/DEPLOY-CLOUDFLARE.md), [marca d’água](docs/DEMO-WATERMARK.md), [segurança](docs/security-report.md) e [desempenho](docs/PERF.md). Next 15.5.28 + React 19.3.1; auditoria final sem vulnerabilidades conhecidas. Validar Supabase e pagamentos em ambiente autorizado antes de lançar.

@@ -1,0 +1,133 @@
+{
+  "runtime": "Wrangler local, production export",
+  "cpuThrottle": 4,
+  "results": [
+    {
+      "width": 360,
+      "height": 800,
+      "metrics": {
+        "frameCount": 257,
+        "median": 16.699999999999818,
+        "p95": 16.799999999999272,
+        "max": 16.800000000000182,
+        "lcp": 204,
+        "cls": 0,
+        "overflow": false
+      },
+      "errors": [],
+      "csp": [],
+      "bookingPassed": true,
+      "managementPassed": true,
+      "remoteCalls": 0
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "metrics": {
+        "frameCount": 249,
+        "median": 16.699999999999818,
+        "p95": 16.799999999999727,
+        "max": 16.800000000000182,
+        "lcp": 152,
+        "cls": 0,
+        "overflow": false
+      },
+      "errors": [],
+      "csp": [],
+      "bookingPassed": true,
+      "managementPassed": true,
+      "remoteCalls": 0
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "metrics": {
+        "frameCount": 229,
+        "median": 16.699999999999818,
+        "p95": 16.799999999999727,
+        "max": 16.800000000000182,
+        "lcp": 152,
+        "cls": 0,
+        "overflow": false
+      },
+      "errors": [],
+      "csp": [],
+      "bookingPassed": true,
+      "managementPassed": true,
+      "remoteCalls": 0
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "metrics": {
+        "frameCount": 270,
+        "median": 16.699999999999818,
+        "p95": 16.700000000000273,
+        "max": 16.800000000000182,
+        "lcp": 160,
+        "cls": 0,
+        "overflow": false
+      },
+      "errors": [],
+      "csp": [],
+      "bookingPassed": true,
+      "managementPassed": true,
+      "remoteCalls": 0
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "metrics": {
+        "frameCount": 305,
+        "median": 16.699999999999818,
+        "p95": 16.799999999999272,
+        "max": 16.800000000000182,
+        "lcp": 160,
+        "cls": 0,
+        "overflow": false
+      },
+      "errors": [],
+      "csp": [],
+      "bookingPassed": true,
+      "managementPassed": true,
+      "remoteCalls": 0
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "metrics": {
+        "frameCount": 253,
+        "median": 16.699999999999818,
+        "p95": 16.700000000000728,
+        "max": 16.800000000000182,
+        "lcp": 160,
+        "cls": 0,
+        "overflow": false
+      },
+      "errors": [],
+      "csp": [],
+      "bookingPassed": true,
+      "managementPassed": true,
+      "remoteCalls": 0
+    },
+    {
+      "width": 800,
+      "height": 360,
+      "metrics": {
+        "frameCount": 237,
+        "median": 16.699999999999818,
+        "p95": 16.799999999999272,
+        "max": 16.800000000000182,
+        "lcp": 144,
+        "cls": 0,
+        "overflow": false
+      },
+      "errors": [],
+      "csp": [],
+      "bookingPassed": true,
+      "managementPassed": true,
+      "remoteCalls": 0
+    }
+  ],
+  "reducedMotionPassed": true
+}
