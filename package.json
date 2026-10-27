@@ -14,7 +14,8 @@
     "preview:cf": "wrangler dev --local --port 8787",
     "deploy:cf": "wrangler deploy",
     "postbuild": "node scripts/headers.mjs",
-    "test:qa": "node scripts/qa.mjs"
+    "test:qa": "node scripts/qa.mjs",
+    "spacing:check": "node scripts/check-spacing.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.46.1",
