@@ -141,7 +141,7 @@ function MeuAgendamentoContent() {
   };
 
   return (
-    <main className="min-h-screen bg-bg text-text">
+    <main className="booking-live min-h-screen bg-bg text-text">
       {/* Header Fixo */}
       <header className="fixed top-0 inset-x-0 z-50 bg-bg/80 backdrop-blur-xl border-b border-hairline">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">

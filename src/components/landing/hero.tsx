@@ -1,24 +1,18 @@
 import { PhotoWatermark } from "@/components/demo-watermark";
-import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { shop } from "@/config/demo";
 export function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
-      <div className="cursor-light" aria-hidden="true" />
-      <div className="hero-top">
-        <p>Barbearia em {shop.city}</p>
-        <p>R. do Tanque, 395</p>
-      </div>
-      <h1 id="hero-title">Auto Stilo</h1>
       <div className="hero-bottom">
-        <div>
-          <h2>
+        <div className="hero-copy">
+          <p className="hero-location">Barbearia em {shop.city}</p>
+          <h1 id="hero-title">
             Estilo.
             <br />
             Sem igual.
-          </h2>
+          </h1>
           <p>
             Corte, barba e cuidado nos detalhes.
             <br />
@@ -26,8 +20,7 @@ export function Hero() {
           </p>
           <div className="actions">
             <Link className="cta" href="/agendar">
-              Agendar horário{" "}
-              <ArrowUpRight size={20} strokeWidth={1.5} aria-hidden="true" />
+              Agendar horário
             </Link>
             <a className="text-link" href={shop.whatsapp}>
               Chamar no WhatsApp
@@ -41,7 +34,7 @@ export function Hero() {
               width={1600}
               height={1200}
               priority
-              alt="Ilustração do espaço inspirada no teto de LEDs hexagonais"
+              alt="Ilustração do espaço da Auto Stilo"
             />
           </div>
           <PhotoWatermark />
@@ -49,10 +42,6 @@ export function Hero() {
             O espaço Auto Stilo · ilustração de apresentação
           </figcaption>
         </figure>
-      </div>
-      <div className="hero-foot">
-        <span>Precisão no corte. Presença no estilo.</span>
-        <a href="#servicos">Explore a experiência ↓</a>
       </div>
     </section>
   );

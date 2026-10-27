@@ -16,7 +16,7 @@ export function LandingMotion() {
       gsap.ticker.lagSmoothing(0);
       const ctx = gsap.context(() => {
         gsap.to(".hero-art", {
-          yPercent: 12,
+          yPercent: 4,
           ease: "none",
           scrollTrigger: {
             trigger: ".hero",
@@ -25,41 +25,22 @@ export function LandingMotion() {
             scrub: 0.2,
           },
         });
-        gsap.utils
-          .toArray<HTMLElement>(".reveal-mask")
-          .forEach((el) =>
-            gsap.fromTo(
-              el,
-              { opacity: 1, y: 32 },
-              {
-                opacity: 1,
-                y: 0,
-                scrollTrigger: {
-                  trigger: el,
-                  start: "top 92%",
-                  end: "top 55%",
-                  scrub: 0.2,
-                },
+        gsap.utils.toArray<HTMLElement>(".reveal-mask").forEach((el) =>
+          gsap.fromTo(
+            el,
+            { opacity: 1, y: 12 },
+            {
+              opacity: 1,
+              y: 0,
+              scrollTrigger: {
+                trigger: el,
+                start: "top 92%",
+                end: "top 55%",
+                scrub: 0.2,
               },
-            ),
-          );
-      });
-      const desktop = gsap.matchMedia();
-      desktop.add("(min-width: 1024px)", () => {
-        const rail = document.querySelector<HTMLElement>(".gallery-rail");
-        if (!rail) return;
-        gsap.to(rail, {
-          x: () => -Math.max(0, rail.scrollWidth - innerWidth + 80),
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".gallery-stage",
-            start: "top 110px",
-            end: () => `+=${rail.scrollWidth / 2}`,
-            pin: true,
-            scrub: 0.2,
-            invalidateOnRefresh: true,
-          },
-        });
+            },
+          ),
+        );
       });
       const observer = new IntersectionObserver((es) =>
         es.forEach((e) => {
@@ -72,20 +53,9 @@ export function LandingMotion() {
       document
         .querySelectorAll(".ambient-loop")
         .forEach((e) => observer.observe(e));
-      const hero = document.querySelector<HTMLElement>(".hero");
-      const light = document.querySelector<HTMLElement>(".cursor-light");
-      const pointer = (e: PointerEvent) => {
-        if (e.pointerType === "mouse" && light && hero) {
-          const box = hero.getBoundingClientRect();
-          light.style.transform = `translate(${e.clientX - box.left - 150}px,${e.clientY - box.top - 150}px)`;
-        }
-      };
-      hero?.addEventListener("pointermove", pointer);
       document.fonts.ready.then(() => ScrollTrigger.refresh());
       dispose = () => {
-        hero?.removeEventListener("pointermove", pointer);
         observer.disconnect();
-        desktop.revert();
         ctx.revert();
         gsap.ticker.remove(tick);
         lenis.destroy();

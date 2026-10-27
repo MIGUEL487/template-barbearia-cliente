@@ -1,9 +1,9 @@
+import { ReviewCarousel } from "./review-carousel";
 import { PhotoWatermark } from "@/components/demo-watermark";
 import { Faq } from "./faq";
-import {Counter} from "./counter";
 import Image from "next/image";
 import Link from "next/link";
-import { shop, reviews } from "@/config/demo";
+import { shop } from "@/config/demo";
 export function Proof() {
   return (
     <section className="proof section" aria-label="Avaliações no Google">
@@ -14,9 +14,12 @@ export function Proof() {
       </p>
       <div>
         <strong>
-          <Counter value={5} decimals={1}/><span aria-label="5 estrelas">★★★★★</span>
+          {shop.rating}
+          <span aria-label="5 estrelas">★★★★★</span>
         </strong>
-        <p><Counter value={53}/> avaliações no Google · informação do briefing</p>
+        <p>
+          {shop.reviews} avaliações no Google · informação do briefing
+        </p>
       </div>
       <p className="demo-note">Demonstração de apresentação</p>
     </section>
@@ -47,7 +50,6 @@ export function Gallery() {
           {[
             ["interior", "Luz que desenha o espaço"],
             ["detalhe", "Precisão em cada detalhe"],
-            ["interior", "Seu momento, no seu ritmo"],
           ].map(([src, title], i) => (
             <figure className="gallery-piece" key={i}>
               <div className="reveal-mask">
@@ -71,31 +73,7 @@ export function Gallery() {
   );
 }
 export function Reviews() {
-  return (
-    <section id="avaliacoes" className="section reviews-section">
-      <h2>
-        A palavra
-        <br />
-        de quem conhece.
-      </h2>
-      <p>
-        Avaliações do Google · citações fornecidas no briefing, em demonstração.
-      </p>
-      <div
-        className="review-scroll"
-        tabIndex={0}
-        aria-label="Avaliações, deslize para ler"
-      >
-        {reviews.map((text, i) => (
-          <blockquote key={i}>
-            <span aria-label="5 estrelas">★★★★★</span>
-            <p>“{text}”</p>
-            <cite>Cliente · Google</cite>
-          </blockquote>
-        ))}
-      </div>
-    </section>
-  );
+  return <ReviewCarousel />;
 }
 export function Details() {
   return (
@@ -172,9 +150,6 @@ export function Details() {
           Versão de apresentação. Preços, equipe e serviços de exemplo. Horários
           completos e Instagram a confirmar.
         </p>
-        <span className="footer-name" aria-hidden="true">
-          Auto Stilo
-        </span>
       </footer>
     </>
   );
