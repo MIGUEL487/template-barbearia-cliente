@@ -155,7 +155,7 @@ export function LiveStep4({
       <div className="md:col-span-7 bg-surface rounded-[28px] p-8 space-y-6">
         <div className="flex items-center justify-between pb-4 border-b border-hairline">
           <h2 className="font-serif text-xl font-bold text-text">Seus Dados</h2>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-xs font-semibold">
             <Lock className="w-3 h-3" />
             <span>Seguro</span>
           </div>
@@ -163,7 +163,7 @@ export function LiveStep4({
 
         <div className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-text-muted mb-1.5 ml-2">
+            <label className="block text-xs font-semibold text-text-muted mb-2 ml-2">
               Nome Completo *
             </label>
             <input
@@ -172,12 +172,12 @@ export function LiveStep4({
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
               placeholder="Seu nome"
-              className="w-full bg-surface-2 rounded-full px-5 py-3 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
+              className="w-full bg-surface-2 rounded-full px-6 py-4 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-text-muted mb-1.5 ml-2">
+            <label className="block text-xs font-semibold text-text-muted mb-2 ml-2">
               WhatsApp / Telefone *
             </label>
             <input
@@ -186,12 +186,12 @@ export function LiveStep4({
               value={customerPhone}
               onChange={(e) => setCustomerPhone(e.target.value)}
               placeholder="(11) 99999-9999"
-              className="w-full bg-surface-2 rounded-full px-5 py-3 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
+              className="w-full bg-surface-2 rounded-full px-6 py-4 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-text-muted mb-1.5 ml-2">
+            <label className="block text-xs font-semibold text-text-muted mb-2 ml-2">
               E-mail (confirmação)
             </label>
             <input
@@ -199,7 +199,7 @@ export function LiveStep4({
               value={customerEmail}
               onChange={(e) => setCustomerEmail(e.target.value)}
               placeholder="seuemail@exemplo.com"
-              className="w-full bg-surface-2 rounded-full px-5 py-3 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
+              className="w-full bg-surface-2 rounded-full px-6 py-4 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
             />
           </div>
         </div>
@@ -209,18 +209,18 @@ export function LiveStep4({
           <label className="block text-xs font-semibold text-text-muted mb-2 ml-2">
             Condição de Pagamento
           </label>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-4">
             <button
               type="button"
               onClick={() => setPaymentOption("deposit")}
-              className={`py-3 px-4 rounded-[20px] text-xs font-bold transition-all text-left flex flex-col ${
+              className={`py-4 px-4 rounded-[20px] text-xs font-bold transition-all text-left flex flex-col ${
                 paymentOption === "deposit"
                   ? "bg-accent/10 text-accent ring-1 ring-accent/30"
                   : "bg-surface-2 text-text-muted hover:text-text"
               }`}
             >
               <span>Sinal ({depositPct}%)</span>
-              <strong className="font-serif text-sm mt-1">
+              <strong className="font-serif text-sm mt-2">
                 {formatCurrency(depositAmount)}
               </strong>
             </button>
@@ -228,14 +228,14 @@ export function LiveStep4({
             <button
               type="button"
               onClick={() => setPaymentOption("full")}
-              className={`py-3 px-4 rounded-[20px] text-xs font-bold transition-all text-left flex flex-col ${
+              className={`py-4 px-4 rounded-[20px] text-xs font-bold transition-all text-left flex flex-col ${
                 paymentOption === "full"
                   ? "bg-accent/10 text-accent ring-1 ring-accent/30"
                   : "bg-surface-2 text-text-muted hover:text-text"
               }`}
             >
               <span>Total (100%)</span>
-              <strong className="font-serif text-sm mt-1">
+              <strong className="font-serif text-sm mt-2">
                 {formatCurrency(totalPrice)}
               </strong>
             </button>
@@ -243,25 +243,25 @@ export function LiveStep4({
         </div>
 
         {/* Termos */}
-        <div className="space-y-3 pt-4 border-t border-hairline text-xs">
-          <label className="flex items-start gap-3 cursor-pointer">
+        <div className="space-y-4 pt-4 border-t border-hairline text-xs">
+          <label className="flex items-start gap-4 cursor-pointer">
             <input
               type="checkbox"
               checked={acceptedTerms}
               onChange={(e) => setAcceptedTerms(e.target.checked)}
-              className="mt-0.5 rounded accent-accent"
+              className="mt-2 rounded accent-accent"
             />
             <span className="text-text-muted">
               Concordo com os Termos de Uso e a Política de Cancelamento.
             </span>
           </label>
 
-          <label className="flex items-start gap-3 cursor-pointer">
+          <label className="flex items-start gap-4 cursor-pointer">
             <input
               type="checkbox"
               checked={marketingConsent}
               onChange={(e) => setMarketingConsent(e.target.checked)}
-              className="mt-0.5 rounded accent-accent"
+              className="mt-2 rounded accent-accent"
             />
             <span className="text-text-muted">
               Aceito receber lembretes e promoções via WhatsApp.
@@ -285,7 +285,7 @@ export function LiveStep4({
           Resumo
         </h3>
 
-        <div className="space-y-3 text-xs">
+        <div className="space-y-4 text-xs">
           <div>
             <span className="text-text-muted block text-xs">Profissional</span>
             <strong className="text-text font-serif text-sm">
@@ -313,8 +313,8 @@ export function LiveStep4({
           </div>
 
           <div>
-            <span className="text-text-muted block text-xs mb-1">Serviços</span>
-            <div className="space-y-1.5">
+            <span className="text-text-muted block text-xs mb-2">Serviços</span>
+            <div className="space-y-2">
               {selectedServices.map((s) => (
                 <div key={s.id} className="flex justify-between text-text">
                   <span>{s.name}</span>

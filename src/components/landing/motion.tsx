@@ -12,7 +12,13 @@ export function LandingMotion() {
       const lenis = new Lenis({ autoRaf: false, anchors: true });
       lenis.on("scroll", ScrollTrigger.update);
       const tick = (t: number) => lenis.raf(t * 1000);
-      gsap.ticker.add(tick);
+      const visibility = () => {
+        document.querySelectorAll<HTMLElement>(".ambient-loop").forEach(el => el.style.setProperty("--play", !document.hidden && el.getBoundingClientRect().bottom > 0 && el.getBoundingClientRect().top < innerHeight ? "running" : "paused"));
+        if (document.hidden) { gsap.ticker.remove(tick); lenis.stop(); }
+        else { lenis.start(); gsap.ticker.add(tick); ScrollTrigger.refresh(); }
+      };
+      document.addEventListener("visibilitychange", visibility);
+      if (!document.hidden) gsap.ticker.add(tick);
       gsap.ticker.lagSmoothing(0);
       const ctx = gsap.context(() => {
         gsap.to(".hero-art", {
@@ -28,7 +34,7 @@ export function LandingMotion() {
         gsap.utils.toArray<HTMLElement>(".reveal-mask").forEach((el) =>
           gsap.fromTo(
             el,
-            { opacity: 1, y: 12 },
+            { opacity: 1, y: 16 },
             {
               opacity: 1,
               y: 0,
@@ -46,7 +52,7 @@ export function LandingMotion() {
         es.forEach((e) => {
           (e.target as HTMLElement).style.setProperty(
             "--play",
-            e.isIntersecting ? "running" : "paused",
+            e.isIntersecting && !document.hidden ? "running" : "paused",
           );
         }),
       );
@@ -55,6 +61,7 @@ export function LandingMotion() {
         .forEach((e) => observer.observe(e));
       document.fonts.ready.then(() => ScrollTrigger.refresh());
       dispose = () => {
+        document.removeEventListener("visibilitychange", visibility);
         observer.disconnect();
         ctx.revert();
         gsap.ticker.remove(tick);

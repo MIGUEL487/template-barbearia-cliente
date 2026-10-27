@@ -170,7 +170,7 @@ export function LiveStep1({
             });
             setStep(2);
           }}
-          className="inline-flex items-center gap-3 bg-surface hover:bg-surface-2 text-text px-8 py-4 rounded-full font-bold text-xs transition-all group"
+          className="inline-flex items-center gap-4 bg-surface hover:bg-surface-2 text-text px-8 py-4 rounded-full font-bold text-xs transition-all group"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
         >
@@ -196,7 +196,7 @@ export function LiveStep1({
             className="flex flex-col items-center group cursor-pointer"
           >
             <motion.div
-              className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-surface-2 p-1.5 transition-all"
+              className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-surface-2 p-2 transition-all"
               whileHover={{ scale: 1.06 }}
             >
               <div className="w-full h-full rounded-full bg-surface flex items-center justify-center text-accent overflow-hidden font-serif text-2xl font-bold">
@@ -214,7 +214,7 @@ export function LiveStep1({
                 )}
               </div>
             </motion.div>
-            <h3 className="font-serif text-base font-bold text-text mt-3 group-hover:text-accent transition-colors">
+            <h3 className="font-serif text-base font-bold text-text mt-4 group-hover:text-accent transition-colors">
               {b.name}
             </h3>
             <span className="text-xs text-text-muted">

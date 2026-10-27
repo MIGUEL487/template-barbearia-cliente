@@ -169,7 +169,7 @@ export default function LiveBooking() {
         {step <= 4 && (
           <div className="mb-12">
             <div className="flex items-center justify-between relative max-w-xl mx-auto">
-              <div className="absolute top-1/2 left-6 right-6 -translate-y-1/2 h-[2px] bg-surface-2 -z-0" />
+              <div className="absolute top-2/2 left-6 right-6 -translate-y-1/2 h-[2px] bg-surface-2 -z-0" />
               {stepsHeader.map((s) => {
                 const isActive = step === s.num;
                 const isPast = step > s.num;
@@ -221,14 +221,14 @@ export default function LiveBooking() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="inline-flex items-center gap-3 bg-surface-2 px-5 py-2 rounded-full text-xs">
+            <div className="inline-flex items-center gap-4 bg-surface-2 px-6 py-2 rounded-full text-xs">
               <span className="text-text-muted">Profissional:</span>
               <strong className="text-text font-serif">
                 {selectedBarber.name}
               </strong>
               <button
                 onClick={() => setStep(1)}
-                className="text-accent hover:underline font-bold text-xs ml-1"
+                className="text-accent hover:underline font-bold text-xs ml-2"
               >
                 Trocar
               </button>
@@ -239,7 +239,7 @@ export default function LiveBooking() {
         {/* Erro */}
         {errorBanner && (
           <motion.div
-            className="mb-8 p-4 rounded-[20px] bg-danger/10 text-danger text-xs flex items-center gap-3"
+            className="mb-8 p-4 rounded-[20px] bg-danger/10 text-danger text-xs flex items-center gap-4"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -277,7 +277,7 @@ export default function LiveBooking() {
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="fixed bottom-6 inset-x-0 z-40 flex justify-center px-4 pointer-events-none"
           >
-            <div className="w-full max-w-2xl bg-bg/90  border border-hairline rounded-full px-6 py-3.5 flex items-center justify-between shadow-soft pointer-events-auto">
+            <div className="w-full max-w-2xl bg-bg/90  border border-hairline rounded-full px-6 py-4 flex items-center justify-between shadow-soft pointer-events-auto">
               <AnimatePresence mode="wait">
                 {step === 2 && <LiveStep2 key="step2" state={state} />}
 

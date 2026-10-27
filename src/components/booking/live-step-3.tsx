@@ -169,7 +169,7 @@ export function LiveStep3({
       <button
         onClick={() => setStep(4)}
         disabled={!selectedSlot}
-        className="bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-2.5 rounded-full font-bold text-xs transition-all active:scale-95 disabled:opacity-40 cursor-pointer"
+        className="bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-2 rounded-full font-bold text-xs transition-all active:scale-95 disabled:opacity-40 cursor-pointer"
       >
         Confirmar
       </button>

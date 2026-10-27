@@ -176,7 +176,7 @@ export function LiveStep5({
         </div>
 
         <div className="bg-surface-2 rounded-[20px] p-4 text-xs font-mono">
-          <span className="text-text-muted block text-xs uppercase font-sans mb-1">
+          <span className="text-text-muted block text-xs uppercase font-sans mb-2">
             Token
           </span>
           <strong className="text-accent text-sm select-all">
@@ -194,16 +194,16 @@ export function LiveStep5({
           </div>
         )}
 
-        <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href={`/meu-agendamento?token=${bookingToken}`}
-            className="w-full sm:w-auto bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-3 rounded-full font-bold text-xs transition-all active:scale-95"
+            className="w-full sm:w-auto bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-4 rounded-full font-bold text-xs transition-all active:scale-95"
           >
             Ver Meu Agendamento
           </Link>
           <Link
             href="/"
-            className="w-full sm:w-auto bg-surface-2 hover:bg-surface-3 text-text px-6 py-3 rounded-full font-semibold text-xs transition-colors"
+            className="w-full sm:w-auto bg-surface-2 hover:bg-surface-3 text-text px-6 py-4 rounded-full font-semibold text-xs transition-colors"
           >
             Voltar à Página Inicial
           </Link>
