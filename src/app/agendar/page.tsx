@@ -435,7 +435,7 @@ export default function AgendarPage() {
                       {isPast ? <Check className="w-4 h-4 stroke-[3]" /> : s.num}
                     </motion.button>
                     <span
-                      className={`text-[11px] font-semibold mt-2 ${
+                      className={`text-xs font-semibold mt-2 ${
                         isActive ? "text-accent" : isPast ? "text-text" : "text-text-muted"
                       }`}
                     >
@@ -458,7 +458,7 @@ export default function AgendarPage() {
             <div className="inline-flex items-center gap-3 bg-surface-2 px-5 py-2 rounded-full text-xs">
               <span className="text-text-muted">Profissional:</span>
               <strong className="text-text font-serif">{selectedBarber.name}</strong>
-              <button onClick={() => setStep(1)} className="text-accent hover:underline font-bold text-[11px] ml-1">
+              <button onClick={() => setStep(1)} className="text-accent hover:underline font-bold text-xs ml-1">
                 Trocar
               </button>
             </div>
@@ -633,7 +633,7 @@ export default function AgendarPage() {
                         }`}
                         whileTap={{ scale: 0.93 }}
                       >
-                        <span className="text-[10px] uppercase font-bold tracking-wider opacity-70">
+                        <span className="text-xs uppercase font-bold tracking-wider opacity-70">
                           {d.weekDay}
                         </span>
                         <span className="font-serif text-lg font-bold mt-1">{d.dayNum}</span>
@@ -675,7 +675,7 @@ export default function AgendarPage() {
                       <Clock className="w-5 h-5" />
                     </div>
                     <p className="font-semibold text-text text-sm">Nenhum horário livre para esta data</p>
-                    <p className="text-[11px] opacity-80 max-w-sm mx-auto">
+                    <p className="text-xs opacity-80 max-w-sm mx-auto">
                       O expediente desta data já encerrou ou todos os horários foram preenchidos.
                     </p>
                     <button
@@ -737,7 +737,7 @@ export default function AgendarPage() {
               <div className="md:col-span-7 bg-surface rounded-[28px] p-8 space-y-6">
                 <div className="flex items-center justify-between pb-4 border-b border-hairline">
                   <h2 className="font-serif text-xl font-bold text-text">Seus Dados</h2>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 text-accent text-[11px] font-semibold">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold">
                     <Lock className="w-3 h-3" />
                     <span>Seguro</span>
                   </div>
@@ -865,14 +865,14 @@ export default function AgendarPage() {
 
                 <div className="space-y-3 text-xs">
                   <div>
-                    <span className="text-text-muted block text-[11px]">Profissional</span>
+                    <span className="text-text-muted block text-xs">Profissional</span>
                     <strong className="text-text font-serif text-sm">
                       {selectedBarber?.name || "Primeiro Disponível"}
                     </strong>
                   </div>
 
                   <div>
-                    <span className="text-text-muted block text-[11px]">Data & Horário</span>
+                    <span className="text-text-muted block text-xs">Data & Horário</span>
                     <strong className="text-text font-mono text-sm">
                       {new Date(selectedDate + "T12:00:00").toLocaleDateString("pt-BR")} às{" "}
                       {selectedSlot
@@ -885,7 +885,7 @@ export default function AgendarPage() {
                   </div>
 
                   <div>
-                    <span className="text-text-muted block text-[11px] mb-1">Serviços</span>
+                    <span className="text-text-muted block text-xs mb-1">Serviços</span>
                     <div className="space-y-1.5">
                       {selectedServices.map((s) => (
                         <div key={s.id} className="flex justify-between text-text">
@@ -950,7 +950,7 @@ export default function AgendarPage() {
                 </div>
 
                 <div className="bg-surface-2 rounded-[20px] p-4 text-xs font-mono">
-                  <span className="text-text-muted block text-[10px] uppercase font-sans mb-1">
+                  <span className="text-text-muted block text-xs uppercase font-sans mb-1">
                     Token
                   </span>
                   <strong className="text-accent text-sm select-all">{bookingToken}</strong>

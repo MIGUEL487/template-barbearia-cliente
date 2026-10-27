@@ -215,7 +215,7 @@ export default function HomePage() {
               <span className="font-serif text-base font-bold text-text tracking-tight">
                 {settings?.brand_name || "Barbearia"}
               </span>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-text-muted leading-none mt-0.5">
+              <p className="text-xs uppercase tracking-[0.2em] text-text-muted leading-none mt-0.5">
                 {settings?.brand_tagline || "Estilo Masculino"}
               </p>
             </div>
@@ -269,7 +269,7 @@ export default function HomePage() {
             <button
               key={item.id}
               onClick={() => navigateTo(item.id)}
-              className={`shrink-0 px-3.5 py-1.5 text-[11px] font-medium rounded-full transition-colors ${
+              className={`shrink-0 px-3.5 py-1.5 text-xs font-medium rounded-full transition-colors ${
                 currentPage === item.id
                   ? "text-text bg-surface-2"
                   : "text-text-muted"
@@ -388,7 +388,7 @@ export default function HomePage() {
                 <section className="px-4 md:px-8 pb-20 max-w-5xl mx-auto">
                   <div className="flex items-end justify-between mb-8">
                     <div>
-                      <span className="text-[11px] uppercase tracking-[0.2em] text-accent font-medium block mb-1">
+                      <span className="text-xs uppercase tracking-[0.2em] text-accent font-medium block mb-1">
                         Destaques
                       </span>
                       <h2 className="font-serif text-2xl font-semibold text-text">Serviços Populares</h2>
@@ -416,7 +416,7 @@ export default function HomePage() {
                           </div>
                           <div>
                             <h3 className="font-serif text-sm font-bold text-text">{srv.name}</h3>
-                            <p className="text-[11px] text-text-muted line-clamp-1">
+                            <p className="text-xs text-text-muted line-clamp-1">
                               {srv.description || "Atendimento premium completo."}
                             </p>
                           </div>
@@ -442,7 +442,7 @@ export default function HomePage() {
               <section className="px-4 md:px-8 py-12 max-w-5xl mx-auto">
                 <motion.div variants={staggerContainer} initial="initial" animate="animate">
                   <motion.div variants={fadeUp} className="text-center mb-12">
-                    <span className="text-[11px] uppercase tracking-[0.2em] text-accent font-medium block mb-2">
+                    <span className="text-xs uppercase tracking-[0.2em] text-accent font-medium block mb-2">
                       Cardápio
                     </span>
                     <h1 className="font-serif text-3xl sm:text-5xl font-semibold text-text">
@@ -523,7 +523,7 @@ export default function HomePage() {
               <section className="px-4 md:px-8 py-12 max-w-5xl mx-auto">
                 <motion.div variants={staggerContainer} initial="initial" animate="animate">
                   <motion.div variants={fadeUp} className="text-center mb-12">
-                    <span className="text-[11px] uppercase tracking-[0.2em] text-accent font-medium block mb-2">
+                    <span className="text-xs uppercase tracking-[0.2em] text-accent font-medium block mb-2">
                       Sobre a Casa
                     </span>
                     <h1 className="font-serif text-3xl sm:text-5xl font-semibold text-text">
@@ -653,7 +653,7 @@ export default function HomePage() {
               <section className="px-4 md:px-8 py-12 max-w-5xl mx-auto">
                 <motion.div variants={staggerContainer} initial="initial" animate="animate">
                   <motion.div variants={fadeUp} className="text-center mb-12">
-                    <span className="text-[11px] uppercase tracking-[0.2em] text-accent font-medium block mb-2">
+                    <span className="text-xs uppercase tracking-[0.2em] text-accent font-medium block mb-2">
                       Time de Mestres
                     </span>
                     <h1 className="font-serif text-3xl sm:text-5xl font-semibold text-text">
@@ -734,7 +734,7 @@ export default function HomePage() {
               <section className="px-4 md:px-8 py-12 max-w-5xl mx-auto">
                 <motion.div variants={staggerContainer} initial="initial" animate="animate">
                   <motion.div variants={fadeUp} className="text-center mb-12">
-                    <span className="text-[11px] uppercase tracking-[0.2em] text-accent font-medium block mb-2">
+                    <span className="text-xs uppercase tracking-[0.2em] text-accent font-medium block mb-2">
                       Fale Conosco
                     </span>
                     <h1 className="font-serif text-3xl sm:text-5xl font-semibold text-text">
@@ -795,7 +795,7 @@ export default function HomePage() {
                   {/* Linha Final */}
                   <motion.div
                     variants={fadeUp}
-                    className="mt-16 pt-8 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-text-muted"
+                    className="mt-16 pt-8 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-text-muted"
                   >
                     <div>
                       &copy; {new Date().getFullYear()} {settings?.brand_name || "Barbearia"}. Todos os direitos reservados.

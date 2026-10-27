@@ -233,7 +233,7 @@ function MeuAgendamentoContent() {
             >
               <div className="flex justify-between items-start pb-5 border-b border-hairline">
                 <div>
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-text-muted block mb-1">
+                  <span className="text-xs uppercase font-bold tracking-wider text-text-muted block mb-1">
                     Status da Reserva
                   </span>
                   <span
@@ -250,31 +250,31 @@ function MeuAgendamentoContent() {
                 </div>
 
                 <div className="text-right">
-                  <span className="text-[10px] text-text-muted block mb-1">Valor Total</span>
+                  <span className="text-xs text-text-muted block mb-1">Valor Total</span>
                   <strong className="text-accent font-serif text-xl">{formatCurrency(booking.total_price)}</strong>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                 <div className="bg-surface-2 rounded-[20px] p-4">
-                  <span className="text-text-muted block text-[11px] mb-0.5">Cliente</span>
+                  <span className="text-text-muted block text-xs mb-0.5">Cliente</span>
                   <strong className="text-text text-sm font-serif">{booking.customer_name}</strong>
                 </div>
 
                 <div className="bg-surface-2 rounded-[20px] p-4">
-                  <span className="text-text-muted block text-[11px] mb-0.5">Profissional</span>
+                  <span className="text-text-muted block text-xs mb-0.5">Profissional</span>
                   <strong className="text-text text-sm font-serif">{booking.barber_name}</strong>
                 </div>
 
                 <div className="sm:col-span-2 bg-surface-2 rounded-[20px] p-4">
-                  <span className="text-text-muted block text-[11px] mb-0.5">Data e Horário</span>
+                  <span className="text-text-muted block text-xs mb-0.5">Data e Horário</span>
                   <strong className="text-text text-sm font-mono">
                     {new Date(booking.starts_at).toLocaleString("pt-BR", { dateStyle: "long", timeStyle: "short" })}
                   </strong>
                 </div>
 
                 <div className="sm:col-span-2 bg-surface-2 rounded-[20px] p-4">
-                  <span className="text-text-muted block text-[11px] mb-0.5">Serviços</span>
+                  <span className="text-text-muted block text-xs mb-0.5">Serviços</span>
                   <span className="text-text font-semibold">{booking.services?.join(", ")}</span>
                 </div>
               </div>

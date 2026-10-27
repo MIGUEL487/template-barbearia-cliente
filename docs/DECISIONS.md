@@ -10,7 +10,7 @@
   - RPCs transacionais: `get_availability`, `create_booking_hold`, `get_booking_by_token`, `cancel_booking_by_token`, `reschedule_booking_by_token`.
 
 ### D2: Experiência Visual e Design System
-- **Decisão:** Estilo escuro sofisticado com cartões grafite de borda fina, destaque âmbar (`#F59E0B`), tipografia com títulos em serifa elegante e corpo sans-serif geométrico legível.
+- **Decisão:** Estilo escuro sofisticado com cartões grafite de borda fina, destaque violeta (`#A78BFA`), botão forte `#7C3AED`, tipografia com títulos em serifa elegante e corpo sans-serif geométrico legível.
 - **Tokens:** Definidos em `design-tokens.css` para permitir personalização de cor, fonte e logo diretamente por barbearia sem alterar o código-fonte.
 - **Acessibilidade:** Suporte total a `prefers-reduced-motion`, contraste WCAG AA e navegação completa por teclado.
 
@@ -26,4 +26,7 @@
 ## Decisões Pendentes / Configuráveis por Instalação
 - `{{NOME}}`: Nome comercial da barbearia.
 - `{{DOMINIO}}`: Domínio do cliente (ex.: `barbearia.com.br`).
-- `{{COR_ACCENT}}`: Padrão inicial âmbar (`#F59E0B`).
+- `{{COR_ACCENT}}`: Padrão inicial violeta (`#A78BFA`), botão forte `#7C3AED`.
+
+## Redesign Black
+Dark-only: nenhum seletor de tema existente. Display condensado Bebas Neue + corpo Manrope, arquivos locais via next/font/local. Tokens canônicos idênticos nos dois repositórios.
