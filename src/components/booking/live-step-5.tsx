@@ -168,10 +168,10 @@ export function LiveStep5({
 
         <div>
           <h2 className="font-serif text-3xl font-bold text-text mb-2">
-            Agendamento Realizado! <DemoBadge/>
+            Pré-reserva criada <DemoBadge/>
           </h2>
           <p className="text-xs text-text-muted">
-            Seu horário está reservado com sucesso.
+            Seu horário está separado por 15 minutos. A confirmação do pagamento ainda está pendente. Fale com a barbearia para concluir.
           </p>
         </div>
 

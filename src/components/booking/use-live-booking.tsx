@@ -131,7 +131,7 @@ export function useLiveBooking() {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [bookingToken, setBookingToken] = useState<string>("");
   const [holdExpiresAt, setHoldExpiresAt] = useState<string | null>(null);
-  const [countdownSeconds, setCountdownSeconds] = useState<number>(600);
+  const [countdownSeconds, setCountdownSeconds] = useState<number>(900);
 
   const missingEnv = useMemo(() => getMissingClientEnvVars(), []);
 
@@ -146,10 +146,11 @@ export function useLiveBooking() {
       try {
         const shopId = getBarbershopId();
 
-        const { data: bData } = await supabase
+        const { data: bData, error: bError } = await supabase
           .from("public_barbers")
           .select("id, name, bio, avatar_url")
           .eq("barbershop_id", shopId);
+        if (bError) throw bError;
 
         if (bData) {
           const cleaned = bData.map((b) => ({
@@ -160,11 +161,12 @@ export function useLiveBooking() {
           setBarbers(cleaned);
         }
 
-        const { data: sData } = await supabase
+        const { data: sData, error: sError } = await supabase
           .from("public_services")
           .select("id, name, description, duration_minutes, price")
           .eq("barbershop_id", shopId)
           .order("price", { ascending: true });
+        if (sError) throw sError;
 
         if (sData) {
           const cleaned = sData.map((s) => ({
@@ -178,17 +180,19 @@ export function useLiveBooking() {
           );
         }
 
-        const { data: setRes } = await supabase
+        const { data: setRes, error: settingsError } = await supabase
           .from("public_site_settings")
           .select("deposit_percentage")
           .eq("barbershop_id", shopId)
           .maybeSingle();
+        if (settingsError) throw settingsError;
 
         if (setRes && setRes.deposit_percentage) {
           setDepositPct(Number(setRes.deposit_percentage));
         }
       } catch (err: unknown) {
-        console.error(err);
+        console.error("[Supabase] Catálogo de agendamento:", err);
+        setErrorBanner("Não foi possível carregar o agendamento. Tente novamente ou fale com a barbearia.");
       } finally {
         setIsLoadingInitial(false);
       }
@@ -224,12 +228,14 @@ export function useLiveBooking() {
       }
 
       setAvailableSlots([]);
+      if (error) console.error("[Supabase] get_availability:", error);
       if (error)
         setErrorBanner(
           "Não foi possível consultar horários. Tente novamente ou fale com a barbearia.",
         );
     } catch (err: unknown) {
       console.warn("Aviso ao carregar horários:", err);
+      setErrorBanner("Não foi possível consultar horários. Tente novamente ou fale com a barbearia.");
       setAvailableSlots([]);
     } finally {
       setIsLoadingSlots(false);
@@ -326,6 +332,7 @@ export function useLiveBooking() {
       });
 
       if (error) {
+        console.error("[Supabase] create_booking_hold:", error);
         if (
           error.message.includes("ocupado") ||
           error.message.includes("reservado")
@@ -344,7 +351,7 @@ export function useLiveBooking() {
           error.message.includes("PGRST202")
         ) {
           setErrorBanner(
-            "Aviso: O banco de dados Supabase precisa executar o script atualizar_banco_supabase.sql no SQL Editor para ativar as funções de agendamento.",
+            "O agendamento está temporariamente indisponível. Fale com a barbearia para reservar seu horário.",
           );
           setIsSubmitting(false);
           return;
@@ -369,9 +376,8 @@ export function useLiveBooking() {
         }
       }
     } catch (err: unknown) {
-      const msg =
-        err instanceof Error ? err.message : "Erro ao processar agendamento.";
-      setErrorBanner(msg);
+      console.error("[Supabase] Falha ao reservar:", err);
+      setErrorBanner("Não foi possível reservar seu horário. Tente novamente ou fale com a barbearia.");
     } finally {
       setIsSubmitting(false);
     }

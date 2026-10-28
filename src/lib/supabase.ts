@@ -7,9 +7,10 @@ export const DEFAULT_BARBERSHOP_ID = "11111111-1111-1111-1111-111111111111";
 
 export function getMissingClientEnvVars(): string[] {
   const missing: string[] = [];
-  if (!supabaseUrl || supabaseUrl.trim() === "" || supabaseUrl.includes("dummy")) {
+  if (!supabaseUrl || !/^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/i.test(supabaseUrl)) {
     missing.push("NEXT_PUBLIC_SUPABASE_URL");
   }
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(process.env.NEXT_PUBLIC_BARBERSHOP_ID || "")) missing.push("NEXT_PUBLIC_BARBERSHOP_ID");
   if (!supabaseAnonKey || supabaseAnonKey.trim() === "" || supabaseAnonKey.includes("dummy")) {
     missing.push("NEXT_PUBLIC_SUPABASE_ANON_KEY");
   }
