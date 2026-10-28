@@ -19,7 +19,7 @@ export function DemoManagement() {
         <button className="cta" onClick={() => setAction("reagendar")}>
           Reagendar exemplo
         </button>
-        <button onClick={() => setAction("cancelar")}>Cancelar exemplo</button>
+        <button className="button-secondary" onClick={() => setAction("cancelar")}>Cancelar exemplo</button>
       </div>
       {action && (
         <section
@@ -34,6 +34,7 @@ export function DemoManagement() {
               <input type="date" />
             </label>
           )}
+          <div className="actions confirmation-actions">
           <button
             className="cta"
             onClick={() => {
@@ -47,7 +48,8 @@ export function DemoManagement() {
           >
             Confirmar simulação
           </button>
-          <button onClick={() => setAction(null)}>Voltar</button>
+          <button className="button-secondary" onClick={() => setAction(null)}>Voltar</button>
+          </div>
         </section>
       )}
     </main>

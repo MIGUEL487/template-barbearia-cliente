@@ -1223,16 +1223,13 @@
 .films-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:32px; max-width:800px; margin-inline:auto; }
 .film-frame { position:relative; overflow:hidden; background:var(--surface); aspect-ratio:9/16; }
 .film-frame video { width:100%; height:100%; object-fit:cover; }
-.film-frame .photo-watermark { bottom:64px; }
 .shop-film figcaption { margin-top:16px; font-size:16px; }
-.shop-film button { margin-top:8px; padding:8px 16px; border:1px solid var(--border); border-radius:8px; font-size:14px; }
 .brand.brand-with-logo { flex-direction:row; }
 .brand.brand-with-logo > span { font:inherit; color:inherit; margin:0; }
 @media(max-width:767px){
  .gallery-piece .reveal-mask { height:360px; }
  .films-grid { gap:16px; }
  .shop-film figcaption { min-height:64px; }
- .shop-film button { width:100%; padding-inline:8px; }
 }
 /* Design branco: editorial Auto Stilo. Existing booking class contracts retained. */
 .section{padding-block:96px}.section h2{font-size:var(--type-h2);line-height:1.08}.section-heading{gap:48px;margin-bottom:48px}
@@ -1252,18 +1249,70 @@ body:has(.hero-track) .mobile-actions{display:none}html:not(.hero-nav-visible) b
 .ritual{background:linear-gradient(#fff,#0a0a0c 12%,#0a0a0c 88%,#fff);color:white;padding:96px 24px;min-height:100svh}.ritual-grid{max-width:1184px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;overflow:hidden}.ritual-photo{height:480px;overflow:hidden;border-radius:240px 240px 32px 32px}.ritual-words{position:relative}.ritual-step{margin-block:32px}.ritual-active .ritual-step{position:absolute;top:50%;transform:translateY(-50%)}.ritual-active .ritual-words{height:320px}.ritual h2{font-size:var(--type-h2);margin-block:24px}.ritual-step p{max-width:38ch}.ritual-step>p:first-child{font-size:14px;color:#d9c7ff}.ritual svg{grid-column:1/-1;width:100%;height:64px;color:var(--accent-light)}
 .history{display:grid;grid-template-columns:1.1fr 1fr;align-items:center;gap:64px}.history figure{height:480px;overflow:hidden;border-radius:32px}.history img{object-fit:contain;background:var(--surface)}.history p{margin-block:24px}.timeline{border-left:2px solid var(--accent);padding-left:24px;display:grid;gap:24px}.signature-script{font-family:var(--font-serif);font-size:32px}
 .marquee{background:linear-gradient(#0a0a0c,#19151f);color:white;overflow:hidden;padding-block:32px}.marquee-track{display:flex;width:max-content;font:400 clamp(40px,6vw,88px)/1.2 var(--font-serif);animation:marquee-run 24s linear infinite;animation-play-state:paused}.marquee.running .marquee-track{animation-play-state:running}.marquee-track>span{white-space:nowrap;padding-right:32px}.barber-stripe{height:8px;background:repeating-linear-gradient(120deg,#fff 0 16px,#0a0a0c 16px 32px,#7c3aed 32px 48px);margin-top:32px}.filters{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:32px}.filters button{border-radius:9999px;padding:8px 24px;background:var(--surface)}.filters button[aria-pressed=true]{background:var(--ink);color:white}
-.service-item{position:relative}.service-item .service-row{width:100%;text-align:left}.service-actions{padding:16px 0 32px;display:flex;gap:24px}.service-preview{position:fixed;top:0;left:0;width:160px;height:192px;pointer-events:none;z-index:40;opacity:0;border-radius:24px;object-fit:cover}.service-item:hover .service-preview{opacity:1}
+.service-item{position:relative}.service-item .service-row{width:100%;text-align:left}.service-actions{padding:16px 0 32px;display:flex;gap:24px}
 @keyframes marquee-run{to{transform:translateX(-50%)}}
-@media(max-width:767px){.signature,.history,.ritual-grid{grid-template-columns:1fr;gap:32px}.signature .arch{height:360px}.pillars{grid-template-columns:1fr;gap:32px}.ritual{padding:64px 24px}.ritual-photo{height:240px}.ritual-active .ritual-words{height:208px}.ritual-step p{font-size:16px}.ritual h2{font-size:36px}.ritual svg{height:32px}.history figure{height:320px}.service-preview{display:none}}
+@media(max-width:767px){.signature,.history,.ritual-grid{grid-template-columns:1fr;gap:32px}.signature .arch{height:360px}.pillars{grid-template-columns:1fr;gap:32px}.ritual{padding:64px 24px}.ritual-photo{height:240px}.ritual-active .ritual-words{height:208px}.ritual-step p{font-size:16px}.ritual h2{font-size:36px}.ritual svg{height:32px}.history figure{height:320px}}
 
 .space-window{position:relative;height:480px;max-width:960px;margin:0 auto 64px;border-radius:240px 240px 32px 32px;overflow:hidden}.space-window svg{position:absolute;inset:24px;width:40%;height:40%;color:white;pointer-events:none}.space-window figcaption{position:absolute;bottom:24px;left:24px;background:#0a0a0c;color:white;padding:8px 16px;border-radius:16px}.contact-map{grid-column:1/-1}.contact-map iframe{height:320px}.quote-controls>div{gap:16px;flex-wrap:wrap}.reviews-section{gap:48px}.service-row{cursor:pointer}.hero-track~.section{scroll-margin-top:96px}.hero-track .shade{transition:none}
 @media(max-width:767px){.space-window{height:320px;border-radius:160px 160px 24px 24px}.space-window figcaption{font-size:12px;left:16px;bottom:16px}.quote-frame{min-height:320px}}
 .celebration{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:45}.choice{transition:background-color .2s,border-color .2s}.choice:has(input:checked){background:var(--accent-soft);border-color:var(--accent)}.booking-shell .demo-success>span:not(.demo-badge){display:inline-flex;width:80px;height:80px;align-items:center;justify-content:center;background:var(--accent-soft);color:var(--accent);border-radius:50%}.booking-live :where(input,select,button){border-radius:16px}
 
-.cursor-halo{position:fixed;top:0;left:0;width:96px;height:96px;pointer-events:none;z-index:1;background:radial-gradient(circle,#7c3aed18,transparent 70%);border-radius:50%}.cta:hover{transform:none}.scroll-cue::after{content:'';display:block;margin-top:16px;width:80px;height:8px;background:repeating-linear-gradient(120deg,#fff 0 16px,#0a0a0c 16px 32px,#7c3aed 32px 48px);animation:cue-stripe 1.6s linear infinite}.hero-nav-visible .scroll-cue::after{animation:none}@keyframes cue-stripe{50%{translate:8px 0}}
+.cta:hover{transform:none}.scroll-cue::after{content:'';display:block;margin-top:16px;width:80px;height:8px;background:repeating-linear-gradient(120deg,#fff 0 16px,#0a0a0c 16px 32px,#7c3aed 32px 48px);animation:cue-stripe 1.6s linear infinite}.hero-nav-visible .scroll-cue::after{animation:none}@keyframes cue-stripe{50%{translate:8px 0}}
 
 .scroll-cue{background:#0a0a0cbb;padding:8px 16px;border-radius:16px}
 
 .review-stars{display:flex;gap:8px;color:var(--accent);margin-top:24px}.review-score{font-size:24px!important;color:var(--ink)!important}
 /* Reserve the map geometry before the external frame loads: no shifting footer controls. */
 .contact-map{height:320px;display:grid;place-items:center;background:var(--surface);border-radius:24px;overflow:hidden}.contact-map iframe{display:block;width:100%;height:320px}.contact-map>button{align-self:center;justify-self:center}
+
+/* Visual bug fixes: full-width surfaces retain the original content gutters. */
+:root { --header-h: 81px; }
+html { scroll-padding-top: calc(var(--header-h) + 16px); }
+.signature, .team-section, .gallery-section {
+  max-width: none;
+  width: 100%;
+  padding-inline: max(var(--page-gutter), calc((100% - var(--page-width)) / 2 + var(--page-gutter)));
+}
+.site-header { padding-block: 16px; }
+.site-header > .cta { min-height: 48px; padding: 8px 24px; }
+.site-header .brand-copy { display: flex; flex-direction: column; gap: 0; }
+.site-header .brand-name { font: inherit; color: inherit; margin: 0; line-height: 1.2; }
+.site-header .brand-tagline { display: flex; align-items: center; gap: 8px; margin: 0; font: 12px/1.4 var(--font-sans), sans-serif; }
+.site-header .demo-badge { margin: 0; padding: 0 8px; font: 10px/1.6 var(--font-sans), sans-serif; }
+.hero-track ~ .section { scroll-margin-top: calc(var(--header-h) + 16px); }
+.ritual {
+  height: calc(100svh - var(--header-h));
+  min-height: 0;
+  padding-block: 32px;
+  display: grid;
+  align-content: center;
+}
+.ritual-grid { width: 100%; gap: 32px 64px; }
+.ritual-photo { height: min(480px, calc(100svh - var(--header-h) - 160px)); }
+.ritual svg { height: 32px; }
+.ritual-active .ritual-step { inset: 0; margin: 0; transform: none; display: flex; flex-direction: column; justify-content: center; }
+.gallery-rail:has(> .gallery-piece:only-child) { grid-template-columns: minmax(0, 1fr); max-width: 568px; margin-inline: auto; }
+/* These inherited dividers were visible as isolated lines around the gradient. */
+.films-section, .reviews-section, .how-section, .contact-section, .faq-section, .final-cta, .site-footer { border-top: 0; }
+.faq-section details:last-child { border-bottom: 0; }
+.film-frame { border-radius: var(--radius-2xl); isolation: isolate; -webkit-mask-image: -webkit-radial-gradient(white, black); }
+.film-frame video { display: block; border-radius: inherit; }
+.shop-film .film-toggle { position: absolute; inset: 0; display: grid; place-items: center; width: 100%; padding: 0; border: 0; border-radius: inherit; background: transparent; color: white; }
+.film-play { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: #0a0a0c99; }
+.shop-film .film-sound { position: absolute; bottom: 16px; right: 16px; display: grid; place-items: center; width: 48px; height: 48px; padding: 0; border: 0; border-radius: 50%; background: #0a0a0c99; color: white; }
+.film-toggle:focus-visible { outline-offset: -8px; }
+.film-toggle, .film-sound, .space-window figcaption { z-index: 4; }
+.ritual:not(.ritual-active) { height: auto; min-height: calc(100svh - var(--header-h)); }
+.button-secondary { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 16px 24px; border: 1px solid var(--border); border-radius: var(--radius-pill); font: 15px/1.5 var(--font-sans), sans-serif; }
+.confirmation-actions { margin-top: 24px; gap: 16px; }
+.booking-action-buttons { display: flex; align-items: center; gap: 16px; }
+@media (max-width: 767px) {
+  .ritual-grid { gap: 24px; }
+  .ritual-photo { height: min(240px, 30svh); }
+  .ritual-active .ritual-words { height: 208px; }
+  .booking-shell .actions, .booking-action-buttons { flex-direction: column; align-items: stretch; gap: 16px; }
+  .booking-actions { flex-direction: column; align-items: stretch; gap: 16px; }
+  .booking-actions > p { max-width: none; }
+  .booking-actions strong { display: inline; margin: 0 0 0 8px; }
+  .booking-shell { padding-bottom: 304px; }
+}

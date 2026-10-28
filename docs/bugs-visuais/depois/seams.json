@@ -1,0 +1,332 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "seams": [
+      {
+        "element": "hero-track",
+        "next": "section signature",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section signature",
+        "next": "pin-spacer",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "pin-spacer",
+        "next": "section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section",
+        "next": "section team-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section team-section",
+        "next": "section history",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section history",
+        "next": "section gallery-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section gallery-section",
+        "next": "section films-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section films-section",
+        "next": "section reviews-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section reviews-section",
+        "next": "section how-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section how-section",
+        "next": "section contact-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section contact-section",
+        "next": "section faq-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section faq-section",
+        "next": "section final-cta",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section final-cta",
+        "next": "marquee",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "marquee",
+        "next": "site-footer",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "site-footer",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      }
+    ]
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "seams": [
+      {
+        "element": "hero-track",
+        "next": "section signature",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section signature",
+        "next": "pin-spacer",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "pin-spacer",
+        "next": "section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section",
+        "next": "section team-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section team-section",
+        "next": "section history",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section history",
+        "next": "section gallery-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section gallery-section",
+        "next": "section films-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section films-section",
+        "next": "section reviews-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section reviews-section",
+        "next": "section how-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section how-section",
+        "next": "section contact-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section contact-section",
+        "next": "section faq-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section faq-section",
+        "next": "section final-cta",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section final-cta",
+        "next": "marquee",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "marquee",
+        "next": "site-footer",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "site-footer",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "seams": [
+      {
+        "element": "hero-track",
+        "next": "section signature",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section signature",
+        "next": "pin-spacer",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "pin-spacer",
+        "next": "section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section",
+        "next": "section team-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section team-section",
+        "next": "section history",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section history",
+        "next": "section gallery-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section gallery-section",
+        "next": "section films-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section films-section",
+        "next": "section reviews-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section reviews-section",
+        "next": "section how-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section how-section",
+        "next": "section contact-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section contact-section",
+        "next": "section faq-section",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section faq-section",
+        "next": "section final-cta",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "section final-cta",
+        "next": "marquee",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "marquee",
+        "next": "site-footer",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      },
+      {
+        "element": "site-footer",
+        "gap": 0,
+        "borderTop": "0px",
+        "borderBottom": "0px"
+      }
+    ]
+  }
+]

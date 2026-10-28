@@ -1,6 +1,31 @@
 "use client";
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import gsap from 'gsap';
-import {ScrollTrigger} from 'gsap/ScrollTrigger';
-import {useMotionEnabled} from '@/components/motion-preferences';
-export function LandingMotion(){const enabled=useMotionEnabled();useEffect(()=>{if(!enabled)return;gsap.registerPlugin(ScrollTrigger);const cleanups:(()=>void)[]=[];const ctx=gsap.context(()=>{if(matchMedia('(hover:hover) and (pointer:fine)').matches){const halo=document.createElement('div');halo.className='cursor-halo';halo.setAttribute('aria-hidden','true');document.body.appendChild(halo);const hx=gsap.quickTo(halo,'x',{duration:.4}),hy=gsap.quickTo(halo,'y',{duration:.4});const cursor=(e:PointerEvent)=>{hx(e.clientX-48);hy(e.clientY-48)};window.addEventListener('pointermove',cursor);cleanups.push(()=>{window.removeEventListener('pointermove',cursor);halo.remove()});document.querySelectorAll<HTMLElement>('.cta,.team-member').forEach(el=>{const x=gsap.quickTo(el,'x',{duration:.4}),y=gsap.quickTo(el,'y',{duration:.4});const move=(e:PointerEvent)=>{const rect=el.getBoundingClientRect();x((e.clientX-rect.left-rect.width/2)*.08);y((e.clientY-rect.top-rect.height/2)*.08)};const leave=()=>{x(0);y(0)};el.addEventListener('pointermove',move);el.addEventListener('pointerleave',leave);cleanups.push(()=>{el.removeEventListener('pointermove',move);el.removeEventListener('pointerleave',leave)})})}gsap.utils.toArray<HTMLElement>('.signature .arch,.gallery-piece .reveal-mask').forEach(el=>{gsap.fromTo(el.querySelector('img'),{yPercent:-4,scale:1.06},{yPercent:4,scale:1.02,ease:'none',scrollTrigger:{trigger:el,start:'top bottom',end:'bottom top',scrub:.5}})});gsap.fromTo('.hex-line',{strokeDashoffset:800},{strokeDashoffset:0,scrollTrigger:{trigger:'.space-window',start:'top 85%',end:'bottom 40%',scrub:.4}});gsap.fromTo('.footer-wordmark',{y:32,opacity:0},{y:0,opacity:1,duration:.8,scrollTrigger:{trigger:'.site-footer',start:'top 85%',once:true}})});return()=>{cleanups.forEach(fn=>fn());ctx.revert()}},[enabled]);return null}
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useMotionEnabled } from '@/components/motion-preferences';
+
+export function LandingMotion() {
+  const enabled = useMotionEnabled();
+  useEffect(() => {
+    if (!enabled) return;
+    gsap.registerPlugin(ScrollTrigger);
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray<HTMLElement>('.signature .arch,.gallery-piece .reveal-mask').forEach(el => {
+        gsap.fromTo(el.querySelector('img'), { yPercent: -4, scale: 1.06 }, {
+          yPercent: 4, scale: 1.02, ease: 'none',
+          scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: .5 },
+        });
+      });
+      gsap.fromTo('.hex-line', { strokeDashoffset: 800 }, {
+        strokeDashoffset: 0,
+        scrollTrigger: { trigger: '.space-window', start: 'top 85%', end: 'bottom 40%', scrub: .4 },
+      });
+      gsap.fromTo('.footer-wordmark', { y: 32, opacity: 0 }, {
+        y: 0, opacity: 1, duration: .8,
+        scrollTrigger: { trigger: '.site-footer', start: 'top 85%', once: true },
+      });
+    });
+    return () => ctx.revert();
+  }, [enabled]);
+  return null;
+}

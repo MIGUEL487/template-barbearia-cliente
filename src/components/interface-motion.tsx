@@ -10,7 +10,7 @@ export function InterfaceMotion() {
     const media = matchMedia("(prefers-reduced-motion: reduce)");
     const seen = new WeakSet<Element>();
     const active = new Set<Animation>();
-    const selector = '.site-header .brand, .site-header > .cta, .admin-sidebar nav > a, .admin-mobile-brand, .admin-more > *, .admin-login form, .booking-actions > *, .demo-success > *, [data-motion], h1, h2, .service-row, .team-member, .gallery-piece, .proof > *, .how-section li, .admin-content header, .admin-content article, .admin-content tbody tr, .metric-overview > div, .admin-content form, .admin-content .rounded-xl, .booking-shell > form, .choice, .booking-summary, .field-label, [role="dialog"], .admin-more';
+    const selector = '.admin-sidebar nav > a, .admin-mobile-brand, .admin-more > *, .admin-login form, .demo-success > *, [data-motion], h1, h2, .service-row, .team-member, .gallery-piece, .proof > *, .how-section li, .admin-content header, .admin-content article, .admin-content tbody tr, .metric-overview > div, .admin-content form, .admin-content .rounded-xl, .booking-shell > form, .choice, .booking-summary, .field-label, [role="dialog"], .admin-more';
     const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;

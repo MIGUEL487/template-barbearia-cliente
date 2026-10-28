@@ -51,10 +51,7 @@ export function Gallery() {
           aria-label="Galeria do espaço, use as setas para rolar"
         >
           {([
-            ["corte-perfil", "Perfil e precisão", "Corte e barba em detalhe"],
-            ["corte-nuca", "Acabamento que faz diferença", "Vista posterior do corte"],
             ["acabamento", "O cuidado de perto", "Acabamento com máquina durante o atendimento"],
-            ["reconhecimento", "Uma história de cuidado", "Troféu e certificado de reconhecimento da Auto Stilo"],
           ] as const).map(([name, title, alt]) => (
             <figure className="gallery-piece" key={name}>
               <div className="reveal-mask"><ShopImage name={name} alt={alt} /></div>

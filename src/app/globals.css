@@ -68,9 +68,8 @@ textarea {
   background-repeat: repeat;
 }
 .watermark-badge {
-  position: fixed;
-  right: 16px;
-  bottom: 104px;
+  position: relative;
+  margin: 24px auto 0;
   z-index: 25;
   pointer-events: none;
   display: flex;
@@ -95,17 +94,13 @@ textarea {
 }
 .photo-watermark {
   position: absolute;
-  bottom: 16px;
-  left: 16px;
-  right: 16px;
-  font-size: 12px;
-  color: white;
-  background: #080809cc;
-  padding: 8px 8px;
+  inset: 0;
+  opacity: .35;
+  background-repeat: repeat;
   pointer-events: none;
   z-index: 3;
-  border-radius: 8px;
 }
+
 .demo-badge {
   font-family: var(--font-sans);
   font-size: 12px;

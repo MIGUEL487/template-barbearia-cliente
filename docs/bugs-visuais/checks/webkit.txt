@@ -1,0 +1,3 @@
+Downloading WebKit 27.2 (playwright webkit v2370)[2m from https://cdn.playwright.dev/dbazure/download/playwright/builds/webkit/2370/webkit-debian-13.zip[22m
+Error: Download failed: server returned code 403 body 'Domain forbidden'. URL: https://cdn.playwright.dev/dbazure/download/playwright/builds/webkit/2370/webkit-debian-13.zip
+    at IncomingMessage.handleError (/workspace/template-barbearia-cliente/node_modules/playwright-core/lib/coreBundle.js:33897:23)

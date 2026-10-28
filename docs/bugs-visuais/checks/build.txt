@@ -1,0 +1,53 @@
+
+> template-barbearia-cliente@1.0.0 prebuild
+> node scripts/prepare-images.mjs && node scripts/snapshot.mjs
+
+Imagens preparadas; SVGs vetoriais de placeholder preservados.
+
+> template-barbearia-cliente@1.0.0 build
+> next build
+
+   ▲ Next.js 15.5.28
+   - Experiments (use with caution):
+     · cpus: 2
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 2.1s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/9) ...
+   Generating static pages (2/9)
+   Generating static pages (4/9)
+   Generating static pages (6/9)
+ ✓ Generating static pages (9/9)
+   Finalizing page optimization ...
+   Collecting build traces ...
+   Exporting (0/2) ...
+ ✓ Exporting (2/2)
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                    77.4 kB         303 kB
+├ ○ /_not-found                            993 B         104 kB
+├ ○ /agendar                             16.7 kB         242 kB
+├ ○ /icon.png                                0 B            0 B
+├ ○ /meu-agendamento                     4.14 kB         224 kB
+├ ○ /robots.txt                            127 B         103 kB
+└ ○ /sitemap.xml                           127 B         103 kB
++ First Load JS shared by all             103 kB
+  ├ chunks/255-1f92380adbc6ec99.js       46.7 kB
+  ├ chunks/4bd1b696-c023c6e3521b1417.js  54.2 kB
+  └ other shared chunks (total)          1.92 kB
+
+
+○  (Static)  prerendered as static content
+
+
+> template-barbearia-cliente@1.0.0 postbuild
+> node scripts/headers.mjs
+
+Cabeçalhos gerados com hashes CSP e indexação condicional
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

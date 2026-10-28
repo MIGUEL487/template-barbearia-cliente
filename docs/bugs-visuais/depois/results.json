@@ -1,0 +1,740 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "transition": {
+      "left": 0,
+      "width": 1440,
+      "viewport": 1440,
+      "background": "linear-gradient(rgb(10, 10, 12), rgb(255, 255, 255) 96px)"
+    },
+    "ritual": [
+      {
+        "photoTop": 218.65625,
+        "photoBottom": 698.65625,
+        "headerBottom": 81,
+        "photoHeight": 480,
+        "viewportHeight": 900,
+        "cssHeader": "81px"
+      },
+      {
+        "photoTop": 218.65625,
+        "photoBottom": 698.65625,
+        "headerBottom": 81,
+        "photoHeight": 480,
+        "viewportHeight": 900,
+        "cssHeader": "81px"
+      },
+      {
+        "photoTop": 218.65625,
+        "photoBottom": 698.65625,
+        "headerBottom": 81,
+        "photoHeight": 480,
+        "viewportHeight": 900,
+        "cssHeader": "81px"
+      },
+      {
+        "photoTop": 218.65625,
+        "photoBottom": 698.65625,
+        "headerBottom": 81,
+        "photoHeight": 480,
+        "viewportHeight": 900,
+        "cssHeader": "81px"
+      },
+      {
+        "photoTop": 218.65625,
+        "photoBottom": 698.65625,
+        "headerBottom": 81,
+        "photoHeight": 480,
+        "viewportHeight": 900,
+        "cssHeader": "81px"
+      }
+    ],
+    "previewCount": 0,
+    "watermarkOverlap": [
+      {
+        "caption": "O espaço Auto Stilo · Monte Sião",
+        "intersection": true,
+        "overlap": false
+      },
+      {
+        "caption": "O cuidado de pertoImagem fornecida pela Auto Stilo",
+        "intersection": false,
+        "overlap": false
+      },
+      {
+        "caption": "Uma visita à Auto Stilo",
+        "intersection": false,
+        "overlap": false
+      },
+      {
+        "caption": "O cuidado durante o atendimento",
+        "intersection": false,
+        "overlap": false
+      }
+    ],
+    "videos": [
+      {
+        "src": "http://127.0.0.1:8787/media/auto-stilo/visita.mp4",
+        "controls": false,
+        "paused": false,
+        "muted": true,
+        "playsInline": true,
+        "loop": true,
+        "radius": "32px",
+        "overflow": "hidden",
+        "poster": "http://127.0.0.1:8787/media/auto-stilo/visita-poster.webp"
+      },
+      {
+        "src": "http://127.0.0.1:8787/media/auto-stilo/em-atendimento.mp4",
+        "controls": false,
+        "paused": false,
+        "muted": true,
+        "playsInline": true,
+        "loop": true,
+        "radius": "32px",
+        "overflow": "hidden",
+        "poster": "http://127.0.0.1:8787/media/auto-stilo/em-atendimento-poster.webp"
+      }
+    ],
+    "media": {
+      "images": [
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/marca-203.webp",
+          "alt": "",
+          "canonical": "/media/auto-stilo/marca",
+          "sources": []
+        },
+        {
+          "src": "http://127.0.0.1:8787/frames/pc/ezgif-frame-001-4809622be4b7.jpg",
+          "alt": "Cena de atendimento em uma barbearia, sequência de demonstração",
+          "canonical": "/frames/pc/ezgif-frame-001-4809622be4b7",
+          "sources": [
+            "/frames/mobile/ezgif-frame-001-8de90aeb7c11.jpg"
+          ]
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/corte-nuca-480.avif",
+          "alt": "Acabamento do corte visto de trás",
+          "canonical": "/media/auto-stilo/corte-nuca",
+          "sources": [
+            "/media/auto-stilo/corte-nuca-480.avif 480w"
+          ]
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/corte-perfil-480.avif",
+          "alt": "Detalhe de corte e barba",
+          "canonical": "/media/auto-stilo/corte-perfil",
+          "sources": [
+            "/media/auto-stilo/corte-perfil-480.avif 480w"
+          ]
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/reconhecimento-960.avif",
+          "alt": "Troféu e certificado recebidos pela Auto Stilo",
+          "canonical": "/media/auto-stilo/reconhecimento",
+          "sources": [
+            "/media/auto-stilo/reconhecimento-480.avif 480w, /media/auto-stilo/reconhecimento-960.avif 960w, /media/auto-stilo/reconhecimento-1360.avif 1360w"
+          ]
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/espaco-960.avif",
+          "alt": "Interior Auto Stilo: balcão preto, piso claro e teto de LEDs",
+          "canonical": "/media/auto-stilo/espaco",
+          "sources": [
+            "/media/auto-stilo/espaco-480.avif 480w, /media/auto-stilo/espaco-960.avif 960w, /media/auto-stilo/espaco-1360.avif 1360w"
+          ]
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/acabamento-478.avif",
+          "alt": "Acabamento com máquina durante o atendimento",
+          "canonical": "/media/auto-stilo/acabamento",
+          "sources": [
+            "/media/auto-stilo/acabamento-478.avif 478w"
+          ]
+        }
+      ],
+      "videos": [
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/visita.mp4",
+          "sources": [
+            "http://127.0.0.1:8787/media/auto-stilo/visita.mp4"
+          ],
+          "poster": "http://127.0.0.1:8787/media/auto-stilo/visita-poster.webp"
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/em-atendimento.mp4",
+          "sources": [
+            "http://127.0.0.1:8787/media/auto-stilo/em-atendimento.mp4"
+          ],
+          "poster": "http://127.0.0.1:8787/media/auto-stilo/em-atendimento-poster.webp"
+        }
+      ],
+      "duplicates": []
+    },
+    "seams": [
+      {
+        "selector": ".final-cta",
+        "topBorder": "0px",
+        "bottomBorder": "0px",
+        "shadow": "none"
+      },
+      {
+        "selector": ".site-footer",
+        "topBorder": "0px",
+        "bottomBorder": "0px",
+        "shadow": "none"
+      },
+      {
+        "selector": ".faq-section",
+        "topBorder": "0px",
+        "bottomBorder": "0px",
+        "shadow": "none"
+      }
+    ],
+    "buttonDrift": 0,
+    "home": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "headerHeight": 81,
+      "cls": 0.000777477843149863,
+      "surfaces": [
+        {
+          "selector": ".hero-track",
+          "left": 0,
+          "width": 1440
+        },
+        {
+          "selector": ".signature",
+          "left": 0,
+          "width": 1440
+        },
+        {
+          "selector": ".ritual",
+          "left": 0,
+          "width": 1440
+        },
+        {
+          "selector": ".team-section",
+          "left": 0,
+          "width": 1440
+        },
+        {
+          "selector": ".gallery-section",
+          "left": 0,
+          "width": 1440
+        },
+        {
+          "selector": ".final-cta",
+          "left": 0,
+          "width": 1440
+        },
+        {
+          "selector": ".site-footer",
+          "left": 0,
+          "width": 1440
+        }
+      ]
+    },
+    "management": {
+      "gap": 16,
+      "heights": [
+        56.75,
+        56.5
+      ]
+    },
+    "errors": []
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "transition": {
+      "left": 0,
+      "width": 1366,
+      "viewport": 1366,
+      "background": "linear-gradient(rgb(10, 10, 12), rgb(255, 255, 255) 96px)"
+    },
+    "ritual": [
+      {
+        "photoTop": 152.65625,
+        "photoBottom": 632.65625,
+        "headerBottom": 81,
+        "photoHeight": 480,
+        "viewportHeight": 768,
+        "cssHeader": "81px"
+      },
+      {
+        "photoTop": 152.65625,
+        "photoBottom": 632.65625,
+        "headerBottom": 81,
+        "photoHeight": 480,
+        "viewportHeight": 768,
+        "cssHeader": "81px"
+      },
+      {
+        "photoTop": 152.65625,
+        "photoBottom": 632.65625,
+        "headerBottom": 81,
+        "photoHeight": 480,
+        "viewportHeight": 768,
+        "cssHeader": "81px"
+      },
+      {
+        "photoTop": 152.65625,
+        "photoBottom": 632.65625,
+        "headerBottom": 81,
+        "photoHeight": 480,
+        "viewportHeight": 768,
+        "cssHeader": "81px"
+      },
+      {
+        "photoTop": 152.65625,
+        "photoBottom": 632.65625,
+        "headerBottom": 81,
+        "photoHeight": 480,
+        "viewportHeight": 768,
+        "cssHeader": "81px"
+      }
+    ],
+    "previewCount": 0,
+    "watermarkOverlap": [
+      {
+        "caption": "O espaço Auto Stilo · Monte Sião",
+        "intersection": true,
+        "overlap": false
+      },
+      {
+        "caption": "O cuidado de pertoImagem fornecida pela Auto Stilo",
+        "intersection": false,
+        "overlap": false
+      },
+      {
+        "caption": "Uma visita à Auto Stilo",
+        "intersection": false,
+        "overlap": false
+      },
+      {
+        "caption": "O cuidado durante o atendimento",
+        "intersection": false,
+        "overlap": false
+      }
+    ],
+    "videos": [
+      {
+        "src": "http://127.0.0.1:8787/media/auto-stilo/visita.mp4",
+        "controls": false,
+        "paused": false,
+        "muted": true,
+        "playsInline": true,
+        "loop": true,
+        "radius": "32px",
+        "overflow": "hidden",
+        "poster": "http://127.0.0.1:8787/media/auto-stilo/visita-poster.webp"
+      },
+      {
+        "src": "http://127.0.0.1:8787/media/auto-stilo/em-atendimento.mp4",
+        "controls": false,
+        "paused": false,
+        "muted": true,
+        "playsInline": true,
+        "loop": true,
+        "radius": "32px",
+        "overflow": "hidden",
+        "poster": "http://127.0.0.1:8787/media/auto-stilo/em-atendimento-poster.webp"
+      }
+    ],
+    "media": {
+      "images": [
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/marca-203.webp",
+          "alt": "",
+          "canonical": "/media/auto-stilo/marca",
+          "sources": []
+        },
+        {
+          "src": "http://127.0.0.1:8787/frames/pc/ezgif-frame-001-4809622be4b7.jpg",
+          "alt": "Cena de atendimento em uma barbearia, sequência de demonstração",
+          "canonical": "/frames/pc/ezgif-frame-001-4809622be4b7",
+          "sources": [
+            "/frames/mobile/ezgif-frame-001-8de90aeb7c11.jpg"
+          ]
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/corte-nuca-480.avif",
+          "alt": "Acabamento do corte visto de trás",
+          "canonical": "/media/auto-stilo/corte-nuca",
+          "sources": [
+            "/media/auto-stilo/corte-nuca-480.avif 480w"
+          ]
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/corte-perfil-480.avif",
+          "alt": "Detalhe de corte e barba",
+          "canonical": "/media/auto-stilo/corte-perfil",
+          "sources": [
+            "/media/auto-stilo/corte-perfil-480.avif 480w"
+          ]
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/reconhecimento-960.avif",
+          "alt": "Troféu e certificado recebidos pela Auto Stilo",
+          "canonical": "/media/auto-stilo/reconhecimento",
+          "sources": [
+            "/media/auto-stilo/reconhecimento-480.avif 480w, /media/auto-stilo/reconhecimento-960.avif 960w, /media/auto-stilo/reconhecimento-1360.avif 1360w"
+          ]
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/espaco-960.avif",
+          "alt": "Interior Auto Stilo: balcão preto, piso claro e teto de LEDs",
+          "canonical": "/media/auto-stilo/espaco",
+          "sources": [
+            "/media/auto-stilo/espaco-480.avif 480w, /media/auto-stilo/espaco-960.avif 960w, /media/auto-stilo/espaco-1360.avif 1360w"
+          ]
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/acabamento-478.avif",
+          "alt": "Acabamento com máquina durante o atendimento",
+          "canonical": "/media/auto-stilo/acabamento",
+          "sources": [
+            "/media/auto-stilo/acabamento-478.avif 478w"
+          ]
+        }
+      ],
+      "videos": [
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/visita.mp4",
+          "sources": [
+            "http://127.0.0.1:8787/media/auto-stilo/visita.mp4"
+          ],
+          "poster": "http://127.0.0.1:8787/media/auto-stilo/visita-poster.webp"
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/em-atendimento.mp4",
+          "sources": [
+            "http://127.0.0.1:8787/media/auto-stilo/em-atendimento.mp4"
+          ],
+          "poster": "http://127.0.0.1:8787/media/auto-stilo/em-atendimento-poster.webp"
+        }
+      ],
+      "duplicates": []
+    },
+    "seams": [
+      {
+        "selector": ".final-cta",
+        "topBorder": "0px",
+        "bottomBorder": "0px",
+        "shadow": "none"
+      },
+      {
+        "selector": ".site-footer",
+        "topBorder": "0px",
+        "bottomBorder": "0px",
+        "shadow": "none"
+      },
+      {
+        "selector": ".faq-section",
+        "topBorder": "0px",
+        "bottomBorder": "0px",
+        "shadow": "none"
+      }
+    ],
+    "buttonDrift": 0,
+    "home": {
+      "scrollWidth": 1366,
+      "clientWidth": 1366,
+      "headerHeight": 81,
+      "cls": 0.0009026462342832743,
+      "surfaces": [
+        {
+          "selector": ".hero-track",
+          "left": 0,
+          "width": 1366
+        },
+        {
+          "selector": ".signature",
+          "left": 0,
+          "width": 1366
+        },
+        {
+          "selector": ".ritual",
+          "left": 0,
+          "width": 1366
+        },
+        {
+          "selector": ".team-section",
+          "left": 0,
+          "width": 1366
+        },
+        {
+          "selector": ".gallery-section",
+          "left": 0,
+          "width": 1366
+        },
+        {
+          "selector": ".final-cta",
+          "left": 0,
+          "width": 1366
+        },
+        {
+          "selector": ".site-footer",
+          "left": 0,
+          "width": 1366
+        }
+      ]
+    },
+    "management": {
+      "gap": 16,
+      "heights": [
+        56.75,
+        56.5
+      ]
+    },
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "transition": {
+      "left": 0,
+      "width": 390,
+      "viewport": 390,
+      "background": "linear-gradient(rgb(10, 10, 12), rgb(255, 255, 255) 96px)"
+    },
+    "ritual": [
+      {
+        "photoTop": 198.03125,
+        "photoBottom": 438.03125,
+        "headerBottom": 81,
+        "photoHeight": 240,
+        "viewportHeight": 844,
+        "cssHeader": "81px"
+      },
+      {
+        "photoTop": 198.03125,
+        "photoBottom": 438.03125,
+        "headerBottom": 81,
+        "photoHeight": 240,
+        "viewportHeight": 844,
+        "cssHeader": "81px"
+      },
+      {
+        "photoTop": 198.03125,
+        "photoBottom": 438.03125,
+        "headerBottom": 81,
+        "photoHeight": 240,
+        "viewportHeight": 844,
+        "cssHeader": "81px"
+      },
+      {
+        "photoTop": 198.03125,
+        "photoBottom": 438.03125,
+        "headerBottom": 81,
+        "photoHeight": 240,
+        "viewportHeight": 844,
+        "cssHeader": "81px"
+      },
+      {
+        "photoTop": 198.03125,
+        "photoBottom": 438.03125,
+        "headerBottom": 81,
+        "photoHeight": 240,
+        "viewportHeight": 844,
+        "cssHeader": "81px"
+      }
+    ],
+    "previewCount": 0,
+    "watermarkOverlap": [
+      {
+        "caption": "O espaço Auto Stilo · Monte Sião",
+        "intersection": true,
+        "overlap": false
+      },
+      {
+        "caption": "O cuidado de pertoImagem fornecida pela Auto Stilo",
+        "intersection": false,
+        "overlap": false
+      },
+      {
+        "caption": "Uma visita à Auto Stilo",
+        "intersection": false,
+        "overlap": false
+      },
+      {
+        "caption": "O cuidado durante o atendimento",
+        "intersection": false,
+        "overlap": false
+      }
+    ],
+    "videos": [
+      {
+        "src": "http://127.0.0.1:8787/media/auto-stilo/visita.mp4",
+        "controls": false,
+        "paused": false,
+        "muted": true,
+        "playsInline": true,
+        "loop": true,
+        "radius": "32px",
+        "overflow": "hidden",
+        "poster": "http://127.0.0.1:8787/media/auto-stilo/visita-poster.webp"
+      },
+      {
+        "src": "http://127.0.0.1:8787/media/auto-stilo/em-atendimento.mp4",
+        "controls": false,
+        "paused": false,
+        "muted": true,
+        "playsInline": true,
+        "loop": true,
+        "radius": "32px",
+        "overflow": "hidden",
+        "poster": "http://127.0.0.1:8787/media/auto-stilo/em-atendimento-poster.webp"
+      }
+    ],
+    "media": {
+      "images": [
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/marca-203.webp",
+          "alt": "",
+          "canonical": "/media/auto-stilo/marca",
+          "sources": []
+        },
+        {
+          "src": "http://127.0.0.1:8787/frames/mobile/ezgif-frame-001-8de90aeb7c11.jpg",
+          "alt": "Cena de atendimento em uma barbearia, sequência de demonstração",
+          "canonical": "/frames/mobile/ezgif-frame-001-8de90aeb7c11",
+          "sources": [
+            "/frames/mobile/ezgif-frame-001-8de90aeb7c11.jpg"
+          ]
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/corte-nuca-480.avif",
+          "alt": "Acabamento do corte visto de trás",
+          "canonical": "/media/auto-stilo/corte-nuca",
+          "sources": [
+            "/media/auto-stilo/corte-nuca-480.avif 480w"
+          ]
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/corte-perfil-480.avif",
+          "alt": "Detalhe de corte e barba",
+          "canonical": "/media/auto-stilo/corte-perfil",
+          "sources": [
+            "/media/auto-stilo/corte-perfil-480.avif 480w"
+          ]
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/reconhecimento-480.avif",
+          "alt": "Troféu e certificado recebidos pela Auto Stilo",
+          "canonical": "/media/auto-stilo/reconhecimento",
+          "sources": [
+            "/media/auto-stilo/reconhecimento-480.avif 480w, /media/auto-stilo/reconhecimento-960.avif 960w, /media/auto-stilo/reconhecimento-1360.avif 1360w"
+          ]
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/espaco-480.avif",
+          "alt": "Interior Auto Stilo: balcão preto, piso claro e teto de LEDs",
+          "canonical": "/media/auto-stilo/espaco",
+          "sources": [
+            "/media/auto-stilo/espaco-480.avif 480w, /media/auto-stilo/espaco-960.avif 960w, /media/auto-stilo/espaco-1360.avif 1360w"
+          ]
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/acabamento-478.avif",
+          "alt": "Acabamento com máquina durante o atendimento",
+          "canonical": "/media/auto-stilo/acabamento",
+          "sources": [
+            "/media/auto-stilo/acabamento-478.avif 478w"
+          ]
+        }
+      ],
+      "videos": [
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/visita.mp4",
+          "sources": [
+            "http://127.0.0.1:8787/media/auto-stilo/visita.mp4"
+          ],
+          "poster": "http://127.0.0.1:8787/media/auto-stilo/visita-poster.webp"
+        },
+        {
+          "src": "http://127.0.0.1:8787/media/auto-stilo/em-atendimento.mp4",
+          "sources": [
+            "http://127.0.0.1:8787/media/auto-stilo/em-atendimento.mp4"
+          ],
+          "poster": "http://127.0.0.1:8787/media/auto-stilo/em-atendimento-poster.webp"
+        }
+      ],
+      "duplicates": []
+    },
+    "seams": [
+      {
+        "selector": ".final-cta",
+        "topBorder": "0px",
+        "bottomBorder": "0px",
+        "shadow": "none"
+      },
+      {
+        "selector": ".site-footer",
+        "topBorder": "0px",
+        "bottomBorder": "0px",
+        "shadow": "none"
+      },
+      {
+        "selector": ".faq-section",
+        "topBorder": "0px",
+        "bottomBorder": "0px",
+        "shadow": "none"
+      }
+    ],
+    "buttonDrift": 0,
+    "home": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "headerHeight": 81,
+      "cls": 0.0031403589108625774,
+      "surfaces": [
+        {
+          "selector": ".hero-track",
+          "left": 0,
+          "width": 390
+        },
+        {
+          "selector": ".signature",
+          "left": 0,
+          "width": 390
+        },
+        {
+          "selector": ".ritual",
+          "left": 0,
+          "width": 390
+        },
+        {
+          "selector": ".team-section",
+          "left": 0,
+          "width": 390
+        },
+        {
+          "selector": ".gallery-section",
+          "left": 0,
+          "width": 390
+        },
+        {
+          "selector": ".final-cta",
+          "left": 0,
+          "width": 390
+        },
+        {
+          "selector": ".site-footer",
+          "left": 0,
+          "width": 390
+        }
+      ]
+    },
+    "management": {
+      "gap": 16,
+      "heights": [
+        55.09375,
+        56.5
+      ]
+    },
+    "errors": []
+  }
+]

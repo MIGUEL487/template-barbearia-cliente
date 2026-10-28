@@ -1,0 +1,281 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "manualPause": true,
+    "viewportPauseResume": true,
+    "audioToggle": true,
+    "reducedAutoplay": false,
+    "reducedManualPlay": true,
+    "filters": {
+      "gap": 16,
+      "heights": [
+        48,
+        48,
+        48,
+        48,
+        48
+      ],
+      "labels": [
+        "Todos",
+        "Cabelo",
+        "Barba",
+        "Combos",
+        "Cuidados"
+      ],
+      "direction": "row"
+    },
+    "actions": {
+      "gap": 24,
+      "heights": [
+        56.75,
+        56.75
+      ],
+      "labels": [
+        "Agendar este serviço",
+        "WhatsApp"
+      ],
+      "direction": "row"
+    },
+    "booking": [
+      {
+        "gap": 16,
+        "heights": [
+          56.5,
+          56.75
+        ],
+        "labels": [
+          "Voltar",
+          "Continuar"
+        ],
+        "direction": "row"
+      },
+      {
+        "gap": 16,
+        "heights": [
+          62.046875,
+          62.046875,
+          62.046875,
+          62.046875,
+          62.046875
+        ],
+        "labels": [
+          "09:00",
+          "10:30",
+          "14:00",
+          "15:30",
+          "17:00"
+        ],
+        "direction": "row"
+      },
+      {
+        "gap": 16,
+        "heights": [
+          56.5,
+          56.75
+        ],
+        "labels": [
+          "Voltar",
+          "Continuar"
+        ],
+        "direction": "row"
+      }
+    ],
+    "reducedRitual": {
+      "height": 858,
+      "content": 858,
+      "steps": [
+        "visible",
+        "visible",
+        "visible"
+      ]
+    },
+    "errors": []
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "manualPause": true,
+    "viewportPauseResume": true,
+    "audioToggle": true,
+    "reducedAutoplay": false,
+    "reducedManualPlay": true,
+    "filters": {
+      "gap": 16,
+      "heights": [
+        48,
+        48,
+        48,
+        48,
+        48
+      ],
+      "labels": [
+        "Todos",
+        "Cabelo",
+        "Barba",
+        "Combos",
+        "Cuidados"
+      ],
+      "direction": "row"
+    },
+    "actions": {
+      "gap": 24,
+      "heights": [
+        56.75,
+        56.75
+      ],
+      "labels": [
+        "Agendar este serviço",
+        "WhatsApp"
+      ],
+      "direction": "row"
+    },
+    "booking": [
+      {
+        "gap": 16,
+        "heights": [
+          56.5,
+          56.75
+        ],
+        "labels": [
+          "Voltar",
+          "Continuar"
+        ],
+        "direction": "row"
+      },
+      {
+        "gap": 16,
+        "heights": [
+          62.046875,
+          62.046875,
+          62.046875,
+          62.046875,
+          62.046875
+        ],
+        "labels": [
+          "09:00",
+          "10:30",
+          "14:00",
+          "15:30",
+          "17:00"
+        ],
+        "direction": "row"
+      },
+      {
+        "gap": 16,
+        "heights": [
+          56.5,
+          56.75
+        ],
+        "labels": [
+          "Voltar",
+          "Continuar"
+        ],
+        "direction": "row"
+      }
+    ],
+    "reducedRitual": {
+      "height": 850,
+      "content": 850,
+      "steps": [
+        "visible",
+        "visible",
+        "visible"
+      ]
+    },
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "manualPause": true,
+    "viewportPauseResume": true,
+    "audioToggle": true,
+    "reducedAutoplay": false,
+    "reducedManualPlay": true,
+    "filters": {
+      "gap": 16,
+      "heights": [
+        48,
+        48,
+        48,
+        48,
+        48
+      ],
+      "labels": [
+        "Todos",
+        "Cabelo",
+        "Barba",
+        "Combos",
+        "Cuidados"
+      ],
+      "direction": "row"
+    },
+    "actions": {
+      "gap": 24,
+      "heights": [
+        55.09375,
+        55.09375
+      ],
+      "labels": [
+        "Agendar este serviço",
+        "WhatsApp"
+      ],
+      "direction": "row"
+    },
+    "booking": [
+      {
+        "gap": 16,
+        "heights": [
+          56.5,
+          55.09375
+        ],
+        "labels": [
+          "Voltar",
+          "Continuar"
+        ],
+        "direction": "column"
+      },
+      {
+        "gap": 16,
+        "heights": [
+          60.390625,
+          60.390625,
+          60.390625,
+          60.390625,
+          60.390625
+        ],
+        "labels": [
+          "09:00",
+          "10:30",
+          "14:00",
+          "15:30",
+          "17:00"
+        ],
+        "direction": "row"
+      },
+      {
+        "gap": 16,
+        "heights": [
+          56.5,
+          55.09375
+        ],
+        "labels": [
+          "Voltar",
+          "Continuar"
+        ],
+        "direction": "column"
+      }
+    ],
+    "reducedRitual": {
+      "height": 1008,
+      "content": 1008,
+      "steps": [
+        "visible",
+        "visible",
+        "visible"
+      ]
+    },
+    "errors": []
+  }
+]

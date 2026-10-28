@@ -1,0 +1,5 @@
+
+> template-barbearia-cliente@1.0.0 tokens:check
+> node scripts/check-tokens.mjs
+
+✅ [OK] design-tokens.css sincronizado (523d1c51...)

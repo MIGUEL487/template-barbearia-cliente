@@ -1,0 +1,5 @@
+
+> template-barbearia-cliente@1.0.0 spacing:check
+> node scripts/check-spacing.mjs
+
+8px spacing grid: CSS pixel/rem spacing and numeric Tailwind utilities passed. Percentages, auto, safe-area and intrinsic layout are allowed; typography, borders, radii and image dimensions are not spacing.
