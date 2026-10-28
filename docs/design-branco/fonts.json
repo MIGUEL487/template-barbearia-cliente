@@ -1,0 +1,44 @@
+[
+  {
+    "family": "display, \"display Fallback\", Georgia, serif",
+    "faces": [
+      {
+        "family": "display",
+        "style": "normal",
+        "weight": "400"
+      },
+      {
+        "family": "display",
+        "style": "italic",
+        "weight": "400"
+      },
+      {
+        "family": "manrope",
+        "style": "normal",
+        "weight": "400"
+      }
+    ],
+    "test": "ã é ç ô í ú õ à · R$"
+  },
+  {
+    "family": "display, \"display Fallback\", Georgia, serif",
+    "faces": [
+      {
+        "family": "display",
+        "style": "normal",
+        "weight": "400"
+      },
+      {
+        "family": "display",
+        "style": "italic",
+        "weight": "400"
+      },
+      {
+        "family": "manrope",
+        "style": "normal",
+        "weight": "400"
+      }
+    ],
+    "test": "ã é ç ô í ú õ à · R$"
+  }
+]

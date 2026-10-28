@@ -16,7 +16,12 @@
     "postbuild": "node scripts/headers.mjs",
     "test:qa": "node scripts/qa.mjs",
     "spacing:check": "node scripts/check-spacing.mjs",
-    "test:media": "node scripts/qa-media.mjs"
+    "test:media": "node scripts/qa-media.mjs",
+    "prepare:hero": "node scripts/prepare-hero.mjs",
+    "prepare:hero:video": "node scripts/encode-hero-video.mjs",
+    "prepare:hero:video:pc": "node scripts/encode-hero-video.mjs --desktop-gsap",
+    "test:white": "node scripts/qa-white.mjs",
+    "test:white:functional": "node scripts/qa-white-functional.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.46.1",

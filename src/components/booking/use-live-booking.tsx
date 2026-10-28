@@ -357,7 +357,7 @@ export function useLiveBooking() {
         setHoldExpiresAt(data.hold_expires_at);
         setStep(5);
         try {
-          if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+          if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && !document.documentElement.classList.contains("motion-off"))
             confetti({
               particleCount: 80,
               spread: 60,

@@ -21,4 +21,5 @@ ${process.env.NEXT_PUBLIC_DEMO_WATERMARK==='true'?'  X-Robots-Tag: noindex, nofo
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
 `;
+if(text.split('\n').some(line=>line.length>2000))throw Error('Cloudflare _headers: linha excede 2000 caracteres; reduza ou separe a CSP por rota.');
 await writeFile('out/_headers',text);console.log('Cabeçalhos gerados com hashes CSP e indexação condicional');

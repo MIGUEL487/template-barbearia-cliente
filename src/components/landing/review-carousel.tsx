@@ -1,6 +1,7 @@
 "use client";
 import { useState,useEffect,useRef } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import {Counter} from "./counter";
 import { reviews } from "@/config/demo";
 import {useMotionEnabled} from '@/components/motion-preferences';
 export function ReviewCarousel() {
@@ -19,6 +20,8 @@ export function ReviewCarousel() {
           <br />
           quem conhece.
         </h2>
+        <p className="review-score"><Counter value={5} decimals={1}/> · <Counter value={53}/> avaliações no Google</p>
+        <span aria-label="5 estrelas" className="review-stars">{Array.from({length:5},(_,i)=><motion.span key={i} initial={{opacity:0}} whileInView={{opacity:1}} viewport={{once:true}} transition={{delay:i*.12}}>★</motion.span>)}</span>
         <p>
           Avaliações do Google · citações fornecidas no briefing, em
           demonstração.

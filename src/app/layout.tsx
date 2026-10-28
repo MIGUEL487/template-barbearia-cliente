@@ -7,12 +7,14 @@ const display=localFont({src:[{path:"./fonts/fraunces-latin-400-normal.woff2",we
 const manrope=localFont({src:"./fonts/Manrope-400.ttf",weight:"400",variable:"--font-sans",display:"swap"});
 
 export const metadata: Metadata = {
+  icons:{icon:"/media/auto-stilo/marca-203.webp"},
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "https://auto-stilo.example",
   ),
   openGraph: {
     title: "Auto Stilo — Barbearia" + (watermarkEnabled ? " (Demo)" : ""),
     description: "Seu estilo. Sua assinatura. Monte Sião, MG.",
+    images: ["/media/auto-stilo/espaco-1360.webp"],
     locale: "pt_BR",
     type: "website",
   },

@@ -1,0 +1,50 @@
+[
+  {
+    "route": "landing",
+    "width": 390,
+    "status": 200,
+    "url": "http://127.0.0.1:8787/",
+    "scrollHeight": 6985,
+    "overflow": false
+  },
+  {
+    "route": "agendar",
+    "width": 390,
+    "status": 200,
+    "url": "http://127.0.0.1:8787/agendar/",
+    "scrollHeight": 900,
+    "overflow": false
+  },
+  {
+    "route": "meu-agendamento",
+    "width": 390,
+    "status": 200,
+    "url": "http://127.0.0.1:8787/meu-agendamento/",
+    "scrollHeight": 900,
+    "overflow": false
+  },
+  {
+    "route": "landing",
+    "width": 1440,
+    "status": 200,
+    "url": "http://127.0.0.1:8787/",
+    "scrollHeight": 7521,
+    "overflow": false
+  },
+  {
+    "route": "agendar",
+    "width": 1440,
+    "status": 200,
+    "url": "http://127.0.0.1:8787/agendar/",
+    "scrollHeight": 900,
+    "overflow": false
+  },
+  {
+    "route": "meu-agendamento",
+    "width": 1440,
+    "status": 200,
+    "url": "http://127.0.0.1:8787/meu-agendamento/",
+    "scrollHeight": 900,
+    "overflow": false
+  }
+]

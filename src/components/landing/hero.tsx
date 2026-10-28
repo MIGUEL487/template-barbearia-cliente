@@ -12,6 +12,9 @@ export function Hero(){
  let saved=null;try{saved=localStorage.getItem('auto-stilo-motion')}catch{}
  const forced=new URLSearchParams(location.search).get('motion');const wanted=forced==='full'?true:forced==='off'?false:saved!==null?saved==='on':!matchMedia('(prefers-reduced-motion:reduce)').matches;
  if(wanted!==enabled)return;
+ const surface=root.current!;let stableHeight=innerHeight,landscape=innerWidth>innerHeight;
+ const resizeSurface=()=>{const next=innerWidth>innerHeight;stableHeight=next!==landscape?innerHeight:Math.max(stableHeight,innerHeight);landscape=next;surface.style.setProperty('--hero-vh',innerHeight+'px');surface.style.setProperty('--hero-stable-vh',stableHeight+'px')};
+ resizeSurface();window.addEventListener('resize',resizeSurface);window.visualViewport?.addEventListener('resize',resizeSurface);
  const engine=createScrollEngine(enabled);
  let generation=0,cleanup=()=>{},pinnedProgress:()=>number|null=()=>null;
  const nav=(visible:boolean)=>document.documentElement.classList.toggle('hero-nav-visible',visible);
@@ -88,7 +91,7 @@ export function Hero(){
  }catch{el.classList.add('native-motion');nav(true)}}
 
  void setup();const mq=matchMedia('(max-width:768px), (orientation:portrait)');const rotate=()=>engine.ScrollTrigger.refresh();mq.addEventListener('change',rotate);
- return ()=>{generation++;cleanup();mq.removeEventListener('change',rotate);engine.dispose();document.documentElement.classList.remove('hero-nav-visible')};
+ return ()=>{window.removeEventListener('resize',resizeSurface);window.visualViewport?.removeEventListener('resize',resizeSurface);generation++;cleanup();mq.removeEventListener('change',rotate);engine.dispose();document.documentElement.classList.remove('hero-nav-visible')};
  },[enabled]);
  return <div ref={track} className="hero-track"><section id="inicio" ref={root} className="hero cinematic" aria-labelledby="hero-title">
  <picture className="hero-picture"><source media="(max-width:768px), (orientation:portrait)" srcSet={frames.mobile.poster}/>
