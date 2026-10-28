@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "auto-stilo-cliente",
+  "previews": {},
   "compatibility_date": "2026-10-26",
   "assets": {
     "directory": "./out",
