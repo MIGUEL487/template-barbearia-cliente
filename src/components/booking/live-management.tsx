@@ -1,10 +1,10 @@
 "use client";
-import type { Variants } from "framer-motion";
+import type { Variants } from "motion/react";
 
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import {
   Scissors,
   Calendar,

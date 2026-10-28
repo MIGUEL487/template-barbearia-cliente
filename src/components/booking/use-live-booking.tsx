@@ -1,11 +1,11 @@
 "use client";
-import type { Variants } from "framer-motion";
+import type { Variants } from "motion/react";
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { DemoBadge } from "@/components/demo-watermark";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import {
   Scissors,
   Calendar as CalendarIcon,
@@ -362,7 +362,7 @@ export function useLiveBooking() {
               particleCount: 80,
               spread: 60,
               origin: { y: 0.6 },
-              colors: ["#C8C2B8", "#F0EDE6", "#8A8580"],
+              colors: ["#7C3AED", "#0A0A0C", "#FFFFFF"],
             });
         } catch {
           // confetti opcional

@@ -1,11 +1,11 @@
 "use client";
-import type { Variants } from "framer-motion";
+import type { Variants } from "motion/react";
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { DemoBadge } from "@/components/demo-watermark";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import {
   Scissors,
   Calendar as CalendarIcon,
