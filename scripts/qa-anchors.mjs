@@ -15,6 +15,7 @@ await normal.goto('http://127.0.0.1:8787/');await normal.waitForFunction(()=>doc
 assert.equal(await normal.locator('.cinematic').getAttribute('data-scroll-mode'),'gsap-pin');
 for(let i=0;i<500;i++){const delta=await normal.locator('#contato').evaluate(e=>e.getBoundingClientRect().top-128);if(Math.abs(delta)<6)break;await normal.mouse.wheel(0,Math.max(-480,Math.min(480,delta)));await normal.waitForTimeout(80)}
 await normal.waitForFunction(()=>document.querySelector('.cinematic').dataset.endingPhase==='done');
+assert.equal(new URL(normal.url()).hash,'#contato','Scrolling into a linked section updates the shareable URL');
 const boundary=await normal.locator('.hero-track').evaluate(e=>scrollY+e.getBoundingClientRect().bottom);await normal.evaluate(()=>{window.__anchorPositions=[];window.addEventListener('scroll',()=>window.__anchorPositions.push(scrollY))});
 await normal.locator('.site-nav a').filter({hasText:'Serviços'}).click();await normal.waitForTimeout(600);
 assert((await normal.locator('#servicos').boundingBox()).y<125);

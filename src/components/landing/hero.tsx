@@ -46,7 +46,7 @@ export function Hero(){
  // Copy waits for actual playback to finish, including a fast-scroll backlog.
  renderCopy=()=>{
   const completed=drawn===player.count-1&&finalVisible
-  if(ending==='waiting'&&completed){phase('reading');waitingTimer?.kill();waitingTimer=undefined;tl.play(0);navigation=true;nav(true);return}
+  if(ending==='waiting'&&completed){phase('reading');waitingTimer?.kill();waitingTimer=undefined;tl.play(0);navigation=true;return}
   if(ending==='waiting'||ending==='reading')return
   if(ending==='done'){tl.progress(1);return}
   tl.progress(!completed?0:Math.max(0,Math.min(1,(scrollProgress-copyStart)/(1-copyStart))))
