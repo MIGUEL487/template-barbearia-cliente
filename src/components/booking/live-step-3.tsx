@@ -157,6 +157,7 @@ export function LiveStep3({
             Horário:{" "}
             <strong className="text-accent font-mono font-bold text-sm">
               {new Date(selectedSlot.start_time).toLocaleTimeString("pt-BR", {
+                timeZone: "America/Sao_Paulo",
                 hour: "2-digit",
                 minute: "2-digit",
               })}

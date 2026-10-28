@@ -1,5 +1,6 @@
 // Dados de apresentação. Serviços, equipe e horários NÃO representam oferta real.
-export const demoMode = process.env.NEXT_PUBLIC_DEMO_MODE?.trim().toLowerCase() === 'true' || !(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+import {envFlag} from '@/lib/env-flag';
+export const demoMode = envFlag(process.env.NEXT_PUBLIC_DEMO_MODE);
 export const shop = {
  name: "Auto Stilo", city: "Monte Sião · MG", address: "R. do Tanque, 395 – Bela Vista, Monte Sião – MG, 37580-000",
  whatsapp: "https://wa.me/5535997374960", phone: "(35) 99737-4960", rating: "5,0", reviews: 53,

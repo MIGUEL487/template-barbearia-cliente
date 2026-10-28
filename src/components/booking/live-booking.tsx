@@ -80,6 +80,7 @@ import { useLiveBooking } from "./use-live-booking";
 import { LiveStep1 } from "./live-step-1";
 import { LiveStep2 } from "./live-step-2";
 import { LiveStep3 } from "./live-step-3";
+import {LiveChoices} from './live-choices';
 import { LiveStep4 } from "./live-step-4";
 import { LiveStep5 } from "./live-step-5";
 
@@ -253,10 +254,10 @@ export default function LiveBooking() {
           {step === 1 && <LiveStep1 key="step1" state={state} />}
 
           {/* ETAPA 2 */}
-          {step === 2 && <LiveStep2 key="step2" state={state} />}
+          {step === 2 && <LiveChoices key="step2" state={state} />}
 
           {/* ETAPA 3 */}
-          {step === 3 && <LiveStep3 key="step3" state={state} />}
+          {step === 3 && <LiveChoices key="step3" state={state} />}
 
           {/* ETAPA 4 */}
           {step === 4 && <LiveStep4 key="step4" state={state} />}

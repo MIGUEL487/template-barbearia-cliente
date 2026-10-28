@@ -34,6 +34,7 @@ import {
   fixMojibake,
 } from "@/lib/utils";
 import confetti from "canvas-confetti";
+import {reportSupabaseError, reportAvailability} from '@/lib/booking-diagnostics';
 
 /* ─── animações ─── */
 const pageVariants: Variants = {
@@ -90,7 +91,7 @@ export function useLiveBooking() {
   const [selectedBarber, setSelectedBarber] = useState<Barber | null>(null);
   const [selectedServices, setSelectedServices] = useState<Service[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>(() => {
-    const today = new Date();
+    const today = new Date(new Date().toLocaleString('en-US', {timeZone:'America/Sao_Paulo'}));
     const currentHour = today.getHours();
     const currentMin = today.getMinutes();
     const isPastCutoff =
@@ -137,7 +138,8 @@ export function useLiveBooking() {
 
   useEffect(() => {
     if (missingEnv.length > 0) {
-      setErrorBanner(`Configuração pendente: ${missingEnv.join(", ")}`);
+      reportSupabaseError('Configuração', {message: `Variáveis ausentes ou inválidas: ${missingEnv.join(', ')}`});
+      setErrorBanner('O agendamento está temporariamente indisponível. Fale com a barbearia.');
       setIsLoadingInitial(false);
       return;
     }
@@ -191,7 +193,7 @@ export function useLiveBooking() {
           setDepositPct(Number(setRes.deposit_percentage));
         }
       } catch (err: unknown) {
-        console.error("[Supabase] Catálogo de agendamento:", err);
+        reportSupabaseError('Catálogo de agendamento', err);
         setErrorBanner("Não foi possível carregar o agendamento. Tente novamente ou fale com a barbearia.");
       } finally {
         setIsLoadingInitial(false);
@@ -204,6 +206,7 @@ export function useLiveBooking() {
   const selectedBarberId = selectedBarber?.id || null;
 
   const fetchAvailability = useCallback(async () => {
+    if (missingEnv.length) return;
     if (!selectedDate || selectedServices.length === 0) return;
 
     setIsLoadingSlots(true);
@@ -215,12 +218,14 @@ export function useLiveBooking() {
       const serviceIds = selectedServices.map((s) => s.id);
 
       // Tenta chamar a RPC get_availability do Supabase
-      const { data, error } = await supabase.rpc("get_availability", {
+      const parameters = {
         p_barbershop_id: shopId,
         p_barber_id: selectedBarberId,
         p_date: selectedDate,
         p_service_ids: serviceIds,
-      });
+      };
+      const { data, error } = await supabase.rpc("get_availability", parameters);
+      reportAvailability({parameters, slots: Array.isArray(data) ? data.length : 0, ...(error ? {error: reportSupabaseError('get_availability',error)} : {})});
 
       if (!error && data && Array.isArray(data) && data.length > 0) {
         setAvailableSlots(data as AvailabilitySlot[]);
@@ -228,19 +233,18 @@ export function useLiveBooking() {
       }
 
       setAvailableSlots([]);
-      if (error) console.error("[Supabase] get_availability:", error);
       if (error)
         setErrorBanner(
           "Não foi possível consultar horários. Tente novamente ou fale com a barbearia.",
         );
     } catch (err: unknown) {
-      console.warn("Aviso ao carregar horários:", err);
+      reportAvailability({error:reportSupabaseError('get_availability',err)});
       setErrorBanner("Não foi possível consultar horários. Tente novamente ou fale com a barbearia.");
       setAvailableSlots([]);
     } finally {
       setIsLoadingSlots(false);
     }
-  }, [selectedBarberId, selectedDate, selectedServices]);
+  }, [selectedBarberId, selectedDate, selectedServices, missingEnv]);
 
   useEffect(() => {
     if (step === 3) {
@@ -288,6 +292,7 @@ export function useLiveBooking() {
   };
 
   const handleConfirmBooking = async () => {
+    if (missingEnv.length) { setErrorBanner('O agendamento está indisponível. Fale com a barbearia.'); return; }
     if (!customerName.trim() || !customerPhone.trim() || !acceptedTerms) {
       setErrorBanner(
         "Preencha seu nome, WhatsApp e aceite os termos para continuar.",
@@ -332,7 +337,7 @@ export function useLiveBooking() {
       });
 
       if (error) {
-        console.error("[Supabase] create_booking_hold:", error);
+        reportSupabaseError('create_booking_hold', error);
         if (
           error.message.includes("ocupado") ||
           error.message.includes("reservado")
@@ -359,6 +364,7 @@ export function useLiveBooking() {
         throw error;
       }
 
+      if (!data?.cancellation_token || !data?.hold_expires_at) throw new Error('Resposta de pré-reserva sem token ou expiração');
       if (data) {
         setBookingToken(data.token || data.cancellation_token || "");
         setHoldExpiresAt(data.hold_expires_at);
@@ -376,7 +382,7 @@ export function useLiveBooking() {
         }
       }
     } catch (err: unknown) {
-      console.error("[Supabase] Falha ao reservar:", err);
+      reportSupabaseError('create_booking_hold', err);
       setErrorBanner("Não foi possível reservar seu horário. Tente novamente ou fale com a barbearia.");
     } finally {
       setIsSubmitting(false);
@@ -391,7 +397,7 @@ export function useLiveBooking() {
       weekDay: string;
       isToday: boolean;
     }[] = [];
-    const today = new Date();
+    const today = new Date(new Date().toLocaleString('en-US', {timeZone:'America/Sao_Paulo'}));
     for (let i = 0; i < 14; i++) {
       const d = new Date(today);
       d.setDate(today.getDate() + i);

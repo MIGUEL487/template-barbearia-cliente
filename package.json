@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit",
     "check:env": "node --env-file=.env.local scripts/check-env.mjs || node scripts/check-env.mjs",
     "tokens:check": "node scripts/check-tokens.mjs",
-    "prebuild": "node scripts/prepare-images.mjs && node scripts/snapshot.mjs",
+    "prebuild": "node scripts/prepare-images.mjs",
     "preview:cf": "wrangler dev --local --port 8787",
     "deploy:cf": "wrangler deploy",
     "postbuild": "node scripts/headers.mjs",

@@ -1,5 +1,6 @@
 import { DemoWatermark, watermarkEnabled } from "@/components/demo-watermark";
 import { MotionPreferences } from "@/components/motion-preferences";
+import {BookingDiagnostics} from '@/components/booking/diagnostics';
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -44,6 +45,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-bg text-text antialiased selection:bg-accent selection:text-accent-contrast font-sans">
         <MotionPreferences>{children}</MotionPreferences>
         <DemoWatermark />
+        <BookingDiagnostics />
       </body>
     </html>
   );

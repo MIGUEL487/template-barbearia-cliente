@@ -9,7 +9,7 @@ const text=`/*
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   X-Frame-Options: DENY
-${process.env.NEXT_PUBLIC_DEMO_WATERMARK==='true'?'  X-Robots-Tag: noindex, nofollow\n':''}
+${['true','1'].includes(process.env.NEXT_PUBLIC_DEMO_WATERMARK?.trim().toLowerCase())?'  X-Robots-Tag: noindex, nofollow\n':''}
 /frames/pc/*
   Cache-Control: public, max-age=31536000, immutable
 /frames/mobile/*
