@@ -1,0 +1,128 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "header": {
+      "height": 81,
+      "src": "/brand/auto-stilo/logo-on-light.png",
+      "width": 48,
+      "heightImage": 48,
+      "borderRadius": "0px",
+      "background": "rgba(0, 0, 0, 0)",
+      "overflow": 0
+    },
+    "icons": [
+      {
+        "href": "/favicon.ico",
+        "media": null,
+        "type": ""
+      },
+      {
+        "href": "/brand/auto-stilo/favicon-light-32.png",
+        "media": "(prefers-color-scheme: light)",
+        "type": "image/png"
+      },
+      {
+        "href": "/brand/auto-stilo/favicon-dark-32.png",
+        "media": "(prefers-color-scheme: dark)",
+        "type": "image/png"
+      },
+      {
+        "href": "/favicon-auto-stilo.svg",
+        "media": null,
+        "type": "image/svg+xml"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "header": {
+      "height": 81,
+      "src": "/brand/auto-stilo/logo-on-light.png",
+      "width": 48,
+      "heightImage": 48,
+      "borderRadius": "0px",
+      "background": "rgba(0, 0, 0, 0)",
+      "overflow": 0
+    },
+    "icons": [
+      {
+        "href": "/favicon.ico",
+        "media": null,
+        "type": ""
+      },
+      {
+        "href": "/brand/auto-stilo/favicon-light-32.png",
+        "media": "(prefers-color-scheme: light)",
+        "type": "image/png"
+      },
+      {
+        "href": "/brand/auto-stilo/favicon-dark-32.png",
+        "media": "(prefers-color-scheme: dark)",
+        "type": "image/png"
+      },
+      {
+        "href": "/favicon-auto-stilo.svg",
+        "media": null,
+        "type": "image/svg+xml"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "header": {
+      "height": 81,
+      "src": "/brand/auto-stilo/logo-on-light.png",
+      "width": 48,
+      "heightImage": 48,
+      "borderRadius": "0px",
+      "background": "rgba(0, 0, 0, 0)",
+      "overflow": 0
+    },
+    "icons": [
+      {
+        "href": "/favicon.ico",
+        "media": null,
+        "type": ""
+      },
+      {
+        "href": "/brand/auto-stilo/favicon-light-32.png",
+        "media": "(prefers-color-scheme: light)",
+        "type": "image/png"
+      },
+      {
+        "href": "/brand/auto-stilo/favicon-dark-32.png",
+        "media": "(prefers-color-scheme: dark)",
+        "type": "image/png"
+      },
+      {
+        "href": "/favicon-auto-stilo.svg",
+        "media": null,
+        "type": "image/svg+xml"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "scheme": "light",
+    "pixels": {
+      "brightness": 0.001889644746787604,
+      "ink": 1764,
+      "clear": 6444,
+      "purple": 102
+    }
+  },
+  {
+    "scheme": "dark",
+    "pixels": {
+      "brightness": 252.5891344383053,
+      "ink": 1810,
+      "clear": 6428,
+      "purple": 126
+    }
+  }
+]

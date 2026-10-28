@@ -1239,7 +1239,7 @@ body:has(.hero-track) .site-header{position:fixed;left:0;right:0;top:0;max-width
 html.hero-nav-visible body:has(.hero-track) .site-header{opacity:1;visibility:visible;pointer-events:auto;transform:none}
 body:has(.hero-track) .mobile-actions{display:none}html:not(.hero-nav-visible) body:has(.hero-track) :is(.watermark-badge,.watermark-pattern){visibility:hidden}
 .hero-track + .section{background:linear-gradient(#0a0a0c,#fff 96px);padding-top:192px}.hero-track .text-link{color:white}.hero-track .text-link:focus-visible{outline-color:white}
-.brand-logo{background:white}.hero-art img,.gallery-piece img{filter:none}.gallery-piece .reveal-mask{border-radius:32px}.gallery-piece img{height:100%}
+.brand-logo{background:transparent}.hero-art img,.gallery-piece img{filter:none}.gallery-piece .reveal-mask{border-radius:32px}.gallery-piece img{height:100%}
 .team-section,.gallery-section{background:var(--bg-soft);border:0}.portrait-placeholder{border-radius:160px 160px 24px 24px;background:#e8e3ef}.final-cta{max-width:none;background:linear-gradient(#fff,#0a0a0c 32%);padding:160px max(24px,calc((100vw - 1184px)/2)) 96px;color:white}.site-footer{max-width:none;background:#0a0a0c;color:white;padding:64px max(24px,calc((100vw - 1184px)/2))}.site-footer>p{color:#c8c3cf}.site-footer .footer-wordmark{font:400 clamp(56px,14vw,200px)/1 var(--font-serif);letter-spacing:-.06em;margin:32px 0}.site-footer button{color:white}.proof{border:0}.booking-shell{padding-top:48px}.booking-shell .cta{color:white}.step-progress [aria-current]{color:var(--accent)}
 @keyframes cue{50%{translate:0 8px}}
 @media(max-width:767px){.section{padding-block:64px}.cinematic .hero-copy{left:24px;right:24px;bottom:12%;}.cinematic h1{font-size:44px}.cinematic .hero-copy>p{font-size:16px}.hero-buttons{gap:16px}.hero-track+.section{padding-top:160px}.final-cta{padding-top:128px}.site-footer{padding-bottom:96px}.cinematic .cta{padding:16px 24px}}
@@ -1316,3 +1316,7 @@ html { scroll-padding-top: calc(var(--header-h) + 16px); }
   .booking-actions strong { display: inline; margin: 0 0 0 8px; }
   .booking-shell { padding-bottom: 304px; }
 }
+
+/* The approved transparent mark has no circular tile. */
+.footer-brand-mark { display: block; width: 96px; margin-bottom: 24px; }
+.footer-brand-mark .brand-logo { width: 96px; height: 80px; }
