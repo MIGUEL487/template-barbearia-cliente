@@ -2,7 +2,7 @@
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-const root = 'docs/ritual-movimento';
+const root = process.env.QA_OUTPUT || 'docs/ritual-movimento';
 await fs.mkdir(root, { recursive: true });
 const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium', args: ['--no-sandbox'] });
 const base = process.env.QA_BASE_URL || 'http://127.0.0.1:8787';
@@ -30,11 +30,13 @@ try {
       const sample=await page.evaluate(()=>{
         const el=document.querySelector('.ritual'),photo=el.querySelector('.ritual-photo'),img=photo.querySelector('img');
         const rect=photo.getBoundingClientRect(),section=el.getBoundingClientRect(),header=document.querySelector('.site-header').getBoundingClientRect();
-        const matrix=new DOMMatrixReadOnly(getComputedStyle(photo).transform),imageStyle=getComputedStyle(img);
-        return {scrollY,photo:{left:rect.left,right:rect.right,top:rect.top,bottom:rect.bottom,width:rect.width,height:rect.height},section:{top:section.top,height:section.height},headerBottom:header.bottom,scale:Math.hypot(matrix.a,matrix.b),angle:Math.atan2(matrix.b,matrix.a)*180/Math.PI,centerOffset:(rect.top+rect.bottom)/2-(section.top+section.height/2),imageTransform:imageStyle.transform,imageFit:imageStyle.objectFit,imagePosition:imageStyle.objectPosition,imageWidth:img.clientWidth,imageHeight:img.clientHeight,overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth};
+        const frameStyle=getComputedStyle(photo),matrix=new DOMMatrixReadOnly(frameStyle.transform),imageStyle=getComputedStyle(img);
+        return {frameRatio:parseFloat(frameStyle.width)/parseFloat(frameStyle.height),scaleY:Math.hypot(matrix.c,matrix.d),scrollY,photo:{left:rect.left,right:rect.right,top:rect.top,bottom:rect.bottom,width:rect.width,height:rect.height},section:{top:section.top,height:section.height},headerBottom:header.bottom,scale:Math.hypot(matrix.a,matrix.b),angle:Math.atan2(matrix.b,matrix.a)*180/Math.PI,centerOffset:(rect.top+rect.bottom)/2-(section.top+section.height/2),imageTransform:imageStyle.transform,imageFit:imageStyle.objectFit,imagePosition:imageStyle.objectPosition,imageWidth:img.clientWidth,imageHeight:img.clientHeight,overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth};
       });
       samples.push({progress,...sample});
       assert.equal(sample.imageTransform,'none','The bitmap must not zoom inside the cutout');
+      assert(Math.abs(sample.frameRatio-7/6)<.002,'Original cutout proportion changed');
+      assert(Math.abs(sample.scale-sample.scaleY)<.0001,'Frame scaled non-uniformly');
       assert.equal(sample.overflow,0,'Horizontal overflow');
       assert(sample.photo.top>=sample.headerBottom-1 && sample.photo.bottom<=height+1,'Photo clipped by header/viewport');
       assert(sample.photo.left>=0 && sample.photo.right<=width,'Rotation clipped horizontally');

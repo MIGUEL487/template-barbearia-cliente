@@ -1288,7 +1288,7 @@ html { scroll-padding-top: calc(var(--header-h) + 16px); }
   align-content: center;
 }
 .ritual-grid { position: relative; width: 100%; gap: 32px 64px; overflow: visible; }
-.ritual-photo { height: min(432px, calc((100svh - var(--header-h)) * .64)); transform-origin: center; }
+.ritual-photo { width: auto; height: min(480px, calc((100svh - var(--header-h)) * .64)); aspect-ratio: 7 / 6; max-width: 100%; justify-self: center; transform-origin: center; }
 .ritual svg { position: absolute; top: calc(100% + 32px); left: 0; height: 32px; }
 .ritual-active .ritual-step { inset: 0; margin: 0; transform: none; display: flex; flex-direction: column; justify-content: center; }
 .gallery-rail:has(> .gallery-piece:only-child) { grid-template-columns: minmax(0, 1fr); max-width: 568px; margin-inline: auto; }

@@ -1,0 +1,398 @@
+[
+  {
+    "width": 1920,
+    "height": 920,
+    "samples": [
+      {
+        "progress": 0,
+        "frameRatio": 1.1666666666666667,
+        "scaleY": 0.9423000719645572,
+        "scrollY": 4629,
+        "photo": {
+          "left": 376.71990966796875,
+          "right": 919.2800903320312,
+          "top": 265.7828674316406,
+          "bottom": 735.5296630859375,
+          "width": 542.5601806640625,
+          "height": 469.7467956542969
+        },
+        "section": {
+          "top": 81.15625,
+          "height": 839
+        },
+        "headerBottom": 65,
+        "scale": 0.9423000719645572,
+        "angle": -1.9219000424020436,
+        "centerOffset": 0.0000152587890625,
+        "imageTransform": "none",
+        "imageFit": "cover",
+        "imagePosition": "50% 50%",
+        "imageWidth": 560,
+        "imageHeight": 480,
+        "overflow": 0
+      },
+      {
+        "progress": 0.5,
+        "frameRatio": 1.1666666666666667,
+        "scaleY": 1.0188012547672092,
+        "scrollY": 5804,
+        "photo": {
+          "left": 360.0718994140625,
+          "right": 935.9281005859375,
+          "top": 253.0308380126953,
+          "bottom": 748.2816925048828,
+          "width": 575.856201171875,
+          "height": 495.2508544921875
+        },
+        "section": {
+          "top": 81.15625,
+          "height": 839
+        },
+        "headerBottom": 65.41001033782959,
+        "scale": 1.0188012547672092,
+        "angle": 0.6282970455230651,
+        "centerOffset": 0.0000152587890625,
+        "imageTransform": "none",
+        "imageFit": "cover",
+        "imagePosition": "50% 50%",
+        "imageWidth": 560,
+        "imageHeight": 480,
+        "overflow": 0
+      },
+      {
+        "progress": 1,
+        "frameRatio": 1.1666666666666667,
+        "scaleY": 1.0590957786457702,
+        "scrollY": 6419,
+        "photo": {
+          "left": 342.8906555175781,
+          "right": 953.1094055175781,
+          "top": 236.42977905273438,
+          "bottom": 764.8826599121094,
+          "width": 610.21875,
+          "height": 528.452880859375
+        },
+        "section": {
+          "top": 81.15625,
+          "height": 839
+        },
+        "headerBottom": 81,
+        "scale": 1.0590957786457702,
+        "angle": 1.9697076315558184,
+        "centerOffset": -0.000030517578125,
+        "imageTransform": "none",
+        "imageFit": "cover",
+        "imagePosition": "50% 50%",
+        "imageWidth": 560,
+        "imageHeight": 480,
+        "overflow": 0
+      }
+    ],
+    "reverse": {
+      "scale": 0.9409996973607856,
+      "angle": -1.9673982208434417
+    },
+    "reduced": {
+      "transform": "none",
+      "imageTransform": "none"
+    },
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "samples": [
+      {
+        "progress": 0,
+        "frameRatio": 1.1666666666666667,
+        "scaleY": 0.939999621893142,
+        "scrollY": 4503,
+        "photo": {
+          "left": 137.08700561523438,
+          "right": 678.9129333496094,
+          "top": 266.00811767578125,
+          "bottom": 735.3043823242188,
+          "width": 541.825927734375,
+          "height": 469.2962646484375
+        },
+        "section": {
+          "top": 91.15625,
+          "height": 819
+        },
+        "headerBottom": 65,
+        "scale": 0.939999621893142,
+        "angle": -1.9999991641538721,
+        "centerOffset": 0,
+        "imageTransform": "none",
+        "imageFit": "cover",
+        "imagePosition": "50% 50%",
+        "imageWidth": 560,
+        "imageHeight": 480,
+        "overflow": 0
+      },
+      {
+        "progress": 0.5,
+        "frameRatio": 1.1666666666666667,
+        "scaleY": 0.9992001076812497,
+        "scrollY": 5401,
+        "photo": {
+          "left": 128.11270141601562,
+          "right": 687.8873596191406,
+          "top": 250.7183837890625,
+          "bottom": 730.5941162109375,
+          "width": 559.774658203125,
+          "height": 479.875732421875
+        },
+        "section": {
+          "top": 81.15625,
+          "height": 819
+        },
+        "headerBottom": 81,
+        "scale": 0.9992001076812497,
+        "angle": -0.026599988056103963,
+        "centerOffset": 0,
+        "imageTransform": "none",
+        "imageFit": "cover",
+        "imagePosition": "50% 50%",
+        "imageWidth": 560,
+        "imageHeight": 480,
+        "overflow": 0
+      },
+      {
+        "progress": 1,
+        "frameRatio": 1.1666666666666667,
+        "scaleY": 1.059095270056594,
+        "scrollY": 6299,
+        "photo": {
+          "left": 102.89405822753906,
+          "right": 713.1059722900391,
+          "top": 226.43380737304688,
+          "bottom": 754.8786315917969,
+          "width": 610.2119140625,
+          "height": 528.44482421875
+        },
+        "section": {
+          "top": 81.15625,
+          "height": 819
+        },
+        "headerBottom": 81,
+        "scale": 1.059095270056594,
+        "angle": 1.9689074424475088,
+        "centerOffset": -0.000030517578125,
+        "imageTransform": "none",
+        "imageFit": "cover",
+        "imagePosition": "50% 50%",
+        "imageWidth": 560,
+        "imageHeight": 480,
+        "overflow": 0
+      }
+    ],
+    "reverse": {
+      "scale": 0.939999621893142,
+      "angle": -1.9999991641538721
+    },
+    "reduced": {
+      "transform": "none",
+      "imageTransform": "none"
+    },
+    "errors": []
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "samples": [
+      {
+        "progress": 0,
+        "frameRatio": 1.1666378573118141,
+        "scaleY": 0.9406001880157371,
+        "scrollY": 3993,
+        "photo": {
+          "left": 122.76765441894531,
+          "right": 619.2323760986328,
+          "top": 209.66226196289062,
+          "bottom": 639.6346435546875,
+          "width": 496.4647216796875,
+          "height": 429.9723815917969
+        },
+        "section": {
+          "top": 81.15625,
+          "height": 687
+        },
+        "headerBottom": 65,
+        "scale": 0.9406001880157371,
+        "angle": -1.979296645752389,
+        "centerOffset": -0.0077972412109375,
+        "imageTransform": "none",
+        "imageFit": "cover",
+        "imagePosition": "50% 50%",
+        "imageWidth": 513,
+        "imageHeight": 440,
+        "overflow": 0
+      },
+      {
+        "progress": 0.5,
+        "frameRatio": 1.1666378573118141,
+        "scaleY": 1.0025010544068869,
+        "scrollY": 4785,
+        "photo": {
+          "left": 113.57069396972656,
+          "right": 628.4293365478516,
+          "top": 203.89022827148438,
+          "bottom": 645.4066162109375,
+          "width": 514.858642578125,
+          "height": 441.5163879394531
+        },
+        "section": {
+          "top": 81.15625,
+          "height": 687
+        },
+        "headerBottom": 81,
+        "scale": 1.0025010544068869,
+        "angle": 0.08309968283322697,
+        "centerOffset": -0.0078277587890625,
+        "imageTransform": "none",
+        "imageFit": "cover",
+        "imagePosition": "50% 50%",
+        "imageWidth": 513,
+        "imageHeight": 440,
+        "overflow": 0
+      },
+      {
+        "progress": 1,
+        "frameRatio": 1.1666378573118141,
+        "scaleY": 1.0599957271339588,
+        "scrollY": 5552,
+        "photo": {
+          "left": 91.17625427246094,
+          "right": 650.8237152099609,
+          "top": 151.27664184570312,
+          "bottom": 636.020263671875,
+          "width": 559.6474609375,
+          "height": 484.7436218261719
+        },
+        "section": {
+          "top": 50.15625,
+          "height": 687
+        },
+        "headerBottom": 81,
+        "scale": 1.0599957271339588,
+        "angle": 2.0000098769423076,
+        "centerOffset": -0.0077972412109375,
+        "imageTransform": "none",
+        "imageFit": "cover",
+        "imagePosition": "50% 50%",
+        "imageWidth": 513,
+        "imageHeight": 440,
+        "overflow": 0
+      }
+    ],
+    "reverse": {
+      "scale": 0.9412001569439148,
+      "angle": -1.9609001147416076
+    },
+    "reduced": {
+      "transform": "none",
+      "imageTransform": "none"
+    },
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "samples": [
+      {
+        "progress": 0,
+        "frameRatio": 1.1666666666666667,
+        "scaleY": 0.9400999937121636,
+        "scrollY": 7178,
+        "photo": {
+          "left": 59.5379638671875,
+          "right": 330.4620361328125,
+          "top": 224.70516967773438,
+          "bottom": 459.3573303222656,
+          "width": 270.924072265625,
+          "height": 234.65216064453125
+        },
+        "section": {
+          "top": 80.53125,
+          "height": 763
+        },
+        "headerBottom": 65,
+        "scale": 0.9400999937121636,
+        "angle": -1.9952971551894887,
+        "centerOffset": -120,
+        "imageTransform": "none",
+        "imageFit": "cover",
+        "imagePosition": "50% 50%",
+        "imageWidth": 280,
+        "imageHeight": 240,
+        "overflow": 0
+      },
+      {
+        "progress": 0.5,
+        "frameRatio": 1.1666666666666667,
+        "scaleY": 0.9999000008772099,
+        "scrollY": 8019,
+        "photo": {
+          "left": 55.008975982666016,
+          "right": 334.9910316467285,
+          "top": 222.03738403320312,
+          "bottom": 462.0251159667969,
+          "width": 279.9820556640625,
+          "height": 239.98773193359375
+        },
+        "section": {
+          "top": 80.53125,
+          "height": 763
+        },
+        "headerBottom": 65,
+        "scale": 0.9999000008772099,
+        "angle": -0.0023999992389124422,
+        "centerOffset": -120,
+        "imageTransform": "none",
+        "imageFit": "cover",
+        "imagePosition": "50% 50%",
+        "imageWidth": 280,
+        "imageHeight": 240,
+        "overflow": 0
+      },
+      {
+        "progress": 1,
+        "frameRatio": 1.1666666666666667,
+        "scaleY": 1.059902630617365,
+        "scrollY": 8862,
+        "photo": {
+          "left": 42.27558898925781,
+          "right": 347.72438049316406,
+          "top": 209.75392150878906,
+          "bottom": 474.30860900878906,
+          "width": 305.44879150390625,
+          "height": 264.5546875
+        },
+        "section": {
+          "top": 80.53125,
+          "height": 763
+        },
+        "headerBottom": 80.8555040359497,
+        "scale": 1.059902630617365,
+        "angle": 1.995295841212308,
+        "centerOffset": -119.99998474121094,
+        "imageTransform": "none",
+        "imageFit": "cover",
+        "imagePosition": "50% 50%",
+        "imageWidth": 280,
+        "imageHeight": 240,
+        "overflow": 0
+      }
+    ],
+    "reverse": {
+      "scale": 0.9401003111791261,
+      "angle": -1.9976016563114027
+    },
+    "reduced": {
+      "transform": "none",
+      "imageTransform": "none"
+    },
+    "errors": []
+  }
+]
