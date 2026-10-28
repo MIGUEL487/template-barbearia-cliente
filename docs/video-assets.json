@@ -1,0 +1,30 @@
+{
+  "mobile.mp4": {
+    "width": 720,
+    "height": 1280,
+    "r_frame_rate": "30/1",
+    "nb_frames": "183",
+    "bytes": 3648887
+  },
+  "mobile-reverse.mp4": {
+    "width": 720,
+    "height": 1280,
+    "r_frame_rate": "30/1",
+    "nb_frames": "183",
+    "bytes": 3654447
+  },
+  "pc.mp4": {
+    "width": 1920,
+    "height": 1080,
+    "r_frame_rate": "30/1",
+    "nb_frames": "183",
+    "bytes": 6787571
+  },
+  "pc-reverse.mp4": {
+    "width": 1920,
+    "height": 1080,
+    "r_frame_rate": "30/1",
+    "nb_frames": "183",
+    "bytes": 6772463
+  }
+}
