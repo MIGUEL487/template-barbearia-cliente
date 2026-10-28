@@ -18,7 +18,7 @@ for(const [width,height,timeZone] of [[1440,900,'Asia/Tokyo'],[390,844,'America/
  });
  await p.goto('http://localhost:8787/agendar?debug=1');
  await p.getByText('Carlos',{exact:true}).click();
- await p.getByRole('region',{name:'Serviços'}).getByRole('button',{name:/Corte real fixture/}).click();
+ await p.getByRole('region',{name:'Serviços'}).getByRole('checkbox',{name:/Corte real fixture/}).check();
  await p.getByRole('button',{name:'Continuar',exact:true}).click();
  const date=p.locator('input[type=date]');await date.fill('2026-11-01');
  await p.getByRole('status').filter({hasText:'Não há horários disponíveis nesta data.'}).waitFor();

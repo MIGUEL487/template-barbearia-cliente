@@ -15,7 +15,7 @@ export function BookingDiagnostics() {
   if(!visible)return null;
   const url=process.env.NEXT_PUBLIC_SUPABASE_URL;
   const ref=url?.match(/^https:\/\/([a-z0-9-]+)\.supabase\.co\/?$/i)?.[1] || 'ausente ou inválido';
-  return <aside aria-label="Diagnóstico de agendamento" style={{padding:24,margin:16,border:'1px solid currentColor',borderRadius:16,background:'white',color:'#111',overflowWrap:'anywhere'}}>
+  return <aside aria-label="Diagnóstico de agendamento" className="booking-shell text-text bg-bg break-words">
     <h2>Diagnóstico de agendamento</h2>
     <p>Simulação: {demoMode?'sim':'não'} · Projeto: {ref}</p>
     <p>Barbearia: {getBarbershopId() || 'ausente'}</p>
