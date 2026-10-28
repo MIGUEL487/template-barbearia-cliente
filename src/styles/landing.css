@@ -1287,9 +1287,9 @@ html { scroll-padding-top: calc(var(--header-h) + 16px); }
   display: grid;
   align-content: center;
 }
-.ritual-grid { width: 100%; gap: 32px 64px; }
-.ritual-photo { height: min(480px, calc(100svh - var(--header-h) - 160px)); }
-.ritual svg { height: 32px; }
+.ritual-grid { position: relative; width: 100%; gap: 32px 64px; overflow: visible; }
+.ritual-photo { height: min(432px, calc((100svh - var(--header-h)) * .64)); transform-origin: center; }
+.ritual svg { position: absolute; top: calc(100% + 32px); left: 0; height: 32px; }
 .ritual-active .ritual-step { inset: 0; margin: 0; transform: none; display: flex; flex-direction: column; justify-content: center; }
 .gallery-rail:has(> .gallery-piece:only-child) { grid-template-columns: minmax(0, 1fr); max-width: 568px; margin-inline: auto; }
 /* These inherited dividers were visible as isolated lines around the gradient. */
@@ -1307,7 +1307,7 @@ html { scroll-padding-top: calc(var(--header-h) + 16px); }
 .confirmation-actions { margin-top: 24px; gap: 16px; }
 .booking-action-buttons { display: flex; align-items: center; gap: 16px; }
 @media (max-width: 767px) {
-  .ritual-grid { gap: 24px; }
+  .ritual-grid { gap: 32px; }
   .ritual-photo { height: min(240px, 30svh); }
   .ritual-active .ritual-words { height: 208px; }
   .booking-shell .actions, .booking-action-buttons { flex-direction: column; align-items: stretch; gap: 16px; }
