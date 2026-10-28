@@ -20,7 +20,8 @@ export function Hero(){
  const nav=(visible:boolean)=>document.documentElement.classList.toggle('hero-nav-visible',visible);
  const setup=async(preserveProgress=false)=>{const resume=preserveProgress?pinnedProgress():null;const gen=++generation;cleanup();if(!root.current||!canvas.current||!poster.current)return;const el=root.current,copy=el.querySelector('.hero-copy')!,shade=el.querySelector('.shade')!,cue=el.querySelector('.scroll-cue')!
  engine.gsap.set([copy.children,shade],{clearProps:'all'});el.classList.toggle('native-motion',!enabled)
- if(!enabled){nav(true);return}
+ let anchor:HTMLElement|null=null;try{anchor=location.hash?document.getElementById(decodeURIComponent(location.hash.slice(1))):null}catch{}
+ if(!enabled||(anchor&&!el.contains(anchor))){el.classList.add('native-motion');nav(true);return}
  const mobile=matchMedia('(max-width:768px), (orientation:portrait)').matches
  el.classList.toggle('hero-native',mobile)
  let drawn=-1,scrollProgress=0,finalVisible=false,releaseAt=0,hiddenAt=0,renderCopy=()=>{}
@@ -32,7 +33,7 @@ export function Hero(){
  let readingTimer:ReturnType<typeof engine.gsap.delayedCall>|undefined,waitingTimer:ReturnType<typeof engine.gsap.delayedCall>|undefined
  const phase=(value:Ending)=>{ending=value;el.dataset.endingPhase=value};phase('idle')
  const finishReading=()=>{phase('done');readingTimer?.kill();readingTimer=undefined;waitingTimer?.kill();waitingTimer=undefined;releaseScroll();tl.pause();tl.progress(1);nav(true)}
- const navigate=(event:MouseEvent)=>{if((ending==='waiting'||ending==='reading')&&(event.target as HTMLElement).closest('a[href]'))finishReading()}
+ const navigate=(event:MouseEvent)=>{const a=(event.target as HTMLElement).closest<HTMLAnchorElement>('a[href]');if(!a)return;const url=new URL(a.href,location.href);let target:HTMLElement|null=null;try{target=document.getElementById(decodeURIComponent(url.hash.slice(1)))}catch{}if(url.origin===location.origin&&url.pathname===location.pathname&&target&&!el.contains(target))finishReading();else if(ending==='waiting'||ending==='reading')finishReading()}
  document.addEventListener('click',navigate,true)
  const visibility=()=>{if(document.hidden){hiddenAt=performance.now();if(ending==='reading')tl.pause();readingTimer?.pause();waitingTimer?.pause();endingTimer?.pause()}else{if(hiddenAt&&releaseAt)releaseAt+=performance.now()-hiddenAt;hiddenAt=0;if(ending==='reading'&&!readingTimer)tl.resume();readingTimer?.resume();waitingTimer?.resume();endingTimer?.resume()}}
  document.addEventListener('visibilitychange',visibility)

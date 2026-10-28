@@ -13,7 +13,7 @@ export function createScrollEngine(enabled:boolean){
  const visibility=()=>document.documentElement.classList.toggle('page-hidden',document.hidden);document.addEventListener('visibilitychange',visibility)
  const preference=()=>{try{if(localStorage.getItem('auto-stilo-motion')===null&&forced===null)enabled=!query.matches}catch{enabled=!query.matches}};query.addEventListener('change',preference)
  let releaseScroll=()=>{}
- const scrollTo=(target:string)=>{releaseScroll();const el=document.querySelector(target);if(!el)return;if(lenis)lenis.scrollTo(el as HTMLElement,{offset:-80});else el.scrollIntoView({behavior:enabled?'smooth':'instant'})}
+ const scrollTo=(target:string)=>{releaseScroll();let el:HTMLElement|null=null;try{el=document.getElementById(decodeURIComponent(target.slice(1)))}catch{return}if(!el)return;const offset=(parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h'))||80)+16;const top=window.scrollY+el.getBoundingClientRect().top-offset;if(lenis)lenis.scrollTo(top,{immediate:true,force:true});else window.scrollTo({top,behavior:'instant'});ScrollTrigger.update()}
  const jumpTo=(top:number)=>{if(lenis)lenis.scrollTo(top,{immediate:true,force:true});else window.scrollTo({top,behavior:'instant'});ScrollTrigger.update()}
  const lockAt=(top:number)=>{
   releaseScroll();const pausedLenis=lenis;pausedLenis?.stop()
@@ -25,7 +25,12 @@ export function createScrollEngine(enabled:boolean){
   const release=()=>{if(!active)return;active=false;window.removeEventListener('wheel',prevent,true);window.removeEventListener('touchmove',prevent,true);window.removeEventListener('keydown',key,true);window.removeEventListener('scroll',clamp);if(lenis===pausedLenis)pausedLenis?.start();if(releaseScroll===release)releaseScroll=()=>{}}
   releaseScroll=release;jumpTo(top);return release
  }
- const click=(event:MouseEvent)=>{const a=(event.target as HTMLElement).closest('a[href^="#"]');if(a){const href=a.getAttribute('href');if(href&&href.length>1&&document.querySelector(href)){event.preventDefault();scrollTo(href);history.replaceState(null,'',href)}}};document.addEventListener('click',click)
+ const click=(event:MouseEvent)=>{if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;const a=(event.target as HTMLElement).closest<HTMLAnchorElement>('a[href]');if(!a||a.target||a.hasAttribute('download'))return;const url=new URL(a.href,location.href);if(url.origin!==location.origin||url.pathname!==location.pathname||url.search!==location.search||url.hash.length<2)return;let el:HTMLElement|null=null;try{el=document.getElementById(decodeURIComponent(url.hash.slice(1)))}catch{return}if(!el)return;event.preventDefault();if(location.hash!==url.hash)history.pushState(null,'',url.hash);scrollTo(url.hash)};document.addEventListener('click',click)
+ let frame=0,disposed=false
+ const restore=()=>{if(!location.hash)return;cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>scrollTo(location.hash))}
+ window.addEventListener('hashchange',restore);window.addEventListener('popstate',restore)
+ restore();void document.fonts.ready.then(()=>{if(!disposed)restore()})
 
- return {gsap,ScrollTrigger,scrollTo,jumpTo,lockAt,dispose(){releaseScroll();lenis?.destroy();gsap.ticker.remove(tick);document.removeEventListener('visibilitychange',visibility);query.removeEventListener('change',preference);document.removeEventListener('click',click)}}
+
+ return {gsap,ScrollTrigger,scrollTo,jumpTo,lockAt,dispose(){disposed=true;cancelAnimationFrame(frame);window.removeEventListener('hashchange',restore);window.removeEventListener('popstate',restore);releaseScroll();lenis?.destroy();gsap.ticker.remove(tick);document.removeEventListener('visibilitychange',visibility);query.removeEventListener('change',preference);document.removeEventListener('click',click)}}
 }
