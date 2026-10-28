@@ -1,6 +1,7 @@
 import { ReviewCarousel } from "./review-carousel";
 import { ShopImage } from "./shop-image";
 import { ShopVideos } from "./shop-videos";
+import {ContactMap} from "./contact-map";
 import { Faq } from "./faq";
 import Link from "next/link";
 import { shop } from "@/config/demo";
@@ -41,6 +42,7 @@ export function Gallery() {
           Um espaço com a nossa assinatura.
         </p>
       </div>
+      <figure className="space-window"><ShopImage name="espaco" alt="Interior Auto Stilo: balcão preto, piso claro e teto de LEDs"/><svg viewBox="0 0 400 200" aria-hidden="true"><path className="hex-line" d="M40 20 L100 20 L130 72 L100 124 L40 124 L10 72 Z M130 72 L190 72 L220 124 L190 176 L130 176 L100 124" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="800"/></svg><figcaption>O espaço Auto Stilo · Monte Sião</figcaption></figure>
       <div className="gallery-stage">
         <div
           className="gallery-rail"
@@ -105,9 +107,7 @@ export function Details() {
           <address>{shop.address}</address>
           <a href={shop.whatsapp}>{shop.phone}</a>
           <p>
-            Horários: a confirmar com o proprietário.
-            <br />
-            Informação disponível: terça a partir das 09h.
+            {shop.hours}
           </p>
           <a
             className="cta"
@@ -116,12 +116,7 @@ export function Details() {
             Ver rota no mapa ↗
           </a>
         </div>
-        <iframe
-          title="Localização da Barbearia Auto Stilo"
-          src="https://www.google.com/maps?q=Rua+do+Tanque+395+Monte+Siao+MG&output=embed"
-          loading="lazy"
-          referrerPolicy="no-referrer"
-        />
+        <ContactMap />
       </section>
       <Faq />
       <section className="section final-cta">
@@ -134,17 +129,7 @@ export function Details() {
           Escolher meu horário ↗
         </Link>
       </section>
-      <footer className="site-footer">
-        <div>
-          <p>Auto Stilo · Barbearia</p>
-          <p>{shop.city}</p>
-          <Link href="/meu-agendamento">Consultar meu agendamento</Link>
-        </div>
-        <p>
-          Versão de apresentação. Preços, equipe e serviços de exemplo. Horários
-          completos e Instagram a confirmar.
-        </p>
-      </footer>
+
     </>
   );
 }
