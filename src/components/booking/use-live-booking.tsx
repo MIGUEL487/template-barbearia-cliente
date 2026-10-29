@@ -1,7 +1,7 @@
 "use client";
 import type { Variants } from "motion/react";
 
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { DemoBadge } from "@/components/demo-watermark";
 import Image from "next/image";
 import Link from "next/link";
@@ -204,13 +204,16 @@ export function useLiveBooking() {
   }, [missingEnv]);
 
   const selectedBarberId = selectedBarber?.id || null;
+  const availabilityVersion=useRef(0);
 
   const fetchAvailability = useCallback(async () => {
+    const version=++availabilityVersion.current;
     if (missingEnv.length) return;
     if (!selectedDate || selectedServices.length === 0) return;
 
     setIsLoadingSlots(true);
     setSelectedSlot(null);
+    setAvailableSlots([]);
     setErrorBanner(null);
 
     try {
@@ -225,6 +228,7 @@ export function useLiveBooking() {
         p_service_ids: serviceIds,
       };
       const { data, error } = await supabase.rpc("get_availability", parameters);
+      if(version!==availabilityVersion.current)return;
       reportAvailability({parameters, slots: Array.isArray(data) ? data.length : 0, ...(error ? {error: reportSupabaseError('get_availability',error)} : {})});
 
       if (!error && data && Array.isArray(data) && data.length > 0) {
@@ -238,11 +242,12 @@ export function useLiveBooking() {
           "Não foi possível consultar horários. Tente novamente ou fale com a barbearia.",
         );
     } catch (err: unknown) {
+      if(version!==availabilityVersion.current)return;
       reportAvailability({error:reportSupabaseError('get_availability',err)});
       setErrorBanner("Não foi possível consultar horários. Tente novamente ou fale com a barbearia.");
       setAvailableSlots([]);
     } finally {
-      setIsLoadingSlots(false);
+      if(version===availabilityVersion.current)setIsLoadingSlots(false);
     }
   }, [selectedBarberId, selectedDate, selectedServices, missingEnv]);
 

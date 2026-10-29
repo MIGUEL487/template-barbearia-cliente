@@ -1,5 +1,7 @@
 "use client";
 import Link from 'next/link';
+import {useCallback,useState} from 'react';
+import {BookingCalendar} from './booking-calendar';
 import {AnimatePresence,motion,useReducedMotion} from 'motion/react';
 import {DemoBadge} from '@/components/demo-watermark';
 import {formatCurrency} from '@/lib/utils';
@@ -9,7 +11,10 @@ const titles=['Profissional','Serviço','Horário','Confira','Concluído'];
 const time=(iso:string)=>new Date(iso).toLocaleTimeString('pt-BR',{timeZone:'America/Sao_Paulo',hour:'2-digit',minute:'2-digit'});
 export default function LiveBooking(){
  const s=useLiveBooking(),reduced=useReducedMotion();
- const disabled=s.isLoadingInitial||s.missingEnv.length>0||s.isSubmitting||(s.step===1&&!s.selectedBarber)||(s.step===2&&!s.selectedServices.length)||(s.step===3&&(!s.selectedSlot||s.isLoadingSlots))||(s.step===4&&(!s.acceptedTerms||!s.customerName.trim()||!s.customerPhone.trim()));
+ const [calendarAvailable,setCalendarAvailable]=useState(false);
+ const {setSelectedSlot}=s;
+ const onCalendarAvailability=useCallback((available:boolean)=>{setCalendarAvailable(available);if(!available)setSelectedSlot(null)},[setSelectedSlot]);
+ const disabled=s.isLoadingInitial||s.missingEnv.length>0||s.isSubmitting||(s.step===1&&!s.selectedBarber)||(s.step===2&&!s.selectedServices.length)||(s.step===3&&(!calendarAvailable||!s.selectedSlot||s.isLoadingSlots))||(s.step===4&&(!s.acceptedTerms||!s.customerName.trim()||!s.customerPhone.trim()));
  return <main className="booking-shell">
   <Link className="brand" href="/">Auto Stilo<span>Voltar ao início</span></Link>
   <ol className="step-progress" aria-label="Etapas">{titles.slice(0,4).map((title,i)=><li key={title} aria-current={i===s.step-1?'step':undefined}>{i+1}<span>{title}</span></li>)}</ol>
@@ -23,8 +28,8 @@ export default function LiveBooking(){
    </fieldset>}
    {s.step===2&&<fieldset aria-label="Serviços"><legend>Escolha os serviços</legend>{s.services.map(service=><label className="choice" key={service.id}><input type="checkbox" checked={s.selectedServices.some(x=>x.id===service.id)} onChange={()=>s.toggleService(service)}/><span><strong>{service.name}</strong><small>{service.duration_minutes} min · {formatCurrency(Number(service.price))}</small></span></label>)}{!s.services.length&&<p>Nenhum serviço disponível. Fale com a barbearia.</p>}</fieldset>}
    {s.step===3&&<fieldset aria-label="Horários"><legend>Data e horário</legend>
-    <label className="field-label">Data<input type="date" value={s.selectedDate} min={s.upcomingDays[0]?.iso} onChange={e=>s.setSelectedDate(e.target.value)} required/></label>
-    {s.isLoadingSlots?<p role="status">Consultando horários…</p>:<div className="time-choices">{s.availableSlots.map(slot=><button type="button" aria-pressed={s.selectedSlot?.start_time===slot.start_time&&s.selectedSlot?.barber_id===slot.barber_id} key={slot.barber_id+slot.start_time} onClick={()=>s.setSelectedSlot(slot)}>{time(slot.start_time)}{s.selectedBarber?.id===null&&(' · '+(s.barbers.find(b=>b.id===slot.barber_id)?.name || 'Profissional disponível'))}</button>)}</div>}
+    <BookingCalendar value={s.selectedDate} barberId={s.selectedBarberId} serviceIds={s.selectedServices.map(x=>x.id)} onChange={date=>{if(date===s.selectedDate)void s.fetchAvailability();else s.setSelectedDate(date)}} onAvailability={onCalendarAvailability}/>
+    {s.isLoadingSlots?<p role="status">Consultando horários…</p>:<div className="time-choices">{calendarAvailable&&s.availableSlots.map(slot=><button type="button" aria-pressed={s.selectedSlot?.start_time===slot.start_time&&s.selectedSlot?.barber_id===slot.barber_id} key={slot.barber_id+slot.start_time} onClick={()=>s.setSelectedSlot(slot)}>{time(slot.start_time)}{s.selectedBarber?.id===null&&(' · '+(s.barbers.find(b=>b.id===slot.barber_id)?.name || 'Profissional disponível'))}</button>)}</div>}
     {!s.isLoadingSlots&&!s.availableSlots.length&&<p role="status">Não há horários disponíveis nesta data.</p>}
     <p>Horários de Brasília · America/Sao_Paulo.</p>
    </fieldset>}

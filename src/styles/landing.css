@@ -1326,3 +1326,21 @@ html { scroll-padding-top: calc(var(--header-h) + 16px); }
 /* The approved transparent mark has no circular tile. */
 .footer-brand-mark { display: block; width: 96px; margin-bottom: 24px; }
 .footer-brand-mark .brand-logo { width: 96px; height: 80px; }
+
+/* Booking calendar: existing white, ink and violet palette. */
+.booking-calendar { max-width: 448px; margin-block: 24px; padding: 24px; border: 1px solid var(--hairline); border-radius: 24px; background: var(--bg); }
+.booking-calendar-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+.booking-calendar .booking-calendar-heading h2 { margin: 0; font: 400 24px/1.2 var(--font-serif), Georgia, serif; text-transform: capitalize; text-align: center; }
+.booking-calendar-heading h2 span { display: block; margin-top: 8px; font: 12px/1.5 var(--font-sans), sans-serif; color: var(--text-muted); }
+.booking-calendar-heading button { display: grid; place-items: center; flex-shrink: 0; width: 40px; height: 40px; border: 1px solid var(--hairline); border-radius: 50%; background: var(--surface); color: var(--text); }
+.booking-calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
+.booking-calendar-weekday { padding-block: 8px; text-align: center; font-size: 12px; color: var(--text-muted); }
+.booking-calendar-grid button { min-width: 0; min-height: 48px; border: 1px solid transparent; border-radius: 16px; background: transparent; color: var(--text); font: inherit; transition: background-color .2s, border-color .2s; }
+.booking-calendar-grid button:not(:disabled):hover { background: var(--accent-soft); }
+.booking-calendar-grid button[aria-current="date"] { border-color: var(--accent); }
+.booking-calendar-grid button[aria-pressed="true"] { background: var(--accent); color: white; }
+.booking-calendar button:disabled { opacity: .35; cursor: not-allowed; }
+.booking-calendar-grid button:disabled { text-decoration: line-through; }
+.booking-calendar-note, .booking-calendar-error { margin-top: 16px; font-size: 12px; line-height: 1.5; color: var(--text-muted); }
+.booking-calendar-error .button-secondary { margin-top: 16px; }
+@media (max-width: 767px) { .booking-calendar { padding: 16px; } .booking-calendar-grid button { min-height: 40px; } }
