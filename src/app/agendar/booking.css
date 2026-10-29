@@ -9,25 +9,50 @@
 .booking-scope .booking-shell { padding-bottom: 240px; }
 .booking-scope .booking-shell h1 { font-weight: 500; }
 .booking-scope .booking-shell :is(button, input) { font-family: var(--font-sans), sans-serif; }
-.booking-scope .booking-shell :is(button, a):focus-visible {
+.booking-scope .booking-shell :is(button, a, input):focus-visible {
   outline: 2px solid var(--booking-purple);
   outline-offset: 4px;
 }
-/* Light reflected edges suggest glass without blurring scrolling content. */
-.booking-scope .booking-shell :where(.cta, .button-secondary, .time-choices button, .booking-calendar-heading button) {
+/* Every button shares geometry; selectable cards keep their existing flex layout. */
+.booking-scope .booking-shell :where(button, .cta) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   min-height: 48px;
-  border: 1px solid rgba(92, 64, 126, .16);
-  background: linear-gradient(160deg, rgba(255,255,255,.98), rgba(235,228,246,.72));
-  color: var(--booking-ink);
-  box-shadow: inset 0 1px 0 white, inset 0 -1px 0 rgba(92,64,126,.06), 0 4px 16px rgba(39,22,66,.05);
   font-size: 14px;
   font-weight: 500;
   transition: transform .2s, box-shadow .2s;
 }
+/* One glass material across actions, day cells, professionals, services and consent. */
+.booking-scope .booking-shell :is(button, .cta, .choice) {
+  border: 1px solid rgba(92,64,126,.16);
+  background: linear-gradient(160deg,rgba(255,255,255,.98),rgba(235,228,246,.72));
+  color: var(--booking-ink);
+  box-shadow: inset 0 1px 0 white, inset 0 -1px 0 rgba(92,64,126,.06), 0 4px 16px rgba(39,22,66,.05);
+}
+.booking-scope .booking-shell .choice:has(input:checked) {
+  background: linear-gradient(160deg,#fff,#eee5fa);
+  border-color: var(--booking-purple);
+  box-shadow: inset 0 1px 0 white, 0 4px 16px rgba(87,44,149,.1);
+}
+.booking-scope .choice input:is([type="radio"],[type="checkbox"]) {
+  appearance: none;
+  display: grid;
+  place-content: center;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  border: 1px solid rgba(92,64,126,.4);
+  border-radius: 8px;
+  background: linear-gradient(160deg,#fff,#eee5fa);
+  box-shadow: inset 0 1px 0 white;
+  cursor: pointer;
+}
+.booking-scope .choice input[type="radio"] { border-radius: 50%; }
+.booking-scope .choice input:checked { background: linear-gradient(150deg,#7848b8,#593095); border-color: var(--booking-purple); }
+.booking-scope .choice input:checked::after { content: ''; width: 8px; height: 12px; border: solid white; border-width: 0 2px 2px 0; transform: translateY(-2px) rotate(45deg); }
+.booking-scope .choice input[type="radio"]:checked::after { width: 8px; height: 8px; border: 0; border-radius: 50%; background: white; transform: none; }
 .booking-scope .booking-shell .cta,
 .booking-scope .time-choices button[aria-pressed="true"] {
   background: linear-gradient(150deg, #7848b8, #593095);
@@ -46,7 +71,8 @@
 .booking-scope .booking-calendar-heading button { width: 48px; }
 .booking-scope .booking-calendar-heading svg { stroke-width: 1.5; }
 .booking-scope .booking-calendar-grid button[aria-pressed="true"] { color: white; }
-.booking-scope .calendar-selection { background: var(--booking-purple); }
+.booking-scope .calendar-selection { background: linear-gradient(150deg,#7848b8,#593095); box-shadow: inset 0 1px 0 rgba(255,255,255,.4), inset 0 -1px 0 rgba(27,9,54,.16); }
+.booking-scope .booking-calendar-grid button:not(:disabled):hover { background: linear-gradient(160deg,#fff,#eee5fa); }
 /* Only this fixed functional layer samples the content underneath. */
 .booking-scope .booking-actions {
   left: 16px;
@@ -76,9 +102,9 @@
 .brand-loading svg { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; stroke-width: 2; }
 .brand-loading-track { stroke: #e7def2; }
 .brand-loading-arc { stroke: #7954b5; stroke-linecap: round; stroke-dasharray: 80 197; transform-origin: 48px 48px; animation: booking-orbit 1.4s linear infinite; }
-.brand-loading img { width: 64px; height: auto; object-fit: contain; }
+.brand-loading img { width: 48px; height: auto; object-fit: contain; }
 .brand-loading.is-compact { width: 32px; height: 32px; }
-.brand-loading.is-compact img { width: 24px; }
+.brand-loading.is-compact img { width: 16px; }
 .booking-scope .cta .brand-loading { background: white; border-radius: 50%; }
 @keyframes booking-orbit { to { transform: rotate(360deg); } }
 .booking-skeleton-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 24px; min-height: 80px; }
@@ -93,7 +119,7 @@
 .skeleton-description { height: 8px; width: min(240px, 100%); }
 .booking-skeleton-slots .booking-skeleton-heading { min-height: 32px; margin-bottom: 16px; }
 .booking-skeleton-slots .brand-loading { width: 32px; height: 32px; }
-.booking-skeleton-slots .brand-loading img { width: 24px; }
+.booking-skeleton-slots .brand-loading img { width: 16px; }
 .booking-skeleton-slots-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
 .skeleton-slot { height: 56px; border-radius: 16px; }
 .skeleton-day { width: 24px; height: 16px; margin: auto; }
@@ -113,7 +139,9 @@
 }
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
   .booking-scope .booking-actions { background: #faf8fd; backdrop-filter: none; -webkit-backdrop-filter: none; border-color: #766587; }
-  .booking-scope .booking-shell :is(.button-secondary, .time-choices button, .booking-calendar-heading button) { background: white; border-color: #766587; }
+  .booking-scope .booking-shell :is(button, .choice):where(:not(.cta)) { background: white; border-color: #766587; }
+  .booking-scope .booking-shell .choice:has(input:checked) { background: #eee5fa; }
+  .booking-scope .calendar-selection { background: #593095; }
   .booking-scope .time-choices button[aria-pressed="true"] { background: #593095; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -124,7 +152,9 @@
 .page-hidden .brand-loading-arc, .page-hidden .skeleton-block::after { animation: none !important; }
 @media (forced-colors: active) {
   .booking-scope .booking-actions { background: Canvas; color: CanvasText; border: 1px solid CanvasText; backdrop-filter: none; }
-  .booking-scope .booking-shell :is(.cta, .button-secondary, .time-choices button) { border: 1px solid ButtonText; }
+  .booking-scope .booking-shell :is(button, .cta, .choice) { border: 1px solid ButtonText; }
+  .booking-scope .choice input:is([type="radio"],[type="checkbox"]) { appearance: auto; }
+  .booking-scope .choice input::after { display: none; }
   .booking-scope .time-choices button[aria-pressed="true"], .booking-scope .booking-calendar-grid button[aria-pressed="true"] { outline: 2px solid Highlight; }
   .brand-loading-arc { stroke: Highlight; }
   .skeleton-block { background: GrayText; }

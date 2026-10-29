@@ -8,6 +8,8 @@ marquee, RPCs, persistência, tokens compartilhados e painel do dono preservados
   Famílias com nomes próprios para evitar colisão com a fonte da página inicial.
 - Barra de ações flutuante com desfoque e reflexos; botões com bordas iluminadas e
   acabamento translúcido. O conteúdo rolável não recebe desfoque.
+  O acabamento cobre todos os botões, dias do calendário e cards selecionáveis
+  de profissional, serviço e consentimento. Radios e checkboxes acompanham o vidro.
 - Primário roxo com texto branco: contraste mínimo calculado de 6,14:1 no extremo
   mais claro do gradiente. Foco visível por teclado e controles de ação de 48 px.
 - Skeletons no catálogo, dias e horários. Indicadores vinculados às consultas reais,
@@ -16,6 +18,8 @@ marquee, RPCs, persistência, tokens compartilhados e painel do dono preservados
 - Logo aprovada e transparente com anel SVG animado: composição original inspirada
   no MP4 enviado. O vídeo original não foi editado ou incorporado; o resultado não
   contém o fundo lilás nem a marca do gerador do vídeo.
+  Logo interna reduzida para 48 px (ou 16 px na versão compacta); os círculos
+  permanecem com 80 px e 32 px, respectivamente.
 - Movimento reduzido desliga rotação e shimmer; alto contraste/transparência reduzida
   usa superfície sólida; cores forçadas preservam contornos. Aba oculta pausa loops.
 
@@ -53,6 +57,6 @@ também cobre três fusos, dias indisponíveis e revalidação de dia fechado.
 Capturas em `docs/booking-glass`: `*-loading.png`, `*-calendar-loading.png` e
 `*-calendar.png`. São fixtures de teste, não evidência do banco de produção.
 
-Entrega em `feat-agendamento-glass-loading`, sem merge automático desta alteração
+Refinamento dos controles em `fix-agendar-glass-completo`, sem merge automático desta alteração
 visual. O link público de preview depende do check do Cloudflare da branch; não
 há deploy manual nem alteração de configuração do Cloudflare nesta entrega.
