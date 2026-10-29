@@ -1340,9 +1340,13 @@ html { scroll-padding-top: calc(var(--header-h) + 16px); }
 .booking-calendar-grid button { min-width: 0; min-height: 48px; border: 1px solid transparent; border-radius: 16px; background: transparent; color: var(--text); font: inherit; transition: background-color .2s, border-color .2s; }
 .booking-calendar-grid button:not(:disabled):hover { background: var(--accent-soft); }
 .booking-calendar-grid button[aria-current="date"] { border-color: var(--accent); }
-.booking-calendar-grid button[aria-pressed="true"] { background: var(--accent); color: white; }
+.booking-calendar-grid button { position:relative; isolation:isolate; }
+.booking-calendar-grid button[aria-pressed="true"] { background: transparent; color: white; }
+.calendar-selection { position:absolute; inset:0; border-radius:inherit; background:var(--accent); z-index:-1; }
+.calendar-day-number { position:relative; }
+.booking-calendar-grid[role="group"] { grid-auto-rows:48px; min-height:328px; align-content:start; }
 .booking-calendar button:disabled { opacity: .35; cursor: not-allowed; }
 .booking-calendar-grid button:disabled { text-decoration: line-through; }
 .booking-calendar-note, .booking-calendar-error { margin-top: 16px; font-size: 12px; line-height: 1.5; color: var(--text-muted); }
 .booking-calendar-error .button-secondary { margin-top: 16px; }
-@media (max-width: 767px) { .booking-calendar { padding: 16px; } .booking-calendar-grid button { min-height: 40px; } }
+@media (max-width: 767px) { .booking-calendar { padding: 16px; } .booking-calendar-grid button { min-height: 40px; } .booking-calendar-grid[role="group"]{grid-auto-rows:40px;min-height:280px;} }

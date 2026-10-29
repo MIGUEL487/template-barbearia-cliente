@@ -7,7 +7,7 @@ const shop='11111111-1111-1111-1111-111111111111', barber='22222222-2222-2222-22
 const b=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});
 try {
 for(const [width,height,timeZone] of [[1440,900,'Asia/Tokyo'],[390,844,'America/Los_Angeles']]){
- const p=await b.newPage({viewport:{width,height},timezoneId:timeZone});await p.clock.setFixedTime(new Date('2026-10-29T12:00:00Z'));let last,hold,closed=false,failDay=true;const errors=[];p.on('pageerror',e=>errors.push(e.message));
+ const p=await b.newPage({viewport:{width,height},timezoneId:timeZone,reducedMotion:process.env.QA_REDUCED_MOTION==='1'?'reduce':'no-preference'});await p.clock.setFixedTime(new Date('2026-10-29T12:00:00Z'));let last,hold,closed=false,failDay=true;const errors=[];p.on('pageerror',e=>errors.push(e.message));
  await p.route('https://*.supabase.co/**',async route=>{
   const req=route.request(),url=new URL(req.url()),name=url.pathname.split('/').pop();let data=[];
   if(name==='public_barbers')data=[{id:barber,name:'Carlos',bio:null,avatar_url:null}];
@@ -40,6 +40,7 @@ for(const [width,height,timeZone] of [[1440,900,'Asia/Tokyo'],[390,844,'America/
  await p.locator('button').filter({hasText:/Confirmar|Reservar|Finalizar/}).last().click();
  await p.getByText('Pré-reserva criada').waitFor();assert.equal(hold.p_barbershop_id,shop);assert.equal(hold.p_starts_at,'2026-11-02T09:00:00-03:00');
  assert.equal(errors.length,0,errors.join('\n'));assert.match(await p.getByRole('complementary',{name:'Diagnóstico de agendamento'}).innerText(),/Simulação: não/);
+ if(process.env.QA_REDUCED_MOTION==='1')assert(await p.evaluate(()=>document.documentElement.classList.contains('motion-off')));
  console.log({width,timeZone,realFlowWithWatermark:true,parameters:last,hold:true});await p.close();
 }
 } finally {await b.close()}
