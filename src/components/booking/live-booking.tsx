@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import {useCallback,useState} from 'react';
 import {BookingCalendar} from './booking-calendar';
+import {BarberPhoto} from '@/components/barber-photo';
 import {AnimatePresence,motion,useReducedMotion} from 'motion/react';
 import {DemoBadge} from '@/components/demo-watermark';
 import {formatCurrency} from '@/lib/utils';
@@ -23,7 +24,7 @@ export default function LiveBooking(){
   {s.isLoadingInitial&&<p role="status">Carregando agendamento…</p>}
   <AnimatePresence mode="wait"><motion.div key={s.step} initial={{opacity:0,x:reduced?0:16}} animate={{opacity:1,x:0}} exit={{opacity:0,x:reduced?0:-16}} transition={{duration:.18}}>
    {s.step===1&&<fieldset><legend>Com quem você quer cortar?</legend>
-    {s.barbers.map(b=><label className="choice" key={b.id}><input type="radio" name="barber" checked={s.selectedBarber?.id===b.id} onChange={()=>s.setSelectedBarber(b)}/><span><strong>{b.name}</strong><small>{b.bio}</small></span></label>)}
+    {s.barbers.map(b=><label className="choice" key={b.id}><input type="radio" name="barber" checked={s.selectedBarber?.id===b.id} onChange={()=>s.setSelectedBarber(b)}/><BarberPhoto url={b.avatar_url||null} name={b.name}/><span><strong>{b.name}</strong><small>{b.bio}</small></span></label>)}
     {!!s.barbers.length&&<label className="choice"><input type="radio" name="barber" checked={s.selectedBarber!==null&&s.selectedBarber.id===null} onChange={()=>s.setSelectedBarber({id:null,name:'Primeiro disponível',bio:null})}/><span><strong>Sem preferência</strong><small>Escolher o primeiro profissional disponível.</small></span></label>}
    </fieldset>}
    {s.step===2&&<fieldset aria-label="Serviços"><legend>Escolha os serviços</legend>{s.services.map(service=><label className="choice" key={service.id}><input type="checkbox" checked={s.selectedServices.some(x=>x.id===service.id)} onChange={()=>s.toggleService(service)}/><span><strong>{service.name}</strong><small>{service.duration_minutes} min · {formatCurrency(Number(service.price))}</small></span></label>)}{!s.services.length&&<p>Nenhum serviço disponível. Fale com a barbearia.</p>}</fieldset>}
