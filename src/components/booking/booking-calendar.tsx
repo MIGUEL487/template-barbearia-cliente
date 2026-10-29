@@ -5,10 +5,11 @@ import {AnimatePresence,motion} from 'motion/react';
 import {useMotionEnabled} from '@/components/motion-preferences';
 import {supabase,getBarbershopId,getMissingClientEnvVars} from '@/lib/supabase';
 import {reportSupabaseError} from '@/lib/booking-diagnostics';
+import {BrandLoading} from './booking-loading';
 
 const dayKey=(year:number,month:number,day:number)=>`${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
 const todayInBrazil=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
-export function BookingCalendar({value,barberId,serviceIds,onChange,onAvailability}:{value:string;barberId:string|null;serviceIds:string[];onChange:(date:string)=>void;onAvailability:(available:boolean)=>void}){
+export function BookingCalendar({value,barberId,serviceIds,onChange,onAvailability,onLoadingChange}:{value:string;barberId:string|null;serviceIds:string[];onChange:(date:string)=>void;onAvailability:(available:boolean)=>void;onLoadingChange:(loading:boolean)=>void}){
  const id=useId(),today=todayInBrazil();
  const enabled=useMotionEnabled(),[direction,setDirection]=useState(1);
  const [month,setMonth]=useState(()=>value.slice(0,7)||today.slice(0,7));
@@ -31,6 +32,7 @@ export function BookingCalendar({value,barberId,serviceIds,onChange,onAvailabili
   return()=>{cancelled=true};
  },[month,barberId,services,revision,today,count,year,monthIndex]);
  useEffect(()=>onAvailability(!loading&&days[value]===true),[loading,days,value,onAvailability]);
+ useEffect(()=>onLoadingChange(loading||checking),[loading,checking,onLoadingChange]);
  const move=(delta:number)=>{setDirection(delta);const d=new Date(Date.UTC(year,monthIndex+delta,1));setMonth(dayKey(d.getUTCFullYear(),d.getUTCMonth(),1).slice(0,7))};
  const choose=async(date:string)=>{
   if(checking)return;setChecking(true);onAvailability(false);
@@ -43,9 +45,9 @@ export function BookingCalendar({value,barberId,serviceIds,onChange,onAvailabili
   <div className="booking-calendar-grid" aria-hidden="true">{['D','S','T','Q','Q','S','S'].map((d,i)=><span className="booking-calendar-weekday" key={i}>{d}</span>)}</div>
   <AnimatePresence mode="wait" initial={false}><motion.div key={month} initial={{opacity:0,x:enabled?direction*16:0}} animate={{opacity:1,x:0}} exit={{opacity:0,x:enabled?-direction*16:0}} transition={{duration:enabled?0.2:0,ease:[.22,1,.36,1]}} className="booking-calendar-grid" role="group" aria-label="Escolher data">
    {Array.from({length:firstDay.getUTCDay()},(_,i)=><span key={`empty-${i}`} aria-hidden="true"/>)}
-   {Array.from({length:count},(_,i)=>{const day=i+1,date=dayKey(year,monthIndex,day),available=!loading&&days[date]===true;return <motion.button type="button" key={date} disabled={!available||checking} whileTap={enabled?{scale:.92}:undefined} aria-label={`${String(day).padStart(2,'0')}/${String(index).padStart(2,'0')}/${year}${available?'':loading?' · consultando':' · indisponível'}`} aria-pressed={date===value&&available} aria-current={date===today?'date':undefined} onClick={()=>void choose(date)}>{date===value&&available&&<motion.span aria-hidden="true" className="calendar-selection" layoutId={id+'-selection'} transition={enabled?{type:'spring',stiffness:420,damping:34}:{duration:0}}/>}<span className="calendar-day-number">{day}</span></motion.button>})}
+   {Array.from({length:count},(_,i)=>{const day=i+1,date=dayKey(year,monthIndex,day),available=!loading&&days[date]===true;return <motion.button type="button" key={date} disabled={!available||checking} whileTap={enabled?{scale:.92}:undefined} aria-label={`${String(day).padStart(2,'0')}/${String(index).padStart(2,'0')}/${year}${available?'':loading?' · consultando':' · indisponível'}`} aria-pressed={date===value&&available} aria-current={date===today?'date':undefined} onClick={()=>void choose(date)}>{date===value&&available&&<motion.span aria-hidden="true" className="calendar-selection" layoutId={id+'-selection'} transition={enabled?{type:'spring',stiffness:420,damping:34}:{duration:0}}/>}{loading?<span className="skeleton-block skeleton-day" aria-hidden="true"/>:<span className="calendar-day-number">{day}</span>}</motion.button>})}
   </motion.div></AnimatePresence>
-  <p className="booking-calendar-note" role="status">{loading||checking?'Consultando os dias disponíveis…':'Dias apagados não estão disponíveis para agendamento.'}</p>
+  <div className="booking-calendar-feedback">{loading||checking?<BrandLoading compact label="Consultando dias disponíveis"/>:<p className="booking-calendar-note">Dias apagados não estão disponíveis para agendamento.</p>}</div>
   {failed&&<div className="booking-calendar-error"><p role="alert">Não foi possível consultar todos os dias. Tente novamente.</p><button type="button" className="button-secondary" onClick={()=>setRevision(n=>n+1)}>Atualizar calendário</button></div>}
  </section>;
 }

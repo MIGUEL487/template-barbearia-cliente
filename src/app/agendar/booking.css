@@ -1,0 +1,131 @@
+/* Booking-only type and web glass treatment. Shared brand tokens stay intact. */
+.booking-scope {
+  --font-sans: var(--font-booking-sans);
+  --font-serif: var(--font-booking-display);
+  --booking-ink: #211a2b;
+  --booking-purple: #6738ac;
+  font-family: var(--font-sans), sans-serif;
+}
+.booking-scope .booking-shell { padding-bottom: 240px; }
+.booking-scope .booking-shell h1 { font-weight: 500; }
+.booking-scope .booking-shell :is(button, input) { font-family: var(--font-sans), sans-serif; }
+.booking-scope .booking-shell :is(button, a):focus-visible {
+  outline: 2px solid var(--booking-purple);
+  outline-offset: 4px;
+}
+/* Light reflected edges suggest glass without blurring scrolling content. */
+.booking-scope .booking-shell :where(.cta, .button-secondary, .time-choices button, .booking-calendar-heading button) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  border: 1px solid rgba(92, 64, 126, .16);
+  background: linear-gradient(160deg, rgba(255,255,255,.98), rgba(235,228,246,.72));
+  color: var(--booking-ink);
+  box-shadow: inset 0 1px 0 white, inset 0 -1px 0 rgba(92,64,126,.06), 0 4px 16px rgba(39,22,66,.05);
+  font-size: 14px;
+  font-weight: 500;
+  transition: transform .2s, box-shadow .2s;
+}
+.booking-scope .booking-shell .cta,
+.booking-scope .time-choices button[aria-pressed="true"] {
+  background: linear-gradient(150deg, #7848b8, #593095);
+  color: white;
+  border-color: rgba(88, 41, 150, .5);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.4), inset 0 -1px 0 rgba(27,9,54,.16), 0 4px 16px rgba(87,44,149,.16);
+}
+.booking-scope .booking-shell button:disabled { cursor: not-allowed; }
+.booking-scope .booking-shell .cta:disabled {
+  opacity: 1;
+  background: #eeebf3;
+  border-color: #e5e0ec;
+  box-shadow: inset 0 1px 0 white;
+  color: #6b6178;
+}
+.booking-scope .booking-calendar-heading button { width: 48px; }
+.booking-scope .booking-calendar-heading svg { stroke-width: 1.5; }
+.booking-scope .booking-calendar-grid button[aria-pressed="true"] { color: white; }
+.booking-scope .calendar-selection { background: var(--booking-purple); }
+/* Only this fixed functional layer samples the content underneath. */
+.booking-scope .booking-actions {
+  left: 16px;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  max-width: 960px;
+  margin-inline: auto;
+  padding: 16px 24px;
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 32px;
+  background: rgba(248,245,253,.88);
+  -webkit-backdrop-filter: blur(24px) saturate(1.35);
+  backdrop-filter: blur(24px) saturate(1.35);
+  box-shadow: inset 0 1px 0 white, 0 8px 32px rgba(40,22,65,.09), 0 0 0 1px rgba(72,43,102,.08);
+}
+.booking-scope .booking-actions p { color: #51435f; }
+.booking-scope .booking-actions strong { color: var(--booking-ink); }
+.booking-scope .booking-actions :is(.cta, .button-secondary) { border-radius: 24px; }
+.booking-scope .booking-actions .cta { min-width: 168px; }
+.booking-scope .booking-actions .cta[form="booking-confirmation"] { position: relative; min-width: 240px; padding-inline: 48px; }
+.booking-scope .booking-actions .cta > .brand-loading { position: absolute; left: 8px; }
+.booking-scope .booking-slots-region { min-height: 232px; }
+.booking-scope .booking-calendar-feedback { min-height: 48px; margin-top: 16px; display: flex; align-items: center; }
+.booking-scope .booking-calendar-feedback .booking-calendar-note { margin: 0; }
+/* Transparent approved logo + animated ring, inspired by the supplied video. */
+.brand-loading { display: inline-grid; place-items: center; width: 80px; height: 80px; flex: 0 0 auto; position: relative; }
+.brand-loading svg { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; stroke-width: 2; }
+.brand-loading-track { stroke: #e7def2; }
+.brand-loading-arc { stroke: #7954b5; stroke-linecap: round; stroke-dasharray: 80 197; transform-origin: 48px 48px; animation: booking-orbit 1.4s linear infinite; }
+.brand-loading img { width: 64px; height: auto; object-fit: contain; }
+.brand-loading.is-compact { width: 32px; height: 32px; }
+.brand-loading.is-compact img { width: 24px; }
+.booking-scope .cta .brand-loading { background: white; border-radius: 50%; }
+@keyframes booking-orbit { to { transform: rotate(360deg); } }
+.booking-skeleton-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 24px; min-height: 80px; }
+.skeleton-block { display: block; position: relative; overflow: hidden; background: #ede9f2; border-radius: 8px; }
+.skeleton-block::after { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 20%, rgba(255,255,255,.7) 50%, transparent 80%); transform: translateX(-100%); animation: booking-shimmer 1.8s ease-in-out infinite; }
+@keyframes booking-shimmer { to { transform: translateX(100%); } }
+.skeleton-caption { height: 16px; width: min(192px, 60%); }
+.booking-skeleton-person { display: flex; gap: 24px; align-items: center; padding: 24px; margin-block: 16px; border-radius: 16px; background: #faf9fc; min-height: 112px; }
+.skeleton-avatar { width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0; }
+.booking-skeleton-person > div { width: 100%; }
+.skeleton-name { height: 16px; width: min(144px, 80%); margin-bottom: 16px; }
+.skeleton-description { height: 8px; width: min(240px, 100%); }
+.booking-skeleton-slots .booking-skeleton-heading { min-height: 32px; margin-bottom: 16px; }
+.booking-skeleton-slots .brand-loading { width: 32px; height: 32px; }
+.booking-skeleton-slots .brand-loading img { width: 24px; }
+.booking-skeleton-slots-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+.skeleton-slot { height: 56px; border-radius: 16px; }
+.skeleton-day { width: 24px; height: 16px; margin: auto; }
+.booking-scope .booking-calendar-grid button:has(.skeleton-day) { opacity: 1; text-decoration: none; }
+@media (hover: hover) {
+  .booking-scope .booking-shell :is(.cta, .button-secondary, .time-choices button):not(:disabled):hover { transform: translateY(-2px); }
+}
+@media (max-width: 767px) {
+  .booking-scope .booking-actions { padding: 16px; border-radius: 24px; }
+  .booking-scope .booking-calendar-grid { gap: 0; }
+  .booking-scope .booking-calendar-grid[role="group"] { grid-auto-rows: 48px; min-height: 288px; }
+  .booking-scope .booking-calendar-grid button { min-height: 48px; }
+  .booking-scope .booking-shell { padding-bottom: 304px; }
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .booking-scope .booking-actions { background: #f8f5fd; }
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .booking-scope .booking-actions { background: #faf8fd; backdrop-filter: none; -webkit-backdrop-filter: none; border-color: #766587; }
+  .booking-scope .booking-shell :is(.button-secondary, .time-choices button, .booking-calendar-heading button) { background: white; border-color: #766587; }
+  .booking-scope .time-choices button[aria-pressed="true"] { background: #593095; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .booking-scope *, .booking-scope *::after { animation: none !important; transition: none !important; }
+  .booking-scope .booking-shell button:hover { transform: none !important; }
+}
+.motion-off .booking-scope *, .motion-off .booking-scope *::after,
+.page-hidden .brand-loading-arc, .page-hidden .skeleton-block::after { animation: none !important; }
+@media (forced-colors: active) {
+  .booking-scope .booking-actions { background: Canvas; color: CanvasText; border: 1px solid CanvasText; backdrop-filter: none; }
+  .booking-scope .booking-shell :is(.cta, .button-secondary, .time-choices button) { border: 1px solid ButtonText; }
+  .booking-scope .time-choices button[aria-pressed="true"], .booking-scope .booking-calendar-grid button[aria-pressed="true"] { outline: 2px solid Highlight; }
+  .brand-loading-arc { stroke: Highlight; }
+  .skeleton-block { background: GrayText; }
+}
