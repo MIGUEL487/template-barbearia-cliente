@@ -1349,4 +1349,12 @@ html { scroll-padding-top: calc(var(--header-h) + 16px); }
 .booking-calendar-grid button:disabled { text-decoration: line-through; }
 .booking-calendar-note, .booking-calendar-error { margin-top: 16px; font-size: 12px; line-height: 1.5; color: var(--text-muted); }
 .booking-calendar-error .button-secondary { margin-top: 16px; }
+.booking-date-layout { display:grid; grid-template-columns:minmax(0,448px) minmax(0,1fr); gap:32px; margin-top:24px; align-items:start; }
+.booking-date-layout .booking-calendar { width:100%; margin:0; }
+.booking-time-panel { min-width:0; padding-top:24px; }
+.booking-shell .booking-time-panel h2 { font-size:24px; margin:0 0 16px; }
+.booking-time-panel > p { font-size:14px; color:var(--text-muted); }
+.booking-time-panel .time-choices { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+.booking-time-panel .time-choices button { padding:16px; min-width:0; overflow-wrap:anywhere; }
+@media(max-width:767px){.booking-date-layout{grid-template-columns:minmax(0,1fr);gap:24px}.booking-time-panel{padding-top:0}}
 @media (max-width: 767px) { .booking-calendar { padding: 16px; } .booking-calendar-grid button { min-height: 40px; } .booking-calendar-grid[role="group"]{grid-auto-rows:40px;min-height:280px;} }

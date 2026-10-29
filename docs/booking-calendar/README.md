@@ -15,3 +15,7 @@ Testes em scripts/qa-live-booking.mjs: desktop e celular, fusos Asia/Tokyo e Ame
 Capturas: [desktop](1440-calendar.jpg) e [celular](390-calendar.jpg).
 
 Branch feat-calendario-agendamento para revisão visual. Não foi realizado deploy manual, merge na master ou mudança no Supabase.
+
+## Horários ao lado do calendário
+
+O calendário e a lista de horários agora usam duas colunas a partir de 768px, separadas por 32px. No celular, ficam em coluna, com intervalo de 24px. A lista informa a data selecionada e mantém as animações, bloqueios e chamadas reais existentes. Validação em 1440px, 820px e 390px, sem overflow e com pré-reserva concluída em backend interceptado de teste. Capturas: [desktop](1440-layout.jpg), [tablet](820-layout.jpg), [celular](390-layout.jpg). Merge automático desta mudança autorizado pelo usuário.
