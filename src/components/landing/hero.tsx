@@ -8,6 +8,7 @@ import {useMotionEnabled} from '@/components/motion-preferences';
 export function Hero(){
  const track=useRef<HTMLDivElement>(null),root=useRef<HTMLElement>(null),canvas=useRef<HTMLCanvasElement>(null),poster=useRef<HTMLImageElement>(null);
  const enabled=useMotionEnabled();
+ const skipIntro=useRef<(()=>void)|null>(null);
  useEffect(()=>{
  let saved=null;try{saved=localStorage.getItem('auto-stilo-motion')}catch{}
  const forced=new URLSearchParams(location.search).get('motion');const wanted=forced==='full'?true:forced==='off'?false:saved!==null?saved==='on':!matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -18,6 +19,14 @@ export function Hero(){
  const engine=createScrollEngine(enabled);
  let generation=0,cleanup=()=>{},pinnedProgress:()=>number|null=()=>null;
  const nav=(visible:boolean)=>document.documentElement.classList.toggle('hero-nav-visible',visible);
+ skipIntro.current=()=>{
+  generation++;cleanup();
+  surface.classList.remove('hero-native');surface.classList.add('native-motion');
+  engine.gsap.set([surface.querySelector('.hero-copy')!.children,surface.querySelector('.shade')!],{clearProps:'all'});
+  nav(true);engine.ScrollTrigger.refresh();
+  history.pushState(history.state,'','#assinatura');engine.scrollTo('#assinatura');
+  const target=document.getElementById('assinatura');target?.setAttribute('tabindex','-1');target?.focus({preventScroll:true});
+ };
  const setup=async(preserveProgress=false)=>{const resume=preserveProgress?pinnedProgress():null;const gen=++generation;cleanup();if(!root.current||!canvas.current||!poster.current)return;const el=root.current,copy=el.querySelector('.hero-copy')!,shade=el.querySelector('.shade')!,cue=el.querySelector('.scroll-cue')!
  engine.gsap.set([copy.children,shade],{clearProps:'all'});el.classList.toggle('native-motion',!enabled)
  let anchor:HTMLElement|null=null;try{anchor=location.hash?document.getElementById(decodeURIComponent(location.hash.slice(1))):null}catch{}
@@ -92,13 +101,14 @@ export function Hero(){
  }catch{el.classList.add('native-motion');nav(true)}}
 
  void setup();const mq=matchMedia('(max-width:768px), (orientation:portrait)');const rotate=()=>engine.ScrollTrigger.refresh();mq.addEventListener('change',rotate);
- return ()=>{window.removeEventListener('resize',resizeSurface);window.visualViewport?.removeEventListener('resize',resizeSurface);generation++;cleanup();mq.removeEventListener('change',rotate);engine.dispose();document.documentElement.classList.remove('hero-nav-visible')};
+ return ()=>{skipIntro.current=null;window.removeEventListener('resize',resizeSurface);window.visualViewport?.removeEventListener('resize',resizeSurface);generation++;cleanup();mq.removeEventListener('change',rotate);engine.dispose();document.documentElement.classList.remove('hero-nav-visible')};
  },[enabled]);
  return <div ref={track} className="hero-track"><section id="inicio" ref={root} className="hero cinematic" aria-labelledby="hero-title">
  <picture className="hero-picture"><source media="(max-width:768px), (orientation:portrait)" srcSet={frames.mobile.poster}/>
  {/* eslint-disable-next-line @next/next/no-img-element */}
  <img ref={poster} className="poster" src={frames.pc.poster} alt="Cena de atendimento em uma barbearia, sequência de demonstração" width={1920} height={1080} fetchPriority="high"/></picture>
  <canvas ref={canvas} aria-hidden="true" style={{opacity:0}}/><div className="shade"/>
+ <a href="#assinatura" className="button-secondary hero-skip-intro" onClick={event=>{if(skipIntro.current){event.preventDefault();skipIntro.current()}}}>Pular introdução <span aria-hidden="true">↓</span></a>
  <div className="hero-copy"><p>BARBEARIA · MONTE SIÃO — MG</p><h1 id="hero-title">Seu estilo,<br/>do corte ao <em>detalhe.</em></h1><p>Atendimento sob medida, ambiente confortável e cuidado em cada detalhe. Agende seu horário em poucos toques.</p><div className="hero-buttons"><Link className="cta" href="/agendar">Agendar horário</Link><a className="text-link" href="#servicos">Ver serviços</a></div></div>
  <p className="scroll-cue">O cuidado começa aqui <span aria-hidden="true">↓</span></p>
  <noscript><style>{'.hero-copy > *,.shade{opacity:1!important;transform:none!important}.hero-track{height:auto!important}'}</style></noscript>
