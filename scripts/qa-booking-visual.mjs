@@ -14,7 +14,7 @@ try {for(const [width,height] of [[1440,900],[390,844]]){
  });
  await p.goto('http://localhost:8787/agendar');await p.getByText('Carlos',{exact:true}).waitFor();await p.waitForTimeout(600);
  await p.screenshot({path:`${folder}/${width}-agendar-profissional.jpg`,fullPage:true});
- await p.getByText('Carlos',{exact:true}).click();await p.waitForTimeout(600);await p.screenshot({path:`${folder}/${width}-agendar-servicos.jpg`,fullPage:true});
+ await p.getByText('Carlos',{exact:true}).click();await p.getByRole('button',{name:'Continuar',exact:true}).click();await p.waitForTimeout(600);await p.screenshot({path:`${folder}/${width}-agendar-servicos.jpg`,fullPage:true});
  await p.getByRole('button',{name:'Continuar',exact:true}).click();await p.waitForTimeout(600);await p.screenshot({path:`${folder}/${width}-agendar-horarios.jpg`,fullPage:true});
  assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
  await p.goto('http://localhost:8787/meu-agendamento?token=fixture');await p.getByText('Cliente de teste',{exact:true}).waitFor();await p.waitForTimeout(600);await p.screenshot({path:`${folder}/${width}-meu-agendamento.jpg`,fullPage:true});

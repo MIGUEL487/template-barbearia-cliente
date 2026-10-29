@@ -1,293 +1,43 @@
 "use client";
-import type { Variants } from "motion/react";
+import Link from 'next/link';
+import {AnimatePresence,motion,useReducedMotion} from 'motion/react';
+import {DemoBadge} from '@/components/demo-watermark';
+import {formatCurrency} from '@/lib/utils';
+import {useLiveBooking} from './use-live-booking';
 
-import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { DemoBadge } from "@/components/demo-watermark";
-import Image from "next/image";
-import Link from "next/link";
-import { motion, AnimatePresence } from "motion/react";
-import {
-  Scissors,
-  Calendar as CalendarIcon,
-  Clock,
-  User,
-  ShieldCheck,
-  ChevronLeft,
-  ChevronRight,
-  Check,
-  AlertCircle,
-  Download,
-  Sparkles,
-  Lock,
-  ArrowRight,
-  RefreshCw,
-} from "lucide-react";
-import {
-  supabase,
-  getBarbershopId,
-  getMissingClientEnvVars,
-} from "@/lib/supabase";
-import {
-  formatCurrency,
-  formatDuration,
-  formatLocalDate,
-  fixMojibake,
-} from "@/lib/utils";
-import confetti from "canvas-confetti";
-
-/* ─── animações ─── */
-const pageVariants: Variants = {
-  initial: { opacity: 0, y: 24 },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
-  },
-  exit: { opacity: 0, y: -16, transition: { duration: 0.25 } },
-};
-
-const fadeUp: Variants = {
-  initial: { opacity: 0, y: 20 },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
-  },
-};
-
-interface Barber {
-  id: string | null;
-  name: string;
-  bio: string | null;
-  avatar_url?: string | null;
-}
-
-interface Service {
-  id: string;
-  name: string;
-  description: string | null;
-  duration_minutes: number;
-  price: number;
-}
-
-interface AvailabilitySlot {
-  barber_id: string;
-  start_time: string;
-  end_time: string;
-}
-
-import { useLiveBooking } from "./use-live-booking";
-import { LiveStep1 } from "./live-step-1";
-import { LiveStep2 } from "./live-step-2";
-import { LiveStep3 } from "./live-step-3";
-import {LiveChoices} from './live-choices';
-import { LiveStep4 } from "./live-step-4";
-import { LiveStep5 } from "./live-step-5";
-
-export default function LiveBooking() {
-  const state = useLiveBooking();
-  const {
-    step,
-    setStep,
-    barbers,
-    setBarbers,
-    services,
-    setServices,
-    depositPct,
-    setDepositPct,
-    isLoadingInitial,
-    setIsLoadingInitial,
-    errorBanner,
-    setErrorBanner,
-    selectedBarber,
-    setSelectedBarber,
-    selectedServices,
-    setSelectedServices,
-    selectedDate,
-    setSelectedDate,
-    selectedSlot,
-    setSelectedSlot,
-    availableSlots,
-    setAvailableSlots,
-    isLoadingSlots,
-    setIsLoadingSlots,
-    customerName,
-    setCustomerName,
-    customerPhone,
-    setCustomerPhone,
-    customerEmail,
-    setCustomerEmail,
-    paymentOption,
-    setPaymentOption,
-    paymentMethod,
-    setPaymentMethod,
-    acceptedTerms,
-    setAcceptedTerms,
-    marketingConsent,
-    setMarketingConsent,
-    isSubmitting,
-    setIsSubmitting,
-    bookingToken,
-    setBookingToken,
-    holdExpiresAt,
-    setHoldExpiresAt,
-    countdownSeconds,
-    setCountdownSeconds,
-    missingEnv,
-    selectedBarberId,
-    fetchAvailability,
-    totalPrice,
-    totalDuration,
-    depositAmount,
-    payNowAmount,
-    payLaterAmount,
-    toggleService,
-    handleConfirmBooking,
-    upcomingDays,
-    stepsHeader,
-  } = state;
-  return (
-    <main className="booking-live min-h-screen bg-bg text-text pb-32">
-      {/* Header Fixo */}
-      <header className="fixed top-0 inset-x-0 z-50 bg-bg  border-b border-hairline">
-        <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-text-muted hover:text-text text-xs font-medium transition-colors"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            <span>Voltar</span>
-          </Link>
-          <div className="flex items-center gap-2 text-xs font-serif font-bold text-text">
-            <Scissors className="w-4 h-4 text-accent" />
-            <span>Agendamento</span>
-          </div>
-        </div>
-      </header>
-
-      <div className="max-w-4xl mx-auto px-4 pt-24">
-        {/* Indicador de Etapas */}
-        {step <= 4 && (
-          <div className="mb-12">
-            <div className="flex items-center justify-between relative max-w-xl mx-auto">
-              <div className="absolute top-2/2 left-6 right-6 -translate-y-1/2 h-[2px] bg-surface-2 -z-0" />
-              {stepsHeader.map((s) => {
-                const isActive = step === s.num;
-                const isPast = step > s.num;
-                return (
-                  <div
-                    key={s.num}
-                    className="relative z-10 flex flex-col items-center"
-                  >
-                    <motion.button
-                      onClick={() => isPast && setStep(s.num as any)}
-                      disabled={!isPast}
-                      className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs transition-all ${
-                        isActive
-                          ? "bg-accent text-accent-contrast shadow-glow scale-110"
-                          : isPast
-                            ? "bg-accent/20 text-accent cursor-pointer"
-                            : "bg-surface-2 text-text-muted cursor-not-allowed"
-                      }`}
-                      whileTap={isPast ? { scale: 0.92 } : undefined}
-                    >
-                      {isPast ? (
-                        <Check className="w-4 h-4 stroke-[3]" />
-                      ) : (
-                        s.num
-                      )}
-                    </motion.button>
-                    <span
-                      className={`text-xs font-semibold mt-2 ${
-                        isActive
-                          ? "text-accent"
-                          : isPast
-                            ? "text-text"
-                            : "text-text-muted"
-                      }`}
-                    >
-                      {s.label}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* Chip do Barbeiro */}
-        {step > 1 && step <= 4 && selectedBarber && (
-          <motion.div
-            className="flex justify-center mb-8"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <div className="inline-flex items-center gap-4 bg-surface-2 px-6 py-2 rounded-full text-xs">
-              <span className="text-text-muted">Profissional:</span>
-              <strong className="text-text font-serif">
-                {selectedBarber.name}
-              </strong>
-              <button
-                onClick={() => setStep(1)}
-                className="text-accent hover:underline font-bold text-xs ml-2"
-              >
-                Trocar
-              </button>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Erro */}
-        {errorBanner && (
-          <motion.div
-            className="mb-8 p-4 rounded-[20px] bg-danger/10 text-danger text-xs flex items-center gap-4"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <AlertCircle className="w-4 h-4 shrink-0" />
-            <span className="flex-1">{errorBanner}</span>
-          </motion.div>
-        )}
-
-        <AnimatePresence mode="wait">
-          {/* ETAPA 1 */}
-          {step === 1 && <LiveStep1 key="step1" state={state} />}
-
-          {/* ETAPA 2 */}
-          {step === 2 && <LiveChoices key="step2" state={state} />}
-
-          {/* ETAPA 3 */}
-          {step === 3 && <LiveChoices key="step3" state={state} />}
-
-          {/* ETAPA 4 */}
-          {step === 4 && <LiveStep4 key="step4" state={state} />}
-
-          {/* ETAPA 5 */}
-          {step === 5 && <LiveStep5 key="step5" state={state} />}
-        </AnimatePresence>
-      </div>
-
-      {/* Barra Inferior Fixa Global para Etapas 2 e 3 (fora do AnimatePresence com transform dos steps) */}
-      <AnimatePresence>
-        {(step === 2 || step === 3) && (
-          <motion.div
-            key="bottom-floating-bar"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 24 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed bottom-6 inset-x-0 z-40 flex justify-center px-4 pointer-events-none"
-          >
-            <div className="w-full max-w-2xl bg-bg/90  border border-hairline rounded-full px-6 py-4 flex items-center justify-between shadow-soft pointer-events-auto">
-              <AnimatePresence mode="wait">
-                {step === 2 && <LiveStep2 key="step2" state={state} />}
-
-                {step === 3 && <LiveStep3 key="step3" state={state} />}
-              </AnimatePresence>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </main>
-  );
+const titles=['Profissional','Serviço','Horário','Confira','Concluído'];
+const time=(iso:string)=>new Date(iso).toLocaleTimeString('pt-BR',{timeZone:'America/Sao_Paulo',hour:'2-digit',minute:'2-digit'});
+export default function LiveBooking(){
+ const s=useLiveBooking(),reduced=useReducedMotion();
+ const disabled=s.isLoadingInitial||s.missingEnv.length>0||s.isSubmitting||(s.step===1&&!s.selectedBarber)||(s.step===2&&!s.selectedServices.length)||(s.step===3&&(!s.selectedSlot||s.isLoadingSlots))||(s.step===4&&(!s.acceptedTerms||!s.customerName.trim()||!s.customerPhone.trim()));
+ return <main className="booking-shell">
+  <Link className="brand" href="/">Auto Stilo<span>Voltar ao início</span></Link>
+  <ol className="step-progress" aria-label="Etapas">{titles.slice(0,4).map((title,i)=><li key={title} aria-current={i===s.step-1?'step':undefined}>{i+1}<span>{title}</span></li>)}</ol>
+  <h1>{s.step===5?'Pré-reserva criada':titles[s.step-1]}</h1>
+  {s.errorBanner&&<p className="demo-alert" role="alert">{s.errorBanner}</p>}
+  {s.isLoadingInitial&&<p role="status">Carregando agendamento…</p>}
+  <AnimatePresence mode="wait"><motion.div key={s.step} initial={{opacity:0,x:reduced?0:16}} animate={{opacity:1,x:0}} exit={{opacity:0,x:reduced?0:-16}} transition={{duration:.18}}>
+   {s.step===1&&<fieldset><legend>Com quem você quer cortar?</legend>
+    {s.barbers.map(b=><label className="choice" key={b.id}><input type="radio" name="barber" checked={s.selectedBarber?.id===b.id} onChange={()=>s.setSelectedBarber(b)}/><span><strong>{b.name}</strong><small>{b.bio}</small></span></label>)}
+    {!!s.barbers.length&&<label className="choice"><input type="radio" name="barber" checked={s.selectedBarber!==null&&s.selectedBarber.id===null} onChange={()=>s.setSelectedBarber({id:null,name:'Primeiro disponível',bio:null})}/><span><strong>Sem preferência</strong><small>Escolher o primeiro profissional disponível.</small></span></label>}
+   </fieldset>}
+   {s.step===2&&<fieldset aria-label="Serviços"><legend>Escolha os serviços</legend>{s.services.map(service=><label className="choice" key={service.id}><input type="checkbox" checked={s.selectedServices.some(x=>x.id===service.id)} onChange={()=>s.toggleService(service)}/><span><strong>{service.name}</strong><small>{service.duration_minutes} min · {formatCurrency(Number(service.price))}</small></span></label>)}{!s.services.length&&<p>Nenhum serviço disponível. Fale com a barbearia.</p>}</fieldset>}
+   {s.step===3&&<fieldset aria-label="Horários"><legend>Data e horário</legend>
+    <label className="field-label">Data<input type="date" value={s.selectedDate} min={s.upcomingDays[0]?.iso} onChange={e=>s.setSelectedDate(e.target.value)} required/></label>
+    {s.isLoadingSlots?<p role="status">Consultando horários…</p>:<div className="time-choices">{s.availableSlots.map(slot=><button type="button" aria-pressed={s.selectedSlot?.start_time===slot.start_time&&s.selectedSlot?.barber_id===slot.barber_id} key={slot.barber_id+slot.start_time} onClick={()=>s.setSelectedSlot(slot)}>{time(slot.start_time)}{s.selectedBarber?.id===null&&(' · '+(s.barbers.find(b=>b.id===slot.barber_id)?.name || 'Profissional disponível'))}</button>)}</div>}
+    {!s.isLoadingSlots&&!s.availableSlots.length&&<p role="status">Não há horários disponíveis nesta data.</p>}
+    <p>Horários de Brasília · America/Sao_Paulo.</p>
+   </fieldset>}
+   {s.step===4&&<form id="booking-confirmation" onSubmit={e=>{e.preventDefault();void s.handleConfirmBooking()}}>
+    <h2>Resumo do agendamento</h2><dl className="booking-summary"><dt>Serviço</dt><dd>{s.selectedServices.map(x=>x.name).join(', ')}</dd><dt>Profissional</dt><dd>{s.barbers.find(b=>b.id===s.selectedSlot?.barber_id)?.name || s.selectedBarber?.name}</dd><dt>Quando</dt><dd>{s.selectedDate.split('-').reverse().join('/')} às {s.selectedSlot&&time(s.selectedSlot.start_time)}</dd><dt>Valor</dt><dd>{formatCurrency(s.totalPrice)}</dd><dt>Sinal ({s.depositPct}%)</dt><dd>{formatCurrency(s.depositAmount)}</dd></dl>
+    <label className="field-label">Nome completo<input value={s.customerName} onChange={e=>s.setCustomerName(e.target.value)} placeholder="Seu nome" autoComplete="name" required/></label>
+    <label className="field-label">WhatsApp<input type="tel" value={s.customerPhone} onChange={e=>s.setCustomerPhone(e.target.value)} placeholder="(11) 99999-9999" autoComplete="tel" required/></label>
+    <label className="field-label">E-mail (opcional)<input type="email" value={s.customerEmail} onChange={e=>s.setCustomerEmail(e.target.value)} placeholder="seuemail@exemplo.com" autoComplete="email"/></label>
+    <label className="choice"><input type="checkbox" checked={s.acceptedTerms} onChange={e=>s.setAcceptedTerms(e.target.checked)} required/>Concordo com os Termos de Uso e a Política de Cancelamento.</label>
+    <label className="choice"><input type="checkbox" checked={s.marketingConsent} onChange={e=>s.setMarketingConsent(e.target.checked)}/>Aceito receber lembretes e promoções via WhatsApp.</label>
+   </form>}
+   {s.step===5&&<div className="demo-success" role="status"><DemoBadge/><span aria-hidden="true">✓</span><p>Seu horário está separado por 15 minutos.<br/>A confirmação do pagamento ainda está pendente.</p>{s.holdExpiresAt&&<p>Pré-reserva ativa: {Math.floor(s.countdownSeconds/60)}:{String(s.countdownSeconds%60).padStart(2,'0')}</p>}<Link className="cta" href={'/meu-agendamento?token='+encodeURIComponent(s.bookingToken)}>Ver meu agendamento</Link><p>Fale com a barbearia para concluir.</p></div>}
+  </motion.div></AnimatePresence>
+  {s.step<5&&<div className="booking-actions"><p>{s.selectedServices.map(x=>x.name).join(', ') || 'Selecione um serviço'}<strong>{formatCurrency(s.totalPrice)}</strong></p><div className="booking-action-buttons">{s.step>1&&<button type="button" className="button-secondary" disabled={s.isSubmitting} onClick={()=>s.setStep((s.step-1) as 1|2|3|4)}>Voltar</button>}{s.step===4?<button className="cta" type="submit" form="booking-confirmation" disabled={Boolean(disabled)}>{s.isSubmitting?'Reservando…':'Confirmar reserva'}</button>:<button className="cta" type="button" disabled={Boolean(disabled)} onClick={()=>s.setStep((s.step+1) as 2|3|4)}>Continuar</button>}</div></div>}
+ </main>;
 }
