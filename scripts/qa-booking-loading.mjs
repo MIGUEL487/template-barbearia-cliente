@@ -4,6 +4,10 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});
 const barber='22222222-2222-2222-2222-222222222221',service='33333333-3333-3333-3333-333333333331';
+async function assertSelectors(page){
+ const boxes=await page.locator('.choice input:is([type="radio"],[type="checkbox"])').evaluateAll(inputs=>inputs.map(input=>{const box=input.getBoundingClientRect();return {width:box.width,height:box.height};}));
+ assert(boxes.length>0);for(const box of boxes)assert(Math.abs(box.width-24)<.1&&Math.abs(box.height-24)<.1,JSON.stringify(box));
+}
 await fs.mkdir('docs/booking-glass',{recursive:true});
 try{
  for(const width of [1440,390,320]){
@@ -30,9 +34,13 @@ try{
   assert.deepEqual(await page.locator('.brand-loading').first().evaluate(el=>({ring:el.getBoundingClientRect().width,logo:el.querySelector('img').getBoundingClientRect().width})),{ring:80,logo:48});
   await page.screenshot({path:`docs/booking-glass/${width}-loading.png`,fullPage:true});
   releaseCatalog();await page.getByText('Carlos',{exact:true}).click();
+  await assertSelectors(page);
+  await page.locator('fieldset').screenshot({path:`docs/booking-glass/${width}-professionals.png`});
   assert.match(await page.locator('.choice').first().evaluate(el=>getComputedStyle(el).backgroundImage),/linear-gradient/);
   await page.getByRole('button',{name:'Continuar',exact:true}).click();
   await page.getByRole('checkbox',{name:/Corte fixture/}).check();
+  await assertSelectors(page);
+  await page.locator('fieldset').screenshot({path:`docs/booking-glass/${width}-services.png`});
   assert.match(await page.locator('.choice').first().evaluate(el=>getComputedStyle(el).backgroundImage),/linear-gradient/);
   await page.getByRole('button',{name:'Continuar',exact:true}).click();
   await page.locator('[data-booking-skeleton="slots"]').waitFor();
@@ -58,6 +66,8 @@ try{
   assert.equal(await page.getByRole('button',{name:'Continuar',exact:true}).evaluate(el=>getComputedStyle(el).outlineStyle),'solid');
   await page.getByRole('button',{name:'Continuar',exact:true}).click();
   await page.getByPlaceholder('Seu nome').fill('Fixture');await page.getByPlaceholder('(11) 99999-9999').fill('11999999999');await page.locator('input[type=checkbox]').first().check();
+  await assertSelectors(page);
+  await page.locator('#booking-confirmation').screenshot({path:`docs/booking-glass/${width}-confirmation.png`});
   await page.getByRole('button',{name:'Confirmar reserva',exact:true}).click();
   await page.getByText('Pré-reserva criada',{exact:true}).waitFor();assert(hold);assert.deepEqual(errors,[]);
   console.log({width,skeletons:true,glass:true,localFonts:true,hold:true});await page.close();
