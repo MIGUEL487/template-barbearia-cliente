@@ -27,7 +27,7 @@ export function Hero(){
   history.pushState(history.state,'','#assinatura');engine.scrollTo('#assinatura');
   const target=document.getElementById('assinatura');target?.setAttribute('tabindex','-1');target?.focus({preventScroll:true});
  };
- const setup=async(preserveProgress=false)=>{const resume=preserveProgress?pinnedProgress():null;const gen=++generation;cleanup();if(!root.current||!canvas.current||!poster.current)return;const el=root.current,copy=el.querySelector('.hero-copy')!,shade=el.querySelector('.shade')!,cue=el.querySelector('.scroll-cue')!
+ const setup=async(preserveProgress=false)=>{const resume=preserveProgress?pinnedProgress():null;const gen=++generation;cleanup();if(!root.current||!canvas.current||!poster.current)return;const el=root.current,copy=el.querySelector('.hero-copy')!,shade=el.querySelector('.shade')!
  engine.gsap.set([copy.children,shade],{clearProps:'all'});el.classList.toggle('native-motion',!enabled)
  let anchor:HTMLElement|null=null;try{anchor=location.hash?document.getElementById(decodeURIComponent(location.hash.slice(1))):null}catch{}
  if(!enabled||(anchor&&!el.contains(anchor))){el.classList.add('native-motion');nav(true);return}
@@ -36,7 +36,7 @@ export function Hero(){
  let drawn=-1,scrollProgress=0,finalVisible=false,releaseAt=0,hiddenAt=0,renderCopy=()=>{}
  let endingTimer:ReturnType<typeof engine.gsap.delayedCall>|undefined
  try{const player=await framePlayer(el,canvas.current,poster.current,color=>{const ink=[10,10,12];const out='#'+ink.map((base,c)=>Math.round(base*.96+parseInt(color.slice(1+c*2,3+c*2),16)*.04).toString(16).padStart(2,'0')).join('');el.style.setProperty('--exit-color',out)},index=>{drawn=index;if(index===(mobile?frames.mobile.count:frames.pc.count)-1){if(!finalVisible&&!endingTimer){releaseAt=performance.now()+1000;endingTimer=engine.gsap.delayedCall(.35,()=>{finalVisible=true;endingTimer=undefined;renderCopy()})}}else{endingTimer?.kill();endingTimer=undefined;finalVisible=false;releaseAt=0}renderCopy()});if(gen!==generation){player.dispose();return}
- const tl=engine.gsap.timeline({paused:true}).to(shade,{opacity:1,duration:.7},0).to(copy.children,{opacity:1,y:0,stagger:.12,duration:.6,ease:'power2.out'},.1).to(cue,{opacity:0,duration:.2},0).timeScale(2)
+ const tl=engine.gsap.timeline({paused:true}).to(shade,{opacity:1,duration:.7},0).to(copy.children,{opacity:1,y:0,stagger:.12,duration:.6,ease:'power2.out'},.1).timeScale(2)
  type Ending='idle'|'waiting'|'reading'|'done'
  let ending:Ending='idle',releaseScroll=()=>{}
  let readingTimer:ReturnType<typeof engine.gsap.delayedCall>|undefined,waitingTimer:ReturnType<typeof engine.gsap.delayedCall>|undefined
@@ -110,7 +110,6 @@ export function Hero(){
  <canvas ref={canvas} aria-hidden="true" style={{opacity:0}}/><div className="shade"/>
  <a href="#assinatura" className="button-secondary hero-skip-intro" onClick={event=>{if(skipIntro.current){event.preventDefault();skipIntro.current()}}}>Pular introdução <span aria-hidden="true">↓</span></a>
  <div className="hero-copy"><p>BARBEARIA · MONTE SIÃO — MG</p><h1 id="hero-title">Seu estilo,<br/>do corte ao <em>detalhe.</em></h1><p>Atendimento sob medida, ambiente confortável e cuidado em cada detalhe. Agende seu horário em poucos toques.</p><div className="hero-buttons"><Link className="cta" href="/agendar">Agendar horário</Link><a className="text-link" href="#servicos">Ver serviços</a></div></div>
- <p className="scroll-cue">O cuidado começa aqui <span aria-hidden="true">↓</span></p>
  <noscript><style>{'.hero-copy > *,.shade{opacity:1!important;transform:none!important}.hero-track{height:auto!important}'}</style></noscript>
  </section></div>;
 }

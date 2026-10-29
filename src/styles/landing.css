@@ -1264,7 +1264,11 @@ body:has(.hero-track) .mobile-actions{display:none}html:not(.hero-nav-visible) b
 .cta:hover{transform:none}.scroll-cue::after{content:'';display:block;margin-top:16px;width:80px;height:8px;background:repeating-linear-gradient(120deg,#fff 0 16px,#0a0a0c 16px 32px,#7c3aed 32px 48px);animation:cue-stripe 1.6s linear infinite}.hero-nav-visible .scroll-cue::after{animation:none}@keyframes cue-stripe{50%{translate:8px 0}}
 
 .scroll-cue{background:#0a0a0cbb;padding:8px 16px;border-radius:16px}
-.hero-skip-intro{position:absolute;top:24px;right:24px;z-index:6;gap:16px;background:#0a0a0cbb;color:white;border-color:currentColor}
+.hero-skip-intro{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));left:50%;right:auto;transform:translateX(-50%);z-index:60;gap:16px;max-width:calc(100vw - 32px);padding:16px 24px;border-radius:32px;background:rgba(255,255,255,.92);color:#211a2b;border:1px solid rgba(255,255,255,.95);box-shadow:0 8px 32px rgba(20,10,32,.16),inset 0 1px 0 white;backdrop-filter:blur(16px);animation:skip-notice-in .4s ease-out both;white-space:nowrap}
+.hero-nav-visible .hero-skip-intro{visibility:hidden;pointer-events:none}
+@keyframes skip-notice-in{from{opacity:0;translate:0 -16px}to{opacity:1;translate:0 0}}
+@media(prefers-reduced-motion:reduce){.hero-skip-intro{animation:none}}
+.motion-off .hero-skip-intro{animation:none}
 .cinematic.native-motion .hero-skip-intro{display:none}
 
 .review-stars{display:flex;gap:8px;color:var(--accent);margin-top:24px}.review-score{font-size:24px!important;color:var(--ink)!important}

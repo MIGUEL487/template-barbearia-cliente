@@ -16,10 +16,11 @@ export async function framePlayer(root:HTMLElement,canvas:HTMLCanvasElement,post
  const priority=(i:number)=>Math.abs(i-cursor())+(direction*(i-cursor())<0?set.count:0)
  const resize=()=>{
   const w=root.clientWidth,h=mobile?canvas.clientHeight:root.clientHeight;if(!w||!h)return
-  const ratio=Math.min(mobile?1:1.25,devicePixelRatio,set.width/w,set.height/h)
+  const ratio=Math.min(mobile?1:2,devicePixelRatio,set.width/w,set.height/h)
   const width=Math.max(1,Math.round(w*ratio)),height=Math.max(1,Math.round(h*ratio))
   if(canvas.width===width&&canvas.height===height&&!dimensionsDirty)return
   canvas.width=width;canvas.height=height
+  ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high'
   const scale=Math.max(width/set.width,height/set.height);rect=[(width-set.width*scale)/2,(height-set.height*scale)/2,set.width*scale,set.height*scale];invalidate();dimensionsDirty=true
   // Resizing clears a canvas. Repaint the retained bitmap before the browser paints,
   // rather than showing a black/empty surface while waiting for the next ticker.
@@ -29,7 +30,8 @@ export async function framePlayer(root:HTMLElement,canvas:HTMLCanvasElement,post
  }
  const ro=new ResizeObserver(resize);ro.observe(canvas);resize()
  const visibility=()=>{due=0;if(!document.hidden)invalidate()};document.addEventListener('visibilitychange',visibility)
- const radius=4,ahead=mobile?8:6
+ const memory=(navigator as Navigator&{deviceMemory?:number}).deviceMemory;
+ const radius=4,ahead=mobile?8:memory&&memory<=4?6:8
  const inWindow=(i:number)=>Math.abs(i-cursor())<=radius||(direction>0?i>cursor()&&i-cursor()<=ahead:i<cursor()&&cursor()-i<=ahead)
  function trim(){for(const [i,b]of bitmaps){if(!inWindow(i)&&i!==drawn){close(b);bitmaps.delete(i)}}}
  async function decodeBlob(blob:Blob):Promise<Decoded>{

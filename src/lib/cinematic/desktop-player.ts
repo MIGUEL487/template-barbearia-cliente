@@ -10,7 +10,7 @@ export function desktopPlayer(root:HTMLElement,canvas:HTMLCanvasElement,poster:H
  let handle:number|undefined,fallback:Awaited<ReturnType<typeof framePlayer>>|undefined
  const listeners:(()=>void)[]=[]
  const listen=(event:string,fn:()=>void)=>{video.addEventListener(event,fn);listeners.push(()=>video.removeEventListener(event,fn))}
- const follow=gsap.quickTo(demand,'progress',{duration:.28,ease:'power2.out'})
+ const follow=gsap.quickTo(demand,'progress',{duration:.18,ease:'power2.out'})
  const logical=(time:number)=>Math.max(0,Math.min(set.count-1,direction>0?Math.round(time*30):set.count-1-Math.round(time*30)))
  const goal=()=>Math.round(demand.progress*(set.count-1))
  const remaining=()=>direction*(goal()-drawn)
