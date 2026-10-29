@@ -8,6 +8,12 @@
 }
 .booking-scope .booking-shell { padding-bottom: 240px; }
 .booking-scope .booking-shell h1 { font-weight: 500; }
+.booking-scope .service-choice { flex-wrap: wrap; gap: 24px; }
+.service-choice-main { display: flex; align-items: center; gap: 16px; flex: 1 1 240px; cursor: pointer; min-width: 0; }
+.service-quantity { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.service-quantity button { width: 48px; height: 48px; }
+.service-quantity output { min-width: 32px; text-align: center; font-variant-numeric: tabular-nums; }
+.service-quantity small { margin: 0; }
 .booking-scope .booking-shell :is(button, input) { font-family: var(--font-sans), sans-serif; }
 .booking-scope .booking-shell :is(button, a, input):focus-visible {
   outline: 2px solid var(--booking-purple);

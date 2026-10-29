@@ -6,6 +6,7 @@ import {useMotionEnabled} from '@/components/motion-preferences';
 import {supabase,getBarbershopId,getMissingClientEnvVars} from '@/lib/supabase';
 import {reportSupabaseError} from '@/lib/booking-diagnostics';
 import {BrandLoading} from './booking-loading';
+import {availabilityRpc} from '@/lib/booking-services';
 
 const dayKey=(year:number,month:number,day:number)=>`${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
 const todayInBrazil=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
@@ -25,7 +26,7 @@ export function BookingCalendar({value,barberId,serviceIds,onChange,onAvailabili
   if(getMissingClientEnvVars().length||!services){setFailed(true);setLoading(false);return}
   const dates=Array.from({length:count},(_,i)=>dayKey(year,monthIndex,i+1)).filter(date=>date>=today),result:Record<string,boolean>={};let cursor=0;
   const worker=async()=>{while(!cancelled&&cursor<dates.length){const date=dates[cursor++];try{
-   const {data,error}=await supabase.rpc('get_availability',{p_barbershop_id:getBarbershopId(),p_barber_id:barberId,p_date:date,p_service_ids:services.split(',')});
+   const {data,error}=await supabase.rpc(availabilityRpc(services.split(',')),{p_barbershop_id:getBarbershopId(),p_barber_id:barberId,p_date:date,p_service_ids:services.split(',')});
    if(cancelled)return;if(error)throw error;result[date]=Array.isArray(data)&&data.length>0;
   }catch(error){if(cancelled)return;reportSupabaseError('Calendário/get_availability',error);result[date]=false;setFailed(true)}}};
   void Promise.all(Array.from({length:3},worker)).then(()=>{if(!cancelled){setDays(result);setLoading(false)}});
@@ -36,7 +37,7 @@ export function BookingCalendar({value,barberId,serviceIds,onChange,onAvailabili
  const move=(delta:number)=>{setDirection(delta);const d=new Date(Date.UTC(year,monthIndex+delta,1));setMonth(dayKey(d.getUTCFullYear(),d.getUTCMonth(),1).slice(0,7))};
  const choose=async(date:string)=>{
   if(checking)return;setChecking(true);onAvailability(false);
-  try{const {data,error}=await supabase.rpc('get_availability',{p_barbershop_id:getBarbershopId(),p_barber_id:barberId,p_date:date,p_service_ids:services.split(',')});if(error)throw error;
+  try{const {data,error}=await supabase.rpc(availabilityRpc(services.split(',')),{p_barbershop_id:getBarbershopId(),p_barber_id:barberId,p_date:date,p_service_ids:services.split(',')});if(error)throw error;
    const available=Array.isArray(data)&&data.length>0;setDays(current=>({...current,[date]:available}));if(available)onChange(date);
   }catch(error){reportSupabaseError('Calendário/selecionar dia',error);setDays(current=>({...current,[date]:false}));setFailed(true)}finally{setChecking(false)}
  };

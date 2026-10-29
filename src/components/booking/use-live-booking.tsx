@@ -35,6 +35,7 @@ import {
 } from "@/lib/utils";
 import confetti from "canvas-confetti";
 import {reportSupabaseError, reportAvailability} from '@/lib/booking-diagnostics';
+import {availabilityRpc,hasServiceQuantities} from '@/lib/booking-services';
 
 /* ─── animações ─── */
 const pageVariants: Variants = {
@@ -90,6 +91,9 @@ export function useLiveBooking() {
   // Seleções do Usuário
   const [selectedBarber, setSelectedBarber] = useState<Barber | null>(null);
   const [selectedServices, setSelectedServices] = useState<Service[]>([]);
+  const [serviceQuantities,setServiceQuantities]=useState<Record<string,number>>({});
+  const requestedServiceIds=useMemo(()=>selectedServices.flatMap(service=>Array.from({length:serviceQuantities[service.id]||1},()=>service.id)),[selectedServices,serviceQuantities]);
+  const setServiceQuantity=(id:string,value:number)=>{setServiceQuantities(previous=>({...previous,[id]:Math.max(1,Math.min(6,value))}));setSelectedSlot(null);};
   const [selectedDate, setSelectedDate] = useState<string>(() => {
     const today = new Date(new Date().toLocaleString('en-US', {timeZone:'America/Sao_Paulo'}));
     const currentHour = today.getHours();
@@ -218,7 +222,7 @@ export function useLiveBooking() {
 
     try {
       const shopId = getBarbershopId();
-      const serviceIds = selectedServices.map((s) => s.id);
+      const serviceIds = requestedServiceIds;
 
       // Tenta chamar a RPC get_availability do Supabase
       const parameters = {
@@ -227,7 +231,7 @@ export function useLiveBooking() {
         p_date: selectedDate,
         p_service_ids: serviceIds,
       };
-      const { data, error } = await supabase.rpc("get_availability", parameters);
+      const { data, error } = await supabase.rpc(availabilityRpc(serviceIds), parameters);
       if(version!==availabilityVersion.current)return;
       reportAvailability({parameters, slots: Array.isArray(data) ? data.length : 0, ...(error ? {error: reportSupabaseError('get_availability',error)} : {})});
 
@@ -249,7 +253,7 @@ export function useLiveBooking() {
     } finally {
       if(version===availabilityVersion.current)setIsLoadingSlots(false);
     }
-  }, [selectedBarberId, selectedDate, selectedServices, missingEnv]);
+  }, [selectedBarberId, selectedDate, selectedServices, missingEnv,requestedServiceIds]);
 
   useEffect(() => {
     if (step === 3) {
@@ -270,9 +274,9 @@ export function useLiveBooking() {
     }
   }, [step, holdExpiresAt]);
 
-  const totalPrice = selectedServices.reduce((sum, s) => sum + s.price, 0);
+  const totalPrice = selectedServices.reduce((sum, s) => sum + Number(s.price)*(serviceQuantities[s.id]||1), 0);
   const totalDuration = selectedServices.reduce(
-    (sum, s) => sum + s.duration_minutes,
+    (sum, s) => sum + s.duration_minutes*(serviceQuantities[s.id]||1),
     0,
   );
   const depositAmount = Math.round(totalPrice * (depositPct / 100) * 100) / 100;
@@ -315,7 +319,7 @@ export function useLiveBooking() {
 
     try {
       const shopId = getBarbershopId();
-      const serviceIds = selectedServices.map((s) => s.id);
+      const serviceIds = requestedServiceIds;
 
       // Validação de UUID para evitar erro 22P02 no PostgreSQL se for "default-barber" ou outro placeholder
       const isValidUUID = (id: string | null | undefined): id is string =>
@@ -330,7 +334,7 @@ export function useLiveBooking() {
           ? selectedBarber.id
           : null;
 
-      const { data, error } = await supabase.rpc("create_booking_hold", {
+      const { data, error } = await supabase.rpc(hasServiceQuantities(serviceIds)?'create_group_booking_hold':'create_booking_hold', {
         p_barbershop_id: shopId,
         p_barber_id: targetBarber,
         p_starts_at: selectedSlot.start_time,
@@ -426,6 +430,7 @@ export function useLiveBooking() {
   ];
 
   return {
+    serviceQuantities,setServiceQuantity,requestedServiceIds,
     step,
     setStep,
     barbers,
