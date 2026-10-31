@@ -1,6 +1,7 @@
 import { DemoWatermark, watermarkEnabled } from "@/components/demo-watermark";
 import { MotionPreferences } from "@/components/motion-preferences";
 import { BookingDiagnostics } from '@/components/booking/diagnostics';
+import { SmoothScroll } from "@/components/smooth-scroll";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -63,7 +64,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`dark ${display.variable} ${manrope.variable}`}>
       <body className="min-h-screen bg-bg text-text antialiased selection:bg-accent selection:text-white font-sans">
-        <MotionPreferences>{children}</MotionPreferences>
+        <MotionPreferences>
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
+        </MotionPreferences>
         <DemoWatermark />
         <BookingDiagnostics />
       </body>

@@ -1,132 +1,226 @@
+"use client";
+
 import { ReviewCarousel } from "./review-carousel";
 import { ShopImage } from "./shop-image";
 import { ShopVideos } from "./shop-videos";
-import {ContactMap} from "./contact-map";
+import { ContactMap } from "./contact-map";
 import { Faq } from "./faq";
 import Link from "next/link";
 import { shop } from "@/config/demo";
+
 export function Proof() {
   return (
     <section className="proof section" aria-label="Avaliações no Google">
-      <p>
-        Quem senta na cadeira,
-        <br />
-        volta pelo cuidado.
-      </p>
-      <div>
-        <strong>
-          {shop.rating}
-          <span aria-label="5 estrelas">★★★★★</span>
-        </strong>
-        <p>
-          {shop.reviews} avaliações no Google · informação do briefing
+      <div className="proof-container">
+        <p className="proof-statement">
+          Quem senta na cadeira,<br />
+          retorna pela <span className="headline-italic">precisão.</span>
         </p>
+        <div className="proof-stats">
+          <strong className="rating-score">
+            {shop.rating}
+            <span className="rating-stars" aria-label="5 estrelas">★★★★★</span>
+          </strong>
+          <p className="rating-count">
+            {shop.reviews} avaliações no Google · Informação do atelier
+          </p>
+        </div>
       </div>
-      <p className="demo-note">Demonstração de apresentação</p>
     </section>
   );
 }
+
 export function Gallery() {
   return (
     <>
-    <section id="galeria" className="section gallery-section">
-      <div className="section-heading">
-        <h2>
-          Entre.
-          <br />
-          Fique à vontade.
-        </h2>
-        <p>
-          Concreto, luz e personalidade.
-          <br />
-          Um espaço com a nossa assinatura.
-        </p>
-      </div>
-      <figure className="space-window"><ShopImage name="espaco" alt="Interior Auto Stilo: balcão preto, piso claro e teto de LEDs"/><svg viewBox="0 0 400 200" aria-hidden="true"><path className="hex-line" d="M40 20 L100 20 L130 72 L100 124 L40 124 L10 72 Z M130 72 L190 72 L220 124 L190 176 L130 176 L100 124" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="800"/></svg><figcaption>O espaço Auto Stilo · Monte Sião</figcaption></figure>
-      <div className="gallery-stage">
-        <div
-          className="gallery-rail"
-          tabIndex={0}
-          role="region"
-          aria-label="Galeria do espaço, use as setas para rolar"
-        >
-          {([
-            ["acabamento", "O cuidado de perto", "Acabamento com máquina durante o atendimento"],
-          ] as const).map(([name, title, alt]) => (
-            <figure className="gallery-piece" key={name}>
-              <div className="reveal-mask"><ShopImage name={name} alt={alt} /></div>
-              <figcaption>{title}<small>Imagem fornecida pela Auto Stilo</small></figcaption>
+      <section id="galeria" className="section gallery-editorial">
+        <div className="section-container">
+          <div className="section-eyebrow">
+            <span className="eyebrow-index">05</span>
+            <span className="eyebrow-sep">{'//'}</span>
+            <span>O ESPAÇO & ATMOSFERA</span>
+          </div>
+
+          <div className="gallery-header-split">
+            <h2 className="gallery-title">
+              Entre. Fique à <span className="headline-italic">vontade.</span>
+            </h2>
+            <p className="gallery-desc">
+              Concreto aparente, iluminação pontual e acabamentos escuros. Um ambiente projetado para uma experiência de pausa e cuidado pessoal.
+            </p>
+          </div>
+
+          <div className="gallery-composition">
+            <figure className="space-hero-window">
+              <div className="window-crop">
+                <ShopImage name="espaco" alt="Interior da Barbearia Auto Stilo com bancadas, cadeiras hidráulicas e teto de LEDs" />
+              </div>
+              <figcaption className="window-caption">
+                <div className="caption-text">
+                  <span className="caption-main">O Atelier Auto Stilo</span>
+                  <span className="caption-sub">R. do Tanque, 395 · Monte Sião — MG</span>
+                </div>
+                <span className="caption-coord">[ 22°25&apos;42&quot;S · 46°34&apos;18&quot;W ]</span>
+              </figcaption>
             </figure>
-          ))}
+
+            <div className="gallery-mosaic">
+              <figure className="mosaic-card">
+                <div className="mosaic-crop">
+                  <ShopImage name="acabamento" alt="Detalhe do cuidado de perto: acabamento com máquina e navalha" />
+                </div>
+                <figcaption className="mosaic-caption">
+                  <h4>O Cuidado de Perto</h4>
+                  <p>Acabamento milimétrico na tesoura e navalhete.</p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-    <ShopVideos />
+      </section>
+
+      <ShopVideos />
     </>
   );
 }
+
 export function Reviews() {
   return <ReviewCarousel />;
 }
+
 export function Details() {
   return (
     <>
-      <section className="section how-section">
-        <h2>
-          Seu horário.
-          <br />
-          Sem complicar.
-        </h2>
-        <ol>
-          {[
-            "Escolha o profissional",
-            "Encontre seu serviço",
-            "Selecione o horário",
-            "Confira e confirme",
-          ].map((s, i) => (
-            <li key={s}>
-              <span>{i + 1}</span>
-              <h3>{s}</h3>
-            </li>
-          ))}
-        </ol>
-        <Link className="text-link" href="/agendar">
-          Começar meu agendamento
-        </Link>
-      </section>
-      <section id="contato" className="section contact-section">
-        <h2>
-          Nos vemos
-          <br />
-          na Auto Stilo.
-        </h2>
-        <div>
-          <address>{shop.address}</address>
-          <a href={shop.whatsapp}>{shop.phone}</a>
-          <p>
-            {shop.hours}
-          </p>
-          <a
-            className="cta"
-            href="https://www.google.com/maps/search/?api=1&query=Barbearia+Auto+Stilo+Monte+Si%C3%A3o"
-          >
-            Ver rota no mapa ↗
-          </a>
+      <section className="section how-editorial">
+        <div className="section-container">
+          <div className="section-eyebrow">
+            <span className="eyebrow-index">06</span>
+            <span className="eyebrow-sep">{'//'}</span>
+            <span>COMO FUNCIONA</span>
+          </div>
+
+          <div className="how-header">
+            <h2 className="how-title">
+              Seu horário reservado.<br />
+              <span className="headline-italic">Sem filas, sem complicação.</span>
+            </h2>
+          </div>
+
+          <div className="how-steps-grid">
+            {[
+              {
+                step: '01',
+                title: 'Escolha o profissional',
+                desc: 'Selecione o barbeiro da sua preferência ou opte pelo primeiro disponível.',
+              },
+              {
+                step: '02',
+                title: 'Selecione os serviços',
+                desc: 'Corte, barba, barboterapia ou combos completos para a sua rotina.',
+              },
+              {
+                step: '03',
+                title: 'Defina o dia e horário',
+                desc: 'Visualize os horários em tempo real no calendário dinâmico.',
+              },
+              {
+                step: '04',
+                title: 'Confirmação instantânea',
+                desc: 'Receba os detalhes e lembretes com hold garantido de 15 minutos.',
+              },
+            ].map((s) => (
+              <div className="how-step-card" key={s.step}>
+                <span className="step-number">{s.step}</span>
+                <h3 className="step-heading">{s.title}</h3>
+                <p className="step-body">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="how-cta-center">
+            <Link className="cta cta-large" href="/agendar">
+              <span>Iniciar meu agendamento</span>
+              <span className="cta-arrow">↗</span>
+            </Link>
+          </div>
         </div>
-        <ContactMap />
-      </section>
-      <Faq />
-      <section className="section final-cta">
-        <h2>
-          Seu próximo corte
-          <br />
-          começa aqui.
-        </h2>
-        <Link className="cta" href="/agendar">
-          Escolher meu horário ↗
-        </Link>
       </section>
 
+      <section id="contato" className="section contact-editorial">
+        <div className="section-container">
+          <div className="section-eyebrow">
+            <span className="eyebrow-index">07</span>
+            <span className="eyebrow-sep">{'//'}</span>
+            <span>LOCALIZAÇÃO & ATENDIMENTO</span>
+          </div>
+
+          <div className="contact-grid">
+            <div className="contact-info-panel">
+              <h2 className="contact-headline">
+                Nos vemos na <span className="headline-italic">Auto Stilo.</span>
+              </h2>
+              <p className="contact-lead">
+                Estamos localizados no bairro Bela Vista em Monte Sião, com fácil estacionamento e localização central.
+              </p>
+
+              <div className="contact-details-list">
+                <div className="detail-row">
+                  <span className="detail-label">ENDEREÇO</span>
+                  <address className="detail-value">{shop.address}</address>
+                </div>
+
+                <div className="detail-row">
+                  <span className="detail-label">HORÁRIO</span>
+                  <span className="detail-value">{shop.hours}</span>
+                </div>
+
+                <div className="detail-row">
+                  <span className="detail-label">CONTATO DIRETO</span>
+                  <a href={shop.whatsapp} className="detail-value whatsapp-link" target="_blank" rel="noopener noreferrer">
+                    {shop.phone} · Fale pelo WhatsApp ↗
+                  </a>
+                </div>
+              </div>
+
+              <div className="contact-actions">
+                <a
+                  className="button-editorial"
+                  href="https://www.google.com/maps/search/?api=1&query=Barbearia+Auto+Stilo+Monte+Si%C3%A3o"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Abrir no Google Maps ↗
+                </a>
+              </div>
+            </div>
+
+            <div className="contact-map-panel">
+              <ContactMap />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Faq />
+
+      <section className="section final-cta-editorial">
+        <div className="section-container final-cta-container">
+          <div className="cta-glow-spot" aria-hidden="true" />
+          <h2 className="final-cta-title">
+            Precisão em cada detalhe.<br />
+            Seu próximo corte <span className="headline-italic">começa aqui.</span>
+          </h2>
+          <p className="final-cta-sub">
+            Garanta seu horário com conveniência e experimente o padrão Auto Stilo.
+          </p>
+          <div className="final-cta-buttons">
+            <Link className="cta cta-xl" href="/agendar">
+              <span>Agendar meu horário</span>
+              <span className="cta-arrow">↗</span>
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
