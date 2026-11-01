@@ -1,0 +1,77 @@
+[
+  {
+    "viewport": "hero_360",
+    "dimensions": "360x640",
+    "headerHeight": 56,
+    "headerPasses": true,
+    "headerBg": "rgb(255, 255, 255)",
+    "logoHeight": 26,
+    "logoPasses": true,
+    "hasHorizontalOverflow": false,
+    "scrollTest": {
+      "initialScroll": 0,
+      "afterScroll": 300,
+      "scrollable": true
+    }
+  },
+  {
+    "viewport": "hero_390",
+    "dimensions": "390x844",
+    "headerHeight": 56,
+    "headerPasses": true,
+    "headerBg": "rgb(255, 255, 255)",
+    "logoHeight": 26,
+    "logoPasses": true,
+    "hasHorizontalOverflow": false,
+    "scrollTest": {
+      "initialScroll": 0,
+      "afterScroll": 300,
+      "scrollable": true
+    }
+  },
+  {
+    "viewport": "hero_768",
+    "dimensions": "768x1024",
+    "headerHeight": 64,
+    "headerPasses": true,
+    "headerBg": "rgb(255, 255, 255)",
+    "logoHeight": 26,
+    "logoPasses": true,
+    "hasHorizontalOverflow": false,
+    "scrollTest": {
+      "initialScroll": 0,
+      "afterScroll": 300,
+      "scrollable": true
+    }
+  },
+  {
+    "viewport": "hero_1280",
+    "dimensions": "1280x800",
+    "headerHeight": 64,
+    "headerPasses": true,
+    "headerBg": "rgb(255, 255, 255)",
+    "logoHeight": 26,
+    "logoPasses": true,
+    "hasHorizontalOverflow": false,
+    "scrollTest": {
+      "initialScroll": 0,
+      "afterScroll": 300,
+      "scrollable": true
+    }
+  },
+  {
+    "viewport": "hero_1440",
+    "dimensions": "1440x900",
+    "headerHeight": 64,
+    "headerPasses": true,
+    "headerBg": "rgb(255, 255, 255)",
+    "logoHeight": 26,
+    "logoPasses": true,
+    "hasHorizontalOverflow": false,
+    "scrollTest": {
+      "initialScroll": 0,
+      "afterScroll": 300,
+      "scrollable": true
+    }
+  }
+]

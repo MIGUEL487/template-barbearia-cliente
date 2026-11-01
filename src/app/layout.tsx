@@ -24,8 +24,8 @@ const manrope = localFont({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#080F25",
-  colorScheme: "dark",
+  themeColor: "#FFFFFF",
+  colorScheme: "light",
 };
 
 export const metadata: Metadata = {
@@ -62,8 +62,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`dark ${display.variable} ${manrope.variable}`}>
-      <body className="min-h-screen bg-bg text-text antialiased selection:bg-accent selection:text-white font-sans">
+    <html lang="pt-BR" className={`${display.variable} ${manrope.variable}`}>
+      <body className="min-h-screen bg-bg text-text antialiased selection:bg-accent selection:text-accent-contrast font-sans">
         <MotionPreferences>
           <SmoothScroll>
             {children}

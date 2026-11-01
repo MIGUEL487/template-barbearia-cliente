@@ -1,6 +1,7 @@
 @import "../styles/interface-motion.css";
 @import "../styles/landing.css";
 @import "../styles/design-tokens.css";
+@import "../styles/site-tokens.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -31,8 +32,8 @@ body {
 }
 
 html {
-  scroll-padding-top: 96px;
-  color-scheme: dark;
+  scroll-padding-top: 64px;
+  color-scheme: light;
 }
 
 body {
@@ -139,8 +140,8 @@ h1,
 h2,
 h3 {
   font-family: var(--font-sans), sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  letter-spacing: -0.025em;
   line-height: 1.15;
   color: var(--text);
 }

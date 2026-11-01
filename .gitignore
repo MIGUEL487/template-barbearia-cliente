@@ -39,3 +39,4 @@ next-env.d.ts
 .open-next/
 .dev.vars*
 !.dev.vars.example
+*.webm
