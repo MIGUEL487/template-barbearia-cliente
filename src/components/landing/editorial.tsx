@@ -12,19 +12,19 @@ export function Signature() {
   return (
     <section id="assinatura" className="section signature-editorial">
       <div className="editorial-container">
-        <div className="editorial-header">
+        <div className="editorial-header" data-3d-avoid="true">
           <div className="editorial-meta">
             <span className="meta-index">01</span>
             <span className="meta-separator">{'//'}</span>
             <span className="meta-title">DIRETRIZ DA MARCA</span>
           </div>
-          <h2 className="editorial-headline">
+          <h2 className="editorial-headline" data-3d-avoid="true">
             Cuidado que tem a sua <span className="headline-italic">assinatura.</span>
           </h2>
-          <p className="editorial-subhead">
+          <p className="editorial-subhead" data-3d-avoid="true">
             Um momento para renovar o corte, alinhar a barba e sair revigorado. Cada detalhe foi concebido para entregar pontualidade, privacidade e conforto sem concessões.
           </p>
-          <div className="editorial-action">
+          <div className="editorial-action" data-3d-avoid="true">
             <Link className="editorial-link" href="#historia">
               <span>Conheça a história e proposta</span>
               <span className="editorial-link-arrow">↓</span>
@@ -32,7 +32,7 @@ export function Signature() {
           </div>
         </div>
 
-        <div className="editorial-visual">
+        <div className="editorial-visual" data-3d-stage="detalhe-01">
           <figure className="editorial-photo-wrapper">
             <div className="photo-crop">
               <ShopImage name="corte-nuca" alt="Acabamento de corte e alinhamento milimétrico visto de trás" />
@@ -44,7 +44,7 @@ export function Signature() {
           </figure>
         </div>
 
-        <div className="editorial-pillars">
+        <div className="editorial-pillars" data-3d-avoid="true">
           {[
             {
               num: '01',
@@ -62,7 +62,7 @@ export function Signature() {
               desc: 'Técnicas de navalha tradicional, toalhas aquecidas e cosmética masculina de alto padrão.',
             },
           ].map((item) => (
-            <div className="pillar-row" key={item.num}>
+            <div className="pillar-row" key={item.num} data-3d-avoid="true">
               <span className="pillar-num">{item.num}</span>
               <div className="pillar-content">
                 <h3 className="pillar-title">{item.title}</h3>
@@ -139,12 +139,12 @@ export function Ritual() {
   return (
     <section ref={ref} className="ritual" aria-label="Nosso ritual em três etapas">
       <div className="ritual-grid">
-        <div className="ritual-photo">
+        <div className="ritual-photo" data-3d-stage="detalhe-02">
           <ShopImage name="corte-perfil" alt="Detalhe de corte, acabamento e barba bem cuidada" />
           <div className="photo-grain-overlay" aria-hidden="true" />
         </div>
 
-        <div className="ritual-words">
+        <div className="ritual-words" data-3d-avoid="true">
           {[
             [
               '01',
@@ -162,7 +162,7 @@ export function Ritual() {
               'O toque final com pomadas de fixação natural, óleo hidratante e alinhamento milimétrico para durar semanas.',
             ],
           ].map(([num, title, copy]) => (
-            <div className="ritual-step" key={title}>
+            <div className="ritual-step" key={title} data-3d-avoid="true">
               <div className="step-badge">
                 <span className="step-badge-num">ETAPA {num}</span>
                 <span className="step-badge-sep">/</span>
@@ -204,7 +204,7 @@ export function History() {
           <span>02 {'//'} TRADIÇÃO &amp; ATENÇÃO</span>
         </div>
         <div className="history-grid">
-          <figure className="history-figure">
+          <figure className="history-figure" data-3d-stage="equipe">
             <ShopImage name="reconhecimento" alt="Reconhecimento e certificados de barbearia recebidos pela Auto Stilo" />
             <figcaption className="history-caption">
               <span>QUALIDADE COMPROVADA</span>
@@ -212,25 +212,25 @@ export function History() {
             </figcaption>
           </figure>
 
-          <div className="history-narrative">
-            <h2 className="history-title">
+          <div className="history-narrative" data-3d-avoid="true">
+            <h2 className="history-title" data-3d-avoid="true">
               Seu estilo.<br />
               Nossa <span className="headline-italic">atenção.</span>
             </h2>
-            <p className="history-p">
+            <p className="history-p" data-3d-avoid="true">
               A Auto Stilo nasceu para resgatar o momento de cuidar de si como uma experiência de pausa, estilo e bem-estar. Não somos uma linha de produção: cada cadeira é um espaço de atendimento individual.
             </p>
-            <p className="history-p-secondary">
+            <p className="history-p-secondary" data-3d-avoid="true">
               Combinamos o rigor da barbearia tradicional à estética contemporânea, criando cortes duradouros e barbas com desenho impecável.
             </p>
 
-            <div className="history-milestones">
+            <div className="history-milestones" data-3d-avoid="true">
               {[
                 { title: 'Conhecer o seu estilo', desc: 'Entendimento personalizado das suas preferências e rotina.' },
                 { title: 'Cuidar de cada detalhe', desc: 'Execução técnica apurada da raiz às pontas da barba.' },
                 { title: 'Receber você outra vez', desc: 'Relacionamento de confiança contínuo a cada visita.' },
-              ].map((m, i) => (
-                <div className="milestone-item" key={m.title}>
+              ].map((m) => (
+                <div className="milestone-item" key={m.title} data-3d-avoid="true">
                   <div className="milestone-dot" />
                   <div className="milestone-text">
                     <h4>{m.title}</h4>

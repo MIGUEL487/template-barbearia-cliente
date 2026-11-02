@@ -40,3 +40,7 @@ next-env.d.ts
 .dev.vars*
 !.dev.vars.example
 *.webm
+
+# references / external assets
+refs/
+

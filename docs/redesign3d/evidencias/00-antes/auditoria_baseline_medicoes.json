@@ -1,0 +1,548 @@
+[
+  {
+    "viewport": "1440",
+    "step": "0%",
+    "targetY": 0,
+    "ratio": 0,
+    "canvasRect": {
+      "width": 1440,
+      "height": 900,
+      "top": 0,
+      "left": 0
+    },
+    "visibleTextsCount": 2,
+    "sampleTexts": [
+      {
+        "tag": "H1",
+        "text": "Seu estilo. Sua assinatura.Pre",
+        "top": 250.625,
+        "bottom": 468.140625,
+        "left": 128,
+        "right": 776.59375,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "Experiência autoral de barbear",
+        "top": 492.140625,
+        "bottom": 584.765625,
+        "left": 128,
+        "right": 668,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "viewport": "1440",
+    "step": "25%",
+    "targetY": 2755,
+    "ratio": 0.25,
+    "canvasRect": {
+      "width": 1440,
+      "height": 900,
+      "top": 0,
+      "left": 0
+    },
+    "visibleTextsCount": 6,
+    "sampleTexts": [
+      {
+        "tag": "H2",
+        "text": "Acolhida & Diagnóstico",
+        "top": 186.015625,
+        "bottom": 241.203125,
+        "left": 752,
+        "right": 1316,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "A conversa vem primeiro. Anali",
+        "top": 257.203125,
+        "bottom": 309.984375,
+        "left": 752,
+        "right": 1192,
+        "visible": true
+      },
+      {
+        "tag": "H2",
+        "text": "Corte & Barboterapia",
+        "top": 382.578125,
+        "bottom": 437.765625,
+        "left": 752,
+        "right": 1316,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "Precisão no corte à tesoura, a",
+        "top": 453.765625,
+        "bottom": 506.546875,
+        "left": 752,
+        "right": 1192,
+        "visible": true
+      },
+      {
+        "tag": "H2",
+        "text": "Finalização de Autor",
+        "top": 579.140625,
+        "bottom": 634.328125,
+        "left": 752,
+        "right": 1316,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "viewport": "1440",
+    "step": "50%",
+    "targetY": 5511,
+    "ratio": 0.5,
+    "canvasRect": {
+      "width": 1440,
+      "height": 900,
+      "top": 0,
+      "left": 0
+    },
+    "visibleTextsCount": 7,
+    "sampleTexts": [
+      {
+        "tag": "H2",
+        "text": "Seu estilo.Nossa atenção.",
+        "top": 268.171875,
+        "bottom": 378.546875,
+        "left": 725.1875,
+        "right": 1288,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "A Auto Stilo nasceu para resga",
+        "top": 398.546875,
+        "bottom": 480.109375,
+        "left": 725.1875,
+        "right": 1288,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "Combinamos o rigor da barbeari",
+        "top": 498.109375,
+        "bottom": 552.484375,
+        "left": 725.1875,
+        "right": 1288,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "Entendimento personalizado das",
+        "top": 614.078125,
+        "bottom": 636.171875,
+        "left": 743.1875,
+        "right": 1288,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "Execução técnica apurada da ra",
+        "top": 685.765625,
+        "bottom": 707.859375,
+        "left": 743.1875,
+        "right": 1288,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "viewport": "1440",
+    "step": "75%",
+    "targetY": 8266,
+    "ratio": 0.75,
+    "canvasRect": {
+      "width": 1440,
+      "height": 900,
+      "top": 0,
+      "left": 0
+    },
+    "visibleTextsCount": 11,
+    "sampleTexts": [
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "top": 86.953125,
+        "bottom": 134.953125,
+        "left": 320,
+        "right": 368,
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "top": 86.953125,
+        "bottom": 134.953125,
+        "left": 368,
+        "right": 416,
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "top": 86.953125,
+        "bottom": 134.953125,
+        "left": 736,
+        "right": 784,
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "top": 86.953125,
+        "bottom": 134.953125,
+        "left": 784,
+        "right": 832,
+        "visible": true
+      },
+      {
+        "tag": "H2",
+        "text": "A palavra dequem conhece.",
+        "top": 353.546875,
+        "bottom": 463.921875,
+        "left": 128,
+        "right": 572.796875,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "viewport": "1440",
+    "step": "100%",
+    "targetY": 11021,
+    "ratio": 1,
+    "canvasRect": {
+      "width": 1440,
+      "height": 900,
+      "top": 0,
+      "left": 0
+    },
+    "visibleTextsCount": 5,
+    "sampleTexts": [
+      {
+        "tag": "H2",
+        "text": "Precisão em cada detalhe.Seu p",
+        "top": -79.21875,
+        "bottom": 31.15625,
+        "left": 124,
+        "right": 1316,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "Garanta seu horário com conven",
+        "top": 51.15625,
+        "bottom": 112.34375,
+        "left": 456,
+        "right": 984,
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Animações: ativadas",
+        "top": 770.125,
+        "bottom": 818.125,
+        "left": 124,
+        "right": 257,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "© 2026 Auto Stilo Barbearia ·",
+        "top": 643.125,
+        "bottom": 663.921875,
+        "left": 807.40625,
+        "right": 1271.40625,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "Design & Engenharia com Three.",
+        "top": 679.921875,
+        "bottom": 700.71875,
+        "left": 807.40625,
+        "right": 1101.40625,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "viewport": "390",
+    "step": "0%",
+    "targetY": 0,
+    "ratio": 0,
+    "canvasRect": {
+      "width": 390,
+      "height": 844,
+      "top": 0,
+      "left": 0
+    },
+    "visibleTextsCount": 3,
+    "sampleTexts": [
+      {
+        "tag": "BUTTON",
+        "text": "☰ Menu",
+        "top": 3.5,
+        "bottom": 51.5,
+        "left": 304,
+        "right": 374,
+        "visible": true
+      },
+      {
+        "tag": "H1",
+        "text": "Seu estilo. Sua assinatura.Pre",
+        "top": 171.59490966796875,
+        "bottom": 287.56365966796875,
+        "left": 16,
+        "right": 374,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "Experiência autoral de barbear",
+        "top": 311.5625,
+        "bottom": 423.75,
+        "left": 16,
+        "right": 374,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "viewport": "390",
+    "step": "25%",
+    "targetY": 3419,
+    "ratio": 0.25,
+    "canvasRect": {
+      "width": 390,
+      "height": 844,
+      "top": 0,
+      "left": 0
+    },
+    "visibleTextsCount": 6,
+    "sampleTexts": [
+      {
+        "tag": "BUTTON",
+        "text": "☰ Menu",
+        "top": 3.5,
+        "bottom": 51.5,
+        "left": 304,
+        "right": 374,
+        "visible": true
+      },
+      {
+        "tag": "H2",
+        "text": "Acolhida & Diagnóstico",
+        "top": 175.171875,
+        "bottom": 248.765625,
+        "left": 176.6875,
+        "right": 366,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "A conversa vem primeiro. Anali",
+        "top": 264.765625,
+        "bottom": 396.71875,
+        "left": 176.6875,
+        "right": 366,
+        "visible": true
+      },
+      {
+        "tag": "H2",
+        "text": "Corte & Barboterapia",
+        "top": 468.3125,
+        "bottom": 541.90625,
+        "left": 176.6875,
+        "right": 366,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "Precisão no corte à tesoura, a",
+        "top": 557.90625,
+        "bottom": 716.25,
+        "left": 176.6875,
+        "right": 366,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "viewport": "390",
+    "step": "50%",
+    "targetY": 6838,
+    "ratio": 0.5,
+    "canvasRect": {
+      "width": 390,
+      "height": 844,
+      "top": 0,
+      "left": 0
+    },
+    "visibleTextsCount": 7,
+    "sampleTexts": [
+      {
+        "tag": "BUTTON",
+        "text": "☰ Menu",
+        "top": 3.5,
+        "bottom": 51.5,
+        "left": 304,
+        "right": 374,
+        "visible": true
+      },
+      {
+        "tag": "H2",
+        "text": "Seu estilo.Nossa atenção.",
+        "top": 190.671875,
+        "bottom": 264.265625,
+        "left": 40,
+        "right": 350,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "A Auto Stilo nasceu para resga",
+        "top": 284.265625,
+        "bottom": 447.390625,
+        "left": 40,
+        "right": 350,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "Combinamos o rigor da barbeari",
+        "top": 465.390625,
+        "bottom": 574.140625,
+        "left": 40,
+        "right": 350,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "Entendimento personalizado das",
+        "top": 635.734375,
+        "bottom": 679.921875,
+        "left": 58,
+        "right": 350,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "viewport": "390",
+    "step": "75%",
+    "targetY": 10257,
+    "ratio": 0.75,
+    "canvasRect": {
+      "width": 390,
+      "height": 844,
+      "top": 0,
+      "left": 0
+    },
+    "visibleTextsCount": 9,
+    "sampleTexts": [
+      {
+        "tag": "BUTTON",
+        "text": "☰ Menu",
+        "top": 3.5,
+        "bottom": 51.5,
+        "left": 304,
+        "right": 374,
+        "visible": true
+      },
+      {
+        "tag": "H2",
+        "text": "A palavra dequem conhece.",
+        "top": 6.890625,
+        "bottom": 80.484375,
+        "left": 16,
+        "right": 374,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "5,0 · 53 avaliações no Google",
+        "top": 104.484375,
+        "bottom": 126.578125,
+        "left": 16,
+        "right": 296,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "Avaliações do Google · citaçõe",
+        "top": 174.578125,
+        "bottom": 218.765625,
+        "left": 16,
+        "right": 296,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "“Excelente profissional, ambie",
+        "top": 250.765625,
+        "bottom": 368.1875,
+        "left": 16,
+        "right": 374,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "viewport": "390",
+    "step": "100%",
+    "targetY": 13676,
+    "ratio": 1,
+    "canvasRect": {
+      "width": 390,
+      "height": 844,
+      "top": 0,
+      "left": 0
+    },
+    "visibleTextsCount": 4,
+    "sampleTexts": [
+      {
+        "tag": "BUTTON",
+        "text": "☰ Menu",
+        "top": 3.5,
+        "bottom": 51.5,
+        "left": 304,
+        "right": 374,
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Animações: ativadas",
+        "top": 534.515625,
+        "bottom": 582.515625,
+        "left": 24,
+        "right": 157,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "© 2026 Auto Stilo Barbearia ·",
+        "top": 683.515625,
+        "bottom": 725.109375,
+        "left": 24,
+        "right": 366,
+        "visible": true
+      },
+      {
+        "tag": "P",
+        "text": "Design & Engenharia com Three.",
+        "top": 741.109375,
+        "bottom": 761.90625,
+        "left": 24,
+        "right": 318,
+        "visible": true
+      }
+    ]
+  }
+]

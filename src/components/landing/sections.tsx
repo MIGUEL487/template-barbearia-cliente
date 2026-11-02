@@ -203,17 +203,20 @@ export function Details() {
 
       <Faq />
 
-      <section className="section final-cta-editorial">
-        <div className="section-container final-cta-container">
+      <section className="section final-cta-editorial relative">
+        <div className="section-container final-cta-container relative" data-3d-avoid="true">
           <div className="cta-glow-spot" aria-hidden="true" />
-          <h2 className="final-cta-title">
+          {/* Palco 3D para apontar para o botão de agendamento final */}
+          <div data-3d-stage="agendar" className="pointer-events-none absolute left-1/2 top-4 h-32 w-32 -translate-x-1/2 opacity-0" aria-hidden="true" />
+          
+          <h2 className="final-cta-title" data-3d-avoid="true">
             Precisão em cada detalhe.<br />
             Seu próximo corte <span className="headline-italic">começa aqui.</span>
           </h2>
-          <p className="final-cta-sub">
+          <p className="final-cta-sub" data-3d-avoid="true">
             Garanta seu horário com conveniência e experimente o padrão Auto Stilo.
           </p>
-          <div className="final-cta-buttons">
+          <div className="final-cta-buttons" data-3d-avoid="true">
             <Link className="cta cta-xl" href="/agendar">
               <span>Agendar meu horário</span>
               <span className="cta-arrow">↗</span>

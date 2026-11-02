@@ -98,24 +98,27 @@ export function Catalog() {
 
   return (
     <>
-      <section id="servicos" className="section catalog-section">
+      <section id="servicos" className="section catalog-section relative">
         <div className="section-container">
-          <div className="section-eyebrow">
+          <div className="section-eyebrow" data-3d-avoid="true">
             <span className="eyebrow-index">03</span>
             <span className="eyebrow-sep">{'//'}</span>
             <span>CATÁLOGO DE SERVIÇOS</span>
           </div>
 
-          <div className="catalog-header-split">
-            <h2 className="catalog-title">
+          <div className="catalog-header-split" data-3d-avoid="true">
+            <h2 className="catalog-title" data-3d-avoid="true">
               O seu próximo <span className="headline-italic">ritual.</span>
             </h2>
-            <p className="catalog-desc">
+            <p className="catalog-desc" data-3d-avoid="true">
               {demoMode
                 ? 'Serviços, valores e durações estimadas. Escolha o cuidado ideal e garanta seu horário.'
                 : 'Selecione os cuidados desejados e reserve com confirmação imediata.'}
             </p>
           </div>
+
+          {/* Anchor do palco 3D do catálogo */}
+          <div data-3d-stage="servicos" className="pointer-events-none absolute right-4 top-28 h-64 w-64 opacity-0 lg:opacity-100" aria-hidden="true" />
 
           {loading && <p className="status-notice" role="status">Carregando catálogo de serviços...</p>}
           {error && (
@@ -124,7 +127,7 @@ export function Catalog() {
             </p>
           )}
 
-          <div className="filters-tab-bar" role="group" aria-label="Categorias de serviços">
+          <div className="filters-tab-bar" role="group" aria-label="Categorias de serviços" data-3d-avoid="true">
             {['Todos', 'Cabelo', 'Barba', 'Combos', 'Cuidados'].map((c) => (
               <button
                 key={c}
@@ -139,7 +142,7 @@ export function Catalog() {
             ))}
           </div>
 
-          <motion.div layout className="service-grid">
+          <motion.div layout className="service-grid" data-3d-avoid="true">
             <AnimatePresence initial={false}>
               {filteredServices.map((s) => (
                 <motion.article
@@ -150,6 +153,7 @@ export function Catalog() {
                   transition={{ duration: 0.3 }}
                   key={s.id}
                   className={`service-card-item ${expanded === s.id ? 'is-expanded' : ''}`}
+                  data-3d-avoid="true"
                 >
                   <button
                     type="button"
@@ -165,9 +169,9 @@ export function Catalog() {
                       <p className="service-desc">{s.description || 'Atendimento com atenção técnica integral.'}</p>
                     </div>
 
-                    <div className="service-pricing">
-                      <Price value={Number(s.price)} />
-                      <span className={`expand-indicator ${expanded === s.id ? 'open' : ''}`} aria-hidden="true">
+                    <div className="service-meta">
+                      <Price value={s.price} />
+                      <span className="expand-indicator" aria-hidden="true">
                         {expanded === s.id ? '−' : '+'}
                       </span>
                     </div>
@@ -178,15 +182,20 @@ export function Catalog() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="service-expanded-actions"
+                      className="service-expansion-details"
                     >
-                      <div className="actions-inner">
-                        <Link className="cta cta-book" href={`/agendar?service=${s.id}`}>
+                      <div className="expansion-inner">
+                        <div className="expansion-features">
+                          <span className="feature-pill">✦ Toalha vaporizada</span>
+                          <span className="feature-pill">✦ Pomadas importadas</span>
+                          <span className="feature-pill">✦ Navalhete descartável</span>
+                        </div>
+                        <Link href={`/agendar?service=${s.id}`} className="service-book-cta">
                           <span>Reservar este serviço</span>
-                          <span className="cta-arrow">↗</span>
+                          <span className="cta-arrow">→</span>
                         </Link>
                         <a
-                          className="button-whatsapp"
+                          className="service-wa-link"
                           target="_blank"
                           rel="noopener noreferrer"
                           href={`https://wa.me/5535997374960?text=${encodeURIComponent(
@@ -205,28 +214,28 @@ export function Catalog() {
         </div>
       </section>
 
-      <section id="equipe" className="section team-section">
+      <section id="equipe" className="section team-section relative">
         <div className="section-container">
-          <div className="section-eyebrow">
+          <div className="section-eyebrow" data-3d-avoid="true">
             <span className="eyebrow-index">04</span>
             <span className="eyebrow-sep">{'//'}</span>
             <span>OS PROFISSIONAIS</span>
           </div>
 
-          <div className="team-header-split">
-            <h2 className="team-title">
+          <div className="team-header-split" data-3d-avoid="true">
+            <h2 className="team-title" data-3d-avoid="true">
               Quem cuida do <span className="headline-italic">seu estilo.</span>
             </h2>
-            <p className="team-desc">
+            <p className="team-desc" data-3d-avoid="true">
               {demoMode
                 ? 'Profissionais especializados em visagismo, corte moderno e navalha clássica.'
                 : 'Conheça nossos barbeiros e selecione seu profissional favorito.'}
             </p>
           </div>
 
-          <div className="team-grid">
+          <div className="team-grid" data-3d-avoid="true">
             {barbers.map((b, i) => (
-              <article className="team-card-editorial" key={b.id}>
+              <article className="team-card-editorial" key={b.id} data-3d-avoid="true">
                 <div className="team-portrait-box">
                   <div className="portrait-frame">
                     <span className="portrait-initials">{b.name.slice(0, 2).toUpperCase()}</span>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -13,8 +14,20 @@ declare global {
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
+    // Rule R5: Lenis MUST only be active on the Home route ('/').
+    // On '/agendar' and '/meu-agendamento', scroll must remain 100% native.
+    if (pathname !== "/") {
+      if (lenisRef.current) {
+        lenisRef.current.destroy();
+        lenisRef.current = null;
+        delete window.__lenis;
+      }
+      return;
+    }
+
     // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) {
@@ -88,7 +101,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       lenisRef.current = null;
       delete window.__lenis;
     };
-  }, []);
+  }, [pathname]);
 
   return <>{children}</>;
 }

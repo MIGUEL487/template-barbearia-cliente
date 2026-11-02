@@ -56,22 +56,22 @@ export function Hero() {
       <div className="hero-studio-container">
         <div className="hero-studio-grid">
           {/* Coluna Esquerda: Cópia e Chamada Editorial */}
-          <div className="hero-copy-col">
+          <div className="hero-copy-col" data-3d-avoid="true">
             <div className="hero-eyebrow">
               <span className="hero-bullet" />
               <span>Auto Stilo · Monte Sião, MG</span>
             </div>
 
-            <h1 className="hero-display-title">
+            <h1 className="hero-display-title" data-3d-avoid="true">
               Seu estilo. Sua <span className="hero-title-accent">assinatura.</span>
               <span className="hero-title-secondary">Precisão em cada detalhe.</span>
             </h1>
 
-            <p className="hero-lead">
+            <p className="hero-lead" data-3d-avoid="true">
               Experiência autoral de barbearia com pontualidade rigorosa, atendimento com tempo reservado e acabamento de alta costura.
             </p>
 
-            <div className="hero-actions">
+            <div className="hero-actions" data-3d-avoid="true">
               <Link className="hero-btn-primary" href="/agendar">
                 <span>Agendar Horário</span>
                 <span aria-hidden="true">&rarr;</span>
@@ -81,7 +81,7 @@ export function Hero() {
               </a>
             </div>
 
-            <div className="hero-meta-strip">
+            <div className="hero-meta-strip" data-3d-avoid="true">
               <span className="hero-meta-item">
                 <span className="hero-bullet" /> R. do Tanque, 395 · Monte Sião
               </span>
@@ -110,8 +110,8 @@ export function Hero() {
                 <span className="hero-badge-title">CORTE · BARBA · ALTA COSTURA</span>
               </div>
 
-              {/* Slot para o modelo 3D procedural da máquina de corte (Fase 4) */}
-              <div id="hero-3d-anchor" className="hero-3d-slot" aria-hidden="true" />
+              {/* Slot para o modelo 3D persistente da máquina de corte */}
+              <div id="hero-3d-anchor" className="hero-3d-slot" data-3d-stage="hero" aria-hidden="true" />
             </div>
           </div>
         </div>
