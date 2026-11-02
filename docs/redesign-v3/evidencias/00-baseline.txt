@@ -1,0 +1,86 @@
+=== NPM RUN LINT ===  
+
+> template-barbearia-cliente@1.0.0 lint
+> next lint
+
+`next lint` is deprecated and will be removed in Next.js 16.
+For new projects, use create-next-app to choose your preferred linter.
+For existing projects, migrate to the ESLint CLI:
+npx @next/codemod@canary next-lint-to-eslint-cli .
+
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\Windows\package-lock.json as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles: 
+   * C:\Users\Windows\.gemini\antigravity\scratch\barbearia-template\template-barbearia-cliente\package-lock.json
+
+✔ No ESLint warnings or errors
+=== NPM RUN TYPECHECK ===  
+
+> template-barbearia-cliente@1.0.0 typecheck
+> tsc --noEmit
+
+=== NPM RUN TOKENS:CHECK ===  
+
+> template-barbearia-cliente@1.0.0 tokens:check
+> node scripts/check-tokens.mjs
+
+✅ [OK] design-tokens.css sincronizado (48ebe6b7...)
+=== NPM RUN BUILD ===  
+
+> template-barbearia-cliente@1.0.0 prebuild
+> node scripts/prepare-images.mjs
+
+Imagens preparadas; SVGs vetoriais de placeholder preservados.
+
+> template-barbearia-cliente@1.0.0 build
+> next build
+
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\Windows\package-lock.json as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles: 
+   * C:\Users\Windows\.gemini\antigravity\scratch\barbearia-template\template-barbearia-cliente\package-lock.json
+
+   ▲ Next.js 15.5.28
+   - Experiments (use with caution):
+     · cpus: 2
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 63s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/9) ...
+   Generating static pages (2/9) 
+   Generating static pages (4/9) 
+   Generating static pages (6/9) 
+ ✓ Generating static pages (9/9)
+   Finalizing page optimization ...
+   Collecting build traces ...
+   Exporting (0/2) ...
+ ✓ Exporting (2/2)
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                    24.3 kB         460 kB
+├ ○ /_not-found                            995 B         104 kB
+├ ○ /agendar                             16.1 kB         248 kB
+├ ○ /lab/3d                              3.44 kB         268 kB
+├ ○ /meu-agendamento                     4.18 kB         231 kB
+├ ○ /robots.txt                            127 B         103 kB
+└ ○ /sitemap.xml                           127 B         103 kB
++ First Load JS shared by all             103 kB
+  ├ chunks/255-1f92380adbc6ec99.js       46.7 kB
+  ├ chunks/4bd1b696-c023c6e3521b1417.js  54.2 kB
+  └ other shared chunks (total)          2.01 kB
+
+
+○  (Static)  prerendered as static content
+
+
+> template-barbearia-cliente@1.0.0 postbuild
+> node scripts/headers.mjs
+
+Cabeçalhos gerados com hashes CSP por rota e indexação condicional
+ALL_DONE 

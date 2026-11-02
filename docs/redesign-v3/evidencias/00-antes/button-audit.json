@@ -1,0 +1,191 @@
+[
+  {
+    "text": "Agendar Horário\n→",
+    "tag": "A",
+    "className": "header-cta-btn",
+    "borderRadius": "2px",
+    "padding": "0px 16px",
+    "background": "rgb(10, 10, 12)",
+    "color": "rgb(255, 255, 255)"
+  },
+  {
+    "text": "☰ Menu",
+    "tag": "BUTTON",
+    "className": "header-menu-btn",
+    "borderRadius": "2px",
+    "padding": "6px 12px",
+    "background": "rgba(0, 0, 0, 0)",
+    "color": "rgb(10, 10, 12)"
+  },
+  {
+    "text": "Agendar Horário\n→",
+    "tag": "A",
+    "className": "hero-btn-primary",
+    "borderRadius": "2px",
+    "padding": "0px 28px",
+    "background": "rgb(10, 10, 12)",
+    "color": "rgb(255, 255, 255)"
+  },
+  {
+    "text": "Conhecer Serviços",
+    "tag": "A",
+    "className": "hero-btn-outline",
+    "borderRadius": "2px",
+    "padding": "0px 24px",
+    "background": "rgba(0, 0, 0, 0)",
+    "color": "rgb(10, 10, 12)"
+  },
+  {
+    "text": "Todos",
+    "tag": "BUTTON",
+    "className": "filter-tab is-active",
+    "borderRadius": "2px",
+    "padding": "10px 20px",
+    "background": "rgb(10, 10, 12)",
+    "color": "rgb(255, 255, 255)"
+  },
+  {
+    "text": "Cabelo",
+    "tag": "BUTTON",
+    "className": "filter-tab ",
+    "borderRadius": "2px",
+    "padding": "10px 20px",
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(74, 74, 82)"
+  },
+  {
+    "text": "Barba",
+    "tag": "BUTTON",
+    "className": "filter-tab ",
+    "borderRadius": "2px",
+    "padding": "10px 20px",
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(74, 74, 82)"
+  },
+  {
+    "text": "Combos",
+    "tag": "BUTTON",
+    "className": "filter-tab ",
+    "borderRadius": "2px",
+    "padding": "10px 20px",
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(74, 74, 82)"
+  },
+  {
+    "text": "Cuidados",
+    "tag": "BUTTON",
+    "className": "filter-tab ",
+    "borderRadius": "2px",
+    "padding": "10px 20px",
+    "background": "rgb(255, 255, 255)",
+    "color": "rgb(74, 74, 82)"
+  },
+  {
+    "text": "Reproduzir: Uma visita à Auto ",
+    "tag": "BUTTON",
+    "className": "film-toggle",
+    "borderRadius": "0px",
+    "padding": "0px",
+    "background": "rgba(0, 0, 0, 0)",
+    "color": "rgb(10, 10, 12)"
+  },
+  {
+    "text": "Ativar som: Uma visita à Auto ",
+    "tag": "BUTTON",
+    "className": "film-sound",
+    "borderRadius": "0px",
+    "padding": "0px",
+    "background": "rgba(0, 0, 0, 0)",
+    "color": "rgb(10, 10, 12)"
+  },
+  {
+    "text": "Reproduzir: O cuidado durante ",
+    "tag": "BUTTON",
+    "className": "film-toggle",
+    "borderRadius": "0px",
+    "padding": "0px",
+    "background": "rgba(0, 0, 0, 0)",
+    "color": "rgb(10, 10, 12)"
+  },
+  {
+    "text": "Ativar som: O cuidado durante ",
+    "tag": "BUTTON",
+    "className": "film-sound",
+    "borderRadius": "0px",
+    "padding": "0px",
+    "background": "rgba(0, 0, 0, 0)",
+    "color": "rgb(10, 10, 12)"
+  },
+  {
+    "text": "Pausar",
+    "tag": "BUTTON",
+    "className": "",
+    "borderRadius": "0px",
+    "padding": "8px 0px",
+    "background": "rgba(0, 0, 0, 0)",
+    "color": "rgb(10, 10, 12)"
+  },
+  {
+    "text": "Anterior",
+    "tag": "BUTTON",
+    "className": "",
+    "borderRadius": "0px",
+    "padding": "8px 0px",
+    "background": "rgba(0, 0, 0, 0)",
+    "color": "rgb(10, 10, 12)"
+  },
+  {
+    "text": "Próxima",
+    "tag": "BUTTON",
+    "className": "",
+    "borderRadius": "0px",
+    "padding": "8px 0px",
+    "background": "rgba(0, 0, 0, 0)",
+    "color": "rgb(10, 10, 12)"
+  },
+  {
+    "text": "Iniciar meu agendamento\n↗",
+    "tag": "A",
+    "className": "cta cta-large",
+    "borderRadius": "8px",
+    "padding": "16px 36px",
+    "background": "rgba(0, 0, 0, 0)",
+    "color": "rgb(255, 255, 255)"
+  },
+  {
+    "text": "Abrir no Google Maps ↗",
+    "tag": "A",
+    "className": "button-editorial",
+    "borderRadius": "8px",
+    "padding": "13px 24px",
+    "background": "rgba(255, 255, 255, 0.04)",
+    "color": "rgb(255, 255, 255)"
+  },
+  {
+    "text": "Carregar mapa",
+    "tag": "BUTTON",
+    "className": "cta",
+    "borderRadius": "8px",
+    "padding": "14px 28px",
+    "background": "rgba(0, 0, 0, 0)",
+    "color": "rgb(255, 255, 255)"
+  },
+  {
+    "text": "Agendar meu horário\n↗",
+    "tag": "A",
+    "className": "cta cta-xl",
+    "borderRadius": "8px",
+    "padding": "18px 42px",
+    "background": "rgba(0, 0, 0, 0)",
+    "color": "rgb(255, 255, 255)"
+  },
+  {
+    "text": "Animações: ativadas",
+    "tag": "BUTTON",
+    "className": "",
+    "borderRadius": "0px",
+    "padding": "0px",
+    "background": "rgba(0, 0, 0, 0)",
+    "color": "rgb(98, 93, 109)"
+  }
+]
