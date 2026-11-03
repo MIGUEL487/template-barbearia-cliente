@@ -1,7 +1,6 @@
 @import "../styles/interface-motion.css";
 @import "../styles/landing.css";
 @import "../styles/design-tokens.css";
-@import "../styles/site-tokens.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,10 +8,9 @@
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-sans);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Custom scrollbar */
@@ -32,41 +30,33 @@ body {
 }
 
 html {
-  scroll-padding-top: 64px;
-  color-scheme: light;
+  scroll-padding-top: 96px;
 }
-
 body {
   font-size: 16px;
-  line-height: 1.6;
 }
-
 :focus-visible {
-  outline: 2px solid var(--accent-light);
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
-
 button,
 a,
 input,
 select {
   touch-action: manipulation;
 }
-
 button,
 input,
 select {
   min-height: 48px;
 }
-
 input,
 select,
 textarea {
   font-size: max(16px, 1em);
 }
-
 .font-serif {
-  letter-spacing: -0.01em;
+  letter-spacing: 0.02em;
 }
 
 .watermark-pattern {
@@ -77,7 +67,6 @@ textarea {
   opacity: 0.02;
   background-repeat: repeat;
 }
-
 .watermark-badge {
   position: relative;
   margin: 24px auto 0;
@@ -87,27 +76,22 @@ textarea {
   flex-direction: column;
   gap: 8px;
   background: var(--surface-2);
-  border: 1px solid var(--border);
-  padding: 8px 12px;
+  padding: 8px 8px;
   border-radius: 8px;
   font-size: 12px;
   max-width: 220px;
   opacity: 0.96;
 }
-
 .watermark-badge span {
   font-size: 12px;
   color: var(--text-muted);
 }
-
 .watermark-footer {
   padding: 24px 24px 32px;
   text-align: center;
   color: var(--text-muted);
   font-size: 12px;
-  background: var(--bg);
 }
-
 .photo-watermark {
   position: absolute;
   inset: 0;
@@ -118,58 +102,61 @@ textarea {
 }
 
 .demo-badge {
-  font-family: var(--font-sans), sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  padding: 2px 8px;
-  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  padding: 8px 8px;
+  border-radius: 8px;
   background: var(--surface-2);
-  border: 1px solid var(--border);
-  color: var(--accent-light);
+  color: var(--text-muted);
   display: inline-block;
-  line-height: 1.4;
+  line-height: 1.2;
 }
-
 .gallery-piece .reveal-mask {
   position: relative;
 }
 
-/* Tipografia compartilhada com o painel */
+/* Tipografia editorial compartilhada. UI e formulários permanecem em sans. */
+body {
+  font-size: 17px;
+  line-height: 1.65;
+}
 h1,
 h2,
 h3 {
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-serif), Georgia, serif;
   font-weight: 400;
   letter-spacing: -0.025em;
   line-height: 1.15;
-  color: var(--text);
 }
-
 h1 {
   font-size: var(--type-h1);
 }
-
 h2 {
   font-size: var(--type-h2);
 }
-
 h3 {
   font-size: var(--type-h3);
 }
-
+.font-serif {
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
 @media (max-width: 767px) {
   body {
-    font-size: 15px;
+    font-size: 16px;
   }
   h1 {
-    font-size: 34px;
+    font-size: 42px;
   }
+}
+
+@media (max-width: 767px) {
   .watermark-footer {
     padding-bottom: 96px;
   }
 }
 
-button {
-  min-width: 48px;
-}
+/* Icon-only controls keep the same 48px touch area as text buttons. */
+button{min-width:48px}
+
+.watermark-pattern{opacity:.045}.watermark-footer{background:var(--bg);color:var(--text-muted)}

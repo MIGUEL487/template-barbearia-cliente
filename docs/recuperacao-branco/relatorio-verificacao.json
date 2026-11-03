@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-11-03T19:40:16.063Z",
+  "pages": {
+    "homeDesktop": {
+      "bodyBg": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(10, 10, 12)",
+      "colorScheme": "light",
+      "heroH1": "Seu estilo,do corte ao detalhe.",
+      "heroP": "BARBEARIA · MONTE SIÃO — MG",
+      "has3D": false,
+      "headerHeight": 82,
+      "navLinks": [
+        "Serviços",
+        "Equipe",
+        "Espaço",
+        "Avaliações",
+        "Contato"
+      ]
+    },
+    "homeMobile": {
+      "heroH1": "Seu estilo,do corte ao detalhe.",
+      "mobileActions": true,
+      "menuToggle": true
+    },
+    "agendarDesktop": {
+      "hasBookingShell": true,
+      "title": "Profissional",
+      "ctaRadius": "24px",
+      "ctaBg": "rgb(238, 235, 243)"
+    }
+  },
+  "visualChecks": {
+    "fundoPredominantementeBranco": {
+      "ok": true,
+      "value": "rgb(255, 255, 255)"
+    },
+    "sem3DResidual": {
+      "ok": true
+    },
+    "heroOriginalAprovado": {
+      "ok": true,
+      "h1": "Seu estilo,do corte ao detalhe."
+    },
+    "headerCompacto": {
+      "ok": false,
+      "height": 82
+    },
+    "saasAgendamentoAtivo": {
+      "ok": true
+    },
+    "consoleErrors": {
+      "ok": false,
+      "count": 4,
+      "errors": [
+        "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+        "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+        "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+        "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+      ]
+    }
+  }
+}
