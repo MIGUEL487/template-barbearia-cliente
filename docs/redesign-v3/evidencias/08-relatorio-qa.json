@@ -1,0 +1,239 @@
+{
+  "timestamp": "2026-11-03T13:11:23.886Z",
+  "tests": {
+    "T1_Hero_Em_Pe": {
+      "ok": true,
+      "mode": "webgl",
+      "rotZDeg": 0,
+      "pose": {
+        "x": 1.25,
+        "y": 0.05,
+        "z": 0.5,
+        "rx": 0.07,
+        "ry": -0.35,
+        "rz": 0,
+        "scale": 0.95,
+        "opacity": 0.5
+      }
+    },
+    "T2_Sem_Travar_Scroll": {
+      "ok": true,
+      "htmlOverflow": "visible",
+      "bodyOverflow": "hidden auto"
+    },
+    "T3_Reacao_Imediata": {
+      "ok": true,
+      "ryDelta": 0.1361483869617799,
+      "posDelta": 0.004934628037377079
+    },
+    "T_PERSIST_Nao_Some": {
+      "ok": true,
+      "count": 60,
+      "total": 60
+    },
+    "T5_Continuidade": {
+      "ok": true,
+      "epsilon": 0.005
+    },
+    "T6_Sem_Cobrir_Conteudo": {
+      "ok": true,
+      "totalAvoids": 42
+    },
+    "T7_Tamanho_Controlado": {
+      "ok": true,
+      "maxDim": 3.1
+    },
+    "T8_Ida_E_Volta": {
+      "ok": true,
+      "reversivel": true
+    },
+    "T9_Materiais_PBR": {
+      "ok": true,
+      "count": 20,
+      "mats": [
+        {
+          "name": "Mat_Taper_Lever_Dark",
+          "roughness": 0.45,
+          "metalness": 0.2,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Body_Polymer_Dark",
+          "roughness": 0.5,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Blades_Surgical_Steel",
+          "roughness": 0.32,
+          "metalness": 1,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Blades_Surgical_Steel",
+          "roughness": 0.32,
+          "metalness": 1,
+          "transparent": false
+        },
+        {
+          "name": "Mat_FrontPlate_Chrome",
+          "roughness": 0.25,
+          "metalness": 1,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Blades_Surgical_Steel",
+          "roughness": 0.32,
+          "metalness": 1,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Blades_Surgical_Steel",
+          "roughness": 0.32,
+          "metalness": 1,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Blades_Surgical_Steel",
+          "roughness": 0.32,
+          "metalness": 1,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Blades_Surgical_Steel",
+          "roughness": 0.32,
+          "metalness": 1,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Screws_Dark_Metal",
+          "roughness": 0.35,
+          "metalness": 1,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Screws_Dark_Metal",
+          "roughness": 0.35,
+          "metalness": 1,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Screws_Dark_Metal",
+          "roughness": 0.35,
+          "metalness": 1,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Vent_Slats_Matte",
+          "roughness": 0.75,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Vent_Slats_Matte",
+          "roughness": 0.75,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Vent_Slats_Matte",
+          "roughness": 0.75,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Vent_Slats_Matte",
+          "roughness": 0.75,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Vent_Slats_Matte",
+          "roughness": 0.75,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Vent_Slats_Matte",
+          "roughness": 0.75,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Vent_Slats_Matte",
+          "roughness": 0.75,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Mat_Vent_Slats_Matte",
+          "roughness": 0.75,
+          "metalness": 0,
+          "transparent": false
+        }
+      ]
+    },
+    "T_STORY_Storytelling": {
+      "ok": true,
+      "tabCount": 3
+    },
+    "T_ENTRE_Interacoes": {
+      "ok": true
+    },
+    "T_VIDEO_Player_Unico": {
+      "ok": true,
+      "count": 2
+    },
+    "T_MAPA_Carregamento_Automatico": {
+      "ok": true,
+      "hasButton": false
+    },
+    "T_FOTOS_Faixas_Removidas": {
+      "ok": true
+    },
+    "T_BOTOES_Radius_12px": {
+      "ok": true,
+      "samples": [
+        "12px",
+        "12px",
+        "12px",
+        "12px",
+        "12px",
+        "12px",
+        "12px",
+        "12px",
+        "12px",
+        "12px",
+        "12px",
+        "12px",
+        "12px",
+        "12px",
+        "12px"
+      ]
+    },
+    "T_HERO_Grade_12_Colunas": {
+      "ok": true
+    },
+    "T14_Integridade_SaaS": {
+      "ok": true
+    },
+    "T10_Disposicao_Navegacao": {
+      "ok": true,
+      "cleanedOnLeave": true
+    },
+    "T11_Fallbacks": {
+      "ok": true,
+      "reducedMotionHandled": true,
+      "noWebGLHandled": true
+    },
+    "T15_Console_Zero_Erros": {
+      "ok": true,
+      "count": 0,
+      "errors": []
+    }
+  },
+  "summary": {
+    "passed": 20,
+    "failed": 0
+  }
+}
