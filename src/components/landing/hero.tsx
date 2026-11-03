@@ -105,10 +105,7 @@ export function Hero() {
                 />
               </div>
 
-              <div className="hero-visual-badge">
-                <span className="hero-badge-tag">MONTE SIÃO · MG</span>
-                <span className="hero-badge-title">CORTE · BARBA · ALTA COSTURA</span>
-              </div>
+              
 
               {/* Slot para o modelo 3D persistente da máquina de corte */}
               <div id="hero-3d-anchor" className="hero-3d-slot" data-3d-stage="hero" aria-hidden="true" />

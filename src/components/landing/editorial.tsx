@@ -37,10 +37,7 @@ export function Signature() {
             <div className="photo-crop">
               <ShopImage name="corte-nuca" alt="Acabamento de corte e alinhamento milimétrico visto de trás" />
             </div>
-            <figcaption className="photo-caption">
-              <span>PRECISÃO E ACABAMENTO</span>
-              <span className="caption-tag">ATELIER MONTE SIÃO</span>
-            </figcaption>
+            
           </figure>
         </div>
 
@@ -206,10 +203,7 @@ export function History() {
         <div className="history-grid">
           <figure className="history-figure" data-3d-stage="equipe">
             <ShopImage name="reconhecimento" alt="Reconhecimento e certificados de barbearia recebidos pela Auto Stilo" />
-            <figcaption className="history-caption">
-              <span>QUALIDADE COMPROVADA</span>
-              <span className="caption-sub">Monte Sião · Minas Gerais</span>
-            </figcaption>
+            
           </figure>
 
           <div className="history-narrative" data-3d-avoid="true">
