@@ -1,5 +1,6 @@
 "use client";
 
+import { GalleryStorytelling } from "./gallery-storytelling";
 import { ReviewCarousel } from "./review-carousel";
 import { ShopImage } from "./shop-image";
 import { ShopVideos } from "./shop-videos";
@@ -33,52 +34,7 @@ export function Proof() {
 export function Gallery() {
   return (
     <>
-      <section id="galeria" className="section gallery-editorial">
-        <div className="section-container">
-          <div className="section-eyebrow">
-            <span className="eyebrow-index">05</span>
-            <span className="eyebrow-sep">{'//'}</span>
-            <span>O ESPAÇO & ATMOSFERA</span>
-          </div>
-
-          <div className="gallery-header-split">
-            <h2 className="gallery-title">
-              Entre. Fique à <span className="headline-italic">vontade.</span>
-            </h2>
-            <p className="gallery-desc">
-              Concreto aparente, iluminação pontual e acabamentos escuros. Um ambiente projetado para uma experiência de pausa e cuidado pessoal.
-            </p>
-          </div>
-
-          <div className="gallery-composition">
-            <figure className="space-hero-window">
-              <div className="window-crop">
-                <ShopImage name="espaco" alt="Interior da Barbearia Auto Stilo com bancadas, cadeiras hidráulicas e teto de LEDs" />
-              </div>
-              <figcaption className="window-caption">
-                <div className="caption-text">
-                  <span className="caption-main">O Atelier Auto Stilo</span>
-                  <span className="caption-sub">R. do Tanque, 395 · Monte Sião — MG</span>
-                </div>
-                <span className="caption-coord">[ 22°25&apos;42&quot;S · 46°34&apos;18&quot;W ]</span>
-              </figcaption>
-            </figure>
-
-            <div className="gallery-mosaic">
-              <figure className="mosaic-card">
-                <div className="mosaic-crop">
-                  <ShopImage name="acabamento" alt="Detalhe do cuidado de perto: acabamento com máquina e navalha" />
-                </div>
-                <figcaption className="mosaic-caption">
-                  <h4>O Cuidado de Perto</h4>
-                  <p>Acabamento milimétrico na tesoura e navalhete.</p>
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <GalleryStorytelling />
       <ShopVideos />
     </>
   );
