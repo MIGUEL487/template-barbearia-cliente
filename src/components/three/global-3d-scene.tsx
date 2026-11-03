@@ -14,7 +14,6 @@ export function Global3DScene() {
     const container = containerRef.current;
     if (!container) return;
 
-    // Check prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // WebGL Availability Check
@@ -54,13 +53,12 @@ export function Global3DScene() {
       return;
     }
 
-    // Adaptive DPR
     const isMobile = width < 768;
     const dpr = isMobile ? Math.min(window.devicePixelRatio || 1, 1.5) : Math.min(window.devicePixelRatio || 1, 2.0);
     renderer.setSize(width, height);
     renderer.setPixelRatio(dpr);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.15;
+    renderer.toneMappingExposure = 0.90; // Calibrada para estúdio claro sem queimar brancos
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 
     renderer.domElement.style.width = "100%";
@@ -70,26 +68,24 @@ export function Global3DScene() {
     container.innerHTML = "";
     container.appendChild(renderer.domElement);
 
-    // 2. Studio Lighting Rig
-    const ambLight = new THREE.AmbientLight(0xffffff, 0.65);
+    // 2. Calibrated Studio Lighting Rig (Fase 1.2)
+    const ambLight = new THREE.AmbientLight(0xffffff, 0.45);
     scene.add(ambLight);
 
     const keyLight = new THREE.DirectionalLight(0xfff8ee, 2.2);
-    keyLight.position.set(3.8, 5.0, 3.8);
+    keyLight.position.set(3.5, 4.5, 3.5);
     scene.add(keyLight);
 
-    const fillLight = new THREE.DirectionalLight(0xdbeafe, 1.1);
-    fillLight.position.set(-3.5, 1.5, 2.8);
+    const fillLight = new THREE.DirectionalLight(0xdbeafe, 0.9);
+    fillLight.position.set(-3.0, 1.5, 2.5);
     scene.add(fillLight);
 
-    // Subtle violet rim light (brand identity highlight)
-    const violetRim = new THREE.DirectionalLight(0xa855f7, 1.8);
-    violetRim.position.set(-2.5, -3.0, -2.5);
+    const violetRim = new THREE.DirectionalLight(0xa855f7, 1.6);
+    violetRim.position.set(-2.5, -2.5, -2.5);
     scene.add(violetRim);
 
-    // Top razor-sharp rim
-    const topRim = new THREE.DirectionalLight(0xffffff, 1.6);
-    topRim.position.set(1.5, 4.5, -3.0);
+    const topRim = new THREE.DirectionalLight(0xffffff, 1.2);
+    topRim.position.set(1.0, 4.0, -2.5);
     scene.add(topRim);
 
     // 3. Contact Shadow Plane
@@ -99,8 +95,8 @@ export function Global3DScene() {
     const sctx = shadowCanvas.getContext("2d");
     if (sctx) {
       const grad = sctx.createRadialGradient(128, 128, 0, 128, 128, 128);
-      grad.addColorStop(0, "rgba(10, 10, 14, 0.25)");
-      grad.addColorStop(0.35, "rgba(10, 10, 14, 0.08)");
+      grad.addColorStop(0, "rgba(10, 10, 14, 0.22)");
+      grad.addColorStop(0.35, "rgba(10, 10, 14, 0.07)");
       grad.addColorStop(0.7, "rgba(10, 10, 14, 0.02)");
       grad.addColorStop(1, "rgba(255, 255, 255, 0)");
       sctx.fillStyle = grad;
@@ -124,23 +120,23 @@ export function Global3DScene() {
     modelGroup.name = "AutoStiloTrimmerContainer";
     scene.add(modelGroup);
 
-    // Pose State
+    // Pose State — EM PÉ NO HERO (vertical rz = 0.0, lâmina para cima)
     const currentPose = {
-      x: isMobile ? 0.30 : 1.25,
-      y: isMobile ? 0.25 : 0.05,
-      z: isMobile ? 0.15 : 0.50,
-      rx: 0.10,
-      ry: 0.15,
-      rz: -0.25,
+      x: isMobile ? 0.35 : 1.25,
+      y: isMobile ? 0.20 : 0.05,
+      z: 0.50,
+      rx: 0.07,  // leve inclinação frontal (4°)
+      ry: -0.35, // pose três quartos (-20°)
+      rz: 0.0,   // EIXO LONGO PERFEITAMENTE VERTICAL
       scale: isMobile ? 0.65 : 0.95,
-      opacity: isMobile ? 0.30 : 0.50,
+      opacity: isMobile ? 0.35 : 0.50,
     };
 
     const targetPose = { ...currentPose };
-    let isAnimating = true;
     let isDisposed = false;
+    let scrollProgress = 0;
 
-    // 5. Load Photoreal GLB
+    // 5. Load Photoreal GLB with 6 PBR Materials
     const loader = new GLTFLoader();
     loader.load(
       "/3d/auto-stilo-trimmer.glb",
@@ -153,7 +149,6 @@ export function Global3DScene() {
             const mesh = child as THREE.Mesh;
             mesh.castShadow = true;
             mesh.receiveShadow = true;
-            // Ensure no depth sorting conflicts
             if (Array.isArray(mesh.material)) {
               mesh.material.forEach((m) => {
                 m.transparent = false;
@@ -172,14 +167,13 @@ export function Global3DScene() {
           modelGroup.position.set(currentPose.x, currentPose.y, currentPose.z);
           modelGroup.rotation.set(currentPose.rx, currentPose.ry, currentPose.rz);
           modelGroup.scale.set(currentPose.scale, currentPose.scale, currentPose.scale);
-          container.style.opacity = "0.40";
+          container.style.opacity = "0.50";
           renderer.render(scene, camera);
           return;
         }
 
-        // 6. Multi-Stage Scroll Timeline
-        // Key stages matching the page flow
-        const timeline = gsap.timeline({
+        // 6. Multi-Stage Scroll Timeline Acoplada aos 12 Marcos Reais do DOM
+        gsap.timeline({
           scrollTrigger: {
             trigger: document.body,
             start: "top top",
@@ -187,80 +181,126 @@ export function Global3DScene() {
             scrub: 0.6,
             invalidateOnRefresh: true,
             onUpdate: (self) => {
-              isAnimating = true;
               const p = self.progress;
+              scrollProgress = p;
 
-              // Immediate reaction: first 40px scroll begins smooth motion
-              if (p <= 0.12) {
-                // Stage: Hero -> Início do Scroll
-                const t = p / 0.12;
-                targetPose.x = gsap.utils.interpolate(isMobile ? 0.30 : 1.25, isMobile ? -0.20 : -1.15, t);
-                targetPose.y = gsap.utils.interpolate(isMobile ? 0.25 : 0.05, -0.05, t);
-                targetPose.z = gsap.utils.interpolate(0.50, 0.70, t);
-                targetPose.rx = gsap.utils.interpolate(0.10, -0.15, t);
-                targetPose.ry = gsap.utils.interpolate(0.15, 0.65, t);
-                targetPose.rz = gsap.utils.interpolate(-0.25, -0.10, t);
-                targetPose.scale = gsap.utils.interpolate(isMobile ? 0.65 : 0.95, isMobile ? 0.75 : 1.05, t);
-                targetPose.opacity = gsap.utils.interpolate(isMobile ? 0.30 : 0.50, 0.85, t);
-              } else if (p <= 0.26) {
-                // Stage: Assinatura (Profile view) -> Ritual (Macro blades)
-                const t = (p - 0.12) / 0.14;
-                targetPose.x = gsap.utils.interpolate(isMobile ? -0.20 : -1.15, isMobile ? 0.30 : 1.10, t);
-                targetPose.y = gsap.utils.interpolate(-0.05, 0.08, t);
-                targetPose.z = gsap.utils.interpolate(0.70, isMobile ? 0.90 : 1.40, t);
+              // Reação imediata no primeiro scroll (0 a 40px, p <= 0.04)
+              if (p <= 0.08) {
+                // Marco 1: Hero -> Início do Scroll (reação rápida com giro angular >= 2° e translação >= 8px)
+                const t = p / 0.08;
+                targetPose.x = gsap.utils.interpolate(isMobile ? 0.35 : 1.25, isMobile ? 0.15 : 0.85, t);
+                targetPose.y = gsap.utils.interpolate(isMobile ? 0.20 : 0.05, isMobile ? 0.12 : 0.0, t);
+                targetPose.z = gsap.utils.interpolate(0.50, 0.60, t);
+                targetPose.rx = gsap.utils.interpolate(0.07, 0.02, t);
+                targetPose.ry = gsap.utils.interpolate(-0.35, -0.15, t); // giro de 0.2 rad (~11.5°)
+                targetPose.rz = 0.0;
+                targetPose.scale = gsap.utils.interpolate(isMobile ? 0.65 : 0.95, isMobile ? 0.70 : 1.0, t);
+                targetPose.opacity = gsap.utils.interpolate(isMobile ? 0.35 : 0.50, 0.80, t);
+              } else if (p <= 0.18) {
+                // Marco 2: Diretriz da Marca (#assinatura)
+                const t = (p - 0.08) / 0.10;
+                targetPose.x = gsap.utils.interpolate(isMobile ? 0.15 : 0.85, isMobile ? -0.25 : -1.15, t);
+                targetPose.y = gsap.utils.interpolate(isMobile ? 0.12 : 0.0, -0.05, t);
+                targetPose.z = gsap.utils.interpolate(0.60, 0.75, t);
+                targetPose.rx = gsap.utils.interpolate(0.02, -0.15, t);
+                targetPose.ry = gsap.utils.interpolate(-0.15, 0.55, t);
+                targetPose.rz = gsap.utils.interpolate(0.0, -0.12, t);
+                targetPose.scale = gsap.utils.interpolate(isMobile ? 0.70 : 1.0, isMobile ? 0.78 : 1.08, t);
+                targetPose.opacity = gsap.utils.interpolate(0.80, 0.90, t);
+              } else if (p <= 0.30) {
+                // Marco 3: O Ritual (#ritual, detalhe e macro da lâmina)
+                const t = (p - 0.18) / 0.12;
+                targetPose.x = gsap.utils.interpolate(isMobile ? -0.25 : -1.15, isMobile ? 0.25 : 0.95, t);
+                targetPose.y = gsap.utils.interpolate(-0.05, 0.10, t);
+                targetPose.z = gsap.utils.interpolate(0.75, isMobile ? 0.95 : 1.35, t);
                 targetPose.rx = gsap.utils.interpolate(-0.15, 0.25, t);
-                targetPose.ry = gsap.utils.interpolate(0.65, 1.45, t);
-                targetPose.rz = gsap.utils.interpolate(-0.10, -0.20, t);
-                targetPose.scale = gsap.utils.interpolate(isMobile ? 0.75 : 1.05, isMobile ? 0.90 : 1.35, t);
-                targetPose.opacity = gsap.utils.interpolate(0.85, 1.0, t);
+                targetPose.ry = gsap.utils.interpolate(0.55, 1.35, t);
+                targetPose.rz = gsap.utils.interpolate(-0.12, -0.18, t);
+                targetPose.scale = gsap.utils.interpolate(isMobile ? 0.78 : 1.08, isMobile ? 0.90 : 1.30, t);
+                targetPose.opacity = 1.0;
               } else if (p <= 0.45) {
-                // Stage: Ritual -> Catálogo Serviços (Recedes to lateral right, low opacity for text clarity)
-                const t = (p - 0.26) / 0.19;
-                targetPose.x = gsap.utils.interpolate(isMobile ? 0.30 : 1.10, isMobile ? 0.40 : 1.35, t);
-                targetPose.y = gsap.utils.interpolate(0.08, -0.10, t);
-                targetPose.z = gsap.utils.interpolate(isMobile ? 0.90 : 1.40, 0.35, t);
+                // Marco 4: Catálogo de Serviços (#servicos, recua para margem direita com opacidade confortável)
+                const t = (p - 0.30) / 0.15;
+                targetPose.x = gsap.utils.interpolate(isMobile ? 0.25 : 0.95, isMobile ? 0.35 : 1.35, t);
+                targetPose.y = gsap.utils.interpolate(0.10, -0.10, t);
+                targetPose.z = gsap.utils.interpolate(isMobile ? 0.95 : 1.35, 0.40, t);
                 targetPose.rx = gsap.utils.interpolate(0.25, 0.10, t);
-                targetPose.ry = gsap.utils.interpolate(1.45, 2.65, t);
-                targetPose.rz = gsap.utils.interpolate(-0.20, 0.45, t);
-                targetPose.scale = gsap.utils.interpolate(isMobile ? 0.90 : 1.35, isMobile ? 0.60 : 0.75, t);
-                targetPose.opacity = gsap.utils.interpolate(1.0, 0.28, t);
-              } else if (p <= 0.65) {
-                // Stage: Serviços -> História / Equipe (Diagonal presentation)
-                const t = (p - 0.45) / 0.20;
-                targetPose.x = gsap.utils.interpolate(isMobile ? 0.40 : 1.35, isMobile ? -0.25 : -1.05, t);
+                targetPose.ry = gsap.utils.interpolate(1.35, 2.45, t);
+                targetPose.rz = gsap.utils.interpolate(-0.18, 0.25, t);
+                targetPose.scale = gsap.utils.interpolate(isMobile ? 0.90 : 1.30, isMobile ? 0.60 : 0.75, t);
+                targetPose.opacity = gsap.utils.interpolate(1.0, 0.40, t);
+              } else if (p <= 0.58) {
+                // Marco 5: História & Tradição (#historia)
+                const t = (p - 0.45) / 0.13;
+                targetPose.x = gsap.utils.interpolate(isMobile ? 0.35 : 1.35, isMobile ? -0.25 : -1.05, t);
                 targetPose.y = gsap.utils.interpolate(-0.10, 0.05, t);
-                targetPose.z = gsap.utils.interpolate(0.35, 0.65, t);
+                targetPose.z = gsap.utils.interpolate(0.40, 0.65, t);
                 targetPose.rx = gsap.utils.interpolate(0.10, -0.12, t);
-                targetPose.ry = gsap.utils.interpolate(2.65, 3.20, t);
-                targetPose.rz = gsap.utils.interpolate(0.45, 0.20, t);
+                targetPose.ry = gsap.utils.interpolate(2.45, 3.15, t);
+                targetPose.rz = gsap.utils.interpolate(0.25, 0.15, t);
                 targetPose.scale = gsap.utils.interpolate(isMobile ? 0.60 : 0.75, isMobile ? 0.70 : 0.90, t);
-                targetPose.opacity = gsap.utils.interpolate(0.28, 0.65, t);
-              } else if (p <= 0.85) {
-                // Stage: História -> Agendamento Final (Points towards CTA)
-                const t = (p - 0.65) / 0.20;
-                targetPose.x = gsap.utils.interpolate(isMobile ? -0.25 : -1.05, 0.0, t);
-                targetPose.y = gsap.utils.interpolate(0.05, -0.15, t);
-                targetPose.z = gsap.utils.interpolate(0.65, 0.80, t);
-                targetPose.rx = gsap.utils.interpolate(-0.12, 0.30, t);
-                targetPose.ry = gsap.utils.interpolate(3.20, 3.85, t);
-                targetPose.rz = gsap.utils.interpolate(0.20, 0.0, t);
-                targetPose.scale = gsap.utils.interpolate(isMobile ? 0.70 : 0.90, isMobile ? 0.85 : 1.05, t);
-                targetPose.opacity = gsap.utils.interpolate(0.65, 0.88, t);
+                targetPose.opacity = gsap.utils.interpolate(0.40, 0.72, t);
+              } else if (p <= 0.70) {
+                // Marco 6: O Espaço & Storytelling (#galeria, lateral livre sem sobrepor foto com zoom)
+                const t = (p - 0.58) / 0.12;
+                targetPose.x = gsap.utils.interpolate(isMobile ? -0.25 : -1.05, isMobile ? 0.30 : 1.20, t);
+                targetPose.y = gsap.utils.interpolate(0.05, 0.0, t);
+                targetPose.z = gsap.utils.interpolate(0.65, 0.75, t);
+                targetPose.rx = gsap.utils.interpolate(-0.12, 0.15, t);
+                targetPose.ry = gsap.utils.interpolate(3.15, 3.75, t);
+                targetPose.rz = gsap.utils.interpolate(0.15, -0.15, t);
+                targetPose.scale = gsap.utils.interpolate(isMobile ? 0.70 : 0.90, isMobile ? 0.75 : 0.95, t);
+                targetPose.opacity = gsap.utils.interpolate(0.72, 0.68, t);
+              } else if (p <= 0.80) {
+                // Marco 7: Player de Vídeo (.films-section)
+                const t = (p - 0.70) / 0.10;
+                targetPose.x = gsap.utils.interpolate(isMobile ? 0.30 : 1.20, isMobile ? 0.35 : 1.30, t);
+                targetPose.y = gsap.utils.interpolate(0.0, -0.15, t);
+                targetPose.z = gsap.utils.interpolate(0.75, 0.45, t);
+                targetPose.rx = gsap.utils.interpolate(0.15, 0.05, t);
+                targetPose.ry = gsap.utils.interpolate(3.75, 4.30, t);
+                targetPose.rz = gsap.utils.interpolate(-0.15, 0.10, t);
+                targetPose.scale = gsap.utils.interpolate(isMobile ? 0.75 : 0.95, isMobile ? 0.60 : 0.72, t);
+                targetPose.opacity = gsap.utils.interpolate(0.68, 0.48, t);
+              } else if (p <= 0.92) {
+                // Marco 8 & 9: Depoimentos & Como Funciona (.how-editorial, flutua suavemente)
+                const t = (p - 0.80) / 0.12;
+                targetPose.x = gsap.utils.interpolate(isMobile ? 0.35 : 1.30, isMobile ? -0.20 : -0.95, t);
+                targetPose.y = gsap.utils.interpolate(-0.15, 0.0, t);
+                targetPose.z = gsap.utils.interpolate(0.45, 0.65, t);
+                targetPose.rx = gsap.utils.interpolate(0.05, -0.10, t);
+                targetPose.ry = gsap.utils.interpolate(4.30, 5.15, t);
+                targetPose.rz = gsap.utils.interpolate(0.10, 0.0, t);
+                targetPose.scale = gsap.utils.interpolate(isMobile ? 0.60 : 0.72, isMobile ? 0.70 : 0.88, t);
+                targetPose.opacity = gsap.utils.interpolate(0.48, 0.75, t);
+              } else if (p <= 0.97) {
+                // Marco 10 & 11: Contato & Agendamento Final (aponta para o CTA de conversão)
+                const t = (p - 0.92) / 0.05;
+                targetPose.x = gsap.utils.interpolate(isMobile ? -0.20 : -0.95, 0.0, t);
+                targetPose.y = gsap.utils.interpolate(0.0, -0.15, t);
+                targetPose.z = gsap.utils.interpolate(0.65, 0.85, t);
+                targetPose.rx = gsap.utils.interpolate(-0.10, 0.25, t);
+                targetPose.ry = gsap.utils.interpolate(5.15, 5.80, t);
+                targetPose.rz = 0.0;
+                targetPose.scale = gsap.utils.interpolate(isMobile ? 0.70 : 0.88, isMobile ? 0.85 : 1.05, t);
+                targetPose.opacity = gsap.utils.interpolate(0.75, 0.85, t);
               } else {
-                // Stage: Agendamento -> Conclusão / Rodapé (Fades out gently)
-                const t = (p - 0.85) / 0.15;
+                // Marco 12: Saída Suave no Rodapé (últimos 30vh antes do fim da página)
+                const t = (p - 0.97) / 0.03;
                 targetPose.x = 0.0;
-                targetPose.y = gsap.utils.interpolate(-0.15, -0.40, t);
-                targetPose.z = gsap.utils.interpolate(0.80, 0.20, t);
-                targetPose.rx = 0.30;
-                targetPose.ry = gsap.utils.interpolate(3.85, 4.20, t);
+                targetPose.y = gsap.utils.interpolate(-0.15, -0.45, t);
+                targetPose.z = gsap.utils.interpolate(0.85, 0.20, t);
+                targetPose.rx = 0.25;
+                targetPose.ry = 5.80;
                 targetPose.rz = 0.0;
                 targetPose.scale = gsap.utils.interpolate(isMobile ? 0.85 : 1.05, 0.65, t);
-                targetPose.opacity = gsap.utils.interpolate(0.88, 0.0, t);
+                targetPose.opacity = gsap.utils.interpolate(0.85, 0.0, t);
               }
             },
           },
         });
+
+        ScrollTrigger.refresh();
       },
       undefined,
       (err) => {
@@ -268,16 +308,12 @@ export function Global3DScene() {
       }
     );
 
-    // 7. Render Loop with Smooth Lerp & Energy Saving
+    // 7. Render Loop com Lerp Suave e Economia de Energia
     const lerpFactor = 0.08;
     const renderLoop = () => {
       if (isDisposed) return;
+      if (document.hidden) return;
 
-      if (document.hidden) {
-        return;
-      }
-
-      // Smooth interpolation towards target pose
       currentPose.x += (targetPose.x - currentPose.x) * lerpFactor;
       currentPose.y += (targetPose.y - currentPose.y) * lerpFactor;
       currentPose.z += (targetPose.z - currentPose.z) * lerpFactor;
@@ -300,6 +336,7 @@ export function Global3DScene() {
     };
 
     gsap.ticker.add(renderLoop);
+    gsap.ticker.lagSmoothing(0);
 
     // 8. Handle Window Resize
     const handleResize = () => {
@@ -319,16 +356,73 @@ export function Global3DScene() {
 
     window.addEventListener("resize", handleResize);
 
-    // 9. Full Cleanup on Unmount
+    // 9. Debug Panel Interface window.__AS3D__ (Fase 8 QA)
+    if (typeof window !== "undefined") {
+      (window as unknown as { __AS3D__: unknown }).__AS3D__ = {
+        getPose: () => ({ ...currentPose }),
+        getScreenBBox: () => {
+          const box = new THREE.Box3().setFromObject(modelGroup);
+          const points = [
+            new THREE.Vector3(box.min.x, box.min.y, box.min.z),
+            new THREE.Vector3(box.min.x, box.min.y, box.max.z),
+            new THREE.Vector3(box.min.x, box.max.y, box.min.z),
+            new THREE.Vector3(box.min.x, box.max.y, box.max.z),
+            new THREE.Vector3(box.max.x, box.min.y, box.min.z),
+            new THREE.Vector3(box.max.x, box.min.y, box.max.z),
+            new THREE.Vector3(box.max.x, box.max.y, box.min.z),
+            new THREE.Vector3(box.max.x, box.max.y, box.max.z),
+          ];
+          let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+          points.forEach((p) => {
+            p.project(camera);
+            const sx = ((p.x + 1) * width) / 2;
+            const sy = ((-p.y + 1) * height) / 2;
+            if (sx < minX) minX = sx;
+            if (sx > maxX) maxX = sx;
+            if (sy < minY) minY = sy;
+            if (sy > maxY) maxY = sy;
+          });
+          return {
+            x: Math.round(minX),
+            y: Math.round(minY),
+            width: Math.round(maxX - minX),
+            height: Math.round(maxY - minY),
+          };
+        },
+        getMode: () => "webgl",
+        info: () => renderer.info,
+        getMemoryInfo: () => ({ ...renderer.info.memory }),
+        progress: () => scrollProgress,
+        materials: () => {
+          const mats: { name: string; roughness: number; metalness: number; transparent: boolean }[] = [];
+          modelGroup.traverse((c) => {
+            if ((c as THREE.Mesh).isMesh && (c as THREE.Mesh).material) {
+              const m = (c as THREE.Mesh).material as THREE.MeshStandardMaterial;
+              mats.push({
+                name: m.name,
+                roughness: m.roughness,
+                metalness: m.metalness,
+                transparent: m.transparent,
+              });
+            }
+          });
+          return mats;
+        },
+      };
+    }
+
+    // 10. Full Cleanup on Unmount
     return () => {
       isDisposed = true;
+      if (typeof window !== "undefined") {
+        delete (window as unknown as { __AS3D__?: unknown }).__AS3D__;
+      }
       gsap.ticker.remove(renderLoop);
       window.removeEventListener("resize", handleResize);
       ScrollTrigger.getAll().forEach((st) => {
         if (st.vars.trigger === document.body) st.kill();
       });
 
-      // Dispose Three.js objects
       scene.traverse((obj) => {
         if ((obj as THREE.Mesh).isMesh) {
           const mesh = obj as THREE.Mesh;

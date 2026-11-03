@@ -52,6 +52,7 @@
   --radius-card: 6px;
   --radius-lg: 8px;
   --radius-xl: 12px;
+  --radius-button: 12px;
   --radius-pill: 9999px;
 
   /* Sombras (Leves e orgânicas, sem glow violeta artificial) */
@@ -894,4 +895,58 @@
 
 .footer-copy, .footer-credits {
   color: var(--text-muted, #7A7A85) !important;
+}
+
+
+/* ==========================================================================
+   Fase 2 & Fase 7: Transparência de Seções e Unificação de Botões
+   ========================================================================== */
+
+/* 1. Transparência das seções para preservar canvas 3D persistente (Regra Fase 2) */
+.section,
+.signature-editorial,
+.catalog-section,
+.team-section,
+.history-editorial,
+.gallery-editorial,
+.films-section,
+.reviews-section,
+.how-editorial,
+.contact-editorial,
+.final-cta-editorial {
+  background: transparent !important;
+}
+
+/* 2. Unificação de Border-Radius dos Botões para --radius-button: 12px (Regra Fase 7.3) */
+button:not(.btn-icon-round),
+.cta,
+.hero-btn-primary,
+.hero-btn-outline,
+.button-editorial,
+.header-cta-btn,
+.header-menu-btn,
+.filter-tab,
+.how-cta-center a,
+.final-cta-buttons a,
+.btn-player,
+.quote-controls button,
+.booking-live button:not(.btn-icon-round),
+.booking-live a.cta {
+  border-radius: var(--radius-button, 12px) !important;
+}
+
+/* Botões de controle de vídeo e ícone */
+.btn-icon-round,
+.film-toggle,
+.film-sound {
+  border-radius: 12px !important;
+}
+
+/* Espaçamento e harmonia para confirmação de agendamento (/meu-agendamento) */
+.confirmation-actions {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  margin-top: 16px !important;
 }
