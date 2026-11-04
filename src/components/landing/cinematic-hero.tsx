@@ -10,14 +10,14 @@ export function CinematicHero(){
  const root=useRef<HTMLElement>(null),surface=useRef<HTMLDivElement>(null),canvas=useRef<HTMLCanvasElement>(null);const enabled=useMotionEnabled();
  useEffect(()=>{
   const el=root.current!,cv=canvas.current!,box=surface.current!;const debug=process.env.NODE_ENV==='development'||new URLSearchParams(location.search).has('debug-hero');
-  const mq=matchMedia('(max-width: 768px) and (orientation: portrait)');let dispose=()=>{};
+  const mq=matchMedia('(max-width: 768px) and (orientation: portrait)');let dispose=()=>{},engaged=false;
   const setup=()=>{
    dispose();const reduced=!enabled||matchMedia('(prefers-reduced-motion: reduce)').matches;let savedOff=false;try{savedOff=localStorage.getItem('auto-stilo-motion')==='off'}catch{}el.classList.toggle('cinema-static',reduced&&(savedOff||matchMedia('(prefers-reduced-motion: reduce)').matches||new URLSearchParams(location.search).get('motion')==='off'));if(reduced)return;
    const ctx=cv.getContext('2d');if(!ctx)return;gsap.registerPlugin(ScrollTrigger);ScrollTrigger.config({ignoreMobileResize:true});
    const variant=mq.matches?'mobile':'desktop';const nav=navigator as Navigator&{deviceMemory?:number;connection?:{saveData?:boolean;effectiveType?:string}};
    const weak=(nav.deviceMemory||8)<=4,step=nav.connection?.saveData||['2g','slow-2g'].includes(nav.connection?.effectiveType||'')?2:1, radius=weak?3:mq.matches?5:8;
    const abort=new AbortController(),blobs=new Map<number,Blob>(),bitmaps=new Map<number,ImageBitmap>(),pending=new Set<number>(),fetched=new Set<number>();
-   let dead=false,target=0,active=false,fetching=0,decoding=0,width=0,height=0,last=-1,version=0;const model={frame:0};
+   let dead=false,target=0,active=engaged,fetching=0,decoding=0,width=0,height=0,last=-1,version=0;const model={frame:0};
    const texts=Array.from(el.querySelectorAll<HTMLElement>('.cinema-cue'));const timeline=gsap.timeline({paused:true});
    cues.forEach((cue,i)=>{const node=texts[i];gsap.set(node,{autoAlpha:i===0?1:0,y:i===0?0:16});if(i)timeline.to(node,{autoAlpha:1,y:0,duration:cue.in-cue.start,ease:'none'},cue.start-1);if(i<4)timeline.to(node,{autoAlpha:0,y:-16,duration:cue.end-cue.out,ease:'none'},cue.out-1)});timeline.to({}, {duration:1},237);
    const draw=()=>{if(dead)return;const keys=[...bitmaps.keys()];if(!keys.length)return;const nearest=keys.reduce((a,b)=>Math.abs(b-target)<Math.abs(a-target)?b:a);if(nearest!==last){const image=bitmaps.get(nearest)!;const scale=Math.max(width/image.width,height/image.height);ctx.drawImage(image,(width-image.width*scale)/2,(height-image.height*scale)/2,image.width*scale,image.height*scale);last=nearest;cv.style.opacity='1'}
@@ -31,7 +31,7 @@ export function CinematicHero(){
    fetch(path(variant,0),{signal:abort.signal,priority:'high'}).then(r=>{if(!r.ok)throw Error('Poster unavailable');return r.blob()}).then(b=>{if(!dead){blobs.set(0,b);fetched.add(0);decode()}}).catch(()=>{});
    const update=()=>{target=Math.round(model.frame);timeline.time(target);draw();decode();pump()};
    const trigger=ScrollTrigger.create({trigger:el,start:'top top',end:()=>`+=${innerHeight*(mq.matches?3.5:4.5)}`,pin:box,anticipatePin:1,invalidateOnRefresh:true,animation:gsap.to(model,{frame:238,duration:1,ease:'none',paused:true,onUpdate:update}),scrub:.35});
-   const activate=()=>{active=true;pump()};window.addEventListener('wheel',activate,{passive:true,once:true});window.addEventListener('touchstart',activate,{passive:true,once:true});window.addEventListener('keydown',activate,{once:true});
+   const activate=()=>{engaged=true;active=true;pump()};window.addEventListener('wheel',activate,{passive:true,once:true});window.addEventListener('touchstart',activate,{passive:true,once:true});window.addEventListener('keydown',activate,{once:true});
    dispose=()=>{dead=true;abort.abort();ro.disconnect();trigger.animation?.kill();trigger.kill(true);timeline.kill();window.removeEventListener('wheel',activate);window.removeEventListener('touchstart',activate);window.removeEventListener('keydown',activate);for(const b of bitmaps.values())b.close();bitmaps.clear();blobs.clear();gsap.set(texts,{clearProps:'all'});cv.style.opacity='0';if(debug)delete (window as Window&{__HERO__?:unknown}).__HERO__};
   };setup();mq.addEventListener('change',setup);return()=>{dispose();mq.removeEventListener('change',setup)};
  },[enabled]);
