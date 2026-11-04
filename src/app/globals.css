@@ -160,3 +160,8 @@ h3 {
 button{min-width:48px}
 
 .watermark-pattern{opacity:.045}.watermark-footer{background:var(--bg);color:var(--text-muted)}
+/* Dark route boundaries also cover root-level demo marks; their copy remains intact. */
+body:has(.cinematic-site),body:has(.booking-scope){background:#17181b;color:#f4f1eb}
+body:has(.cinematic-site) .watermark-badge,body:has(.booking-scope) .watermark-badge{background:#222329;color:#f4f1eb}
+body:has(.cinematic-site) .watermark-badge span,body:has(.booking-scope) .watermark-badge span{color:#b9b6bf}
+body:has(.cinematic-site) .watermark-footer,body:has(.booking-scope) .watermark-footer{background:#17181b;color:#b9b6bf}

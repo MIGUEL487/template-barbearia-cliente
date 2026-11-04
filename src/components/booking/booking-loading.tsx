@@ -4,7 +4,7 @@ import Image from 'next/image';
 export function BrandLoading({label='Consultando disponibilidade',compact=false}:{label?:string;compact?:boolean}){
  return <span className={compact?'brand-loading is-compact':'brand-loading'} role="status" aria-label={label}>
   <svg viewBox="0 0 96 96" aria-hidden="true"><circle className="brand-loading-track" cx="48" cy="48" r="44"/><circle className="brand-loading-arc" cx="48" cy="48" r="44"/></svg>
-  <Image src="/brand/auto-stilo/logo-on-light.png" alt="" width={64} height={52} unoptimized/>
+  <Image src="/brand/auto-stilo/logo-on-dark.png" alt="" width={64} height={52} unoptimized/>
  </span>;
 }
 export function BookingSkeleton({kind='professionals'}:{kind?:'professionals'|'slots'}){

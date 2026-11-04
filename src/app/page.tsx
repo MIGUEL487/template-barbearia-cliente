@@ -1,3 +1,4 @@
+import {TransitionMarquee} from '@/components/landing/transition-marquee';
 import {LandingScroll} from '@/components/landing/scroll-manager';
 import {TeamJourney} from '@/components/landing/team-journey';
 import localFont from 'next/font/local';
@@ -11,4 +12,4 @@ import {LandingMotion} from '@/components/landing/motion';
 import {Signature,Ritual,History,MarqueeFooter} from '@/components/landing/editorial';
 const cinzel=localFont({src:'./fonts/cinzel.ttf',variable:'--font-cinema-title',display:'swap'});
 const outfit=localFont({src:'./fonts/outfit.ttf',variable:'--font-cinema-body',display:'swap'});
-export default function Page(){return <div className={`cinematic-site ${cinzel.variable} ${outfit.variable}`}><LandingScroll/><Navigation/><main id="conteudo"><CinematicHero/><Immersive/><Signature/><TeamJourney/><Ritual/><Catalog/><History/><Reviews/><Details/><MarqueeFooter/></main><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify({"@context":"https://schema.org","@type":"BarberShop",name:"Barbearia Auto Stilo",telephone:"+5535997374960",address:{"@type":"PostalAddress",streetAddress:"R. do Tanque, 395 – Bela Vista",addressLocality:"Monte Sião",addressRegion:"MG",postalCode:"37580-000",addressCountry:"BR"}})}}/><LandingMotion/></div>}
+export default function Page(){return <div className={`cinematic-site ${cinzel.variable} ${outfit.variable}`}><LandingScroll/><Navigation/><main id="conteudo"><CinematicHero/><TransitionMarquee/><Immersive/><Signature/><TeamJourney/><Ritual/><Catalog/><History/><Reviews/><Details/><MarqueeFooter/></main><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify({"@context":"https://schema.org","@type":"BarberShop",name:"Barbearia Auto Stilo",telephone:"+5535997374960",address:{"@type":"PostalAddress",streetAddress:"R. do Tanque, 395 – Bela Vista",addressLocality:"Monte Sião",addressRegion:"MG",postalCode:"37580-000",addressCountry:"BR"}})}}/><LandingMotion/></div>}
