@@ -10,6 +10,10 @@ const text=`/*
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   X-Frame-Options: DENY
 ${['true','1'].includes(process.env.NEXT_PUBLIC_DEMO_WATERMARK?.trim().toLowerCase())?'  X-Robots-Tag: noindex, nofollow\n':''}
+/frames/desktop/*
+  Cache-Control: public, max-age=31536000, immutable
+/frames/hero-manifest.json
+  Cache-Control: no-cache
 /frames/pc/*
   Cache-Control: public, max-age=31536000, immutable
 /frames/mobile/*
