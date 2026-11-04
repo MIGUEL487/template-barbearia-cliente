@@ -1,0 +1,17 @@
+[
+  {
+    "width": 1440,
+    "hold": true,
+    "noOverflow": true
+  },
+  {
+    "width": 390,
+    "hold": true,
+    "noOverflow": true
+  },
+  {
+    "width": 360,
+    "hold": true,
+    "noOverflow": true
+  }
+]

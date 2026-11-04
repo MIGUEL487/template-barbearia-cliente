@@ -1,0 +1,16 @@
+[
+  {
+    "width": 1440,
+    "heroGate": true,
+    "marquee": true,
+    "motion": true,
+    "noOverflow": true
+  },
+  {
+    "width": 390,
+    "heroGate": true,
+    "marquee": true,
+    "motion": true,
+    "noOverflow": true
+  }
+]
