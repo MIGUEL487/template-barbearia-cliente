@@ -1,0 +1,49 @@
+{
+  "frames": 239,
+  "fps": 24,
+  "indexBase": 1,
+  "variants": {
+    "desktop": {
+      "path": "/frames/desktop/frame_{n}.webp",
+      "width": 1920,
+      "height": 1080
+    },
+    "mobile": {
+      "path": "/frames/mobile/frame_{n}.webp",
+      "width": 1080,
+      "height": 1920
+    }
+  },
+  "scenes": [
+    {
+      "id": "A",
+      "from": 1,
+      "to": 47,
+      "desc": "plano médio: barbeiro de frente cortando, cliente à direita"
+    },
+    {
+      "id": "B",
+      "from": 48,
+      "to": 108,
+      "desc": "macro: mãos, tesoura, pente e cabelo"
+    },
+    {
+      "id": "C",
+      "from": 109,
+      "to": 166,
+      "desc": "plano aberto: barbeiro de costas, cliente à direita, ambiente"
+    },
+    {
+      "id": "D",
+      "from": 167,
+      "to": 203,
+      "desc": "close no rosto do barbeiro concentrado"
+    },
+    {
+      "id": "E",
+      "from": 204,
+      "to": 239,
+      "desc": "luzes hexagonais no teto, barbeiro e cliente"
+    }
+  ]
+}
