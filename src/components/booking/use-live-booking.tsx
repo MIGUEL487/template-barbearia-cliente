@@ -35,6 +35,7 @@ import {
 } from "@/lib/utils";
 import confetti from "canvas-confetti";
 import {reportSupabaseError, reportAvailability} from '@/lib/booking-diagnostics';
+import {depositBreakdown} from '@/lib/saas2/money';
 import {availabilityRpc,hasServiceQuantities} from '@/lib/booking-services';
 
 /* ─── animações ─── */
@@ -134,6 +135,7 @@ export function useLiveBooking() {
 
   // Confirmação
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [bookingSnapshot,setBookingSnapshot]=useState<{total:number;deposit:number;remaining:number}|null>(null);
   const [bookingToken, setBookingToken] = useState<string>("");
   const [holdExpiresAt, setHoldExpiresAt] = useState<string | null>(null);
   const [countdownSeconds, setCountdownSeconds] = useState<number>(900);
@@ -193,8 +195,8 @@ export function useLiveBooking() {
           .maybeSingle();
         if (settingsError) throw settingsError;
 
-        if (setRes && setRes.deposit_percentage) {
-          setDepositPct(Number(setRes.deposit_percentage));
+        if (setRes && setRes.deposit_percentage!==null && setRes.deposit_percentage!==undefined) {
+          const pct=Number(setRes.deposit_percentage);if(!Number.isFinite(pct)||pct<0||pct>100)throw Error('Percentual de sinal inválido');setDepositPct(pct);
         }
       } catch (err: unknown) {
         reportSupabaseError('Catálogo de agendamento', err);
@@ -207,6 +209,7 @@ export function useLiveBooking() {
     fetchInitialData();
   }, [missingEnv]);
 
+  useEffect(()=>{if(missingEnv.length||step===5)return;let alive=true;const refresh=async()=>{const {data,error}=await supabase.from('public_site_settings').select('deposit_percentage').eq('barbershop_id',getBarbershopId()).maybeSingle();if(!alive)return;if(error){reportSupabaseError('Atualizar sinal',error);setErrorBanner('Não foi possível atualizar o sinal. Confira o valor solicitado ao criar a pré-reserva.');return;}if(data?.deposit_percentage!=null){const pct=Number(data.deposit_percentage);if(Number.isFinite(pct)&&pct>=0&&pct<=100)setDepositPct(pct);}};window.addEventListener('focus',refresh);if(step===4)void refresh();return()=>{alive=false;window.removeEventListener('focus',refresh)}},[missingEnv,step]);
   const selectedBarberId = selectedBarber?.id || null;
   const availabilityVersion=useRef(0);
 
@@ -279,7 +282,7 @@ export function useLiveBooking() {
     (sum, s) => sum + s.duration_minutes*(serviceQuantities[s.id]||1),
     0,
   );
-  const depositAmount = Math.round(totalPrice * (depositPct / 100) * 100) / 100;
+  const depositAmount = depositBreakdown(totalPrice,depositPct).deposit;
   const payNowAmount =
     paymentOption === "full"
       ? totalPrice
@@ -375,6 +378,9 @@ export function useLiveBooking() {
 
       if (!data?.cancellation_token || !data?.hold_expires_at) throw new Error('Resposta de pré-reserva sem token ou expiração');
       if (data) {
+        const total=Number(data.total_price),deposit=Number(data.deposit_amount);
+        if(!Number.isFinite(total)||!Number.isFinite(deposit)||deposit<0||deposit>total)throw Error('Resposta financeira de pré-reserva inválida');
+        setBookingSnapshot({total,deposit,remaining:Math.round((total-deposit)*100)/100});
         setBookingToken(data.token || data.cancellation_token || "");
         setHoldExpiresAt(data.hold_expires_at);
         setStep(5);
@@ -471,6 +477,7 @@ export function useLiveBooking() {
     setMarketingConsent,
     isSubmitting,
     setIsSubmitting,
+    bookingSnapshot,
     bookingToken,
     setBookingToken,
     holdExpiresAt,
