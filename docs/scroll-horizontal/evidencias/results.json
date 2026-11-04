@@ -1,0 +1,51 @@
+[
+  {
+    "width": 1920,
+    "height": 1080,
+    "header": true,
+    "lenis": true,
+    "horizontal": true,
+    "reverse": true,
+    "errors": []
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "header": true,
+    "lenis": true,
+    "horizontal": true,
+    "reverse": true,
+    "errors": []
+  },
+  {
+    "width": 820,
+    "height": 1180,
+    "header": true,
+    "lenis": true,
+    "horizontal": true,
+    "reverse": true,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "header": true,
+    "lenis": true,
+    "horizontal": true,
+    "reverse": true,
+    "errors": []
+  },
+  {
+    "width": 360,
+    "height": 800,
+    "header": true,
+    "lenis": true,
+    "horizontal": true,
+    "reverse": true,
+    "errors": []
+  },
+  {
+    "reducedMotion": true,
+    "routes": true
+  }
+]

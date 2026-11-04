@@ -1,0 +1,34 @@
+{
+  "before": {
+    "start": 4789,
+    "end": 5179,
+    "progress": 0.02564102564102564,
+    "x": 0,
+    "distance": 390,
+    "panels": 2
+  },
+  "after": {
+    "start": 4789,
+    "end": 5179,
+    "progress": 0.6025641025641025,
+    "x": -221.6233,
+    "distance": 390,
+    "panels": 2
+  },
+  "reverse": {
+    "start": 4789,
+    "end": 5179,
+    "progress": 0.02564102564102564,
+    "x": -23.3766,
+    "distance": 390,
+    "panels": 2
+  },
+  "focus": {
+    "start": 4789,
+    "end": 5179,
+    "progress": 1,
+    "x": -10,
+    "distance": 390,
+    "panels": 2
+  }
+}
