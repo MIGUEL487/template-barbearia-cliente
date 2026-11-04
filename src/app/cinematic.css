@@ -47,3 +47,5 @@
 @media(max-width:768px){.cinematic-site .immersive{grid-template-columns:1fr;gap:40px}.immersive-detail{width:88%;margin-top:0;justify-self:end}.cinematic-site .ritual-grid{gap:32px}.cinematic-site .ritual-photo{aspect-ratio:4/5}}
 @media(max-width:768px){.cinema-cue,.cinema-cue.cue-0,.cinema-cue.cue-2,.cinema-cue.cue-3,.cinema-cue.cue-4{bottom:144px}}
 .cinematic-site{--bg-soft:#222329;--surface-3:#303139;--ink:#f4f1eb;--ink-2:#f4f1eb;--muted:#b9b6bf;--line:#3a3a42;--accent-soft:#34303f;--font-serif:var(--font-cinema-title);--font-sans:var(--font-cinema-body);color-scheme:dark}
+.cinematic-site .site-header{position:fixed}
+@media(min-width:769px){.cinema-cue.cue-1,.cinema-cue.cue-2{top:max(128px,12%)}}
