@@ -6,6 +6,8 @@ import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {useMotionEnabled} from '@/components/motion-preferences';
 import 'lenis/dist/lenis.css';
 
+const frameTasks=new Set<(time:number)=>void>();
+export function subscribeLandingFrame(task:(time:number)=>void){frameTasks.add(task);return()=>{frameTasks.delete(task)}}
 let activeScroll:Lenis|null=null;
 export function jumpLandingTo(top:number){if(activeScroll)activeScroll.scrollTo(top,{immediate:true});else window.scrollTo({top,behavior:'instant'})}
 
@@ -18,10 +20,10 @@ export function LandingScroll(){
   const lenis=new Lenis({lerp:.14,smoothWheel:true,syncTouch:false,autoRaf:false,anchors:{offset:-112}});
   activeScroll=lenis;
   let ticks=0;
-  const update=(time:number)=>{ticks++;lenis.raf(time*1000)};
+  const update=(time:number)=>{ticks++;lenis.raf(time*1000);for(const task of frameTasks)task(time)};
   lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(update);
   // Keep GSAP's normal lag recovery; Lenis receives the same clock as all timelines.
-  const refresh=()=>ScrollTrigger.refresh();
+  const refresh=()=>{ScrollTrigger.sort();ScrollTrigger.refresh()};
   document.fonts.ready.then(()=>{if(!disposed)refresh()});
   let disposed=false;
   window.addEventListener('auto-stilo-header-resize',refresh);
