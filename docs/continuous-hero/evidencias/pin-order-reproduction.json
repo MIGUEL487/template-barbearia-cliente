@@ -1,0 +1,16 @@
+[
+  {
+    "sorted": false,
+    "teamStart": 2800,
+    "teamEnd": 5800,
+    "ritualStart": 6600,
+    "ritualShouldStart": 6600
+  },
+  {
+    "sorted": true,
+    "teamStart": 2800,
+    "teamEnd": 5800,
+    "ritualStart": 6600,
+    "ritualShouldStart": 6600
+  }
+]

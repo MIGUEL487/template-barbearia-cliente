@@ -1,0 +1,14 @@
+[
+  {
+    "scrub": 0.25,
+    "requested": 1,
+    "displayed": 0,
+    "pinReleased": true
+  },
+  {
+    "scrub": true,
+    "requested": 1,
+    "displayed": 1,
+    "pinReleased": true
+  }
+]
