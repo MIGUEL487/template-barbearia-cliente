@@ -167,6 +167,8 @@ export function useLiveBooking() {
             bio: b.bio ? fixMojibake(b.bio) : null,
           }));
           setBarbers(cleaned);
+          if(cleaned.length===1){setSelectedBarber(cleaned[0]);setStep(previous=>previous===1?2:previous)}
+          if(cleaned.length===0)setErrorBanner("Nenhum profissional ativo está disponível para agendamento. Fale com a barbearia.");
         }
 
         const { data: sData, error: sError } = await supabase
