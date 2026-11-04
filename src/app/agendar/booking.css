@@ -187,3 +187,4 @@
 @media(forced-colors:active){.booking-scope .booking-shell :is(button,.choice,input,select){border:1px solid ButtonText}.booking-scope .calendar-selection{background:Highlight}.booking-scope .booking-shell .cta{background:ButtonFace;color:ButtonText}}
 @media(prefers-reduced-transparency:reduce){.booking-scope .booking-actions{background:#29272f;backdrop-filter:none;-webkit-backdrop-filter:none}}
 @media(max-width:767px){.booking-scope .booking-actions .cta[form="booking-confirmation"]{min-width:0;padding-inline:16px}.booking-scope .booking-actions .button-secondary{padding-inline:16px;flex:0 0 auto}}
+.booking-scope{--danger:#ff9da8;--success:#80d4a5;--warning:#f0cb7d}
