@@ -1,0 +1,11 @@
+{
+  "width": 1254,
+  "height": 1254,
+  "modelUvPixels": 808383,
+  "atlasTexturedPixels": 1055541,
+  "overlapPixels": 559360,
+  "overlapRateOfModel": 69.19,
+  "overlapRateOfAtlas": 52.99,
+  "iou": 42.88,
+  "conclusion": "INCOMPATÍVEL (< 50% de coincidência; padrão aceitável para atlas de textura é > 90%). A textura fornecida NÃO corresponde ao mapeamento UV do modelo 3D."
+}

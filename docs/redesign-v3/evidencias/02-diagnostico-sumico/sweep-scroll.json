@@ -1,0 +1,3195 @@
+{
+  "sceneAudit": {
+    "canvasExists": true,
+    "canvasWidth": 1440,
+    "canvasHeight": 900,
+    "containerOpacity": "0.912435",
+    "containerZIndex": "1",
+    "containerPosition": "fixed",
+    "ancestorsWithFixedBreakers": [],
+    "allAncestors": [
+      {
+        "tag": "DIV",
+        "id": "",
+        "className": "fixed inset-0 pointer-events-none z-[1] transition-opacity duration-300",
+        "transform": "none",
+        "filter": "none",
+        "perspective": "none",
+        "contain": "none",
+        "backdropFilter": "none",
+        "overflow": "visible"
+      }
+    ]
+  },
+  "sweepResults": {
+    "maxScroll": 11021,
+    "scrollHeight": 11921,
+    "clientHeight": 900,
+    "results": [
+      {
+        "step": 0,
+        "progressPct": 0,
+        "scrollY": 0,
+        "containerOpacity": 0.5,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SPAN",
+            "id": "",
+            "className": "hero-title-secondary",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "H1",
+            "id": "",
+            "className": "hero-display-title",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "hero-copy-col",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "hero-studio-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "hero-studio-3d",
+            "top": 64,
+            "bottom": 960,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 1,
+        "progressPct": 2,
+        "scrollY": 184,
+        "containerOpacity": 0.5,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "hero-actions",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "hero-copy-col",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "hero-studio-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "hero-studio-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "hero-studio-3d",
+            "top": -120,
+            "bottom": 776,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "assinatura",
+            "top": 776,
+            "bottom": 1766,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "progressPct": 3,
+        "scrollY": 367,
+        "containerOpacity": 0.501228,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "hero-studio-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "hero-studio-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "hero-studio-3d",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "hero-studio-3d",
+            "top": -303,
+            "bottom": 593,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "assinatura",
+            "top": 593,
+            "bottom": 1583,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "progressPct": 5,
+        "scrollY": 551,
+        "containerOpacity": 0.501228,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SECTION",
+            "id": "assinatura",
+            "className": "section signature-editorial",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "HTML",
+            "id": "",
+            "className": "__variable_5ec6ec __variable_5a92ab lenis lenis-sc",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "hero-studio-3d",
+            "top": -487,
+            "bottom": 409,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "assinatura",
+            "top": 409,
+            "bottom": 1399,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 4,
+        "progressPct": 7,
+        "scrollY": 735,
+        "containerOpacity": 0.501228,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "editorial-header",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "editorial-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "assinatura",
+            "className": "section signature-editorial",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "hero-studio-3d",
+            "top": -671,
+            "bottom": 225,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "assinatura",
+            "top": 225,
+            "bottom": 1215,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 5,
+        "progressPct": 8,
+        "scrollY": 918,
+        "containerOpacity": 0.501228,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "editorial-header",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "editorial-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "assinatura",
+            "className": "section signature-editorial",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "hero-studio-3d",
+            "top": -854,
+            "bottom": 42,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "assinatura",
+            "top": 42,
+            "bottom": 1032,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 6,
+        "progressPct": 10,
+        "scrollY": 1102,
+        "containerOpacity": 0.501228,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "editorial-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "assinatura",
+            "className": "section signature-editorial",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "assinatura",
+            "top": -142,
+            "bottom": 848,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "pin-spacer",
+            "top": 848,
+            "bottom": 3528,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": 848,
+            "bottom": 1728,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 7,
+        "progressPct": 12,
+        "scrollY": 1286,
+        "containerOpacity": 0.515,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "editorial-pillars",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "editorial-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "assinatura",
+            "className": "section signature-editorial",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "assinatura",
+            "top": -326,
+            "bottom": 664,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "pin-spacer",
+            "top": 664,
+            "bottom": 3344,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": 664,
+            "bottom": 1544,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 8,
+        "progressPct": 13,
+        "scrollY": 1469,
+        "containerOpacity": 0.516713,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SECTION",
+            "id": "assinatura",
+            "className": "section signature-editorial",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "HTML",
+            "id": "",
+            "className": "__variable_5ec6ec __variable_5a92ab lenis lenis-sc",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "assinatura",
+            "top": -509,
+            "bottom": 481,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "pin-spacer",
+            "top": 481,
+            "bottom": 3161,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": 481,
+            "bottom": 1361,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 9,
+        "progressPct": 15,
+        "scrollY": 1653,
+        "containerOpacity": 0.525472,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "ritual-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "ritual ritual-active",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "pin-spacer",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "assinatura",
+            "top": -693,
+            "bottom": 297,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "pin-spacer",
+            "top": 297,
+            "bottom": 2977,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": 297,
+            "bottom": 1177,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 10,
+        "progressPct": 17,
+        "scrollY": 1837,
+        "containerOpacity": 0.52947,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "ritual-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "ritual ritual-active",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "pin-spacer",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "assinatura",
+            "top": -877,
+            "bottom": 113,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "pin-spacer",
+            "top": 113,
+            "bottom": 2793,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": 113,
+            "bottom": 993,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 11,
+        "progressPct": 18,
+        "scrollY": 2021,
+        "containerOpacity": 0.539095,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "ritual-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "ritual ritual-active",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "pin-spacer",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "pin-spacer",
+            "top": -71,
+            "bottom": 2609,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": 64,
+            "bottom": 944,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 12,
+        "progressPct": 20,
+        "scrollY": 2204,
+        "containerOpacity": 0.551296,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "ritual-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "ritual ritual-active",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "pin-spacer",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "pin-spacer",
+            "top": -254,
+            "bottom": 2426,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": 64,
+            "bottom": 944,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 13,
+        "progressPct": 22,
+        "scrollY": 2388,
+        "containerOpacity": 0.553124,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "ritual-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "ritual ritual-active",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "pin-spacer",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "pin-spacer",
+            "top": -438,
+            "bottom": 2242,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": 64,
+            "bottom": 944,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 14,
+        "progressPct": 23,
+        "scrollY": 2572,
+        "containerOpacity": 0.675828,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "ritual-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "ritual ritual-active",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "pin-spacer",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "pin-spacer",
+            "top": -622,
+            "bottom": 2058,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": 64,
+            "bottom": 944,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 15,
+        "progressPct": 25,
+        "scrollY": 2755,
+        "containerOpacity": 0.735598,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "ritual-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "ritual ritual-active",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "pin-spacer",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "pin-spacer",
+            "top": -805,
+            "bottom": 1875,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": 64,
+            "bottom": 944,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 16,
+        "progressPct": 27,
+        "scrollY": 2939,
+        "containerOpacity": 0.75391,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "ritual-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "ritual ritual-active",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "pin-spacer",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "pin-spacer",
+            "top": -989,
+            "bottom": 1691,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": 64,
+            "bottom": 944,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 17,
+        "progressPct": 28,
+        "scrollY": 3123,
+        "containerOpacity": 0.778292,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "ritual-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "ritual ritual-active",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "pin-spacer",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "pin-spacer",
+            "top": -1173,
+            "bottom": 1507,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": 64,
+            "bottom": 944,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 18,
+        "progressPct": 30,
+        "scrollY": 3306,
+        "containerOpacity": 0.873356,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "ritual-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "ritual ritual-active",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "pin-spacer",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "pin-spacer",
+            "top": -1356,
+            "bottom": 1324,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": 64,
+            "bottom": 944,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 19,
+        "progressPct": 32,
+        "scrollY": 3490,
+        "containerOpacity": 0.874519,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "ritual-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "ritual ritual-active",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "pin-spacer",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "pin-spacer",
+            "top": -1540,
+            "bottom": 1140,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": 64,
+            "bottom": 944,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 20,
+        "progressPct": 33,
+        "scrollY": 3674,
+        "containerOpacity": 0.874131,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "ritual-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "ritual ritual-active",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "pin-spacer",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "pin-spacer",
+            "top": -1724,
+            "bottom": 956,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": 64,
+            "bottom": 944,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 21,
+        "progressPct": 35,
+        "scrollY": 3857,
+        "containerOpacity": 0.872417,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "ritual-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "ritual ritual-active",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "pin-spacer",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "pin-spacer",
+            "top": -1907,
+            "bottom": 773,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": -107,
+            "bottom": 773,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "servicos",
+            "top": 773,
+            "bottom": 1240,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 22,
+        "progressPct": 37,
+        "scrollY": 4041,
+        "containerOpacity": 0.8693,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "svg",
+            "id": "",
+            "className": "[object SVGAnimatedString]",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "ritual-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "ritual ritual-active",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "pin-spacer",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "pin-spacer",
+            "top": -2091,
+            "bottom": 589,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": -291,
+            "bottom": 589,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "servicos",
+            "top": 589,
+            "bottom": 1056,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 23,
+        "progressPct": 38,
+        "scrollY": 4225,
+        "containerOpacity": 0.863343,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SECTION",
+            "id": "servicos",
+            "className": "section catalog-section relative",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "HTML",
+            "id": "",
+            "className": "__variable_5ec6ec __variable_5a92ab lenis lenis-sc",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "pin-spacer",
+            "top": -2275,
+            "bottom": 405,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": -475,
+            "bottom": 405,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "servicos",
+            "top": 405,
+            "bottom": 872,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "equipe",
+            "top": 872,
+            "bottom": 1412,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 24,
+        "progressPct": 40,
+        "scrollY": 4408,
+        "containerOpacity": 0.857025,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "section-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "servicos",
+            "className": "section catalog-section relative",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "pin-spacer",
+            "top": -2458,
+            "bottom": 222,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": -658,
+            "bottom": 222,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "servicos",
+            "top": 222,
+            "bottom": 689,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "equipe",
+            "top": 689,
+            "bottom": 1229,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 25,
+        "progressPct": 42,
+        "scrollY": 4592,
+        "containerOpacity": 0.84882,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SECTION",
+            "id": "servicos",
+            "className": "section catalog-section relative",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "HTML",
+            "id": "",
+            "className": "__variable_5ec6ec __variable_5a92ab lenis lenis-sc",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "pin-spacer",
+            "top": -2642,
+            "bottom": 38,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "ritual",
+            "top": -842,
+            "bottom": 38,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "servicos",
+            "top": 38,
+            "bottom": 505,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "equipe",
+            "top": 505,
+            "bottom": 1045,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 26,
+        "progressPct": 43,
+        "scrollY": 4776,
+        "containerOpacity": 0.78114,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SECTION",
+            "id": "equipe",
+            "className": "section team-section relative",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "HTML",
+            "id": "",
+            "className": "__variable_5ec6ec __variable_5a92ab lenis lenis-sc",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "servicos",
+            "top": -146,
+            "bottom": 321,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "equipe",
+            "top": 321,
+            "bottom": 861,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "historia",
+            "top": 861,
+            "bottom": 1677,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 27,
+        "progressPct": 45,
+        "scrollY": 4959,
+        "containerOpacity": 0.73688,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SECTION",
+            "id": "equipe",
+            "className": "section team-section relative",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "HTML",
+            "id": "",
+            "className": "__variable_5ec6ec __variable_5a92ab lenis lenis-sc",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "servicos",
+            "top": -329,
+            "bottom": 138,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "equipe",
+            "top": 138,
+            "bottom": 678,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "historia",
+            "top": 678,
+            "bottom": 1494,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 28,
+        "progressPct": 47,
+        "scrollY": 5143,
+        "containerOpacity": 0.681636,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SECTION",
+            "id": "equipe",
+            "className": "section team-section relative",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "HTML",
+            "id": "",
+            "className": "__variable_5ec6ec __variable_5a92ab lenis lenis-sc",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "equipe",
+            "top": -46,
+            "bottom": 494,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "historia",
+            "top": 494,
+            "bottom": 1310,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 29,
+        "progressPct": 48,
+        "scrollY": 5327,
+        "containerOpacity": 0.455265,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "history-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "historia",
+            "className": "section history-editorial",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "equipe",
+            "top": -230,
+            "bottom": 310,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "historia",
+            "top": 310,
+            "bottom": 1126,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 30,
+        "progressPct": 50,
+        "scrollY": 5511,
+        "containerOpacity": 0.455265,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "history-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "history-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "historia",
+            "className": "section history-editorial",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "equipe",
+            "top": -414,
+            "bottom": 126,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "historia",
+            "top": 126,
+            "bottom": 942,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 31,
+        "progressPct": 52,
+        "scrollY": 5694,
+        "containerOpacity": 0.440969,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "history-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "history-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "historia",
+            "className": "section history-editorial",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "historia",
+            "top": -57,
+            "bottom": 759,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "galeria",
+            "top": 759,
+            "bottom": 1705,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 32,
+        "progressPct": 53,
+        "scrollY": 5878,
+        "containerOpacity": 0.439128,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "history-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "history-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "historia",
+            "className": "section history-editorial",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "historia",
+            "top": -241,
+            "bottom": 575,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "galeria",
+            "top": 575,
+            "bottom": 1521,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 33,
+        "progressPct": 55,
+        "scrollY": 6062,
+        "containerOpacity": 0.432655,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SECTION",
+            "id": "galeria",
+            "className": "section gallery-editorial",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "HTML",
+            "id": "",
+            "className": "__variable_5ec6ec __variable_5a92ab lenis lenis-sc",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "historia",
+            "top": -425,
+            "bottom": 391,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "galeria",
+            "top": 391,
+            "bottom": 1337,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 34,
+        "progressPct": 57,
+        "scrollY": 6245,
+        "containerOpacity": 0.432655,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "section-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "galeria",
+            "className": "section gallery-editorial",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "historia",
+            "top": -608,
+            "bottom": 208,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "galeria",
+            "top": 208,
+            "bottom": 1154,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 35,
+        "progressPct": 58,
+        "scrollY": 6429,
+        "containerOpacity": 0.430531,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "IMG",
+            "id": "",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "PICTURE",
+            "id": "",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shop-image",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "window-crop",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "historia",
+            "top": -792,
+            "bottom": 24,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "galeria",
+            "top": 24,
+            "bottom": 970,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 36,
+        "progressPct": 60,
+        "scrollY": 6613,
+        "containerOpacity": 0.432475,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "IMG",
+            "id": "",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "PICTURE",
+            "id": "",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "shop-image",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "window-crop",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "galeria",
+            "top": -160,
+            "bottom": 786,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "section",
+            "top": 786,
+            "bottom": 1894,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 37,
+        "progressPct": 62,
+        "scrollY": 6796,
+        "containerOpacity": 0.445065,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "FIGCAPTION",
+            "id": "",
+            "className": "window-caption",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "FIGURE",
+            "id": "",
+            "className": "space-hero-window",
+            "bg": "rgb(246, 245, 248)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "gallery-composition",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "section-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "galeria",
+            "top": -343,
+            "bottom": 603,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "section",
+            "top": 603,
+            "bottom": 1711,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 38,
+        "progressPct": 63,
+        "scrollY": 6980,
+        "containerOpacity": 0.44656,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "section films-section",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "HTML",
+            "id": "",
+            "className": "__variable_5ec6ec __variable_5a92ab lenis lenis-sc",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "galeria",
+            "top": -527,
+            "bottom": 419,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "section",
+            "top": 419,
+            "bottom": 1527,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 39,
+        "progressPct": 65,
+        "scrollY": 7164,
+        "containerOpacity": 0.449109,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "section-heading",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "section films-section",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "galeria",
+            "top": -711,
+            "bottom": 235,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "section",
+            "top": 235,
+            "bottom": 1343,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 40,
+        "progressPct": 67,
+        "scrollY": 7347,
+        "containerOpacity": 0.4535,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "films-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "section films-section",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "galeria",
+            "top": -894,
+            "bottom": 52,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "section",
+            "top": 52,
+            "bottom": 1160,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 41,
+        "progressPct": 68,
+        "scrollY": 7531,
+        "containerOpacity": 0.4535,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "films-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "section films-section",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "section",
+            "top": -132,
+            "bottom": 976,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 42,
+        "progressPct": 70,
+        "scrollY": 7715,
+        "containerOpacity": 0.527284,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "films-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "section films-section",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "section",
+            "top": -316,
+            "bottom": 792,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "avaliacoes",
+            "top": 792,
+            "bottom": 1334,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 43,
+        "progressPct": 72,
+        "scrollY": 7898,
+        "containerOpacity": 0.528678,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "films-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "section films-section",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "section",
+            "top": -499,
+            "bottom": 609,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "avaliacoes",
+            "top": 609,
+            "bottom": 1151,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 44,
+        "progressPct": 73,
+        "scrollY": 8082,
+        "containerOpacity": 0.592065,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SECTION",
+            "id": "avaliacoes",
+            "className": "section reviews-section",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "HTML",
+            "id": "",
+            "className": "__variable_5ec6ec __variable_5a92ab lenis lenis-sc",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "section",
+            "top": -683,
+            "bottom": 425,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "avaliacoes",
+            "top": 425,
+            "bottom": 967,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 45,
+        "progressPct": 75,
+        "scrollY": 8266,
+        "containerOpacity": 0.616316,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "BLOCKQUOTE",
+            "id": "",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "quote-frame",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "review-feature",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "avaliacoes",
+            "className": "section reviews-section",
+            "bg": "rgb(255, 255, 255)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "section",
+            "top": -867,
+            "bottom": 241,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "avaliacoes",
+            "top": 241,
+            "bottom": 783,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "section",
+            "top": 783,
+            "bottom": 1528,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 46,
+        "progressPct": 77,
+        "scrollY": 8449,
+        "containerOpacity": 0.616316,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "quote-controls",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "review-feature",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "avaliacoes",
+            "className": "section reviews-section",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "section",
+            "top": -1050,
+            "bottom": 58,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "avaliacoes",
+            "top": 58,
+            "bottom": 600,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "section",
+            "top": 600,
+            "bottom": 1345,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 47,
+        "progressPct": 78,
+        "scrollY": 8633,
+        "containerOpacity": 0.616316,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "section how-editorial",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "HTML",
+            "id": "",
+            "className": "__variable_5ec6ec __variable_5a92ab lenis lenis-sc",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "avaliacoes",
+            "top": -126,
+            "bottom": 416,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "section",
+            "top": 416,
+            "bottom": 1161,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 48,
+        "progressPct": 80,
+        "scrollY": 8817,
+        "containerOpacity": 0.616316,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SPAN",
+            "id": "",
+            "className": "headline-italic",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "H2",
+            "id": "",
+            "className": "how-title",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "how-header",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "section-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "avaliacoes",
+            "top": -310,
+            "bottom": 232,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "section",
+            "top": 232,
+            "bottom": 977,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 49,
+        "progressPct": 82,
+        "scrollY": 9000,
+        "containerOpacity": 0.616316,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "how-steps-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "section-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "section how-editorial",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "avaliacoes",
+            "top": -493,
+            "bottom": 49,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "section",
+            "top": 49,
+            "bottom": 794,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "contato",
+            "top": 794,
+            "bottom": 1521,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 50,
+        "progressPct": 83,
+        "scrollY": 9184,
+        "containerOpacity": 0.616316,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "A",
+            "id": "",
+            "className": "cta cta-large",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "how-cta-center",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "section-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "section how-editorial",
+            "bg": "rgb(255, 255, 255)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "section",
+            "top": -135,
+            "bottom": 610,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "contato",
+            "top": 610,
+            "bottom": 1337,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 51,
+        "progressPct": 85,
+        "scrollY": 9368,
+        "containerOpacity": 0.616316,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SECTION",
+            "id": "contato",
+            "className": "section contact-editorial",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "HTML",
+            "id": "",
+            "className": "__variable_5ec6ec __variable_5a92ab lenis",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "section",
+            "top": -319,
+            "bottom": 426,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "contato",
+            "top": 426,
+            "bottom": 1153,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 52,
+        "progressPct": 87,
+        "scrollY": 9552,
+        "containerOpacity": 0.616316,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "contact-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "section-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "contato",
+            "className": "section contact-editorial",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "section",
+            "top": -503,
+            "bottom": 242,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "contato",
+            "top": 242,
+            "bottom": 969,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 53,
+        "progressPct": 88,
+        "scrollY": 9735,
+        "containerOpacity": 0.616316,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "contact-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "section-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "contato",
+            "className": "section contact-editorial",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "section",
+            "top": -686,
+            "bottom": 59,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "contato",
+            "top": 59,
+            "bottom": 786,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "section",
+            "top": 786,
+            "bottom": 1066,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 54,
+        "progressPct": 90,
+        "scrollY": 9919,
+        "containerOpacity": 0.616316,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "contact-grid",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "section-container",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "contato",
+            "className": "section contact-editorial",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "contato",
+            "top": -125,
+            "bottom": 602,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "section",
+            "top": 602,
+            "bottom": 882,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "section",
+            "top": 882,
+            "bottom": 1436,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 55,
+        "progressPct": 92,
+        "scrollY": 10103,
+        "containerOpacity": 0.616316,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "section faq-section",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "HTML",
+            "id": "",
+            "className": "__variable_5ec6ec __variable_5a92ab lenis",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "contato",
+            "top": -309,
+            "bottom": 418,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "section",
+            "top": 418,
+            "bottom": 698,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "section",
+            "top": 698,
+            "bottom": 1252,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 56,
+        "progressPct": 93,
+        "scrollY": 10286,
+        "containerOpacity": 0.616316,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "section faq-section",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "HTML",
+            "id": "",
+            "className": "__variable_5ec6ec __variable_5a92ab lenis",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "contato",
+            "top": -492,
+            "bottom": 235,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "section",
+            "top": 235,
+            "bottom": 515,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "section",
+            "top": 515,
+            "bottom": 1069,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ]
+      },
+      {
+        "step": 57,
+        "progressPct": 95,
+        "scrollY": 10470,
+        "containerOpacity": 0.616316,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "section final-cta-editorial relative",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "HTML",
+            "id": "",
+            "className": "__variable_5ec6ec __variable_5a92ab lenis",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "contato",
+            "top": -676,
+            "bottom": 51,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "section",
+            "top": 51,
+            "bottom": 331,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "section",
+            "top": 331,
+            "bottom": 885,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "marquee-wrapper",
+            "top": 885,
+            "bottom": 1096,
+            "inView": true,
+            "bg": "rgb(251, 250, 248)"
+          }
+        ]
+      },
+      {
+        "step": 58,
+        "progressPct": 97,
+        "scrollY": 10654,
+        "containerOpacity": 0.616316,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "P",
+            "id": "",
+            "className": "final-cta-sub",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "section-container final-cta-container relative",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "section final-cta-editorial relative",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "section",
+            "top": -133,
+            "bottom": 147,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "id": "section",
+            "top": 147,
+            "bottom": 701,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "marquee-wrapper",
+            "top": 701,
+            "bottom": 912,
+            "inView": true,
+            "bg": "rgb(251, 250, 248)"
+          }
+        ]
+      },
+      {
+        "step": 59,
+        "progressPct": 98,
+        "scrollY": 10837,
+        "containerOpacity": 0.616316,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "section final-cta-editorial relative",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "MAIN",
+            "id": "conteudo",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "BODY",
+            "id": "",
+            "className": "min-h-screen bg-bg text-text antialiased selection",
+            "bg": "rgb(255, 255, 255)"
+          },
+          {
+            "tag": "HTML",
+            "id": "",
+            "className": "__variable_5ec6ec __variable_5a92ab lenis",
+            "bg": "rgba(0, 0, 0, 0)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "section",
+            "top": -36,
+            "bottom": 518,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "marquee-wrapper",
+            "top": 518,
+            "bottom": 729,
+            "inView": true,
+            "bg": "rgb(251, 250, 248)"
+          },
+          {
+            "id": "site-footer",
+            "top": 729,
+            "bottom": 1084,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      },
+      {
+        "step": 60,
+        "progressPct": 100,
+        "scrollY": 11021,
+        "containerOpacity": 0.616316,
+        "canvasVisible": true,
+        "elementsAtCenter": [
+          {
+            "tag": "SPAN",
+            "id": "",
+            "className": "",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "marquee-track",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "marquee-window",
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "marquee-wrapper",
+            "bg": "rgb(251, 250, 248)"
+          }
+        ],
+        "sectionsInView": [
+          {
+            "id": "section",
+            "top": -220,
+            "bottom": 334,
+            "inView": true,
+            "bg": "rgba(0, 0, 0, 0)"
+          },
+          {
+            "id": "marquee-wrapper",
+            "top": 334,
+            "bottom": 545,
+            "inView": true,
+            "bg": "rgb(251, 250, 248)"
+          },
+          {
+            "id": "site-footer",
+            "top": 545,
+            "bottom": 900,
+            "inView": true,
+            "bg": "rgb(255, 255, 255)"
+          }
+        ]
+      }
+    ]
+  }
+}

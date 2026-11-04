@@ -1,0 +1,62 @@
+﻿
+> template-barbearia-cliente@1.0.0 tokens:check
+> node scripts/check-tokens.mjs
+
+Ô£à [OK] design-tokens.css sincronizado (48ebe6b7...)
+
+> template-barbearia-cliente@1.0.0 typecheck
+> tsc --noEmit
+
+
+> template-barbearia-cliente@1.0.0 lint
+> next lint
+
+Ô£ö No ESLint warnings or errors
+
+> template-barbearia-cliente@1.0.0 prebuild
+> node scripts/prepare-images.mjs
+
+Imagens preparadas; SVGs vetoriais de placeholder preservados.
+
+> template-barbearia-cliente@1.0.0 build
+> next build
+
+   Ôû▓ Next.js 15.5.28
+   - Experiments (use with caution):
+     ┬À cpus: 2
+
+   Creating an optimized production build ...
+ Ô£ô Compiled successfully in 34.7s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/9) ...
+   Generating static pages (2/9) 
+   Generating static pages (4/9) 
+   Generating static pages (6/9) 
+ Ô£ô Generating static pages (9/9)
+   Finalizing page optimization ...
+   Collecting build traces ...
+   Exporting (0/2) ...
+ Ô£ô Exporting (2/2)
+
+Route (app)                                 Size  First Load JS
+Ôöî Ôùï /                                    26.5 kB         444 kB
+Ôö£ Ôùï /_not-found                            995 B         104 kB
+Ôö£ Ôùï /agendar                             16.1 kB         248 kB
+Ôö£ Ôùï /lab/3d                               4.7 kB         251 kB
+Ôö£ Ôùï /meu-agendamento                     4.18 kB         231 kB
+Ôö£ Ôùï /robots.txt                            127 B         103 kB
+Ôöö Ôùï /sitemap.xml                           127 B         103 kB
++ First Load JS shared by all             103 kB
+  Ôö£ chunks/255-1f92380adbc6ec99.js       46.7 kB
+  Ôö£ chunks/4bd1b696-c023c6e3521b1417.js  54.2 kB
+  Ôöö other shared chunks (total)          2.01 kB
+
+
+Ôùï  (Static)  prerendered as static content
+
+
+> template-barbearia-cliente@1.0.0 postbuild
+> node scripts/headers.mjs
+
+Cabe├ºalhos gerados com hashes CSP por rota e indexa├º├úo condicional

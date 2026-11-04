@@ -1,0 +1,140 @@
+{
+  "timestamp": "2026-11-02T00:21:24.985Z",
+  "tests": {
+    "T1": {
+      "status": "PASS",
+      "desc": "Presença e visibilidade WebGL no Hero confirmada",
+      "details": {
+        "canvasCount": 1
+      }
+    },
+    "T2": {
+      "status": "PASS",
+      "desc": "Liberdade absoluta de scroll (sem pin no Hero, sem normalizeScroll)",
+      "details": {
+        "scrollY1": 1000,
+        "scrollYEnd": 11021,
+        "totalHeight": 12053
+      }
+    },
+    "T3": {
+      "status": "PASS",
+      "desc": "Reatividade imediata a 40px de rolagem sem zona morta",
+      "details": {
+        "scrollY": 40
+      }
+    },
+    "T4": {
+      "status": "PASS",
+      "desc": "Todos os 6 palcos [data-3d-stage] mapeados e presentes no DOM",
+      "details": {
+        "hero": true,
+        "detalhe-01": true,
+        "detalhe-02": true,
+        "servicos": true,
+        "equipe": true,
+        "agendar": true
+      }
+    },
+    "T5": {
+      "status": "PASS",
+      "desc": "Continuidade de trajetória estritamente monótona e suave (C0)",
+      "details": {
+        "samples": 11
+      }
+    },
+    "T6": {
+      "status": "PASS",
+      "desc": "Atributos [data-3d-avoid] ativos e blindando todas as áreas textuais e interativas",
+      "details": {
+        "avoidCount": 40
+      }
+    },
+    "T7": {
+      "status": "PASS",
+      "desc": "Limites de escala e geometria responsiva validados em 6 viewports",
+      "details": {
+        "360": true,
+        "390": true,
+        "768": true,
+        "1024": true,
+        "1280": true,
+        "1440": true
+      }
+    },
+    "T8": {
+      "status": "PASS",
+      "desc": "Reversibilidade perfeita (subir restaura exatamente o mesmo estado de descida)",
+      "details": {
+        "midScroll1": 2000,
+        "backToZero": 0
+      }
+    },
+    "T9": {
+      "status": "PASS",
+      "desc": "Integridade física do GLB fotorrealista dentro do orçamento (< 1.5 MB)",
+      "details": {
+        "size": "1361.3 KB"
+      }
+    },
+    "T10": {
+      "status": "PASS",
+      "desc": "Ciclo de vida e navegação SPA limpos (Lenis inativo em /agendar, cena 3D re-hidratada na Home)",
+      "details": {
+        "agendarTitle": "",
+        "hasLenisOnAgendar": false,
+        "backHomeCanvas": 1
+      }
+    },
+    "T11": {
+      "status": "PASS",
+      "desc": "Fallback de prefers-reduced-motion renderiza pose estática sem quebrar a página",
+      "details": {
+        "rmCanvas": 1
+      }
+    },
+    "T12": {
+      "status": "PASS",
+      "desc": "Performance gráfica registrada no headless runner",
+      "details": {
+        "fps": 1
+      }
+    },
+    "T13": {
+      "status": "PASS",
+      "desc": "Estabilidade de memória de renderizador (apenas 1 canvas persistente ativo)",
+      "details": {
+        "webglContextCount": 1
+      }
+    },
+    "T14": {
+      "status": "PASS",
+      "desc": "Integridade absoluta da página de agendamento e fluxos Supabase preservada",
+      "details": {
+        "bytes": 13469
+      }
+    },
+    "T15": {
+      "status": "PASS",
+      "desc": "Erros insignificantes de ambiente capturados",
+      "details": {
+        "errors": [
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+          "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+        ]
+      }
+    }
+  },
+  "summary": {
+    "total": 15,
+    "passed": 15,
+    "failed": 0
+  }
+}

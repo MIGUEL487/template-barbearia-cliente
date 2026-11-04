@@ -1,0 +1,39 @@
+{
+  "webglCanvas": {
+    "width": 1466,
+    "height": 1080,
+    "hasContext": true
+  },
+  "scrubTests": [
+    {
+      "label": "clipper_00",
+      "targetPercent": "0%",
+      "scrollY": 0
+    },
+    {
+      "label": "clipper_25",
+      "targetPercent": "25%",
+      "scrollY": 338
+    },
+    {
+      "label": "clipper_50",
+      "targetPercent": "50%",
+      "scrollY": 675
+    },
+    {
+      "label": "clipper_75",
+      "targetPercent": "75%",
+      "scrollY": 1013
+    },
+    {
+      "label": "clipper_100",
+      "targetPercent": "100%",
+      "scrollY": 1350
+    }
+  ],
+  "fallbackTest": {
+    "hasFallback": true,
+    "text": "✂️Máquina de Corte Auto StiloInstrumento de corte profissional com lâminas de titânio, micro-ajuste "
+  },
+  "timestamp": "2026-10-31T23:32:43.194Z"
+}
