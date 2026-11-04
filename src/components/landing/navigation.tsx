@@ -12,7 +12,7 @@ export function Navigation(){
   nav.current?.querySelectorAll('a').forEach(a=>{if(a.hash===`#${id}`)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});
   // Scrolling through the page should leave a shareable link for the section in view.
   // replaceState avoids creating one browser-history entry per scroll tick.
-  if(location.hash!==`#${id}`)history.replaceState(history.state,'',`/#${id}`);
+  if(location.hash!==`#${id}`)history.replaceState(history.state,'',`${location.pathname}${location.search}#${id}`);
  };
  const io=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting)setActive(e.target.id)},{rootMargin:'-20% 0px -55% 0px'});
  links.forEach(([id])=>{const el=document.getElementById(id);if(el)io.observe(el)});return()=>io.disconnect()},[]);
