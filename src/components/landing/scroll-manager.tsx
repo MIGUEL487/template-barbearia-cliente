@@ -8,8 +8,10 @@ import 'lenis/dist/lenis.css';
 
 const frameTasks=new Set<(time:number)=>void>();
 export function subscribeLandingFrame(task:(time:number)=>void){frameTasks.add(task);return()=>{frameTasks.delete(task)}}
+let boundary:((position:number)=>number)|null=null;
+export function registerScrollBoundary(fn:(position:number)=>number){boundary=fn;return()=>{if(boundary===fn)boundary=null}}
 let activeScroll:Lenis|null=null;
-export function jumpLandingTo(top:number){if(activeScroll)activeScroll.scrollTo(top,{immediate:true});else window.scrollTo({top,behavior:'instant'})}
+export function jumpLandingTo(top:number){if(activeScroll)activeScroll.scrollTo(top,{immediate:true,force:true});else window.scrollTo({top,behavior:'instant'})}
 
 // Mounted once by the landing route. Booking routes keep their native scrolling.
 export function LandingScroll(){
@@ -17,7 +19,7 @@ export function LandingScroll(){
  useEffect(()=>{
   if(!enabled||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
   gsap.registerPlugin(ScrollTrigger);
-  const lenis=new Lenis({lerp:.14,smoothWheel:true,syncTouch:false,autoRaf:false,anchors:{offset:-112}});
+  const lenis=new Lenis({lerp:.14,smoothWheel:true,syncTouch:false,autoRaf:false,anchors:{offset:-112},virtualScroll:({deltaY,event})=>{if(event.ctrlKey||event.metaKey)return true;const requested=(event.type.includes('touch')?window.scrollY:lenis.targetScroll)+deltaY;const allowed=boundary?.(requested)??requested;if(deltaY>0&&allowed<requested){if(event.cancelable)event.preventDefault();jumpLandingTo(allowed);return false}return true}});
   activeScroll=lenis;
   let ticks=0;
   const update=(time:number)=>{ticks++;lenis.raf(time*1000);for(const task of frameTasks)task(time)};

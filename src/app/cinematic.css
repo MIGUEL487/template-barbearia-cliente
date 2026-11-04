@@ -65,3 +65,14 @@
 .cinema-brand{animation:cinema-logo-enter .24s cubic-bezier(.16,1,.3,1) both}
 @media(prefers-reduced-motion:reduce){.cinema-brand{animation:none}}
 @media(max-width:768px){.cinematic-site .cinema-brand{width:144px}.cinema-cue.cue-0{bottom:112px}.cinematic-site:not(.past-cinema) .cinema-skip{bottom:max(24px,env(safe-area-inset-bottom))}}
+/* One centered stack, never a split logo/CTA layout. */
+.cinema-cue.cue-0{left:24px;right:24px;top:50%;bottom:auto;max-width:none;display:flex;flex-direction:column;align-items:center;text-align:center;translate:0 -50%}
+.cinematic-site .cue-0 .cinema-brand{width:clamp(160px,20vw,288px);height:auto;margin:0 0 32px}
+.cue-0 .cta{animation:hero-cta-enter .24s .06s cubic-bezier(.16,1,.3,1) both}
+@keyframes hero-cta-enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.cinema-alternatives{position:absolute;bottom:max(24px,env(safe-area-inset-bottom));left:24px;right:24px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;font-size:12px}
+.cinema-alternatives a,.cinema-alternatives button{min-height:48px;padding:8px 16px;border-radius:32px;background:#17181be8;color:#f4f1eb}
+@media(max-width:768px){.cinema-cue.cue-0{left:16px;right:16px;top:50%;bottom:auto}.cinematic-site .cue-0 .cinema-brand{width:176px;margin:0 0 24px}.cinema-alternatives{gap:8px;left:16px;right:16px}}
+@media(prefers-reduced-motion:reduce){.cue-0 .cta{animation:none}}
+/* Center through layout, so GSAP translateY cannot overwrite the centering offset. */
+.cinema-cue.cue-0{top:0;bottom:0;translate:none;justify-content:center}
