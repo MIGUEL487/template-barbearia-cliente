@@ -1,0 +1,29 @@
+{
+  "touch": {
+    "frame": 42,
+    "drawn": 42,
+    "progress": 0.1722689075630252,
+    "loaded": 239,
+    "decoded": 11,
+    "limit": 11,
+    "variant": "mobile"
+  },
+  "rotation": {
+    "frame": 69,
+    "drawn": 69,
+    "progress": 0.2857142857142857,
+    "loaded": 239,
+    "decoded": 17,
+    "limit": 17,
+    "variant": "desktop"
+  },
+  "keyboard": {
+    "frame": 41,
+    "drawn": 41,
+    "progress": 0.16806722689075632,
+    "loaded": 239,
+    "decoded": 17,
+    "limit": 17,
+    "variant": "desktop"
+  }
+}

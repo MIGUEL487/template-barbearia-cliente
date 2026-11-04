@@ -1,0 +1,22 @@
+{
+  "hero": {
+    "frame": 1,
+    "drawn": 1,
+    "progress": 0,
+    "loaded": 1,
+    "decoded": 1,
+    "limit": 11,
+    "variant": "mobile"
+  },
+  "frames": [
+    {
+      "name": "frame_0001.webp",
+      "bytes": 115544
+    },
+    {
+      "name": "frame_0001.webp",
+      "bytes": 0
+    }
+  ],
+  "initialBytes": 1790407
+}

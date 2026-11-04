@@ -1,0 +1,6 @@
+{
+  "gzipAllJs": 317764,
+  "poster": 115244,
+  "estimatedHeroPlusAllJs": 433008,
+  "scope": "Estimate with gzip; local HTTP server serves uncompressed. Not production measurement."
+}
