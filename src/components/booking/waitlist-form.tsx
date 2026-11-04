@@ -12,6 +12,7 @@ export function WaitlistForm({
   serviceIds: string[];
 }) {
   const [open, setOpen] = useState(false),
+    [queueDate, setQueueDate] = useState(date),
     [name, setName] = useState(""),
     [phone, setPhone] = useState(""),
     [email, setEmail] = useState(""),
@@ -22,6 +23,12 @@ export function WaitlistForm({
     [busy, setBusy] = useState(false),
     [notice, setNotice] = useState(""),
     [done, setDone] = useState(false);
+  const today = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Sao_Paulo",
+  }).format(new Date());
+  const latest = new Date(Date.parse(today + "T12:00Z") + 90 * 86400000)
+    .toISOString()
+    .slice(0, 10);
   return (
     <section className="mt-4">
       <button
@@ -44,7 +51,7 @@ export function WaitlistForm({
                 p_barbershop_id: getBarbershopId(),
                 p_barber_id: barberId,
                 p_service_ids: serviceIds,
-                p_date: date,
+                p_date: queueDate,
                 p_window_start: start,
                 p_window_end: end,
                 p_customer_name: name.trim(),
@@ -70,10 +77,23 @@ export function WaitlistForm({
         >
           <h3>Lista de espera · contato manual</h3>
           <p>
-            Usaremos o serviço, o profissional e a data selecionados (
-            {date.split("-").reverse().join("/")}). Não há envio automático.
-            WhatsApp é uma integração futura.
+            Usaremos o serviço e o profissional selecionados. Escolha a data e a janela abaixo; dias sem expediente compatível serão recusados. Não há aviso automático. WhatsApp é uma integração futura.
           </p>
+          <label className="field-label">
+            Data desejada para a fila
+            <input
+              type="date"
+              value={queueDate}
+              min={today}
+              max={latest}
+              onChange={(e) => {
+                setQueueDate(e.target.value);
+                setDone(false);
+                setNotice("");
+              }}
+              required
+            />
+          </label>
           <label className="field-label">
             Nome
             <input

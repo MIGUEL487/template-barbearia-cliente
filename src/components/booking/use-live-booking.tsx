@@ -87,6 +87,7 @@ export function useLiveBooking() {
   const [services, setServices] = useState<Service[]>([]);
   const [depositPct, setDepositPct] = useState<number>(50);
   const [isLoadingInitial, setIsLoadingInitial] = useState<boolean>(true);
+  const [initialLoadFailed,setInitialLoadFailed]=useState(false);
   const [errorBanner, setErrorBanner] = useState<string | null>(null);
 
   // Seleções do Usuário
@@ -196,11 +197,13 @@ export function useLiveBooking() {
           .eq("barbershop_id", shopId)
           .maybeSingle();
         if (settingsError) throw settingsError;
+        if(!setRes||setRes.deposit_percentage===null||setRes.deposit_percentage===undefined)throw Error("Política de sinal não cadastrada");
 
         if (setRes && setRes.deposit_percentage!==null && setRes.deposit_percentage!==undefined) {
           const pct=Number(setRes.deposit_percentage);if(!Number.isFinite(pct)||pct<0||pct>100)throw Error('Percentual de sinal inválido');setDepositPct(pct);
         }
       } catch (err: unknown) {
+        setInitialLoadFailed(true);
         reportSupabaseError('Catálogo de agendamento', err);
         setErrorBanner("Não foi possível carregar o agendamento. Tente novamente ou fale com a barbearia.");
       } finally {
@@ -447,6 +450,7 @@ export function useLiveBooking() {
     setServices,
     depositPct,
     setDepositPct,
+    initialLoadFailed,
     isLoadingInitial,
     setIsLoadingInitial,
     errorBanner,
