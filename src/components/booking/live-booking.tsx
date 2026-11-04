@@ -1,4 +1,5 @@
 "use client";
+import {WaitlistForm} from './waitlist-form';
 import Link from 'next/link';
 import {useCallback,useState} from 'react';
 import {BookingCalendar} from './booking-calendar';
@@ -37,7 +38,7 @@ export default function LiveBooking(){
     <BookingCalendar value={s.selectedDate} barberId={s.selectedBarberId} serviceIds={s.requestedServiceIds} onChange={date=>{if(date===s.selectedDate)void s.fetchAvailability();else s.setSelectedDate(date)}} onAvailability={onCalendarAvailability} onLoadingChange={setCalendarLoading}/>
     <section className="booking-time-panel" aria-label="Horários disponíveis"><h2>Horários disponíveis</h2><p>{s.selectedDate.split('-').reverse().join('/')}</p>
     <div className="booking-slots-region" aria-busy={loadingTimes}><AnimatePresence mode="wait" initial={false}>{loadingTimes?<motion.div key="loading" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:reduced?0:.15}}><BookingSkeleton kind="slots"/></motion.div>:<motion.div key={s.selectedDate} className="time-choices" initial={{opacity:0,y:reduced?0:8}} animate={{opacity:1,y:0}} exit={{opacity:0,y:reduced?0:-8,pointerEvents:'none'}} transition={{duration:reduced?0:.22}}>{calendarAvailable&&s.availableSlots.map(slot=><motion.button type="button" whileTap={reduced?undefined:{scale:.96}} aria-pressed={s.selectedSlot?.start_time===slot.start_time&&s.selectedSlot?.barber_id===slot.barber_id} key={slot.barber_id+slot.start_time} onClick={()=>s.setSelectedSlot(slot)}>{time(slot.start_time)}{s.selectedBarber?.id===null&&(' · '+(s.barbers.find(b=>b.id===slot.barber_id)?.name || 'Profissional disponível'))}</motion.button>)}</motion.div>}</AnimatePresence>
-    {!loadingTimes&&!s.availableSlots.length&&<p role="status">Não há horários disponíveis nesta data.</p>}</div>
+    {!loadingTimes&&!s.availableSlots.length&&<div><p role="status">Não há horários disponíveis nesta data.</p>{!s.errorBanner&&<WaitlistForm key={s.selectedDate+String(s.selectedBarberId)+s.requestedServiceIds.join()} date={s.selectedDate} barberId={s.selectedBarberId} serviceIds={s.requestedServiceIds}/>}</div>}</div>
     <p>Horários de Brasília · America/Sao_Paulo.</p>
     </section></div>
    </fieldset>}
