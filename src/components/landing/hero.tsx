@@ -49,7 +49,7 @@ export function Hero(){
  const clearReading=()=>{releaseScroll();readingTimer?.kill();waitingTimer?.kill();document.removeEventListener('click',navigate,true);document.removeEventListener('visibilitychange',visibility);delete el.dataset.endingPhase}
  tl.eventCallback('onComplete',()=>{if(ending==='reading')readingTimer=engine.gsap.delayedCall(Math.max(0,(releaseAt-performance.now())/1000),finishReading)})
  let navigation=false
- const screens=mobile?Math.max(4,Math.min(6,Math.ceil(player.count/40)))+1:3
+ const screens=mobile?Math.max(5,Math.min(7,Math.ceil(player.count/35))):5.5
  const videoEnd=.8,copyStart=.86
  el.dataset.videoEnd=String(videoEnd)
  // Copy waits for actual playback to finish, including a fast-scroll backlog.
@@ -70,7 +70,7 @@ export function Hero(){
    const top=window.scrollY+(track.current?.getBoundingClientRect().top||0)+distance*.82
    releaseScroll=engine.lockAt(top)
    // A media failure must not trap the page indefinitely.
-   waitingTimer=engine.gsap.delayedCall(15,finishReading)
+   waitingTimer=engine.gsap.delayedCall(10,finishReading)
   }
   player.set(Math.min(1,self.progress/videoEnd));renderCopy()
  }

@@ -168,8 +168,14 @@ export function useLiveBooking() {
             bio: b.bio ? fixMojibake(b.bio) : null,
           }));
           setBarbers(cleaned);
-          if(cleaned.length===1){setSelectedBarber(cleaned[0]);setStep(previous=>previous===1?2:previous)}
-          if(cleaned.length===0)setErrorBanner("Nenhum profissional ativo está disponível para agendamento. Fale com a barbearia.");
+          if (cleaned.length === 1) {
+            setSelectedBarber(cleaned[0]);
+          }
+          if (cleaned.length === 0) {
+            setErrorBanner(
+              "Nenhum profissional ativo está disponível para agendamento. Fale com a barbearia.",
+            );
+          }
         }
 
         const { data: sData, error: sError } = await supabase
@@ -295,6 +301,17 @@ export function useLiveBooking() {
         ? depositAmount
         : 0;
   const payLaterAmount = totalPrice - payNowAmount;
+
+  const handlePhoneChange = (val: string) => {
+    const digits = val.replace(/\D/g, "").slice(0, 11);
+    let formatted = digits;
+    if (digits.length > 2 && digits.length <= 7) {
+      formatted = `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+    } else if (digits.length > 7) {
+      formatted = `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+    }
+    setCustomerPhone(formatted);
+  };
 
   const toggleService = (service: Service) => {
     if (selectedServices.some((s) => s.id === service.id)) {
@@ -471,6 +488,7 @@ export function useLiveBooking() {
     setCustomerName,
     customerPhone,
     setCustomerPhone,
+    handlePhoneChange,
     customerEmail,
     setCustomerEmail,
     paymentOption,

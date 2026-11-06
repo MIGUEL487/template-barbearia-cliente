@@ -55,14 +55,22 @@ export async function framePlayer(root:HTMLElement,canvas:HTMLCanvasElement,post
  queueCurrent()
  function tick(now:number){
   frame=undefined;if(disposed||document.hidden||!dirty)return
-  // One adjacent frame per presentation. Never convert missed time into a seek.
-  const next=drawn<0?0:drawn+Math.sign(target-drawn),bitmap=bitmaps.get(next)
-  if(!bitmap)return // A download/decode completion wakes us when this frame is ready.
-  if(next!==drawn&&now+.5<due){invalidate();return}
-  if(next!==drawn||dimensionsDirty){
-   const changed=next!==drawn
-   ctx.drawImage(bitmap,rect[0]!,rect[1]!,rect[2]!,rect[3]!);drawn=next;canvas.style.opacity='1';canvas.dataset.frame=String(next);dimensionsDirty=false
-   if(changed){painted++;due=Math.max(due+1000/30,now+1000/30-2);onDraw(next);direction=target<drawn?-1:1;trim();queueCurrent()}
+  const dir=Math.sign(target-drawn)
+  if(dir===0){dirty=false;return}
+  const backlog=Math.abs(target-drawn)
+  let step=dir
+  if(backlog>12&&bitmaps.has(drawn+dir*3)){step=dir*3}
+  else if(backlog>4&&bitmaps.has(drawn+dir*2)){step=dir*2}
+  const next=drawn<0?0:drawn+step
+  const bitmap=bitmaps.get(next)||bitmaps.get(drawn<0?0:drawn+dir)
+  if(!bitmap)return
+  const actualNext=bitmaps.has(next)?next:(drawn<0?0:drawn+dir)
+  const targetFps=backlog>3?60:30
+  if(actualNext!==drawn&&now+.5<due){invalidate();return}
+  if(actualNext!==drawn||dimensionsDirty){
+   const changed=actualNext!==drawn
+   ctx.drawImage(bitmap,rect[0]!,rect[1]!,rect[2]!,rect[3]!);drawn=actualNext;canvas.style.opacity='1';canvas.dataset.frame=String(actualNext);dimensionsDirty=false
+   if(changed){painted++;due=Math.max(due+1000/targetFps,now+1000/targetFps-2);onDraw(actualNext);direction=target<drawn?-1:1;trim();queueCurrent()}
   }
   dirty=false;if(drawn!==target)invalidate()
  }
