@@ -19,7 +19,7 @@ export function LandingScroll(){
  useEffect(()=>{
   if(!enabled||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
   gsap.registerPlugin(ScrollTrigger);
-  const lenis=new Lenis({lerp:.14,smoothWheel:true,syncTouch:false,autoRaf:false,anchors:{offset:-112},virtualScroll:({deltaY,event})=>{if(event.ctrlKey||event.metaKey)return true;const requested=(event.type.includes('touch')?window.scrollY:lenis.targetScroll)+deltaY;const allowed=boundary?.(requested)??requested;if(deltaY>0&&allowed<requested){if(event.cancelable)event.preventDefault();jumpLandingTo(allowed);return false}return true}});
+  const lenis=new Lenis({lerp:.1,smoothWheel:!matchMedia('(pointer: coarse)').matches,syncTouch:false,autoRaf:false,anchors:{offset:-112},virtualScroll:({deltaY,event})=>{if(event.ctrlKey||event.metaKey)return true;const requested=(event.type.includes('touch')?window.scrollY:lenis.targetScroll)+deltaY;const allowed=boundary?.(requested)??requested;if(deltaY>0&&allowed<requested){if(event.cancelable)event.preventDefault();jumpLandingTo(allowed);return false}return true}});
   activeScroll=lenis;
   let ticks=0;
   const update=(time:number)=>{ticks++;lenis.raf(time*1000);for(const task of frameTasks)task(time)};

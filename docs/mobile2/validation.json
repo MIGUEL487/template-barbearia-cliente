@@ -1,0 +1,44 @@
+{
+  "baseCommit": "168eab36a18bf3d8dcfe17f517ed8adf2eefc7ad",
+  "lint": true,
+  "typecheck": true,
+  "buildDemoFalseWithFixtureEnv": true,
+  "tokensCheck": true,
+  "pacerTests": 2,
+  "playwrightViewports": [
+    [
+      1920,
+      1080
+    ],
+    [
+      1366,
+      768
+    ],
+    [
+      820,
+      1180
+    ],
+    [
+      430,
+      932
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      360,
+      800
+    ]
+  ],
+  "cinema239ForwardSequential": true,
+  "cinema239ReverseSequential": true,
+  "fastScrollGate": true,
+  "centeredLogoCta": true,
+  "horizontalVerticalInput": true,
+  "reducedMotion": true,
+  "bookingFixturesHoldAndCalendar": true,
+  "realSupabaseWrites": false,
+  "physicalDevicesVerified": false,
+  "fieldCoreWebVitalsVerified": false
+}

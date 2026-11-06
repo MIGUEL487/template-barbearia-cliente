@@ -1,0 +1,6 @@
+{
+  "missingAdjacentFrame": true,
+  "staticEscapeAfter15s": true,
+  "keyboardCta": true,
+  "bookingNavigation": true
+}

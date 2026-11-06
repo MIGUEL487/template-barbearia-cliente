@@ -22,7 +22,8 @@
     "prepare:hero:video:pc": "node scripts/encode-hero-video.mjs --desktop-gsap",
     "test:white": "node scripts/qa-white.mjs",
     "test:white:functional": "node scripts/qa-white-functional.mjs",
-    "test:saas2": "node scripts/qa-saas2-booking.mjs"
+    "test:saas2": "node scripts/qa-saas2-booking.mjs",
+    "test:mobile2": "node tests/frame-pacer.test.mjs && node scripts/qa-mobile2-booking.mjs && node scripts/qa-mobile2-cinema.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.46.1",

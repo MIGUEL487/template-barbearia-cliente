@@ -4,6 +4,7 @@ import {BookingDiagnostics} from '@/components/booking/diagnostics';
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import "./mobile-experience.css";
 const display=localFont({src:[{path:"./fonts/fraunces-latin-400-normal.woff2",weight:"400",style:"normal"},{path:"./fonts/fraunces-latin-500-normal.woff2",weight:"500",style:"normal"},{path:"./fonts/fraunces-latin-400-italic.woff2",weight:"400",style:"italic"}],variable:"--font-serif",display:"swap"});
 const manrope=localFont({src:"./fonts/Manrope-400.ttf",weight:"400",variable:"--font-sans",display:"swap"});
 

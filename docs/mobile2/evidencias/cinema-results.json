@@ -1,0 +1,161 @@
+[
+  {
+    "width": 1920,
+    "height": 1080,
+    "all239Sequential": true,
+    "reverse": true,
+    "fastScrollGate": true,
+    "centeredLogoCta": true,
+    "nativeTouch": false,
+    "horizontalInput": true,
+    "noOverflow": true,
+    "metrics": {
+      "cls": 3,
+      "lcp": 0,
+      "longTasks": 2,
+      "heap": 8691655,
+      "decoded": 7,
+      "compressed": 49,
+      "scrollInstances": 1,
+      "initial": {
+        "cls": 0,
+        "lcp": 0,
+        "longTasks": 2
+      },
+      "clsIncludesScriptedPinJumps": true
+    }
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "all239Sequential": true,
+    "reverse": true,
+    "fastScrollGate": true,
+    "centeredLogoCta": true,
+    "nativeTouch": false,
+    "horizontalInput": true,
+    "noOverflow": true,
+    "metrics": {
+      "cls": 3,
+      "lcp": 0,
+      "longTasks": 1,
+      "heap": 8887383,
+      "decoded": 7,
+      "compressed": 49,
+      "scrollInstances": 1,
+      "initial": {
+        "cls": 0,
+        "lcp": 0,
+        "longTasks": 1
+      },
+      "clsIncludesScriptedPinJumps": true
+    }
+  },
+  {
+    "width": 820,
+    "height": 1180,
+    "all239Sequential": true,
+    "reverse": true,
+    "fastScrollGate": true,
+    "centeredLogoCta": true,
+    "nativeTouch": false,
+    "horizontalInput": true,
+    "noOverflow": true,
+    "metrics": {
+      "cls": 4,
+      "lcp": 0,
+      "longTasks": 2,
+      "heap": 9101641,
+      "decoded": 7,
+      "compressed": 49,
+      "scrollInstances": 1,
+      "initial": {
+        "cls": 0,
+        "lcp": 0,
+        "longTasks": 2
+      },
+      "clsIncludesScriptedPinJumps": true
+    }
+  },
+  {
+    "width": 430,
+    "height": 932,
+    "all239Sequential": true,
+    "reverse": true,
+    "fastScrollGate": true,
+    "centeredLogoCta": true,
+    "nativeTouch": true,
+    "horizontalInput": true,
+    "noOverflow": true,
+    "metrics": {
+      "cls": 3,
+      "lcp": 0,
+      "longTasks": 2,
+      "heap": 8982311,
+      "decoded": 5,
+      "compressed": 49,
+      "scrollInstances": 1,
+      "initial": {
+        "cls": 0,
+        "lcp": 0,
+        "longTasks": 2
+      },
+      "clsIncludesScriptedPinJumps": true
+    }
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "all239Sequential": true,
+    "reverse": true,
+    "fastScrollGate": true,
+    "centeredLogoCta": true,
+    "nativeTouch": true,
+    "horizontalInput": true,
+    "noOverflow": true,
+    "metrics": {
+      "cls": 2,
+      "lcp": 0,
+      "longTasks": 1,
+      "heap": 8756253,
+      "decoded": 5,
+      "compressed": 49,
+      "scrollInstances": 1,
+      "initial": {
+        "cls": 0,
+        "lcp": 0,
+        "longTasks": 1
+      },
+      "clsIncludesScriptedPinJumps": true
+    }
+  },
+  {
+    "width": 360,
+    "height": 800,
+    "all239Sequential": true,
+    "reverse": true,
+    "fastScrollGate": true,
+    "centeredLogoCta": true,
+    "nativeTouch": true,
+    "horizontalInput": true,
+    "noOverflow": true,
+    "metrics": {
+      "cls": 2,
+      "lcp": 0,
+      "longTasks": 1,
+      "heap": 8615239,
+      "decoded": 5,
+      "compressed": 49,
+      "scrollInstances": 1,
+      "initial": {
+        "cls": 0,
+        "lcp": 0,
+        "longTasks": 1
+      },
+      "clsIncludesScriptedPinJumps": true
+    }
+  },
+  {
+    "reducedMotion": true
+  }
+]

@@ -44,3 +44,11 @@ next-env.d.ts
 # references / external assets
 refs/
 
+
+# QA artifacts: keep reports and selected review images.
+/docs/mobile2/evidencias/*
+!/docs/mobile2/evidencias/*.json
+!/docs/mobile2/evidencias/calendar-360.png
+!/docs/mobile2/evidencias/confirmation-390.png
+!/docs/mobile2/evidencias/journey-1920.jpg
+!/docs/mobile2/evidencias/journey-390.jpg
