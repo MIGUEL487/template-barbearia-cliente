@@ -7,7 +7,17 @@
 .cinematic-site .cta span{display:inline-grid;place-items:center;width:24px;height:24px;background:#17181b12;border-radius:50%}
 .cinematic-site .cta:hover{background:#d2c0f8;transform:translateY(-2px)}
 .cinematic-site a:focus-visible,.cinematic-site button:focus-visible{outline:2px solid #d2c0f8;outline-offset:4px}
-.cinematic-site .section, .cinematic-site [id]{padding-block:112px;scroll-margin-top:calc(var(--header-h, 88px) + 32px)}
+.cinematic-site .section{padding-block:112px;scroll-margin-top:calc(var(--header-h, 88px) + 32px)}
+.cinematic-site #galeria,
+.cinematic-site #servicos,
+.cinematic-site #equipe,
+.cinematic-site #avaliacoes,
+.cinematic-site #contato,
+.cinematic-site #proposta,
+.cinematic-site #historia,
+.cinematic-site #assinatura{scroll-margin-top:calc(var(--header-h, 88px) + 32px)}
+.cinematic-site #conteudo,
+.cinematic-site .cinema{padding-top:0!important;margin-top:0!important}
 .cinematic-site .section h2{font-size:clamp(32px,4vw,64px)}
 .cinematic-site .section p{color:var(--text-muted)}
 .cinematic-site .arch,.cinematic-site .space-window,.cinematic-site .gallery-piece .reveal-mask{border-radius:24px;clip-path:none;overflow:hidden}
