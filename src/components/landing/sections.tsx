@@ -51,7 +51,9 @@ export function Gallery() {
           aria-label="Galeria do espaço, use as setas para rolar"
         >
           {([
-            ["acabamento", "O cuidado de perto", "Acabamento com máquina durante o atendimento"],
+            ["tesoura-detalhe", "O cuidado de perto", "Detalhe do corte com tesoura e acabamento manual"],
+            ["barba-cabelo-lateral", "Alinhamento e simetria", "Corte de cabelo e alinhamento de barba finalizados"],
+            ["degrade-desenho-folha", "Arte e estilo", "Degradê personalizado com arte exclusiva"],
           ] as const).map(([name, title, alt]) => (
             <figure className="gallery-piece" key={name}>
               <div className="reveal-mask"><ShopImage name={name} alt={alt} /></div>

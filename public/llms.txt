@@ -1,0 +1,25 @@
+# Barbearia Auto Stilo — Monte Sião, MG
+
+> Barbearia com foco em precisão artesanal, pontualidade e atendimento individual com hora marcada.
+
+## Sobre o Estabelecimento
+- **Nome:** Barbearia Auto Stilo
+- **Endereço:** Rua do Tanque, 395 – Bela Vista, Monte Sião - MG, CEP 37580-000
+- **Contato / WhatsApp Oficial:** +55 35 99737-4960
+- **Horário de Atendimento:** Terça a Sábado das 09:00 às 19:00
+- **Modalidade:** Atendimento presencial com agendamento online prévio
+
+## Serviços Prestados
+- **Corte Masculino:** Degradê (fade), corte social clássico, tesoura e texturização, navalhado e acabamento refinado.
+- **Barba Terapia:** Alinhamento de barba com navalha, toalha quente, óleos essenciais e hidratação de pele.
+- **Combos e Pacotes:** Cabelo e barba completos, acabamento de sobrancelhas e tratamentos capilares.
+
+## Agendamento Online
+- **Página de Agendamento:** https://auto-stilo.example/agendar
+- **Consulta de Reserva:** https://auto-stilo.example/meu-agendamento
+- **Hold Temporário:** Vagas bloqueadas por 15 minutos durante o processo de reserva para garantir disponibilidade.
+- **Cancelamento:** Até 2 horas de antecedência através do portal ou WhatsApp.
+
+## Privacidade e Termos
+- **Política de Privacidade (LGPD):** https://auto-stilo.example/politica-de-privacidade
+- **Termos de Uso:** https://auto-stilo.example/termos-de-uso

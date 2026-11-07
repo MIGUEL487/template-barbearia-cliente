@@ -252,7 +252,23 @@ export function LiveStep4({
               className="mt-2 rounded accent-accent"
             />
             <span className="text-text-muted">
-              Concordo com os Termos de Uso e a Política de Cancelamento.
+              Concordo com os{" "}
+              <Link
+                href="/termos-de-uso"
+                target="_blank"
+                className="text-accent underline hover:text-accent-hover"
+              >
+                Termos de Uso
+              </Link>{" "}
+              e a{" "}
+              <Link
+                href="/politica-de-privacidade"
+                target="_blank"
+                className="text-accent underline hover:text-accent-hover"
+              >
+                Política de Privacidade (LGPD)
+              </Link>
+              .
             </span>
           </label>
 

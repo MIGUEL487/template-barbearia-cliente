@@ -1,0 +1,105 @@
+{
+  "description": "10 fotos originais autorizadas, otimizadas sem adicionar objetos ou recuperar detalhes inexistentes. Versoes full e mobile. Nao repetir fotografias entre secoes contiguas.",
+  "items": [
+    {
+      "filename": "01_degrade-nuca.webp",
+      "original_px": [
+        930,
+        1161
+      ],
+      "full": "full/01_degrade-nuca.webp",
+      "mobile": "mobile/01_degrade-nuca.webp",
+      "suggested_alt": "Corte degradê na nuca com acabamento preciso"
+    },
+    {
+      "filename": "02_social-corte-classico.webp",
+      "original_px": [
+        1038,
+        1308
+      ],
+      "full": "full/02_social-corte-classico.webp",
+      "mobile": "mobile/02_social-corte-classico.webp",
+      "suggested_alt": "Corte social clássico realizado na Auto Stilo"
+    },
+    {
+      "filename": "03_maquina-acabamento.webp",
+      "original_px": [
+        1029,
+        1308
+      ],
+      "full": "full/03_maquina-acabamento.webp",
+      "mobile": "mobile/03_maquina-acabamento.webp",
+      "suggested_alt": "Barbeiro realizando acabamento com máquina"
+    },
+    {
+      "filename": "04_toalha-barba.webp",
+      "original_px": [
+        1029,
+        1299
+      ],
+      "full": "full/04_toalha-barba.webp",
+      "mobile": "mobile/04_toalha-barba.webp",
+      "suggested_alt": "Tratamento de barba com toalha quente"
+    },
+    {
+      "filename": "05_barba-cabelo-lateral.webp",
+      "original_px": [
+        1032,
+        1311
+      ],
+      "full": "full/05_barba-cabelo-lateral.webp",
+      "mobile": "mobile/05_barba-cabelo-lateral.webp",
+      "suggested_alt": "Corte de cabelo e barba finalizados"
+    },
+    {
+      "filename": "06_tesoura-detalhe.webp",
+      "original_px": [
+        1035,
+        1308
+      ],
+      "full": "full/06_tesoura-detalhe.webp",
+      "mobile": "mobile/06_tesoura-detalhe.webp",
+      "suggested_alt": "Detalhe do corte com tesoura"
+    },
+    {
+      "filename": "07_teto-hexagonal.webp",
+      "original_px": [
+        1041,
+        1299
+      ],
+      "full": "full/07_teto-hexagonal.webp",
+      "mobile": "mobile/07_teto-hexagonal.webp",
+      "suggested_alt": "Iluminação geométrica do interior da barbearia"
+    },
+    {
+      "filename": "08_barbeiro-selfie.webp",
+      "original_px": [
+        930,
+        1161
+      ],
+      "full": "full/08_barbeiro-selfie.webp",
+      "mobile": "mobile/08_barbeiro-selfie.webp",
+      "suggested_alt": "Retrato de profissional da barbearia"
+    },
+    {
+      "filename": "09_interior-recepcao.webp",
+      "original_px": [
+        1904,
+        1428
+      ],
+      "full": "full/09_interior-recepcao.webp",
+      "mobile": "mobile/09_interior-recepcao.webp",
+      "suggested_alt": "Vista interna e recepção da Auto Stilo"
+    },
+    {
+      "filename": "10_degrade-desenho-folha.webp",
+      "original_px": [
+        1071,
+        1338
+      ],
+      "full": "full/10_degrade-desenho-folha.webp",
+      "mobile": "mobile/10_degrade-desenho-folha.webp",
+      "suggested_alt": "Desenho geométrico em corte degradê"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+FOTOS AUTO STILO - PACOTE OTIMIZADO
+
+10 fotos de origem fornecida pelo usuario.
+full/: resolucao original com ajustes suaves de contraste, cor e nitidez, codificacao WebP mais uniforme.
+mobile/: largura maxima 720 px para economia de dados.
+Nao ha super-resolucao real: detalhes ausentes no arquivo original nao podem ser recuperados com fidelidade.
+Arquivos preservam marcas d'agua caso presentes.
+Use srcset e sizes; loading=lazy em imagens abaixo da dobra, salvo imagem LCP.
+manifest.json inclui dimensoes e sugestoes de texto alternativo para revisar pelo contexto.
