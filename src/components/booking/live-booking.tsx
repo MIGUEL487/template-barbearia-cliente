@@ -18,6 +18,7 @@ const time = (iso: string) =>
 
 export default function LiveBooking() {
   const s = useLiveBooking();
+  const serviceSummary = s.selectedServices.map(service => `${s.serviceQuantities[service.id] || 1}× ${service.name}`).join(', ');
   const reduced = useReducedMotion();
   const [calendarAvailable, setCalendarAvailable] = useState(false);
   const [calendarLoading, setCalendarLoading] = useState(true);
@@ -147,36 +148,80 @@ export default function LiveBooking() {
               <div className="services-grid space-y-3">
                 {s.services.map((service) => {
                   const isChecked = s.selectedServices.some((x) => x.id === service.id);
+                  const quantity = s.serviceQuantities[service.id] || 1;
                   return (
-                    <label
-                      className={`choice service-card ${isChecked ? "is-selected" : ""}`}
+                    <div
                       key={service.id}
+                      className={`choice service-card flex-col sm:flex-row sm:items-center justify-between gap-3 ${isChecked ? "is-selected ring-1 ring-accent/40 bg-surface-2/90" : ""}`}
                     >
-                      <input
-                        type="checkbox"
-                        checked={isChecked}
-                        onChange={() => s.toggleService(service)}
-                      />
-                      <div className="choice-info flex-1 min-w-0">
-                        <div className="flex items-center justify-between gap-2">
-                          <strong className="text-sm font-semibold truncate">
-                            {service.name}
-                          </strong>
-                          <span className="text-sm font-semibold text-accent font-mono shrink-0">
-                            {formatCurrency(Number(service.price))}
+                      <label className="flex items-center gap-3 cursor-pointer flex-1 min-w-0">
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => s.toggleService(service)}
+                          className="rounded accent-accent w-4 h-4 cursor-pointer"
+                        />
+                        <div className="choice-info flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-2">
+                            <strong className="text-sm font-semibold truncate">
+                              {service.name}
+                            </strong>
+                            <span className="text-sm font-semibold text-accent font-mono shrink-0">
+                              {formatCurrency(Number(service.price))}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2 text-xs text-text-muted mt-1">
+                            <span>{service.duration_minutes} min</span>
+                            {service.description && (
+                              <>
+                                <span>·</span>
+                                <span className="truncate">{service.description}</span>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      </label>
+
+                      {isChecked && (
+                        <div
+                          className="service-quantity flex items-center justify-between sm:justify-end gap-2 pt-2 sm:pt-0 border-t sm:border-t-0 border-hairline/60"
+                          role="group"
+                          aria-label={`Pessoas para ${service.name}`}
+                        >
+                          <span className="text-xs text-text-muted mr-1">
+                            Pessoas:
                           </span>
+                          <button
+                            type="button"
+                            aria-label={`Diminuir pessoas para ${service.name}`}
+                            disabled={quantity <= 1}
+                            onClick={() => s.setServiceQuantity(service.id, quantity - 1)}
+                            className="w-8 h-8 rounded-lg bg-surface-3 hover:bg-surface border border-hairline text-text flex items-center justify-center font-bold text-sm disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                          >
+                            −
+                          </button>
+                          <output
+                            aria-live="polite"
+                            aria-label={`Quantidade de pessoas para ${service.name}`}
+                            className="min-w-6 text-center text-xs font-bold text-text font-mono"
+                          >
+                            {quantity}
+                          </output>
+                          <button
+                            type="button"
+                            aria-label={`Aumentar pessoas para ${service.name}`}
+                            disabled={quantity >= 6}
+                            onClick={() => s.setServiceQuantity(service.id, quantity + 1)}
+                            className="w-8 h-8 rounded-lg bg-surface-3 hover:bg-surface border border-hairline text-text flex items-center justify-center font-bold text-sm disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                          >
+                            +
+                          </button>
+                          <small className="text-[11px] text-text-muted ml-1">
+                            {quantity === 1 ? "pessoa" : "pessoas"}
+                          </small>
                         </div>
-                        <div className="flex items-center gap-2 text-xs text-text-muted mt-1">
-                          <span>{service.duration_minutes} min</span>
-                          {service.description && (
-                            <>
-                              <span>·</span>
-                              <span className="truncate">{service.description}</span>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    </label>
+                      )}
+                    </div>
                   );
                 })}
                 {!s.services.length && (
@@ -263,7 +308,7 @@ export default function LiveBooking() {
                 <BookingCalendar
                   value={s.selectedDate}
                   barberId={s.selectedBarberId}
-                  serviceIds={s.selectedServices.map((x) => x.id)}
+                  serviceIds={s.requestedServiceIds}
                   onChange={(date) => {
                     if (date === s.selectedDate) void s.fetchAvailability();
                     else s.setSelectedDate(date);
@@ -363,7 +408,7 @@ export default function LiveBooking() {
                   <div className="flex justify-between border-b border-hairline/60 pb-1.5">
                     <dt className="text-text-muted font-medium">Serviços</dt>
                     <dd className="font-semibold text-text text-right">
-                      {s.selectedServices.map((x) => x.name).join(", ")}
+                      {serviceSummary}
                     </dd>
                   </div>
                   <div className="flex justify-between border-b border-hairline/60 pb-1.5">
@@ -518,8 +563,7 @@ export default function LiveBooking() {
         <div className="booking-actions">
           <p>
             <span className="block truncate max-w-[200px] sm:max-w-xs">
-              {s.selectedServices.map((x) => x.name).join(", ") ||
-                "Selecione um serviço"}
+              {serviceSummary || "Selecione um serviço"}
             </span>
             <strong>{formatCurrency(s.totalPrice)}</strong>
           </p>
