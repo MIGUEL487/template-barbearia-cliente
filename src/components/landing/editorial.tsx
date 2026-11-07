@@ -240,6 +240,13 @@ export function MarqueeFooter() {
           <Link href="/meu-agendamento">Consultar agendamento</Link>
           <Link href="/politica-de-privacidade">Privacidade (LGPD)</Link>
           <Link href="/termos-de-uso">Termos de Uso</Link>
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event("open-cookie-preferences"))}
+            className="text-text-muted hover:text-white transition-colors underline cursor-pointer"
+          >
+            Configurações de cookies
+          </button>
           <MotionToggle />
         </div>
         <p>

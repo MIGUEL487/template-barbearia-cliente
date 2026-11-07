@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { Cookie, Shield, Check, X } from "lucide-react";
+import { Cookie, X } from "lucide-react";
 
 export function CookieBanner() {
   const [mounted, setMounted] = useState(false);
@@ -15,7 +15,7 @@ export function CookieBanner() {
     try {
       const stored = localStorage.getItem("auto_stilo_cookie_consent");
       if (!stored) {
-        // Exibir banner suavemente após pequeno delay
+        // Exibir banner suavemente após pequeno delay na primeira visita
         const timer = setTimeout(() => setVisible(true), 800);
         return () => clearTimeout(timer);
       } else {
@@ -27,9 +27,28 @@ export function CookieBanner() {
     }
   }, []);
 
-  if (!mounted || !visible) return null;
+  useEffect(() => {
+    const handleOpen = () => {
+      setVisible(true);
+      setShowPreferences(true);
+    };
 
-  const saveConsent = (analytics: boolean) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && visible) {
+        setVisible(false);
+        setShowPreferences(false);
+      }
+    };
+
+    window.addEventListener("open-cookie-preferences", handleOpen);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("open-cookie-preferences", handleOpen);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [visible]);
+
+  const saveConsent = useCallback((analytics: boolean) => {
     try {
       localStorage.setItem(
         "auto_stilo_cookie_consent",
@@ -44,11 +63,14 @@ export function CookieBanner() {
     setAnalyticsAllowed(analytics);
     setVisible(false);
     setShowPreferences(false);
-  };
+  }, []);
+
+  if (!mounted || !visible) return null;
 
   return (
     <div
-      role="region"
+      role="dialog"
+      aria-modal={showPreferences ? "true" : undefined}
       aria-label="Gerenciamento de Privacidade e Cookies"
       className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 animate-in fade-in slide-in-from-bottom-4 duration-300"
     >
@@ -84,7 +106,7 @@ export function CookieBanner() {
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
-                    <strong className="block text-white font-medium">Estatísticas e Melhorias</strong>
+                    <strong className="block text-white font-medium">Estatísticas e Otimizações</strong>
                     <span className="text-[#b9b6bf] text-[11px]">Métricas anônimas de navegação</span>
                   </div>
                   <input
@@ -100,35 +122,44 @@ export function CookieBanner() {
 
             <div className="flex flex-wrap items-center gap-2 pt-1">
               {showPreferences ? (
-                <button
-                  type="button"
-                  onClick={() => saveConsent(analyticsAllowed)}
-                  className="bg-[#bba2f3] hover:bg-[#d2c0f8] text-[#17181b] px-4 py-2 rounded-xl text-xs font-bold transition-all"
-                >
-                  Salvar preferências
-                </button>
+                <>
+                  <button
+                    type="button"
+                    onClick={() => saveConsent(analyticsAllowed)}
+                    className="bg-[#bba2f3] hover:bg-[#d2c0f8] text-[#17181b] px-4 py-2 rounded-xl text-xs font-bold transition-all"
+                  >
+                    Salvar preferências
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowPreferences(false)}
+                    className="bg-[#2c2d33] hover:bg-[#3a3a42] text-[#f4f1eb] px-3.5 py-2 rounded-xl text-xs font-semibold transition-all"
+                  >
+                    Voltar
+                  </button>
+                </>
               ) : (
                 <>
                   <button
                     type="button"
                     onClick={() => saveConsent(true)}
-                    className="bg-[#bba2f3] hover:bg-[#d2c0f8] text-[#17181b] px-4 py-2 rounded-xl text-xs font-bold transition-all"
+                    className="bg-[#bba2f3] hover:bg-[#d2c0f8] text-[#17181b] px-3.5 py-2 rounded-xl text-xs font-bold transition-all"
                   >
-                    Aceitar todos
+                    Aceitar opcionais
                   </button>
                   <button
                     type="button"
                     onClick={() => saveConsent(false)}
                     className="bg-[#2c2d33] hover:bg-[#3a3a42] text-[#f4f1eb] px-3.5 py-2 rounded-xl text-xs font-semibold transition-all"
                   >
-                    Apenas essenciais
+                    Rejeitar opcionais
                   </button>
                   <button
                     type="button"
                     onClick={() => setShowPreferences(true)}
                     className="text-[#b9b6bf] hover:text-white px-2 py-2 text-xs transition-colors"
                   >
-                    Opções
+                    Personalizar
                   </button>
                 </>
               )}
@@ -136,7 +167,10 @@ export function CookieBanner() {
           </div>
           <button
             type="button"
-            onClick={() => saveConsent(false)}
+            onClick={() => {
+              setVisible(false);
+              setShowPreferences(false);
+            }}
             aria-label="Fechar aviso de cookies"
             className="text-[#b9b6bf] hover:text-white p-1 rounded-lg transition-colors -mr-1 -mt-1"
           >
