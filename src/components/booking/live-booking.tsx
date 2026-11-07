@@ -95,7 +95,7 @@ export default function LiveBooking() {
   return (
     <main className="booking-shell">
       <Link className="brand" href="/">
-        Auto Stilo<span>Voltar ao início</span>
+        Barbearia Modelo<span>Voltar ao início</span>
       </Link>
 
       {/* Stepper bar */}
@@ -495,7 +495,7 @@ export default function LiveBooking() {
                   />
                   <span className="leading-relaxed">
                     Concordo com os <strong>Termos de Uso</strong> e a{" "}
-                    <strong>Política de Cancelamento</strong> da Auto Stilo.
+                    <strong>Política de Cancelamento</strong> da Barbearia Modelo.
                   </span>
                 </label>
 

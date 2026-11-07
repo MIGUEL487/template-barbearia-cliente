@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { ChevronLeft, ShieldCheck, Lock, FileText } from "lucide-react";
+import { ChevronLeft, ShieldCheck, Lock } from "lucide-react";
 import type { Metadata } from "next";
+import { shop } from "@/config/demo";
 
 export const metadata: Metadata = {
-  title: "Política de Privacidade (LGPD) — Barbearia Auto Stilo",
+  title: "Política de Privacidade (LGPD) — Barbearia Modelo",
   description:
-    "Transparência, proteção de dados e conformidade com a LGPD na Barbearia Auto Stilo em Monte Sião - MG.",
+    "Transparência, proteção de dados e conformidade com a LGPD no template de agendamento Barbearia Modelo.",
 };
 
 export default function PoliticaPrivacidadePage() {
@@ -22,7 +23,7 @@ export default function PoliticaPrivacidadePage() {
           </Link>
           <div className="flex items-center gap-2 text-xs font-serif font-bold text-text">
             <ShieldCheck className="w-4 h-4 text-accent" />
-            <span>Auto Stilo · LGPD</span>
+            <span>{shop.name} · LGPD (Demo)</span>
           </div>
         </div>
       </header>
@@ -37,7 +38,7 @@ export default function PoliticaPrivacidadePage() {
             Política de Privacidade
           </h1>
           <p className="text-sm text-text-muted leading-relaxed">
-            Última atualização: Novembro de 2026 · Versão 2026.11
+            Última atualização: Novembro de 2026 · Modelo Demonstrativo
           </p>
         </div>
 
@@ -46,18 +47,18 @@ export default function PoliticaPrivacidadePage() {
             1. Identificação do Controlador
           </h2>
           <p>
-            O tratamento dos seus dados pessoais é realizado pela <strong>Barbearia Auto Stilo</strong>,
-            estabelecida em Monte Sião - MG, endereço: <em>Rua do Tanque, 395 – Bela Vista, CEP 37580-000</em>.
+            O tratamento dos seus dados pessoais é realizado pela <strong>{shop.name}</strong>,
+            endereço de demonstração: <em>{shop.address}</em>.
           </p>
           <p>
             Canal de atendimento e privacidade (Encarregado / DPO): WhatsApp oficial{" "}
             <a
-              href="https://wa.me/5535997374960"
+              href={shop.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent underline hover:text-accent-hover"
             >
-              (35) 99737-4960
+              {shop.phone}
             </a>.
           </p>
         </section>
@@ -92,7 +93,7 @@ export default function PoliticaPrivacidadePage() {
                 Execução de Contrato (Art. 7º, V)
               </strong>
               <p className="text-xs text-text-muted leading-relaxed">
-                Utilizado para processar, validar e efetivar sua reserva de corte, barba ou pacote de atendimento na Auto Stilo.
+                Utilizado para processar, validar e efetivar sua reserva de corte, barba ou pacote de atendimento na {shop.name}.
               </p>
             </div>
             <div className="bg-surface p-5 rounded-2xl border border-hairline space-y-2">
@@ -119,7 +120,7 @@ export default function PoliticaPrivacidadePage() {
             4. Compartilhamento e Subprocessadores Seguros
           </h2>
           <p>
-            A Auto Stilo <strong>não vende, não aluga e não comercializa</strong> seus dados pessoais com terceiros.
+            A {shop.name} <strong>não vende, não aluga e não comercializa</strong> seus dados pessoais com terceiros.
             O compartilhamento de dados ocorre exclusivamente com provedores de infraestrutura essenciais:
           </p>
           <ul className="list-disc pl-6 space-y-2 text-text-muted">
@@ -148,7 +149,7 @@ export default function PoliticaPrivacidadePage() {
           </ul>
           <p className="pt-2">
             Para exercer qualquer um dos seus direitos, basta entrar em contato conosco pelo WhatsApp{" "}
-            <strong>(35) 99737-4960</strong>. Responderemos sua solicitação prontamente.
+            <strong>{shop.phone}</strong>. Responderemos sua solicitação prontamente.
           </p>
         </section>
 
@@ -162,7 +163,7 @@ export default function PoliticaPrivacidadePage() {
         </section>
 
         <div className="pt-8 border-t border-hairline flex flex-wrap gap-4 items-center justify-between text-xs text-text-muted">
-          <span>Auto Stilo · Barbearia Monte Sião - MG</span>
+          <span>{shop.name} · Template Demonstrativo</span>
           <Link href="/termos-de-uso" className="text-accent underline hover:text-accent-hover">
             Ver Termos de Uso ↗
           </Link>

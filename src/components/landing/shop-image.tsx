@@ -7,103 +7,124 @@ export interface OptimizedPhoto {
   defaultAlt: string;
 }
 
-export const AUTO_STILO_PHOTOS = {
-  // As 10 fotografias originais autorizadas da Auto Stilo
-  "degrade-nuca": {
-    file: "01_degrade-nuca.webp",
-    width: 930,
-    height: 1161,
-    defaultAlt: "Corte degradê na nuca com acabamento milimétrico",
+export const TEMPLATE_PHOTOS = {
+  // 4 Imagens genéricas de exemplo para o template de barbearia
+  "interior": {
+    file: "01_barbearia_interior.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Ambiente e ambientação interna da barbearia",
   },
-  "social-corte-classico": {
-    file: "02_social-corte-classico.webp",
-    width: 1038,
-    height: 1308,
-    defaultAlt: "Corte social clássico realizado na Auto Stilo",
+  "servicos": {
+    file: "02_corte_closeup.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Detalhe e acabamento de corte profissional",
   },
-  "maquina-acabamento": {
-    file: "03_maquina-acabamento.webp",
-    width: 1029,
-    height: 1308,
-    defaultAlt: "Barbeiro realizando acabamento com máquina de precisão",
+  "equipe": {
+    file: "03_barbeiro_retrato.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Barbeiro profissional pronto para o atendimento",
   },
-  "toalha-barba": {
-    file: "04_toalha-barba.webp",
-    width: 1029,
-    height: 1299,
-    defaultAlt: "Tratamento de barba com toalha quente e óleos essenciais",
-  },
-  "barba-cabelo-lateral": {
-    file: "05_barba-cabelo-lateral.webp",
-    width: 1032,
-    height: 1311,
-    defaultAlt: "Corte de cabelo e alinhamento de barba finalizados",
-  },
-  "tesoura-detalhe": {
-    file: "06_tesoura-detalhe.webp",
-    width: 1035,
-    height: 1308,
-    defaultAlt: "Detalhe artesanal do corte com tesoura",
-  },
-  "teto-hexagonal": {
-    file: "07_teto-hexagonal.webp",
-    width: 1041,
-    height: 1299,
-    defaultAlt: "Iluminação geométrica hexagonal no interior da Auto Stilo",
-  },
-  "barbeiro-selfie": {
-    file: "08_barbeiro-selfie.webp",
-    width: 930,
-    height: 1161,
-    defaultAlt: "Profissional da barbearia Auto Stilo em Monte Sião",
-  },
-  "interior-recepcao": {
-    file: "09_interior-recepcao.webp",
-    width: 1904,
-    height: 1428,
-    defaultAlt: "Recepção e vista interna do espaço Auto Stilo",
-  },
-  "degrade-desenho-folha": {
-    file: "10_degrade-desenho-folha.webp",
-    width: 1071,
-    height: 1338,
-    defaultAlt: "Degradê personalizado com arte e desenho estilizado",
+  "lounge": {
+    file: "04_recepcao_lounge.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Recepção e espaço lounge de acolhimento",
   },
 
-  // Mapeamentos de compatibilidade sem colisão/repetição
+  // Mapeamentos de compatibilidade semânticos com as seções do site
   "espaco": {
-    file: "07_teto-hexagonal.webp",
-    width: 1041,
-    height: 1299,
-    defaultAlt: "Iluminação geométrica e ambiente Auto Stilo",
+    file: "01_barbearia_interior.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Ambiente moderno e sofisticado da barbearia",
+  },
+  "teto-hexagonal": {
+    file: "01_barbearia_interior.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Iluminação e estrutura contemporânea da barbearia",
+  },
+  "interior-recepcao": {
+    file: "04_recepcao_lounge.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Recepção aconchegante e área de espera",
+  },
+  "recepcao": {
+    file: "04_recepcao_lounge.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Recepção e lounge de atendimento",
   },
   "acabamento": {
-    file: "03_maquina-acabamento.webp",
-    width: 1029,
-    height: 1308,
-    defaultAlt: "Acabamento preciso com máquina",
+    file: "02_corte_closeup.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Precisão nos detalhes e acabamento artesanal",
   },
-  "corte-nuca": {
-    file: "01_degrade-nuca.webp",
-    width: 930,
-    height: 1161,
-    defaultAlt: "Corte degradê na nuca",
+  "maquina-acabamento": {
+    file: "02_corte_closeup.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Técnica e precisão no alinhamento do corte",
   },
-  "corte-perfil": {
-    file: "04_toalha-barba.webp",
-    width: 1029,
-    height: 1299,
-    defaultAlt: "Ritual de toalha quente e barba terapia",
+  "tesoura-detalhe": {
+    file: "02_corte_closeup.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Cuidado e técnica no corte com tesoura",
+  },
+  "toalha-barba": {
+    file: "02_corte_closeup.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Ritual clássico e cuidado dedicado",
+  },
+  "social-corte-classico": {
+    file: "01_barbearia_interior.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Tradição, estilo e cuidado artesanal",
+  },
+  "barba-cabelo-lateral": {
+    file: "02_corte_closeup.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Alinhamento e simetria no corte e barba",
+  },
+  "degrade-nuca": {
+    file: "02_corte_closeup.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Degradê e acabamento milimétrico",
+  },
+  "degrade-desenho-folha": {
+    file: "02_corte_closeup.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Estilo personalizado e atendimento com excelência",
+  },
+  "barbeiro-selfie": {
+    file: "03_barbeiro_retrato.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Profissional dedicado ao seu estilo",
   },
   "reconhecimento": {
-    file: "02_social-corte-classico.webp",
-    width: 1038,
-    height: 1308,
-    defaultAlt: "Corte social clássico e tradição",
+    file: "03_barbeiro_retrato.webp",
+    width: 1448,
+    height: 1086,
+    defaultAlt: "Excelência e tradição na barbearia",
   },
 } as const;
 
-export type ShopPhotoName = keyof typeof AUTO_STILO_PHOTOS;
+// Aliases para retrocompatibilidade
+export const AUTO_STILO_PHOTOS = TEMPLATE_PHOTOS;
+
+export type ShopPhotoName = keyof typeof TEMPLATE_PHOTOS;
 
 export function ShopImage({
   name,
@@ -116,7 +137,7 @@ export function ShopImage({
   priority?: boolean;
   className?: string;
 }) {
-  const photo = AUTO_STILO_PHOTOS[name] || AUTO_STILO_PHOTOS["teto-hexagonal"];
+  const photo = TEMPLATE_PHOTOS[name] || TEMPLATE_PHOTOS["interior"];
   const altText = alt || photo.defaultAlt;
 
   return (
@@ -124,11 +145,11 @@ export function ShopImage({
       <picture>
         <source
           media="(max-width: 768px)"
-          srcSet={`/img/fotos-otimizadas/mobile/${photo.file}`}
+          srcSet={`/img/template/mobile/${photo.file}`}
           type="image/webp"
         />
         <img
-          src={`/img/fotos-otimizadas/full/${photo.file}`}
+          src={`/img/template/full/${photo.file}`}
           width={photo.width}
           height={photo.height}
           loading={priority ? "eager" : "lazy"}

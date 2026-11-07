@@ -68,6 +68,6 @@ function ShopVideo({ name, title }: { name: string; title: string }) {
 export function ShopVideos() {
   return <section className="section films-section" aria-labelledby="films-title">
     <div className="section-heading"><h2 id="films-title">Um pouco<br />do nosso dia.</h2><p>O espaço e o cuidado, em movimento.<br />Reproduza quando quiser.</p></div>
-    <div className="films-grid"><ShopVideo name="visita" title="Uma visita à Auto Stilo" /><ShopVideo name="em-atendimento" title="O cuidado durante o atendimento" /></div>
+    <div className="films-grid"><ShopVideo name="visita" title="Uma visita ao espaço" /><ShopVideo name="em-atendimento" title="O cuidado durante o atendimento" /></div>
   </section>;
 }

@@ -7,7 +7,7 @@ export function DemoManagement() {
   return (
     <main className="booking-shell">
       <Link className="brand" href="/">
-        Auto Stilo
+        Barbearia Modelo
       </Link>
       <h1>Meu agendamento</h1>
       <p className="demo-alert">

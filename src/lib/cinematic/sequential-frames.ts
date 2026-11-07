@@ -1,20 +1,195 @@
-import {createFramePacer} from './frame-pacer';
-/** One destination, no playback queue. Only adjacent decoded frames may be drawn. */
-export function sequentialFrames(canvas:HTMLCanvasElement,box:HTMLElement,variant:'desktop'|'mobile',onDraw:(index:number)=>void,onFailure:()=>void=()=>{}){
- const ctx=canvas.getContext('2d');if(!ctx)return null;
- const debug=process.env.NODE_ENV==='development'||new URLSearchParams(location.search).has('debug-hero');
- const memory=(navigator as Navigator&{deviceMemory?:number}).deviceMemory||8,radius=memory<=4?3:variant==='mobile'?4:6;
- const blobs=new Map<number,Blob>(),images=new Map<number,ImageBitmap>(),pending=new Set<number>(),requested=new Set<number>(),failed=new Set<number>();
- const abort=new AbortController();let dead=false,target=0,displayed=-1,fetching=0,decoding=0,width=0,height=0,epoch=0,active=false;
- const trace:number[]=[];const pacer=createFramePacer(variant==='mobile');let blockedSince=0;const compressedRadius=memory<=4?24:48;
- const path=(i:number)=>`/frames/${variant}/frame_${String(i+1).padStart(4,'0')}.webp`;
- const publish=()=>{if(debug)(window as Window&{__HERO__?:unknown}).__HERO__={frame:displayed+1,displayedFrame:displayed+1,targetFrame:target+1,progress:target/238,drawn:displayed+1,loaded:blobs.size,decoded:images.size,limit:radius*2+1,compressedLimit:compressedRadius*2+1,variant,trace:[...trace],failed:[...failed].map(i=>i+1)}};
- const trim=()=>{for(const i of blobs.keys())if(Math.abs(i-Math.max(0,displayed))>compressedRadius){blobs.delete(i);requested.delete(i)};for(const[i,b]of images)if(Math.abs(i-Math.max(0,displayed))>radius){b.close();images.delete(i)}};
- const paint=(i:number,record=true)=>{const b=images.get(i);if(!b)return false;const scale=Math.max(width/b.width,height/b.height);ctx.drawImage(b,(width-b.width*scale)/2,(height-b.height*scale)/2,b.width*scale,b.height*scale);canvas.style.opacity='1';if(record){displayed=i;trace.push(i+1);if(trace.length>2048)trace.shift();onDraw(i)}publish();return true};
- const vicinity=()=>{const center=Math.max(0,displayed),direction=target>=center?1:-1;return [...new Set([center,center+direction,...Array.from({length:radius},(_,i)=>center+(i+1)*direction),...Array.from({length:radius},(_,i)=>center-(i+1)*direction)])].filter(i=>i>=0&&i<239)};
- const decode=()=>{if(dead)return;trim();for(const i of vicinity()){if(decoding>=2)break;if(!blobs.has(i)||images.has(i)||pending.has(i)||failed.has(i))continue;pending.add(i);decoding++;const version=epoch,originalW=variant==='mobile'?1080:1920,originalH=variant==='mobile'?1920:1080,scale=Math.min(1,Math.max(width/originalW,height/originalH));Promise.resolve().then(()=>createImageBitmap(blobs.get(i)!,{resizeWidth:Math.max(1,Math.round(originalW*scale)),resizeHeight:Math.max(1,Math.round(originalH*scale))})).then(b=>{if(dead||version!==epoch||Math.abs(i-Math.max(0,displayed))>radius)b.close();else {images.set(i,b);if(displayed<0&&i===0)paint(0);else if(i===displayed)paint(i,false)}}).catch(error=>{failed.add(i);console.error('[Hero] Decode',i+1,error)}).finally(()=>{decoding--;pending.delete(i);if(!dead){decode();publish()}})} };
- const fetchMore=()=>{if(dead)return;const center=Math.max(0,displayed),direction=target>=center?1:-1;const order=active?[...vicinity(),...Array.from({length:compressedRadius},(_,i)=>center+(i+1)*direction),...Array.from({length:compressedRadius},(_,i)=>center-(i+1)*direction)].filter(i=>i>=0&&i<239):[0];while(fetching<3){const i=order.find(i=>!requested.has(i));if(i===undefined)break;requested.add(i);fetching++;fetch(path(i),{signal:abort.signal,priority:i===0?'high':'low'}).then(r=>{if(!r.ok)throw Error(`${r.status} ${path(i)}`);return r.blob()}).then(b=>{if(!dead){blobs.set(i,b);decode()}}).catch(error=>{if(error.name!=='AbortError'){failed.add(i);console.error('[Hero] Frame',i+1,error);publish()}}).finally(()=>{fetching--;if(!dead)fetchMore()})}};
- const resize=()=>{const r=box.getBoundingClientRect(),dpr=Math.min(devicePixelRatio,memory<=4?1:2),w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);if(w===width&&h===height)return;width=canvas.width=w;height=canvas.height=h;if(images.has(displayed))paint(displayed,false);epoch++;for(const b of images.values())b.close();images.clear();decode()};
- const observer=new ResizeObserver(resize);observer.observe(box);resize();fetchMore();
- return {setTarget(index:number){target=Math.max(0,Math.min(238,Math.round(index)));if(target>0)active=true;fetchMore();decode();publish()},tick(time:number){if(dead||document.hidden)return;if(displayed<0){if(!blockedSince)blockedSince=performance.now();if(performance.now()-blockedSince>15000)onFailure();return;}const remaining=target-Math.max(0,displayed);if(!remaining)blockedSince=0;if(!pacer.ready(time,remaining))return;if(displayed>=0&&displayed!==target){const next=displayed+Math.sign(target-displayed);if(paint(next)){blockedSince=0;trim();decode();fetchMore()}else{if(!blockedSince)blockedSince=performance.now();if(performance.now()-blockedSince>15000)onFailure()}}},dispose(){dead=true;abort.abort();observer.disconnect();for(const b of images.values())b.close();images.clear();blobs.clear();if(debug)delete (window as Window&{__HERO__?:unknown}).__HERO__}};
+import { createFramePacer } from './frame-pacer';
+
+/**
+ * Sequential Keyframe Dissolve Engine
+ * Smoothly blends between the 6 keyframes with continuous cross-dissolve
+ * across scroll progress, keeping 60fps/120fps motion fluid without dropouts.
+ */
+export function sequentialFrames(
+  canvas: HTMLCanvasElement,
+  box: HTMLElement,
+  variant: 'desktop' | 'mobile',
+  onDraw: (index: number) => void,
+  onFailure: () => void = () => {}
+) {
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return null;
+
+  const debug =
+    process.env.NODE_ENV === 'development' ||
+    new URLSearchParams(location.search).has('debug-hero');
+
+  const TOTAL_FRAMES = 6;
+  const images = new Map<number, ImageBitmap>();
+  const abort = new AbortController();
+
+  let dead = false;
+  let target = 0;
+  let displayed = -1;
+  let width = 0;
+  let height = 0;
+  let blockedSince = 0;
+  const trace: number[] = [];
+  const pacer = createFramePacer(variant === 'mobile');
+
+  const path = (i: number) =>
+    `/frames/${variant}/frame_${String(i + 1).padStart(4, '0')}.webp`;
+
+  const publish = () => {
+    if (debug) {
+      const progress = target / 238;
+      (window as Window & { __HERO__?: unknown }).__HERO__ = {
+        frame: Math.min(TOTAL_FRAMES, Math.max(1, Math.round(progress * (TOTAL_FRAMES - 1)) + 1)),
+        displayedFrame: displayed + 1,
+        targetFrame: target + 1,
+        progress,
+        drawn: displayed + 1,
+        loaded: images.size,
+        decoded: images.size,
+        limit: TOTAL_FRAMES,
+        compressedLimit: TOTAL_FRAMES,
+        variant,
+        trace: [...trace],
+        failed: [],
+      };
+    }
+  };
+
+  const paint = (index: number, record = true) => {
+    if (dead || images.size === 0) return false;
+
+    // Progress 0.0 to 1.0 from index 0..238
+    const progress = Math.max(0, Math.min(1, index / 238));
+    const floatIndex = progress * (TOTAL_FRAMES - 1);
+    const baseIndex = Math.min(TOTAL_FRAMES - 2, Math.floor(floatIndex));
+    const fraction = floatIndex - baseIndex;
+    const nextIndex = Math.min(TOTAL_FRAMES - 1, baseIndex + 1);
+
+    const imgA = images.get(baseIndex) || images.get(0);
+    if (!imgA) return false;
+    const imgB = images.get(nextIndex);
+
+    // Clear and draw base frame (object-fit: cover)
+    ctx.clearRect(0, 0, width, height);
+
+    const scaleA = Math.max(width / imgA.width, height / imgA.height);
+    const drawWA = imgA.width * scaleA;
+    const drawHA = imgA.height * scaleA;
+    const offsetXA = (width - drawWA) / 2;
+    const offsetYA = (height - drawHA) / 2;
+
+    ctx.globalAlpha = 1;
+    ctx.drawImage(imgA, offsetXA, offsetYA, drawWA, drawHA);
+
+    // Smoothstep cross-dissolve to next keyframe
+    if (imgB && nextIndex !== baseIndex && fraction > 0.001) {
+      const blend = fraction * fraction * (3 - 2 * fraction);
+      const scaleB = Math.max(width / imgB.width, height / imgB.height);
+      const drawWB = imgB.width * scaleB;
+      const drawHB = imgB.height * scaleB;
+      const offsetXB = (width - drawWB) / 2;
+      const offsetYB = (height - drawHB) / 2;
+
+      ctx.globalAlpha = blend;
+      ctx.drawImage(imgB, offsetXB, offsetYB, drawWB, drawHB);
+    }
+
+    ctx.globalAlpha = 1;
+    canvas.style.opacity = '1';
+
+    if (record) {
+      displayed = index;
+      trace.push(index + 1);
+      if (trace.length > 2048) trace.shift();
+      onDraw(index);
+    }
+    publish();
+    return true;
+  };
+
+  // Pre-load and decode all 6 keyframes
+  const loadKeyframes = async () => {
+    try {
+      const loadPromises = Array.from({ length: TOTAL_FRAMES }, async (_, i) => {
+        const response = await fetch(path(i), {
+          signal: abort.signal,
+          priority: i === 0 ? 'high' : 'low',
+        });
+        if (!response.ok) throw new Error(`${response.status} ${path(i)}`);
+        const blob = await response.blob();
+        const bitmap = await createImageBitmap(blob);
+        if (!dead) {
+          images.set(i, bitmap);
+          if (displayed < 0 && (i === 0 || images.size === 1)) {
+            paint(0);
+          }
+        }
+      });
+      await Promise.all(loadPromises);
+      if (!dead && displayed >= 0) {
+        paint(displayed, false);
+      }
+    } catch (err) {
+      if ((err as Error).name !== 'AbortError') {
+        console.error('[Hero] Keyframe load error:', err);
+        onFailure();
+      }
+    }
+  };
+
+  const resize = () => {
+    const rect = box.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = Math.round(rect.width * dpr);
+    const h = Math.round(rect.height * dpr);
+    if (w === width && h === height) return;
+    width = canvas.width = w;
+    height = canvas.height = h;
+    if (images.size > 0) {
+      paint(displayed >= 0 ? displayed : 0, false);
+    }
+  };
+
+  const observer = new ResizeObserver(resize);
+  observer.observe(box);
+  resize();
+  loadKeyframes();
+
+  return {
+    setTarget(index: number) {
+      target = Math.max(0, Math.min(238, Math.round(index)));
+      if (displayed < 0 && images.size > 0) {
+        paint(target);
+      }
+      publish();
+    },
+    tick(time: number) {
+      if (dead || document.hidden) return;
+      if (images.size === 0) {
+        if (!blockedSince) blockedSince = performance.now();
+        if (performance.now() - blockedSince > 15000) onFailure();
+        return;
+      }
+      const remaining = target - Math.max(0, displayed);
+      if (!remaining) {
+        blockedSince = 0;
+        return;
+      }
+      if (!pacer.ready(time, remaining)) return;
+      // Step smoothly toward target
+      const step = Math.sign(remaining) * Math.min(Math.abs(remaining), Math.max(1, Math.round(Math.abs(remaining) * 0.25)));
+      const next = displayed + step;
+      if (paint(next)) {
+        blockedSince = 0;
+      }
+    },
+    dispose() {
+      dead = true;
+      abort.abort();
+      observer.disconnect();
+      for (const b of images.values()) b.close();
+      images.clear();
+      if (debug) delete (window as Window & { __HERO__?: unknown }).__HERO__;
+    },
+  };
 }

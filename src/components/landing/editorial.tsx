@@ -6,19 +6,20 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useMotionEnabled, MotionToggle } from "@/components/motion-preferences";
 import { ShopImage } from "./shop-image";
 import { BrandLogo } from "@/components/brand-logo";
+import { shop } from "@/config/demo";
 
 export function Signature() {
   return (
     <section id="proposta" className="section signature">
       <div>
-        <p>Auto Stilo, no seu tempo.</p>
+        <p>Barbearia Modelo, no seu tempo.</p>
         <h2>
           Cuidado que<br />
           tem a sua <em>assinatura.</em>
         </h2>
         <p>
           Um momento para renovar o corte, alinhar a barba e sair se sentindo bem.
-          Conheça nossa proposta de atendimento em Monte Sião.
+          Conheça nossa proposta de atendimento exclusivo e personalizado.
         </p>
         <Link className="text-link" href="#historia">
           Conheça a proposta ↗
@@ -26,8 +27,8 @@ export function Signature() {
       </div>
       <figure className="arch">
         <ShopImage
-          name="degrade-nuca"
-          alt="Acabamento milimétrico do corte degradê na nuca"
+          name="lounge"
+          alt="Recepção e espaço de acolhimento da barbearia"
         />
       </figure>
       <ul className="pillars">
@@ -122,8 +123,8 @@ export function Ritual() {
       <div className="ritual-grid">
         <div className="ritual-photo">
           <ShopImage
-            name="toalha-barba"
-            alt="Tratamento de barba com toalha quente e óleos essenciais"
+            name="servicos"
+            alt="Ritual de precisão, toalha quente e acabamento"
           />
         </div>
         <div className="ritual-words">
@@ -168,8 +169,8 @@ export function History() {
     <section id="historia" className="section history">
       <figure>
         <ShopImage
-          name="social-corte-classico"
-          alt="Corte social clássico com alinhamento e precisão na Auto Stilo"
+          name="interior"
+          alt="Ambiente clássico com bancadas e iluminação profissional"
         />
       </figure>
       <div>
@@ -177,7 +178,7 @@ export function History() {
           Seu estilo.<br />
           Nossa atenção.
         </h2>
-        <p>Um espaço em Monte Sião para cuidar de você, do corte ao detalhe.</p>
+        <p>Um espaço pensado para cuidar de você, do corte ao detalhe.</p>
         <p>
           Dedicação contínua ao ofício da barbearia artesanal. Cada cliente recebe
           atendimento individual com foco no resultado e no respeito ao seu tempo.
@@ -191,7 +192,7 @@ export function History() {
             <li key={t}>{t}</li>
           ))}
         </ol>
-        <p className="signature-script">Auto Stilo, por inteiro.</p>
+        <p className="signature-script">Barbearia Modelo, por inteiro.</p>
       </div>
     </section>
   );
@@ -214,7 +215,7 @@ export function MarqueeFooter() {
       <div
         ref={ref}
         className="marquee"
-        aria-label="Corte, barba, estilo, Auto Stilo"
+        aria-label="Corte, barba, estilo, Barbearia Modelo"
       >
         {[0, 1].map((i) => (
           <div className="marquee-window" key={i}>
@@ -222,19 +223,19 @@ export function MarqueeFooter() {
               className="marquee-track"
               style={{ animationDirection: i ? "reverse" : "normal" }}
             >
-              <span>CORTE · BARBA · ESTILO · AUTO STILO · </span>
+              <span>CORTE · BARBA · ESTILO · BARBEARIA MODELO · </span>
               <span aria-hidden="true">
-                CORTE · BARBA · ESTILO · AUTO STILO · 
+                CORTE · BARBA · ESTILO · BARBEARIA MODELO · 
               </span>
             </div>
           </div>
         ))}
       </div>
       <footer className="site-footer">
-        <Link className="footer-brand-mark" href="/" aria-label="Auto Stilo, início">
+        <Link className="footer-brand-mark" href="/" aria-label="Barbearia Modelo, início">
           <BrandLogo tone="dark" />
         </Link>
-        <p className="footer-wordmark">Auto Stilo.</p>
+        <p className="footer-wordmark">Barbearia Modelo.</p>
         <div>
           <Link href="/agendar">Agendar horário</Link>
           <Link href="/meu-agendamento">Consultar agendamento</Link>
@@ -250,7 +251,7 @@ export function MarqueeFooter() {
           <MotionToggle />
         </div>
         <p>
-          R. do Tanque, 395 – Bela Vista, Monte Sião · MG · CEP 37580-000 · WhatsApp (35) 99737-4960
+          {shop.address} · WhatsApp {shop.phone} · Horário: {shop.hours}
         </p>
         <div className="barber-stripe" aria-hidden="true" />
       </footer>

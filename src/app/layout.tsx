@@ -29,43 +29,43 @@ export const metadata: Metadata = {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
       {
-        url: "/brand/auto-stilo/favicon-light-32.png",
+        url: "/brand/template/logo-on-light.png",
         type: "image/png",
         sizes: "32x32",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/brand/auto-stilo/favicon-dark-32.png",
+        url: "/brand/template/logo-on-dark.png",
         type: "image/png",
         sizes: "32x32",
         media: "(prefers-color-scheme: dark)",
       },
-      { url: "/favicon-auto-stilo.svg", type: "image/svg+xml" },
+      { url: "/brand/template/logo-on-dark.svg", type: "image/svg+xml" },
     ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    apple: [{ url: "/brand/template/logo-on-dark.png", sizes: "180x180", type: "image/png" }],
   },
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://auto-stilo.example"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://barbearia-template.example"
   ),
   openGraph: {
-    title: "Auto Stilo — Barbearia em Monte Sião - MG" + (watermarkEnabled ? " (Demo)" : ""),
+    title: "Barbearia Modelo — Corte, Barba & Estilo" + (watermarkEnabled ? " (Demo)" : ""),
     description: "Corte, barba e cuidado artesanal no seu tempo. Agendamento online e atendimento exclusivo.",
-    images: ["/img/fotos-otimizadas/full/07_teto-hexagonal.webp"],
+    images: ["/img/template/full/01_barbearia_interior.webp"],
     locale: "pt_BR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Auto Stilo — Barbearia em Monte Sião - MG",
+    title: "Barbearia Modelo — Corte, Barba & Estilo",
     description: "Corte, barba e cuidado artesanal no seu tempo. Agendamento online e atendimento exclusivo.",
-    images: ["/img/fotos-otimizadas/full/07_teto-hexagonal.webp"],
+    images: ["/img/template/full/01_barbearia_interior.webp"],
   },
   robots: watermarkEnabled ? { index: false, follow: false } : undefined,
   title:
-    "Auto Stilo — Barbearia em Monte Sião - MG" +
+    "Barbearia Modelo — Corte, Barba & Estilo" +
     (watermarkEnabled ? " (Demo)" : ""),
   description:
-    "Auto Stilo em Monte Sião: corte de alta precisão, barba terapia com toalha quente e atendimento com hora marcada.",
+    "Barbearia Modelo: corte de alta precisão, barba terapia com toalha quente e atendimento com hora marcada.",
 };
 
 export default function RootLayout({

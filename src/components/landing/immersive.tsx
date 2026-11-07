@@ -40,7 +40,7 @@ export function Immersive() {
     <section ref={ref} id="assinatura" className="section immersive">
       {/* Coluna 1, Linha 1 */}
       <div id="galeria" className="immersive-heading">
-        <p>Auto Stilo · Monte Sião</p>
+        <p>Barbearia Modelo · Espaço &amp; Tradição</p>
         <h2>
           Entre.
           <br />
@@ -54,17 +54,17 @@ export function Immersive() {
       {/* Coluna 2, Linha 1 */}
       <figure className="immersive-image">
         <ShopImage
-          name="teto-hexagonal"
-          alt="Iluminação geométrica hexagonal no teto da barbearia Auto Stilo em Monte Sião"
+          name="interior"
+          alt="Ambiente e estrutura contemporânea da barbearia"
         />
-        <figcaption>Iluminação geométrica e atmosfera de atendimento exclusivo.</figcaption>
+        <figcaption>Design acolhedor e atmosfera de atendimento exclusivo.</figcaption>
       </figure>
 
       {/* Coluna 1, Linha 2 */}
       <figure className="immersive-image immersive-detail">
         <ShopImage
-          name="maquina-acabamento"
-          alt="Barbeiro realizando acabamento de precisão com máquina na Auto Stilo"
+          name="servicos"
+          alt="Precisão artesanal e acabamento técnico no corte"
         />
         <figcaption>Precisão artesanal, do desenho ao acabamento.</figcaption>
       </figure>
@@ -74,12 +74,12 @@ export function Immersive() {
         <p className="immersive-story-eyebrow">Atmosfera &amp; Precisão</p>
         <h3>O equilíbrio entre tradição artesanal e conforto contemporâneo.</h3>
         <p>
-          Cada detalhe do nosso espaço em Monte Sião foi concebido para transformar seu atendimento em uma pausa genuína.
+          Cada detalhe do nosso espaço foi concebido para transformar seu atendimento em uma pausa genuína.
           Iluminação técnica que valoriza cada traço do corte, navalha com fio impecável e ambiente planejado para quem valoriza pontualidade e excelência.
         </p>
         <div className="immersive-story-badges">
           <span>Hora marcada</span>
-          <span>Geometria e estilo</span>
+          <span>Ambiente climatizado</span>
           <span>Atendimento individual</span>
         </div>
         <Link className="text-link" href="/agendar">

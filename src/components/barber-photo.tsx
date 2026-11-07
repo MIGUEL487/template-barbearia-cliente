@@ -21,19 +21,19 @@ export function BarberPhoto({
     } catch {}
   }
 
-  // Fallback elegante para a foto autorizada do profissional Auto Stilo
+  // Fallback elegante para a foto genérica do profissional da barbearia
   const photoSrc =
     source && failed !== source
       ? source
-      : "/img/fotos-otimizadas/full/08_barbeiro-selfie.webp";
+      : "/img/template/full/03_barbeiro_retrato.webp";
 
   return (
     <span className={"barber-photo " + className}>
       <Image
         src={photoSrc}
         alt={"Retrato de " + name}
-        width={930}
-        height={1161}
+        width={1448}
+        height={1086}
         unoptimized
         onError={() => {
           if (source) setFailed(source);

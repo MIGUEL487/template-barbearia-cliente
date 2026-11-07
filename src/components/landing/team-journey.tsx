@@ -202,7 +202,7 @@ export function TeamJourney() {
             </h2>
             <p>
               {isSingleBarber
-                ? 'Conheça o espaço acolhedor e o atendimento artesanal exclusivo com hora marcada em Monte Sião.'
+                ? 'Conheça o espaço acolhedor e o atendimento artesanal exclusivo com hora marcada.'
                 : 'Conheça nossos profissionais dedicados e escolha seu próximo horário com tranquilidade.'}
             </p>
             <Link className="text-link" href="/agendar">
@@ -212,7 +212,7 @@ export function TeamJourney() {
           <figure>
             <ShopImage
               name="interior-recepcao"
-              alt="Recepção e vista interna da barbearia Auto Stilo em Monte Sião"
+              alt="Recepção e lounge da barbearia"
             />
           </figure>
         </article>
@@ -227,7 +227,7 @@ export function TeamJourney() {
             />
             <div className="journey-content">
               <p className="journey-eyebrow">
-                {String(index + 2).padStart(2, '0')} / Profissional Auto Stilo
+                {String(index + 2).padStart(2, '0')} / Barbeiro Especialista
               </p>
               <h2>{b.name}</h2>
               {b.bio && <p>{b.bio}</p>}

@@ -42,7 +42,7 @@ export function Gallery() {
           Um espaço com a nossa assinatura.
         </p>
       </div>
-      <figure className="space-window"><ShopImage name="espaco" alt="Interior Auto Stilo: balcão preto, piso claro e teto de LEDs"/><svg viewBox="0 0 400 200" aria-hidden="true"><path className="hex-line" d="M40 20 L100 20 L130 72 L100 124 L40 124 L10 72 Z M130 72 L190 72 L220 124 L190 176 L130 176 L100 124" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="800"/></svg><figcaption>O espaço Auto Stilo · Monte Sião</figcaption></figure>
+      <figure className="space-window"><ShopImage name="espaco" alt="Interior da barbearia: bancadas e iluminação profissional"/><svg viewBox="0 0 400 200" aria-hidden="true"><path className="hex-line" d="M40 20 L100 20 L130 72 L100 124 L40 124 L10 72 Z M130 72 L190 72 L220 124 L190 176 L130 176 L100 124" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="800"/></svg><figcaption>O espaço · Barbearia Modelo</figcaption></figure>
       <div className="gallery-stage">
         <div
           className="gallery-rail"
@@ -57,7 +57,7 @@ export function Gallery() {
           ] as const).map(([name, title, alt]) => (
             <figure className="gallery-piece" key={name}>
               <div className="reveal-mask"><ShopImage name={name} alt={alt} /></div>
-              <figcaption>{title}<small>Imagem fornecida pela Auto Stilo</small></figcaption>
+              <figcaption>{title}<small>Ambiente de demonstração</small></figcaption>
             </figure>
           ))}
         </div>
@@ -100,7 +100,7 @@ export function Details() {
         <h2>
           Nos vemos
           <br />
-          na Auto Stilo.
+          na cadeira.
         </h2>
         <div>
           <address>{shop.address}</address>
@@ -110,7 +110,7 @@ export function Details() {
           </p>
           <a
             className="cta"
-            href="https://www.google.com/maps/search/?api=1&query=Barbearia+Auto+Stilo+Monte+Si%C3%A3o"
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(shop.name + " " + shop.address)}`}
           >
             Ver rota no mapa ↗
           </a>
