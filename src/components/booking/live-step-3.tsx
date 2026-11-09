@@ -1,4 +1,7 @@
 "use client";
+import {RegionalText} from '@/components/regional/provider';
+import {useRegional} from "@/components/regional/provider";
+
 import type { Variants } from "motion/react";
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
@@ -28,7 +31,6 @@ import {
   getMissingClientEnvVars,
 } from "@/lib/supabase";
 import {
-  formatCurrency,
   formatDuration,
   formatLocalDate,
   fixMojibake,
@@ -82,6 +84,8 @@ export function LiveStep3({
 }: {
   state: ReturnType<typeof useLiveBooking>;
 }) {
+const {locale,profile,money:formatCurrency}=useRegional();
+
   const {
     step,
     setStep,
@@ -153,27 +157,24 @@ export function LiveStep3({
     >
       <div className="text-xs">
         {selectedSlot ? (
-          <span>
-            Horário:{" "}
+          <span><RegionalText text="Horário:"/>{" "}
             <strong className="text-accent font-mono font-bold text-sm">
-              {new Date(selectedSlot.start_time).toLocaleTimeString("pt-BR", {
-                timeZone: "America/Sao_Paulo",
+              {new Date(selectedSlot.start_time).toLocaleTimeString(locale, {
+                timeZone: profile.timezone,
                 hour: "2-digit",
                 minute: "2-digit",
               })}
             </strong>
           </span>
         ) : (
-          <span className="text-text-muted">Selecione um horário</span>
+          <span className="text-text-muted"><RegionalText text="Selecione um horário"/></span>
         )}
       </div>
       <button
         onClick={() => setStep(4)}
         disabled={!selectedSlot}
         className="bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-2 rounded-full font-bold text-xs transition-all active:scale-95 disabled:opacity-40 cursor-pointer"
-      >
-        Confirmar
-      </button>
+      ><RegionalText text="Confirmar"/></button>
     </motion.div>
   );
 }

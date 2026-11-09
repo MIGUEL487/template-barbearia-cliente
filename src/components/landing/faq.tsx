@@ -1,4 +1,5 @@
 "use client";
+import {RegionalText} from '@/components/regional/provider';
 import { useEffect, useState } from "react";
 import { demoMode, demoFaq } from "@/config/demo";
 import { supabase, getBarbershopId } from "@/lib/supabase";
@@ -24,13 +25,10 @@ export function Faq() {
   }, []);
   return (
     <section className="section faq-section">
-      <h2>Antes de chegar.</h2>
+      <h2><RegionalText text="Antes de chegar."/></h2>
       <div>
         {failed && (
-          <p role="alert">
-            Não foi possível carregar as dúvidas. Fale com a barbearia pelo
-            WhatsApp.
-          </p>
+          <p role="alert"><RegionalText text="Não foi possível carregar as dúvidas. Fale com a barbearia pelo WhatsApp."/></p>
         )}
         {items.map((f) => (
           <details key={f.id}>

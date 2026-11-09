@@ -1,10 +1,13 @@
 "use client";
+import {RegionalText,useRegional} from '@/components/regional/provider';
 import { useState,useEffect,useRef } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {Counter} from "./counter";
 import { reviews } from "@/config/demo";
 import {useMotionEnabled} from '@/components/motion-preferences';
 export function ReviewCarousel() {
+const {t}=useRegional();
+
   const ref=useRef<HTMLElement>(null),enabled=useMotionEnabled();const [paused,setPaused]=useState(false);
   useEffect(()=>{if(!enabled||paused)return;let timer:ReturnType<typeof setInterval>|undefined,visible=false;const stop=()=>{if(timer)clearInterval(timer);timer=undefined};const sync=()=>{stop();if(visible&&!document.hidden)timer=setInterval(()=>setIndex(i=>(i+1)%reviews.length),5000)};const io=new IntersectionObserver(([e])=>{visible=e.isIntersecting;sync()});if(ref.current)io.observe(ref.current);document.addEventListener('visibilitychange',sync);return()=>{stop();io.disconnect();document.removeEventListener('visibilitychange',sync)}},[enabled,paused]);
   const [index, setIndex] = useState(2);
@@ -15,17 +18,10 @@ export function ReviewCarousel() {
   return (
     <section ref={ref} id="avaliacoes" className="section reviews-section">
       <div className="review-heading">
-        <h2>
-          A palavra de
-          <br />
-          quem conhece.
-        </h2>
-        <p className="review-score"><Counter value={5} decimals={1}/> · <Counter value={53}/> avaliações no Google</p>
-        <span aria-label="5 estrelas" className="review-stars">{Array.from({length:5},(_,i)=><motion.span key={i} initial={{opacity:0}} whileInView={{opacity:1}} viewport={{once:true}} transition={{delay:i*.12}}>★</motion.span>)}</span>
-        <p>
-          Avaliações do Google · citações fornecidas no briefing, em
-          demonstração.
-        </p>
+        <h2><RegionalText text="A palavra de"/><br /><RegionalText text="quem conhece."/></h2>
+        <p className="review-score"><Counter value={5} decimals={1}/> · <Counter value={53}/><RegionalText text="avaliações no Google"/></p>
+        <span aria-label={t("5 estrelas")} className="review-stars">{Array.from({length:5},(_,i)=><motion.span key={i} initial={{opacity:0}} whileInView={{opacity:1}} viewport={{once:true}} transition={{delay:i*.12}}>★</motion.span>)}</span>
+        <p><RegionalText text="Avaliações do Google · citações fornecidas no briefing, em demonstração."/></p>
       </div>
       <div
         className="review-feature"
@@ -44,30 +40,26 @@ export function ReviewCarousel() {
               transition={{ duration: reduced ? 0.12 : 0.28 }}
             >
               <p>“{reviews[index]}”</p>
-              <cite>Cliente · Google</cite>
+              <cite><RegionalText text="Cliente · Google"/></cite>
             </motion.blockquote>
           </AnimatePresence>
         </div>
         <div className="quote-controls">
           <span>
-            {index + 1} de {reviews.length}
+            {index + 1}<RegionalText text="de"/>{reviews.length}
           </span>
           <div>
             <button type="button" aria-pressed={paused} onClick={()=>setPaused(!paused)}>{paused?"Retomar":"Pausar"}</button>
             <button
               type="button"
-              aria-label="Avaliação anterior"
+              aria-label={t("Avaliação anterior")}
               onClick={() => move(-1)}
-            >
-              Anterior
-            </button>
+            ><RegionalText text="Anterior"/></button>
             <button
               type="button"
-              aria-label="Próxima avaliação"
+              aria-label={t("Próxima avaliação")}
               onClick={() => move(1)}
-            >
-              Próxima
-            </button>
+            ><RegionalText text="Próxima"/></button>
           </div>
         </div>
       </div>

@@ -1,4 +1,6 @@
 "use client";
+import {RegionalText,useRegional} from '@/components/regional/provider';
+
 import type { Variants } from "motion/react";
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
@@ -28,7 +30,6 @@ import {
   getMissingClientEnvVars,
 } from "@/lib/supabase";
 import {
-  formatCurrency,
   formatDuration,
   formatLocalDate,
   fixMojibake,
@@ -82,6 +83,8 @@ export function LiveStep4({
 }: {
   state: ReturnType<typeof useLiveBooking>;
 }) {
+const {t,locale,profile,money:formatCurrency}=useRegional();
+
   const {
     step,
     setStep,
@@ -154,32 +157,28 @@ export function LiveStep4({
       {/* Formulário */}
       <div className="md:col-span-7 bg-surface rounded-[28px] p-8 space-y-6">
         <div className="flex items-center justify-between pb-4 border-b border-hairline">
-          <h2 className="font-serif text-xl font-bold text-text">Seus Dados</h2>
+          <h2 className="font-serif text-xl font-bold text-text"><RegionalText text="Seus Dados"/></h2>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-xs font-semibold">
             <Lock className="w-3 h-3" />
-            <span>Seguro</span>
+            <span><RegionalText text="Seguro"/></span>
           </div>
         </div>
 
         <div className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-text-muted mb-2 ml-2">
-              Nome Completo *
-            </label>
+            <label className="block text-xs font-semibold text-text-muted mb-2 ml-2"><RegionalText text="Nome Completo *"/></label>
             <input
               type="text"
               required
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
-              placeholder="Seu nome"
+              placeholder={t("Seu nome")}
               className="w-full bg-surface-2 rounded-full px-6 py-4 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-text-muted mb-2 ml-2">
-              WhatsApp / Telefone *
-            </label>
+            <label className="block text-xs font-semibold text-text-muted mb-2 ml-2"><RegionalText text="WhatsApp / Telefone *"/></label>
             <input
               type="text"
               required
@@ -191,14 +190,12 @@ export function LiveStep4({
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-text-muted mb-2 ml-2">
-              E-mail (confirmação)
-            </label>
+            <label className="block text-xs font-semibold text-text-muted mb-2 ml-2"><RegionalText text="E-mail (confirmação)"/></label>
             <input
               type="email"
               value={customerEmail}
               onChange={(e) => setCustomerEmail(e.target.value)}
-              placeholder="seuemail@exemplo.com"
+              placeholder={t("seuemail@exemplo.com")}
               className="w-full bg-surface-2 rounded-full px-6 py-4 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
             />
           </div>
@@ -206,9 +203,7 @@ export function LiveStep4({
 
         {/* Pagamento */}
         <div className="pt-4 border-t border-hairline">
-          <label className="block text-xs font-semibold text-text-muted mb-2 ml-2">
-            Condição de Pagamento
-          </label>
+          <label className="block text-xs font-semibold text-text-muted mb-2 ml-2"><RegionalText text="Condição de Pagamento"/></label>
           <div className="grid grid-cols-2 gap-4">
             <button
               type="button"
@@ -219,7 +214,7 @@ export function LiveStep4({
                   : "bg-surface-2 text-text-muted hover:text-text"
               }`}
             >
-              <span>Sinal ({depositPct}%)</span>
+              <span><RegionalText text="Sinal ("/>{depositPct}%)</span>
               <strong className="font-serif text-sm mt-2">
                 {formatCurrency(depositAmount)}
               </strong>
@@ -234,7 +229,7 @@ export function LiveStep4({
                   : "bg-surface-2 text-text-muted hover:text-text"
               }`}
             >
-              <span>Total (100%)</span>
+              <span><RegionalText text="Total (100%)"/></span>
               <strong className="font-serif text-sm mt-2">
                 {formatCurrency(totalPrice)}
               </strong>
@@ -251,23 +246,18 @@ export function LiveStep4({
               onChange={(e) => setAcceptedTerms(e.target.checked)}
               className="mt-2 rounded accent-accent"
             />
-            <span className="text-text-muted">
-              Concordo com os{" "}
+            <span className="text-text-muted"><RegionalText text="Concordo com os"/>{" "}
               <Link
                 href="/termos-de-uso"
                 target="_blank"
                 className="text-accent underline hover:text-accent-hover"
-              >
-                Termos de Uso
-              </Link>{" "}
+              ><RegionalText text="Termos de Uso"/></Link>{" "}
               e a{" "}
               <Link
                 href="/politica-de-privacidade"
                 target="_blank"
                 className="text-accent underline hover:text-accent-hover"
-              >
-                Política de Privacidade (LGPD)
-              </Link>
+              ><RegionalText text="Política de Privacidade (LGPD)"/></Link>
               .
             </span>
           </label>
@@ -279,9 +269,7 @@ export function LiveStep4({
               onChange={(e) => setMarketingConsent(e.target.checked)}
               className="mt-2 rounded accent-accent"
             />
-            <span className="text-text-muted">
-              Aceito receber lembretes e promoções via WhatsApp.
-            </span>
+            <span className="text-text-muted"><RegionalText text="Aceito receber lembretes e promoções via WhatsApp."/></span>
           </label>
         </div>
 
@@ -297,30 +285,25 @@ export function LiveStep4({
 
       {/* Resumo */}
       <div className="md:col-span-5 bg-surface-2 rounded-[28px] p-8 space-y-6">
-        <h3 className="font-serif text-lg font-bold text-text pb-4 border-b border-hairline">
-          Resumo
-        </h3>
+        <h3 className="font-serif text-lg font-bold text-text pb-4 border-b border-hairline"><RegionalText text="Resumo"/></h3>
 
         <div className="space-y-4 text-xs">
           <div>
-            <span className="text-text-muted block text-xs">Profissional</span>
+            <span className="text-text-muted block text-xs"><RegionalText text="Profissional"/></span>
             <strong className="text-text font-serif text-sm">
               {selectedBarber?.name || "Primeiro Disponível"}
             </strong>
           </div>
 
           <div>
-            <span className="text-text-muted block text-xs">
-              Data & Horário
-            </span>
+            <span className="text-text-muted block text-xs"><RegionalText text="Data & Horário"/></span>
             <strong className="text-text font-mono text-sm">
-              {new Date(selectedDate + "T12:00:00").toLocaleDateString("pt-BR")}{" "}
-              às{" "}
+              {new Date(selectedDate + "T12:00:00").toLocaleDateString(locale)}{" "}<RegionalText text="às"/>{" "}
               {selectedSlot
                 ? new Date(selectedSlot.start_time).toLocaleTimeString(
-                    "pt-BR",
+                    locale,
                     {
-                      timeZone: "America/Sao_Paulo",
+                      timeZone: profile.timezone,
                 hour: "2-digit",
                       minute: "2-digit",
                     },
@@ -330,7 +313,7 @@ export function LiveStep4({
           </div>
 
           <div>
-            <span className="text-text-muted block text-xs mb-2">Serviços</span>
+            <span className="text-text-muted block text-xs mb-2"><RegionalText text="Serviços"/></span>
             <div className="space-y-2">
               {selectedServices.map((s) => (
                 <div key={s.id} className="flex justify-between text-text">
@@ -345,20 +328,20 @@ export function LiveStep4({
 
           <div className="pt-4 border-t border-hairline space-y-2">
             <div className="flex justify-between text-xs">
-              <span className="text-text-muted">Valor Total:</span>
+              <span className="text-text-muted"><RegionalText text="Valor Total:"/></span>
               <span className="font-serif font-bold text-text">
                 {formatCurrency(totalPrice)}
               </span>
             </div>
             <div className="flex justify-between text-xs">
-              <span className="text-accent font-semibold">Paga agora:</span>
+              <span className="text-accent font-semibold"><RegionalText text="Paga agora:"/></span>
               <span className="font-serif font-bold text-accent">
                 {formatCurrency(payNowAmount)}
               </span>
             </div>
             {payLaterAmount > 0 && (
               <div className="flex justify-between text-xs text-text-muted">
-                <span>Resta no local:</span>
+                <span><RegionalText text="Resta no local:"/></span>
                 <span className="font-mono">
                   {formatCurrency(payLaterAmount)}
                 </span>

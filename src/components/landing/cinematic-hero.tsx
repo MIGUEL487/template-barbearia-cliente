@@ -1,4 +1,5 @@
-'use client';
+"use client";
+import {RegionalText,useRegional} from '@/components/regional/provider';
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { BrandLogo } from '@/components/brand-logo';
@@ -21,6 +22,8 @@ const path = (v: string, i: number) =>
   `/frames/${v}/frame_${String(i + 1).padStart(4, '0')}.webp`;
 
 export function CinematicHero() {
+const {t}=useRegional();
+
   const root = useRef<HTMLElement>(null);
   const surface = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -270,7 +273,7 @@ export function CinematicHero() {
   }, [enabled]);
 
   return (
-    <section ref={root} className="cinema" aria-label="Barbearia Modelo, o cuidado em movimento">
+    <section ref={root} className="cinema" aria-label={t("Barbearia Modelo, o cuidado em movimento")}>
       <div ref={surface} className="cinema-surface">
         <picture className="cinema-poster">
           <source
@@ -283,7 +286,7 @@ export function CinematicHero() {
             width="1672"
             height="941"
             fetchPriority="high"
-            alt="Barbearia Modelo — Ambiente e tradição artesanal"
+            alt={t("Barbearia Modelo — Ambiente e tradição artesanal")}
           />
         </picture>
         <canvas ref={canvas} aria-hidden="true" />
@@ -296,15 +299,14 @@ export function CinematicHero() {
           >
             {i === 0 ? (
               <>
-                <h1 className="sr-only">Barbearia Modelo — Corte, Barba &amp; Estilo</h1>
+                <h1 className="sr-only"><RegionalText text="Barbearia Modelo — Corte, Barba &amp; Estilo"/></h1>
                 <BrandLogo tone="dark" className="cinema-brand" />
               </>
             ) : (
-              <h2>{cue.title}</h2>
+              <h2>{t(cue.title)}</h2>
             )}
             {(i === 0 || i === cues.length - 1) && (
-              <Link className="cta" href="/agendar">
-                Agendar horário <span aria-hidden="true">↗</span>
+              <Link className="cta" href="/agendar"><RegionalText text="Agendar horário"/><span aria-hidden="true">↗</span>
               </Link>
             )}
           </div>
@@ -319,9 +321,7 @@ export function CinematicHero() {
               } catch {}
               window.dispatchEvent(new Event('auto-stilo-motion'));
             }}
-          >
-            Versão sem animação
-          </button>
+          ><RegionalText text="Versão sem animação"/></button>
         </div>
       </div>
       <div className="cinema-still-story">
@@ -335,7 +335,7 @@ export function CinematicHero() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={path('desktop', idx + 1)}
-                alt="Detalhe do ambiente e atendimento na barbearia"
+                alt={t("Detalhe do ambiente e atendimento na barbearia")}
                 width="1672"
                 height="941"
                 loading="lazy"

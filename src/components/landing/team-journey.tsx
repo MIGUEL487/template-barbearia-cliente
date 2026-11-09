@@ -1,4 +1,5 @@
-'use client';
+"use client";
+import {RegionalText,useRegional} from '@/components/regional/provider';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
@@ -13,6 +14,8 @@ import { useMotionEnabled } from '@/components/motion-preferences';
 type Barber = { id: string; name: string; bio: string | null; avatar_url: string | null };
 
 export function TeamJourney() {
+const {t}=useRegional();
+
   const root = useRef<HTMLElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const enabled = useMotionEnabled();
@@ -178,7 +181,7 @@ export function TeamJourney() {
       ref={root}
       id="equipe"
       className="team-journey"
-      aria-label="Conheça a equipe e escolha seu profissional"
+      aria-label={t("Conheça a equipe e escolha seu profissional")}
     >
       <div ref={track} className="journey-track">
         {/* Painel 1: Introdução à Experiência */}
@@ -189,15 +192,9 @@ export function TeamJourney() {
             </p>
             <h2>
               {isSingleBarber ? (
-                <>
-                  Cuidado em<br />
-                  cada detalhe.
-                </>
+                <><RegionalText text="Cuidado em"/><br /><RegionalText text="cada detalhe."/></>
               ) : (
-                <>
-                  Quem cuida<br />
-                  do seu estilo.
-                </>
+                <><RegionalText text="Quem cuida"/><br /><RegionalText text="do seu estilo."/></>
               )}
             </h2>
             <p>
@@ -205,14 +202,12 @@ export function TeamJourney() {
                 ? 'Conheça o espaço acolhedor e o atendimento artesanal exclusivo com hora marcada.'
                 : 'Conheça nossos profissionais dedicados e escolha seu próximo horário com tranquilidade.'}
             </p>
-            <Link className="text-link" href="/agendar">
-              Agendar horário ↗
-            </Link>
+            <Link className="text-link" href="/agendar"><RegionalText text="Agendar horário ↗"/></Link>
           </div>
           <figure>
             <ShopImage
               name="interior-recepcao"
-              alt="Recepção e lounge da barbearia"
+              alt={t("Recepção e lounge da barbearia")}
             />
           </figure>
         </article>
@@ -227,12 +222,10 @@ export function TeamJourney() {
             />
             <div className="journey-content">
               <p className="journey-eyebrow">
-                {String(index + 2).padStart(2, '0')} / Barbeiro Especialista
-              </p>
+                {String(index + 2).padStart(2, '0')}<RegionalText text="/ Barbeiro Especialista"/></p>
               <h2>{b.name}</h2>
               {b.bio && <p>{b.bio}</p>}
-              <Link className="cta" href="/agendar">
-                Agendar com {b.name} ↗
+              <Link className="cta" href="/agendar"><RegionalText text="Agendar com"/>{b.name} ↗
               </Link>
             </div>
           </article>
@@ -242,20 +235,14 @@ export function TeamJourney() {
         <article className="journey-panel journey-final">
           <div className="journey-content">
             <p className="journey-eyebrow">
-              {String(barbers.length + 2).padStart(2, '0')} / No seu tempo.
-            </p>
-            <h2>
-              Seu próximo corte<br />
-              começa aqui.
-            </h2>
+              {String(barbers.length + 2).padStart(2, '0')}<RegionalText text="/ No seu tempo."/></p>
+            <h2><RegionalText text="Seu próximo corte"/><br /><RegionalText text="começa aqui."/></h2>
             <p>
               {isSingleBarber
                 ? 'Escolha o serviço desejado e reserve seu horário com total comodidade.'
                 : 'Escolha o serviço, o profissional de sua preferência e um horário conveniente.'}
             </p>
-            <Link className="cta" href="/agendar">
-              Agendar horário ↗
-            </Link>
+            <Link className="cta" href="/agendar"><RegionalText text="Agendar horário ↗"/></Link>
           </div>
         </article>
       </div>

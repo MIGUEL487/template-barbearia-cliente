@@ -1,4 +1,5 @@
-'use client';
+"use client";
+import {RegionalText} from '@/components/regional/provider';
 import { useEffect, useState } from 'react';
 import { shop } from '@/config/demo';
 
@@ -20,9 +21,7 @@ export function ContactMap() {
               ? 'Localizando a barbearia…'
               : 'O mapa não respondeu. Consulte a localização diretamente.'}
           </span>
-          <a href={src.replace('&output=embed', '')} target="_blank" rel="noreferrer">
-            Abrir no Google Maps ↗
-          </a>
+          <a href={src.replace('&output=embed', '')} target="_blank" rel="noreferrer"><RegionalText text="Abrir no Google Maps ↗"/></a>
         </div>
       )}
       <iframe
@@ -33,9 +32,7 @@ export function ContactMap() {
         onLoad={() => setState('ready')}
         onError={() => setState('error')}
       />
-      <a className="map-external" href={src.replace('&output=embed', '')} target="_blank" rel="noreferrer">
-        Abrir localização ↗
-      </a>
+      <a className="map-external" href={src.replace('&output=embed', '')} target="_blank" rel="noreferrer"><RegionalText text="Abrir localização ↗"/></a>
     </div>
   );
 }
