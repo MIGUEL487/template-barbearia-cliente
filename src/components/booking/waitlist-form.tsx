@@ -1,4 +1,5 @@
 "use client";
+import {RegionalText} from '@/components/regional/provider';
 import { useState } from "react";
 import { supabase, getBarbershopId } from "@/lib/supabase";
 import { reportSupabaseError } from "@/lib/booking-diagnostics";
@@ -36,9 +37,7 @@ export function WaitlistForm({
         type="button"
         aria-expanded={open}
         onClick={() => setOpen(!open)}
-      >
-        Entrar na lista de espera
-      </button>
+      ><RegionalText text="Entrar na lista de espera"/></button>
       {open && (
         <form
           className="mt-4"
@@ -75,13 +74,9 @@ export function WaitlistForm({
             }
           }}
         >
-          <h3>Lista de espera · contato manual</h3>
-          <p>
-            Usaremos o serviço e o profissional selecionados. Escolha a data e a janela abaixo; dias sem expediente compatível serão recusados. Não há aviso automático. WhatsApp é uma integração futura.
-          </p>
-          <label className="field-label">
-            Data desejada para a fila
-            <input
+          <h3><RegionalText text="Lista de espera · contato manual"/></h3>
+          <p><RegionalText text="Usaremos o serviço e o profissional selecionados. Escolha a data e a janela abaixo; dias sem expediente compatível serão recusados. Não há aviso automático. WhatsApp é uma integração futura."/></p>
+          <label className="field-label"><RegionalText text="Data desejada para a fila"/><input
               type="date"
               value={queueDate}
               min={today}
@@ -94,9 +89,7 @@ export function WaitlistForm({
               required
             />
           </label>
-          <label className="field-label">
-            Nome
-            <input
+          <label className="field-label"><RegionalText text="Nome"/><input
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -104,9 +97,7 @@ export function WaitlistForm({
               maxLength={120}
             />
           </label>
-          <label className="field-label">
-            Telefone
-            <input
+          <label className="field-label"><RegionalText text="Telefone"/><input
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
@@ -115,20 +106,16 @@ export function WaitlistForm({
               maxLength={20}
             />
           </label>
-          <label className="field-label">
-            Contato permitido
-            <select
+          <label className="field-label"><RegionalText text="Contato permitido"/><select
               value={channel}
               onChange={(e) => setChannel(e.target.value)}
             >
-              <option value="phone">Telefone · contato manual</option>
-              <option value="email">E-mail · contato manual</option>
+              <option value="phone"><RegionalText text="Telefone · contato manual"/></option>
+              <option value="email"><RegionalText text="E-mail · contato manual"/></option>
             </select>
           </label>
           {channel === "email" && (
-            <label className="field-label">
-              E-mail
-              <input
+            <label className="field-label"><RegionalText text="E-mail"/><input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -137,18 +124,14 @@ export function WaitlistForm({
               />
             </label>
           )}
-          <label className="field-label">
-            A partir de
-            <input
+          <label className="field-label"><RegionalText text="A partir de"/><input
               type="time"
               value={start}
               onChange={(e) => setStart(e.target.value)}
               required
             />
           </label>
-          <label className="field-label">
-            Até
-            <input
+          <label className="field-label"><RegionalText text="Até"/><input
               type="time"
               value={end}
               onChange={(e) => setEnd(e.target.value)}
@@ -162,10 +145,7 @@ export function WaitlistForm({
               checked={consent}
               onChange={(e) => setConsent(e.target.checked)}
               required
-            />
-            Autorizo contato manual sobre esta solicitação pelo meio escolhido.
-            Isso não é consentimento para promoções.
-          </label>
+            /><RegionalText text="Autorizo contato manual sobre esta solicitação pelo meio escolhido. Isso não é consentimento para promoções."/></label>
           <button
             className="cta"
             type="submit"

@@ -1,3 +1,9 @@
+import type {CSSProperties} from "react";
+import {regionalTheme} from "@/lib/regional/theme";
+import "../styles/regional.css";
+import {getRegionalProfile} from "@/lib/regional/server";
+import {intlLocale} from "@/lib/regional/profile";
+import {RegionalProvider} from "@/components/regional/provider";
 import { DemoWatermark, watermarkEnabled } from "@/components/demo-watermark";
 import { MotionPreferences } from "@/components/motion-preferences";
 import { BookingDiagnostics } from "@/components/booking/diagnostics";
@@ -24,7 +30,7 @@ const manrope = localFont({
   display: "swap",
 });
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -68,18 +74,25 @@ export const metadata: Metadata = {
     "Barbearia Modelo: corte de alta precisão, barba terapia com toalha quente e atendimento com hora marcada.",
 };
 
-export default function RootLayout({
+export async function generateMetadata():Promise<Metadata> {
+  const region=await getRegionalProfile();
+  if(!region.slug)return baseMetadata;
+  const descriptions={"pt-br":"Agendamento online e atendimento personalizado.",en:"Online booking and personal care.",es:"Reservas en línea y atención personalizada.","fr-ca":"Réservation en ligne et soins personnalisés."};
+  return {...baseMetadata,title:region.name,description:descriptions[region.locale],openGraph:{...baseMetadata.openGraph,title:region.name,description:descriptions[region.locale],locale:intlLocale(region).replace('-','_')},twitter:{...baseMetadata.twitter,title:region.name,description:descriptions[region.locale]}};
+}
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const profile=await getRegionalProfile();
   return (
-    <html lang="pt-BR" className={`${display.variable} ${manrope.variable}`}>
+    <html lang={intlLocale(profile)} data-regional={profile.slug||undefined} style={regionalTheme(profile) as CSSProperties} className={`${display.variable} ${manrope.variable}`}>
       <body className="min-h-screen bg-bg text-text antialiased selection:bg-accent selection:text-accent-contrast font-sans">
-        <MotionPreferences>{children}</MotionPreferences>
+        <RegionalProvider profile={profile}><MotionPreferences>{children}</MotionPreferences>
         <CookieBanner />
         <DemoWatermark />
-        <BookingDiagnostics />
+        <BookingDiagnostics /></RegionalProvider>
       </body>
     </html>
   );
