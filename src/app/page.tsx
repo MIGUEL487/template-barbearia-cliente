@@ -31,22 +31,22 @@ export default function Page() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BarberShop",
-    name: "Barbearia Modelo",
-    image: "/img/template/full/01_barbearia_interior.webp",
-    telephone: "+5511999999999",
+    name: "Barbearia Auto Stilo",
+    image: "/img/fotos-otimizadas/full/07_teto-hexagonal.webp",
+    telephone: "+5535997374960",
     priceRange: "$$",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Av. Principal, 1000 – Centro",
-      addressLocality: "São Paulo",
-      addressRegion: "SP",
-      postalCode: "01000-000",
+      streetAddress: "R. do Tanque, 395 – Bela Vista",
+      addressLocality: "Monte Sião",
+      addressRegion: "MG",
+      postalCode: "37580-000",
       addressCountry: "BR",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: "-23.5505",
-      longitude: "-46.6333",
+      latitude: "-22.4344",
+      longitude: "-46.5731",
     },
     openingHoursSpecification: [
       {

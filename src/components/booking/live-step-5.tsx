@@ -1,5 +1,4 @@
 "use client";
-import {RegionalText} from '@/components/regional/provider';
 import type { Variants } from "motion/react";
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
@@ -168,13 +167,18 @@ export function LiveStep5({
         </motion.div>
 
         <div>
-          <h2 className="font-serif text-3xl font-bold text-text mb-2"><RegionalText text="Pré-reserva criada"/><DemoBadge/>
+          <h2 className="font-serif text-3xl font-bold text-text mb-2">
+            Pré-reserva criada <DemoBadge/>
           </h2>
-          <p className="text-xs text-text-muted"><RegionalText text="Seu horário está separado por 15 minutos. A confirmação do pagamento ainda está pendente. Fale com a barbearia para concluir."/></p>
+          <p className="text-xs text-text-muted">
+            Seu horário está separado por 15 minutos. A confirmação do pagamento ainda está pendente. Fale com a barbearia para concluir.
+          </p>
         </div>
 
         <div className="bg-surface-2 rounded-[20px] p-4 text-xs font-mono">
-          <span className="text-text-muted block text-xs uppercase font-sans mb-2"><RegionalText text="Token"/></span>
+          <span className="text-text-muted block text-xs uppercase font-sans mb-2">
+            Token
+          </span>
           <strong className="text-accent text-sm select-all">
             {bookingToken}
           </strong>
@@ -183,7 +187,8 @@ export function LiveStep5({
         {holdExpiresAt && countdownSeconds > 0 && (
           <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full text-xs font-semibold font-mono">
             <Clock className="w-4 h-4" />
-            <span><RegionalText text="Reserva ativa:"/>{Math.floor(countdownSeconds / 60)}:
+            <span>
+              Reserva ativa: {Math.floor(countdownSeconds / 60)}:
               {String(countdownSeconds % 60).padStart(2, "0")}
             </span>
           </div>
@@ -193,11 +198,15 @@ export function LiveStep5({
           <Link
             href={`/meu-agendamento?token=${bookingToken}`}
             className="w-full sm:w-auto bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-4 rounded-full font-bold text-xs transition-all active:scale-95"
-          ><RegionalText text="Ver Meu Agendamento"/></Link>
+          >
+            Ver Meu Agendamento
+          </Link>
           <Link
             href="/"
             className="w-full sm:w-auto bg-surface-2 hover:bg-surface-3 text-text px-6 py-4 rounded-full font-semibold text-xs transition-colors"
-          ><RegionalText text="Voltar à Página Inicial"/></Link>
+          >
+            Voltar à Página Inicial
+          </Link>
         </div>
       </motion.div>
     </motion.div>

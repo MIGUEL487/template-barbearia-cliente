@@ -1,5 +1,4 @@
 "use client";
-import {RegionalText,useRegional} from '@/components/regional/provider';
 import { useEffect, useRef, useState } from "react";
 import { Play, Volume2, VolumeX } from "lucide-react";
 import { PhotoWatermark } from "@/components/demo-watermark";
@@ -50,7 +49,9 @@ function ShopVideo({ name, title }: { name: string; title: string }) {
       <video ref={ref} width="360" height="640" playsInline muted={muted} loop preload="none"
         poster={`/media/auto-stilo/${name}-poster.webp`} aria-label={title}
         onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
-        <source src={`/media/auto-stilo/${name}.mp4`} type="video/mp4" /><RegionalText text="Seu navegador não reproduz este vídeo."/></video>
+        <source src={`/media/auto-stilo/${name}.mp4`} type="video/mp4" />
+        Seu navegador não reproduz este vídeo.
+      </video>
       <PhotoWatermark />
       <button className="film-toggle" type="button" onClick={toggle}
         aria-label={`${playing ? "Pausar" : "Reproduzir"}: ${title}`} aria-pressed={playing}>
@@ -65,10 +66,8 @@ function ShopVideo({ name, title }: { name: string; title: string }) {
   </figure>;
 }
 export function ShopVideos() {
-const {t}=useRegional();
-
   return <section className="section films-section" aria-labelledby="films-title">
-    <div className="section-heading"><h2 id="films-title"><RegionalText text="Um pouco"/><br /><RegionalText text="do nosso dia."/></h2><p><RegionalText text="O espaço e o cuidado, em movimento."/><br /><RegionalText text="Reproduza quando quiser."/></p></div>
-    <div className="films-grid"><ShopVideo name="visita" title={t("Uma visita ao espaço")} /><ShopVideo name="em-atendimento" title={t("O cuidado durante o atendimento")} /></div>
+    <div className="section-heading"><h2 id="films-title">Um pouco<br />do nosso dia.</h2><p>O espaço e o cuidado, em movimento.<br />Reproduza quando quiser.</p></div>
+    <div className="films-grid"><ShopVideo name="visita" title="Uma visita à Auto Stilo" /><ShopVideo name="em-atendimento" title="O cuidado durante o atendimento" /></div>
   </section>;
 }

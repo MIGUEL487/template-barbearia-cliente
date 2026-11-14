@@ -1,6 +1,4 @@
 "use client";
-import {RegionalText,useRegional} from '@/components/regional/provider';
-
 import Link from "next/link";
 import { useCallback, useState } from "react";
 import { BookingCalendar } from "./booking-calendar";
@@ -8,20 +6,17 @@ import { BarberPhoto } from "@/components/barber-photo";
 import { BookingSkeleton, BrandLoading } from "./booking-loading";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { DemoBadge } from "@/components/demo-watermark";
-
+import { formatCurrency } from "@/lib/utils";
 import { useLiveBooking } from "./use-live-booking";
 
-export default function LiveBooking() {
-const {t,locale,profile,money:formatCurrency}=useRegional();
 const time = (iso: string) =>
-  new Date(iso).toLocaleTimeString(locale, {
-    timeZone: profile.timezone,
+  new Date(iso).toLocaleTimeString("pt-BR", {
+    timeZone: "America/Sao_Paulo",
     hour: "2-digit",
     minute: "2-digit",
   });
 
-
-
+export default function LiveBooking() {
   const s = useLiveBooking();
   const serviceSummary = s.selectedServices.map(service => `${s.serviceQuantities[service.id] || 1}× ${service.name}`).join(', ');
   const reduced = useReducedMotion();
@@ -99,11 +94,12 @@ const time = (iso: string) =>
 
   return (
     <main className="booking-shell">
-      <Link className="brand" href="/"><RegionalText text="Barbearia Modelo"/><span><RegionalText text="Voltar ao início"/></span>
+      <Link className="brand" href="/">
+        Auto Stilo<span>Voltar ao início</span>
       </Link>
 
       {/* Stepper bar */}
-      <ol className="step-progress" aria-label={t("Etapas do agendamento")}>
+      <ol className="step-progress" aria-label="Etapas do agendamento">
         {stepTitles.map((title, i) => (
           <li
             key={title}
@@ -147,8 +143,8 @@ const time = (iso: string) =>
 
           {/* ETAPA 1: SERVIÇOS */}
           {!s.isLoadingInitial && s.step === 1 && (
-            <fieldset aria-label={t("Serviços")} className="booking-step-fieldset">
-              <legend><RegionalText text="Selecione um ou mais serviços"/></legend>
+            <fieldset aria-label="Serviços" className="booking-step-fieldset">
+              <legend>Selecione um ou mais serviços</legend>
               <div className="services-grid space-y-3">
                 {s.services.map((service) => {
                   const isChecked = s.selectedServices.some((x) => x.id === service.id);
@@ -175,7 +171,7 @@ const time = (iso: string) =>
                             </span>
                           </div>
                           <div className="flex items-center gap-2 text-xs text-text-muted mt-1">
-                            <span>{service.duration_minutes}<RegionalText text="min"/></span>
+                            <span>{service.duration_minutes} min</span>
                             {service.description && (
                               <>
                                 <span>·</span>
@@ -192,7 +188,9 @@ const time = (iso: string) =>
                           role="group"
                           aria-label={`Pessoas para ${service.name}`}
                         >
-                          <span className="text-xs text-text-muted mr-1"><RegionalText text="Pessoas:"/></span>
+                          <span className="text-xs text-text-muted mr-1">
+                            Pessoas:
+                          </span>
                           <button
                             type="button"
                             aria-label={`Diminuir pessoas para ${service.name}`}
@@ -227,7 +225,9 @@ const time = (iso: string) =>
                   );
                 })}
                 {!s.services.length && (
-                  <p className="no-items text-xs text-text-muted"><RegionalText text="Nenhum serviço disponível no momento. Fale com a barbearia."/></p>
+                  <p className="no-items text-xs text-text-muted">
+                    Nenhum serviço disponível no momento. Fale com a barbearia.
+                  </p>
                 )}
               </div>
             </fieldset>
@@ -235,8 +235,8 @@ const time = (iso: string) =>
 
           {/* ETAPA 2: PROFISSIONAL (Apenas se houver mais de 1 barbeiro) */}
           {s.step === 2 && !isSingleBarber && (
-            <fieldset aria-label={t("Profissional")} className="booking-step-fieldset">
-              <legend><RegionalText text="Com quem você prefere ser atendido?"/></legend>
+            <fieldset aria-label="Profissional" className="booking-step-fieldset">
+              <legend>Com quem você prefere ser atendido?</legend>
               <div className="barbers-grid space-y-3">
                 {s.barbers.map((b) => {
                   const isChecked = s.selectedBarber?.id === b.id;
@@ -287,8 +287,12 @@ const time = (iso: string) =>
                       ✦
                     </div>
                     <div className="choice-info flex-1 min-w-0">
-                      <strong className="text-sm font-semibold block"><RegionalText text="Sem preferência"/></strong>
-                      <small className="text-xs text-text-muted block mt-0.5"><RegionalText text="Escolher o primeiro profissional disponível."/></small>
+                      <strong className="text-sm font-semibold block">
+                        Sem preferência
+                      </strong>
+                      <small className="text-xs text-text-muted block mt-0.5">
+                        Escolher o primeiro profissional disponível.
+                      </small>
                     </div>
                   </label>
                 )}
@@ -298,8 +302,8 @@ const time = (iso: string) =>
 
           {/* ETAPA 3: DATA E HORÁRIO */}
           {s.step === 3 && (
-            <fieldset aria-label={t("Horários")} className="booking-step-fieldset">
-              <legend><RegionalText text="Selecione a data e o horário"/></legend>
+            <fieldset aria-label="Horários" className="booking-step-fieldset">
+              <legend>Selecione a data e o horário</legend>
               <div className="booking-date-layout">
                 <BookingCalendar
                   value={s.selectedDate}
@@ -314,9 +318,9 @@ const time = (iso: string) =>
                 />
                 <section
                   className="booking-time-panel"
-                  aria-label={t("Horários disponíveis")}
+                  aria-label="Horários disponíveis"
                 >
-                  <h2><RegionalText text="Horários disponíveis"/></h2>
+                  <h2>Horários disponíveis</h2>
                   <p className="font-semibold text-xs text-accent-light">
                     {s.selectedDate.split("-").reverse().join("/")}
                   </p>
@@ -373,10 +377,14 @@ const time = (iso: string) =>
                       )}
                     </AnimatePresence>
                     {!loadingTimes && !s.availableSlots.length && (
-                      <p role="status" className="text-xs text-text-muted py-6 text-center"><RegionalText text="Não há horários disponíveis nesta data. Selecione outro dia no calendário."/></p>
+                      <p role="status" className="text-xs text-text-muted py-6 text-center">
+                        Não há horários disponíveis nesta data. Selecione outro dia no calendário.
+                      </p>
                     )}
                   </div>
-                  <p className="text-[11px] text-text-muted mt-2">{profile.timezone}</p>
+                  <p className="text-[11px] text-text-muted mt-2">
+                    Horário de Brasília · America/Sao_Paulo
+                  </p>
                 </section>
               </div>
             </fieldset>
@@ -393,16 +401,18 @@ const time = (iso: string) =>
               }}
             >
               <div className="p-5 rounded-2xl bg-surface-2/80 border border-hairline shadow-soft space-y-3">
-                <h2 className="text-sm font-bold text-text uppercase tracking-wider"><RegionalText text="Resumo do Agendamento"/></h2>
+                <h2 className="text-sm font-bold text-text uppercase tracking-wider">
+                  Resumo do Agendamento
+                </h2>
                 <dl className="booking-summary text-xs space-y-2">
                   <div className="flex justify-between border-b border-hairline/60 pb-1.5">
-                    <dt className="text-text-muted font-medium"><RegionalText text="Serviços"/></dt>
+                    <dt className="text-text-muted font-medium">Serviços</dt>
                     <dd className="font-semibold text-text text-right">
                       {serviceSummary}
                     </dd>
                   </div>
                   <div className="flex justify-between border-b border-hairline/60 pb-1.5">
-                    <dt className="text-text-muted font-medium"><RegionalText text="Profissional"/></dt>
+                    <dt className="text-text-muted font-medium">Profissional</dt>
                     <dd className="font-semibold text-text">
                       {s.barbers.find((b) => b.id === s.selectedSlot?.barber_id)
                         ?.name ||
@@ -411,21 +421,21 @@ const time = (iso: string) =>
                     </dd>
                   </div>
                   <div className="flex justify-between border-b border-hairline/60 pb-1.5">
-                    <dt className="text-text-muted font-medium"><RegionalText text="Quando"/></dt>
+                    <dt className="text-text-muted font-medium">Quando</dt>
                     <dd className="font-semibold text-accent-light font-mono">
-                      {s.selectedDate.split("-").reverse().join("/")}<RegionalText text="às"/>{" "}
+                      {s.selectedDate.split("-").reverse().join("/")} às{" "}
                       {s.selectedSlot && time(s.selectedSlot.start_time)}
                     </dd>
                   </div>
                   <div className="flex justify-between border-b border-hairline/60 pb-1.5">
-                    <dt className="text-text-muted font-medium"><RegionalText text="Valor Total"/></dt>
+                    <dt className="text-text-muted font-medium">Valor Total</dt>
                     <dd className="font-bold text-sm text-text font-mono">
                       {formatCurrency(s.totalPrice)}
                     </dd>
                   </div>
                   {s.depositPct > 0 && s.depositPct < 100 && (
                     <div className="flex justify-between text-accent font-medium">
-                      <dt><RegionalText text="Sinal ("/>{s.depositPct}%)</dt>
+                      <dt>Sinal ({s.depositPct}%)</dt>
                       <dd className="font-mono">{formatCurrency(s.depositAmount)}</dd>
                     </div>
                   )}
@@ -434,11 +444,13 @@ const time = (iso: string) =>
 
               <div className="space-y-3">
                 <label className="field-label block">
-                  <span className="text-xs font-semibold text-text-muted block mb-1"><RegionalText text="Nome Completo *"/></span>
+                  <span className="text-xs font-semibold text-text-muted block mb-1">
+                    Nome Completo *
+                  </span>
                   <input
                     value={s.customerName}
                     onChange={(e) => s.setCustomerName(e.target.value)}
-                    placeholder={t("Seu nome e sobrenome")}
+                    placeholder="Seu nome e sobrenome"
                     autoComplete="name"
                     required
                     className="w-full"
@@ -446,7 +458,9 @@ const time = (iso: string) =>
                 </label>
 
                 <label className="field-label block">
-                  <span className="text-xs font-semibold text-text-muted block mb-1"><RegionalText text="WhatsApp *"/></span>
+                  <span className="text-xs font-semibold text-text-muted block mb-1">
+                    WhatsApp *
+                  </span>
                   <input
                     type="tel"
                     value={s.customerPhone}
@@ -459,12 +473,14 @@ const time = (iso: string) =>
                 </label>
 
                 <label className="field-label block">
-                  <span className="text-xs font-semibold text-text-muted block mb-1"><RegionalText text="E-mail (opcional)"/></span>
+                  <span className="text-xs font-semibold text-text-muted block mb-1">
+                    E-mail (opcional)
+                  </span>
                   <input
                     type="email"
                     value={s.customerEmail}
                     onChange={(e) => s.setCustomerEmail(e.target.value)}
-                    placeholder={t("seuemail@exemplo.com")}
+                    placeholder="seuemail@exemplo.com"
                     autoComplete="email"
                     className="w-full"
                   />
@@ -477,8 +493,10 @@ const time = (iso: string) =>
                     onChange={(e) => s.setAcceptedTerms(e.target.checked)}
                     required
                   />
-                  <span className="leading-relaxed"><RegionalText text="Concordo com os"/><strong><RegionalText text="Termos de Uso"/></strong> e a{" "}
-                    <strong><RegionalText text="Política de Cancelamento"/></strong><RegionalText text="da Barbearia Modelo."/></span>
+                  <span className="leading-relaxed">
+                    Concordo com os <strong>Termos de Uso</strong> e a{" "}
+                    <strong>Política de Cancelamento</strong> da Auto Stilo.
+                  </span>
                 </label>
 
                 <label className="choice terms-choice flex items-start gap-3 p-3.5 rounded-xl border border-hairline cursor-pointer text-xs">
@@ -487,7 +505,9 @@ const time = (iso: string) =>
                     checked={s.marketingConsent}
                     onChange={(e) => s.setMarketingConsent(e.target.checked)}
                   />
-                  <span className="leading-relaxed"><RegionalText text="Aceito receber lembretes e confirmações do agendamento via WhatsApp."/></span>
+                  <span className="leading-relaxed">
+                    Aceito receber lembretes e confirmações do agendamento via WhatsApp.
+                  </span>
                 </label>
               </div>
             </form>
@@ -501,13 +521,17 @@ const time = (iso: string) =>
                 ✓
               </div>
               <div>
-                <h2 className="text-xl font-bold text-text"><RegionalText text="Pré-reserva Garantida!"/></h2>
-                <p className="text-xs text-text-muted mt-1 max-w-sm mx-auto"><RegionalText text="Seu horário está separado por 15 minutos enquanto aguardamos a conclusão do procedimento."/></p>
+                <h2 className="text-xl font-bold text-text">Pré-reserva Garantida!</h2>
+                <p className="text-xs text-text-muted mt-1 max-w-sm mx-auto">
+                  Seu horário está separado por 15 minutos enquanto aguardamos a conclusão do procedimento.
+                </p>
               </div>
 
               {s.holdExpiresAt && (
                 <div className="countdown-box p-4 rounded-2xl bg-surface-2 border border-accent/30 max-w-xs mx-auto shadow-sm">
-                  <span className="text-[11px] uppercase tracking-wider text-text-muted font-bold block mb-1"><RegionalText text="Tempo Restante para Concluir"/></span>
+                  <span className="text-[11px] uppercase tracking-wider text-text-muted font-bold block mb-1">
+                    Tempo Restante para Concluir
+                  </span>
                   <div className="text-3xl font-mono font-bold text-accent">
                     {Math.floor(s.countdownSeconds / 60)}:
                     {String(s.countdownSeconds % 60).padStart(2, "0")}
@@ -519,11 +543,15 @@ const time = (iso: string) =>
                 <Link
                   className="cta block w-full max-w-xs mx-auto"
                   href={"/meu-agendamento?token=" + encodeURIComponent(s.bookingToken)}
-                ><RegionalText text="Ver Meu Agendamento"/></Link>
+                >
+                  Ver Meu Agendamento
+                </Link>
                 <Link
                   href="/"
                   className="button-secondary block w-full max-w-xs mx-auto text-xs"
-                ><RegionalText text="Voltar ao Início"/></Link>
+                >
+                  Voltar ao Início
+                </Link>
               </div>
             </div>
           )}
@@ -546,7 +574,9 @@ const time = (iso: string) =>
                 className="button-secondary"
                 disabled={s.isSubmitting}
                 onClick={handlePrevStep}
-              ><RegionalText text="Voltar"/></button>
+              >
+                Voltar
+              </button>
             )}
             {s.step === 4 ? (
               <button
@@ -559,7 +589,7 @@ const time = (iso: string) =>
                 {s.isSubmitting ? (
                   <>
                     <BrandLoading compact label="Criando sua pré-reserva" />
-                    <span><RegionalText text="Confirmando..."/></span>
+                    <span>Confirmando...</span>
                   </>
                 ) : (
                   "Confirmar pré-reserva"
@@ -571,7 +601,9 @@ const time = (iso: string) =>
                 type="button"
                 disabled={Boolean(disabled)}
                 onClick={handleNextStep}
-              ><RegionalText text="Continuar"/></button>
+              >
+                Continuar
+              </button>
             )}
           </div>
         </div>

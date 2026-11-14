@@ -1,5 +1,4 @@
 "use client";
-import {RegionalText} from '@/components/regional/provider';
 import type { Variants } from "motion/react";
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
@@ -153,9 +152,12 @@ export function LiveStep1({
       className="space-y-8"
     >
       <div className="text-center">
-        <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-text"><RegionalText text="Escolha o"/><span className="italic text-accent"><RegionalText text="Profissional"/></span>
+        <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-text">
+          Escolha o <span className="italic text-accent">Profissional</span>
         </h1>
-        <p className="text-xs text-text-muted mt-2"><RegionalText text="Selecione quem irá cuidar do seu visual"/></p>
+        <p className="text-xs text-text-muted mt-2">
+          Selecione quem irá cuidar do seu visual
+        </p>
       </div>
 
       <div className="flex justify-center">
@@ -175,7 +177,7 @@ export function LiveStep1({
           <div className="w-8 h-8 rounded-full bg-accent/10 text-accent flex items-center justify-center">
             <Sparkles className="w-4 h-4" />
           </div>
-          <span><RegionalText text="Sem preferência (horário mais rápido)"/></span>
+          <span>Sem preferência (horário mais rápido)</span>
           <ChevronRight className="w-4 h-4 text-accent group-hover:translate-x-1 transition-transform" />
         </motion.button>
       </div>

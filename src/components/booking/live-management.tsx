@@ -1,6 +1,4 @@
 "use client";
-import {RegionalText,useRegional} from '@/components/regional/provider';
-
 import type { Variants } from "motion/react";
 
 import React, { useState, useEffect, Suspense } from "react";
@@ -43,8 +41,6 @@ interface BookingDetail {
 }
 
 function MeuAgendamentoContent() {
-const {t,locale,profile,money:formatCurrency}=useRegional();
-
   const searchParams = useSearchParams();
   const tokenParam = searchParams.get("token") || "";
 
@@ -154,11 +150,11 @@ const {t,locale,profile,money:formatCurrency}=useRegional();
             className="inline-flex items-center gap-2 text-text-muted hover:text-text text-xs font-medium transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />
-            <span><RegionalText text="Voltar"/></span>
+            <span>Voltar</span>
           </Link>
           <div className="flex items-center gap-2 text-xs font-serif font-bold text-text">
             <Scissors className="w-4 h-4 text-accent" />
-            <span><RegionalText text="Meu Agendamento"/></span>
+            <span>Meu Agendamento</span>
           </div>
         </div>
       </header>
@@ -172,14 +168,16 @@ const {t,locale,profile,money:formatCurrency}=useRegional();
           transition={{ duration: 0.4 }}
         >
           <div>
-            <h1 className="font-serif text-2xl font-bold text-text"><RegionalText text="Consultar Reserva"/></h1>
-            <p className="text-xs text-text-muted mt-2"><RegionalText text="Digite ou cole o código que você recebeu ao confirmar."/></p>
+            <h1 className="font-serif text-2xl font-bold text-text">Consultar Reserva</h1>
+            <p className="text-xs text-text-muted mt-2">
+              Digite ou cole o código que você recebeu ao confirmar.
+            </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">
             <input
               type="text"
-              placeholder={t("Cole seu código de reserva aqui...")}
+              placeholder="Cole seu código de reserva aqui..."
               value={tokenInput}
               onChange={(e) => setTokenInput(e.target.value)}
               className="flex-1 bg-surface-2 rounded-full px-6 py-4 text-xs text-text focus:ring-2 focus:ring-accent focus:outline-none transition-all"
@@ -190,7 +188,7 @@ const {t,locale,profile,money:formatCurrency}=useRegional();
               whileTap={{ scale: 0.95 }}
             >
               <Search className="w-4 h-4" />
-              <span><RegionalText text="Consultar"/></span>
+              <span>Consultar</span>
             </motion.button>
           </div>
         </motion.div>
@@ -236,7 +234,9 @@ const {t,locale,profile,money:formatCurrency}=useRegional();
             >
               <div className="flex justify-between items-start pb-6 border-b border-hairline">
                 <div>
-                  <span className="text-xs uppercase font-bold tracking-wider text-text-muted block mb-2"><RegionalText text="Status da Reserva"/></span>
+                  <span className="text-xs uppercase font-bold tracking-wider text-text-muted block mb-2">
+                    Status da Reserva
+                  </span>
                   <span
                     className={`inline-block px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider ${
                       booking.status === "confirmed"
@@ -251,31 +251,31 @@ const {t,locale,profile,money:formatCurrency}=useRegional();
                 </div>
 
                 <div className="text-right">
-                  <span className="text-xs text-text-muted block mb-2"><RegionalText text="Valor Total"/></span>
+                  <span className="text-xs text-text-muted block mb-2">Valor Total</span>
                   <strong className="text-accent font-serif text-xl">{formatCurrency(booking.total_price)}</strong>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                 <div className="bg-surface-2 rounded-[20px] p-4">
-                  <span className="text-text-muted block text-xs mb-2"><RegionalText text="Cliente"/></span>
+                  <span className="text-text-muted block text-xs mb-2">Cliente</span>
                   <strong className="text-text text-sm font-serif">{booking.customer_name}</strong>
                 </div>
 
                 <div className="bg-surface-2 rounded-[20px] p-4">
-                  <span className="text-text-muted block text-xs mb-2"><RegionalText text="Profissional"/></span>
+                  <span className="text-text-muted block text-xs mb-2">Profissional</span>
                   <strong className="text-text text-sm font-serif">{booking.barber_name}</strong>
                 </div>
 
                 <div className="sm:col-span-2 bg-surface-2 rounded-[20px] p-4">
-                  <span className="text-text-muted block text-xs mb-2"><RegionalText text="Data e Horário"/></span>
+                  <span className="text-text-muted block text-xs mb-2">Data e Horário</span>
                   <strong className="text-text text-sm font-mono">
-                    {new Date(booking.starts_at).toLocaleString(locale, { dateStyle: "long", timeStyle: "short" })}
+                    {new Date(booking.starts_at).toLocaleString("pt-BR", { dateStyle: "long", timeStyle: "short" })}
                   </strong>
                 </div>
 
                 <div className="sm:col-span-2 bg-surface-2 rounded-[20px] p-4">
-                  <span className="text-text-muted block text-xs mb-2"><RegionalText text="Serviços"/></span>
+                  <span className="text-text-muted block text-xs mb-2">Serviços</span>
                   <span className="text-text font-semibold">{booking.services?.join(", ")}</span>
                 </div>
               </div>
@@ -289,7 +289,7 @@ const {t,locale,profile,money:formatCurrency}=useRegional();
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                   >
-                    <h4 className="font-serif font-bold text-sm text-text"><RegionalText text="Nova Data e Horário:"/></h4>
+                    <h4 className="font-serif font-bold text-sm text-text">Nova Data e Horário:</h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <input
                         type="date"
@@ -309,11 +309,15 @@ const {t,locale,profile,money:formatCurrency}=useRegional();
                       <button
                         onClick={() => setIsRescheduling(false)}
                         className="px-6 py-2 text-xs font-semibold text-text-muted hover:text-text rounded-full"
-                      ><RegionalText text="Cancelar"/></button>
+                      >
+                        Cancelar
+                      </button>
                       <button
                         onClick={handleReschedule}
                         className="bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-2 rounded-full text-xs font-bold transition-all active:scale-95"
-                      ><RegionalText text="Confirmar Novo Horário"/></button>
+                      >
+                        Confirmar Novo Horário
+                      </button>
                     </div>
                   </motion.div>
                 )}
@@ -326,7 +330,9 @@ const {t,locale,profile,money:formatCurrency}=useRegional();
                     onClick={() => setIsRescheduling(true)}
                     className="bg-surface-2 hover:bg-surface-3 text-text px-6 py-2 rounded-full text-xs font-bold transition-colors"
                     whileTap={{ scale: 0.95 }}
-                  ><RegionalText text="Reagendar"/></motion.button>
+                  >
+                    Reagendar
+                  </motion.button>
                 )}
 
                 {booking.can_cancel && (
@@ -334,7 +340,9 @@ const {t,locale,profile,money:formatCurrency}=useRegional();
                     onClick={handleCancel}
                     className="bg-danger/15 hover:bg-danger/25 text-danger px-6 py-2 rounded-full text-xs font-bold transition-colors"
                     whileTap={{ scale: 0.95 }}
-                  ><RegionalText text="Cancelar"/></motion.button>
+                  >
+                    Cancelar
+                  </motion.button>
                 )}
               </div>
             </motion.div>
@@ -350,7 +358,7 @@ export default function MeuAgendamentoPage() {
     <Suspense
       fallback={
         <div className="min-h-screen bg-bg text-text flex items-center justify-center">
-          <div className="text-xs text-text-muted"><RegionalText text="Carregando agendamento..."/></div>
+          <div className="text-xs text-text-muted">Carregando agendamento...</div>
         </div>
       }
     >

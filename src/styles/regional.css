@@ -1,6 +1,0 @@
-/* Only active for websites explicitly linked through OPENPAGE_TENANT_SLUG. */
-html[data-regional] body,html[data-regional] .cinematic-site{--bg:var(--regional-bg);--surface:var(--regional-surface);--surface-2:var(--regional-surface);--text:var(--regional-text);--text-muted:var(--regional-muted);--border:var(--regional-border);--hairline:var(--regional-border);--accent:var(--regional-accent);--accent-strong:var(--regional-accent);--accent-hover:var(--regional-accent);--accent-soft:var(--regional-surface);--accent-light:var(--regional-accent);--accent-contrast:var(--regional-on-accent);background:var(--bg);color:var(--text)}
-html[data-regional] .cinematic-site :is(.ritual,.site-footer,.mobile-actions,.site-header){background:var(--regional-surface);color:var(--regional-text);border-color:var(--regional-border)}
-html[data-regional] .cinematic-site .cta,html[data-regional] .cinematic-site .filters button[aria-pressed=true]{background:var(--regional-accent);color:var(--regional-on-accent)}
-html[data-regional] .cinematic-site .cta:hover{filter:brightness(1.12)}
-html[data-regional] .cinematic-site .cinema-cue{color:#f4f1eb} /* Text over photographs retains its dark scrim. */

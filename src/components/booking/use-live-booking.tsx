@@ -1,6 +1,4 @@
 "use client";
-import {useRegional} from "@/components/regional/provider";
-
 import type { Variants } from "motion/react";
 
 import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
@@ -30,6 +28,7 @@ import {
   getMissingClientEnvVars,
 } from "@/lib/supabase";
 import {
+  formatCurrency,
   formatDuration,
   formatLocalDate,
   fixMojibake,
@@ -81,8 +80,6 @@ interface AvailabilitySlot {
 }
 
 export function useLiveBooking() {
-const {t,locale,profile}=useRegional();
-
   const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
 
   // Dados do Banco
@@ -100,7 +97,7 @@ const {t,locale,profile}=useRegional();
   const requestedServiceIds=useMemo(()=>selectedServices.flatMap(service=>Array.from({length:serviceQuantities[service.id]||1},()=>service.id)),[selectedServices,serviceQuantities]);
   const setServiceQuantity=(id:string,value:number)=>{setServiceQuantities(previous=>({...previous,[id]:Math.max(1,Math.min(6,value))}));setSelectedSlot(null);};
   const [selectedDate, setSelectedDate] = useState<string>(() => {
-    const today = new Date(new Date().toLocaleString('en-US', {timeZone:profile.timezone}));
+    const today = new Date(new Date().toLocaleString('en-US', {timeZone:'America/Sao_Paulo'}));
     const currentHour = today.getHours();
     const currentMin = today.getMinutes();
     const isPastCutoff =
@@ -437,7 +434,7 @@ const {t,locale,profile}=useRegional();
       weekDay: string;
       isToday: boolean;
     }[] = [];
-    const today = new Date(new Date().toLocaleString('en-US', {timeZone:profile.timezone}));
+    const today = new Date(new Date().toLocaleString('en-US', {timeZone:'America/Sao_Paulo'}));
     for (let i = 0; i < 14; i++) {
       const d = new Date(today);
       d.setDate(today.getDate() + i);
@@ -445,19 +442,19 @@ const {t,locale,profile}=useRegional();
         iso: formatLocalDate(d),
         dayNum: d.getDate(),
         weekDay: d
-          .toLocaleDateString(locale, { weekday: "short" })
+          .toLocaleDateString("pt-BR", { weekday: "short" })
           .replace(".", ""),
         isToday: i === 0,
       });
     }
     return days;
-  }, [locale,profile.timezone]);
+  }, []);
 
   const stepsHeader = [
-    { num: 1, label: t("Profissional") },
-    { num: 2, label: t("Serviço") },
-    { num: 3, label: t("Horário") },
-    { num: 4, label: t("Confirmar") },
+    { num: 1, label: "Profissional" },
+    { num: 2, label: "Serviço" },
+    { num: 3, label: "Horário" },
+    { num: 4, label: "Confirmar" },
   ];
 
   return {

@@ -1,9 +1,3 @@
-import type {CSSProperties} from "react";
-import {regionalTheme} from "@/lib/regional/theme";
-import "../styles/regional.css";
-import {getRegionalProfile} from "@/lib/regional/server";
-import {intlLocale} from "@/lib/regional/profile";
-import {RegionalProvider} from "@/components/regional/provider";
 import { DemoWatermark, watermarkEnabled } from "@/components/demo-watermark";
 import { MotionPreferences } from "@/components/motion-preferences";
 import { BookingDiagnostics } from "@/components/booking/diagnostics";
@@ -30,69 +24,62 @@ const manrope = localFont({
   display: "swap",
 });
 
-const baseMetadata: Metadata = {
+export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
       {
-        url: "/brand/template/logo-on-light.png",
+        url: "/brand/auto-stilo/favicon-light-32.png",
         type: "image/png",
         sizes: "32x32",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/brand/template/logo-on-dark.png",
+        url: "/brand/auto-stilo/favicon-dark-32.png",
         type: "image/png",
         sizes: "32x32",
         media: "(prefers-color-scheme: dark)",
       },
-      { url: "/brand/template/logo-on-dark.svg", type: "image/svg+xml" },
+      { url: "/favicon-auto-stilo.svg", type: "image/svg+xml" },
     ],
-    apple: [{ url: "/brand/template/logo-on-dark.png", sizes: "180x180", type: "image/png" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://barbearia-template.example"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://auto-stilo.example"
   ),
   openGraph: {
-    title: "Barbearia Modelo — Corte, Barba & Estilo" + (watermarkEnabled ? " (Demo)" : ""),
+    title: "Auto Stilo — Barbearia em Monte Sião - MG" + (watermarkEnabled ? " (Demo)" : ""),
     description: "Corte, barba e cuidado artesanal no seu tempo. Agendamento online e atendimento exclusivo.",
-    images: ["/img/template/full/01_barbearia_interior.webp"],
+    images: ["/img/fotos-otimizadas/full/07_teto-hexagonal.webp"],
     locale: "pt_BR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Barbearia Modelo — Corte, Barba & Estilo",
+    title: "Auto Stilo — Barbearia em Monte Sião - MG",
     description: "Corte, barba e cuidado artesanal no seu tempo. Agendamento online e atendimento exclusivo.",
-    images: ["/img/template/full/01_barbearia_interior.webp"],
+    images: ["/img/fotos-otimizadas/full/07_teto-hexagonal.webp"],
   },
   robots: watermarkEnabled ? { index: false, follow: false } : undefined,
   title:
-    "Barbearia Modelo — Corte, Barba & Estilo" +
+    "Auto Stilo — Barbearia em Monte Sião - MG" +
     (watermarkEnabled ? " (Demo)" : ""),
   description:
-    "Barbearia Modelo: corte de alta precisão, barba terapia com toalha quente e atendimento com hora marcada.",
+    "Auto Stilo em Monte Sião: corte de alta precisão, barba terapia com toalha quente e atendimento com hora marcada.",
 };
 
-export async function generateMetadata():Promise<Metadata> {
-  const region=await getRegionalProfile();
-  if(!region.slug)return baseMetadata;
-  const descriptions={"pt-br":"Agendamento online e atendimento personalizado.",en:"Online booking and personal care.",es:"Reservas en línea y atención personalizada.","fr-ca":"Réservation en ligne et soins personnalisés."};
-  return {...baseMetadata,title:region.name,description:descriptions[region.locale],openGraph:{...baseMetadata.openGraph,title:region.name,description:descriptions[region.locale],locale:intlLocale(region).replace('-','_')},twitter:{...baseMetadata.twitter,title:region.name,description:descriptions[region.locale]}};
-}
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const profile=await getRegionalProfile();
   return (
-    <html lang={intlLocale(profile)} data-regional={profile.slug||undefined} style={regionalTheme(profile) as CSSProperties} className={`${display.variable} ${manrope.variable}`}>
+    <html lang="pt-BR" className={`${display.variable} ${manrope.variable}`}>
       <body className="min-h-screen bg-bg text-text antialiased selection:bg-accent selection:text-accent-contrast font-sans">
-        <RegionalProvider profile={profile}><MotionPreferences>{children}</MotionPreferences>
+        <MotionPreferences>{children}</MotionPreferences>
         <CookieBanner />
         <DemoWatermark />
-        <BookingDiagnostics /></RegionalProvider>
+        <BookingDiagnostics />
       </body>
     </html>
   );

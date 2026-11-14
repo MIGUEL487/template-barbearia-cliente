@@ -1,7 +1,4 @@
 "use client";
-import {RegionalText} from '@/components/regional/provider';
-import {useRegional} from "@/components/regional/provider";
-
 import type { Variants } from "motion/react";
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
@@ -31,6 +28,7 @@ import {
   getMissingClientEnvVars,
 } from "@/lib/supabase";
 import {
+  formatCurrency,
   formatDuration,
   formatLocalDate,
   fixMojibake,
@@ -84,8 +82,6 @@ export function LiveStep2({
 }: {
   state: ReturnType<typeof useLiveBooking>;
 }) {
-const {locale,profile,money:formatCurrency}=useRegional();
-
   const {
     step,
     setStep,
@@ -156,7 +152,7 @@ const {locale,profile,money:formatCurrency}=useRegional();
       className="flex items-center justify-between w-full"
     >
       <div className="text-xs">
-        <span className="text-text-muted"><RegionalText text="Total:"/></span>
+        <span className="text-text-muted">Total: </span>
         <strong className="text-accent font-serif text-base font-bold">
           {formatCurrency(totalPrice)}
         </strong>
@@ -168,7 +164,9 @@ const {locale,profile,money:formatCurrency}=useRegional();
         onClick={() => setStep(3)}
         disabled={selectedServices.length === 0}
         className="bg-accent hover:bg-accent-hover text-accent-contrast px-6 py-2 rounded-full font-bold text-xs transition-all active:scale-95 disabled:opacity-40 cursor-pointer"
-      ><RegionalText text="Continuar"/></button>
+      >
+        Continuar
+      </button>
     </motion.div>
   );
 }

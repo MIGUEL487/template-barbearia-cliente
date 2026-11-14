@@ -1,5 +1,4 @@
 "use client";
-import {RegionalText,useRegional} from '@/components/regional/provider';
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
@@ -7,24 +6,28 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useMotionEnabled, MotionToggle } from "@/components/motion-preferences";
 import { ShopImage } from "./shop-image";
 import { BrandLogo } from "@/components/brand-logo";
-import { shop } from "@/config/demo";
 
 export function Signature() {
-const {t}=useRegional();
-
   return (
     <section id="proposta" className="section signature">
       <div>
-        <p><RegionalText text="Barbearia Modelo, no seu tempo."/></p>
-        <h2><RegionalText text="Cuidado que"/><br /><RegionalText text="tem a sua"/><em><RegionalText text="assinatura."/></em>
+        <p>Auto Stilo, no seu tempo.</p>
+        <h2>
+          Cuidado que<br />
+          tem a sua <em>assinatura.</em>
         </h2>
-        <p><RegionalText text="Um momento para renovar o corte, alinhar a barba e sair se sentindo bem. Conheça nossa proposta de atendimento exclusivo e personalizado."/></p>
-        <Link className="text-link" href="#historia"><RegionalText text="Conheça a proposta ↗"/></Link>
+        <p>
+          Um momento para renovar o corte, alinhar a barba e sair se sentindo bem.
+          Conheça nossa proposta de atendimento em Monte Sião.
+        </p>
+        <Link className="text-link" href="#historia">
+          Conheça a proposta ↗
+        </Link>
       </div>
       <figure className="arch">
         <ShopImage
-          name="lounge"
-          alt={t("Recepção e espaço de acolhimento da barbearia")}
+          name="degrade-nuca"
+          alt="Acabamento milimétrico do corte degradê na nuca"
         />
       </figure>
       <ul className="pillars">
@@ -34,8 +37,8 @@ const {t}=useRegional();
           "Cuidado em cada detalhe",
         ].map((t) => (
           <li key={t}>
-            <h3><RegionalText text={t}/></h3>
-            <p><RegionalText text="Atendimento individualizado e ambiente climatizado."/></p>
+            <h3>{t}</h3>
+            <p>Atendimento individualizado e ambiente climatizado.</p>
           </li>
         ))}
       </ul>
@@ -44,8 +47,6 @@ const {t}=useRegional();
 }
 
 export function Ritual() {
-const {t}=useRegional();
-
   const ref = useRef<HTMLElement>(null);
   const enabled = useMotionEnabled();
 
@@ -117,12 +118,12 @@ const {t}=useRegional();
   }, [enabled]);
 
   return (
-    <section ref={ref} className="ritual" aria-label={t("Nosso ritual em três etapas")}>
+    <section ref={ref} className="ritual" aria-label="Nosso ritual em três etapas">
       <div className="ritual-grid">
         <div className="ritual-photo">
           <ShopImage
-            name="servicos"
-            alt={t("Ritual de precisão, toalha quente e acabamento")}
+            name="toalha-barba"
+            alt="Tratamento de barba com toalha quente e óleos essenciais"
           />
         </div>
         <div className="ritual-words">
@@ -140,10 +141,10 @@ const {t}=useRegional();
               "O cuidado está nos detalhes. Pronto para seguir o dia com uma nova assinatura.",
             ],
           ].map(([title, copy], i) => (
-            <div className="ritual-step" key={t(title)}>
-              <p><RegionalText text="Ritual de atendimento · etapa"/>{i + 1}<RegionalText text="de 3"/></p>
-              <h2>{t(title)}</h2>
-              <p>{t(copy)}</p>
+            <div className="ritual-step" key={title}>
+              <p>Ritual de atendimento · etapa {i + 1} de 3</p>
+              <h2>{title}</h2>
+              <p>{copy}</p>
             </div>
           ))}
         </div>
@@ -163,38 +164,40 @@ const {t}=useRegional();
 }
 
 export function History() {
-const {t}=useRegional();
-
   return (
     <section id="historia" className="section history">
       <figure>
         <ShopImage
-          name="interior"
-          alt={t("Ambiente clássico com bancadas e iluminação profissional")}
+          name="social-corte-classico"
+          alt="Corte social clássico com alinhamento e precisão na Auto Stilo"
         />
       </figure>
       <div>
-        <h2><RegionalText text="Seu estilo."/><br /><RegionalText text="Nossa atenção."/></h2>
-        <p><RegionalText text="Um espaço pensado para cuidar de você, do corte ao detalhe."/></p>
-        <p><RegionalText text="Dedicação contínua ao ofício da barbearia artesanal. Cada cliente recebe atendimento individual com foco no resultado e no respeito ao seu tempo."/></p>
+        <h2>
+          Seu estilo.<br />
+          Nossa atenção.
+        </h2>
+        <p>Um espaço em Monte Sião para cuidar de você, do corte ao detalhe.</p>
+        <p>
+          Dedicação contínua ao ofício da barbearia artesanal. Cada cliente recebe
+          atendimento individual com foco no resultado e no respeito ao seu tempo.
+        </p>
         <ol className="timeline">
           {[
             "Compreender seu estilo e preferência",
             "Cuidar de cada detalhe com técnica apurada",
             "Garantir satisfação e pontualidade",
           ].map((t) => (
-            <li key={t}><RegionalText text={t}/></li>
+            <li key={t}>{t}</li>
           ))}
         </ol>
-        <p className="signature-script"><RegionalText text="Barbearia Modelo, por inteiro."/></p>
+        <p className="signature-script">Auto Stilo, por inteiro.</p>
       </div>
     </section>
   );
 }
 
 export function MarqueeFooter() {
-const {t}=useRegional();
-
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -211,7 +214,7 @@ const {t}=useRegional();
       <div
         ref={ref}
         className="marquee"
-        aria-label={t("Corte, barba, estilo, Barbearia Modelo")}
+        aria-label="Corte, barba, estilo, Auto Stilo"
       >
         {[0, 1].map((i) => (
           <div className="marquee-window" key={i}>
@@ -219,31 +222,35 @@ const {t}=useRegional();
               className="marquee-track"
               style={{ animationDirection: i ? "reverse" : "normal" }}
             >
-              <span><RegionalText text="CORTE · BARBA · ESTILO · BARBEARIA MODELO ·"/></span>
-              <span aria-hidden="true"><RegionalText text="CORTE · BARBA · ESTILO · BARBEARIA MODELO ·"/></span>
+              <span>CORTE · BARBA · ESTILO · AUTO STILO · </span>
+              <span aria-hidden="true">
+                CORTE · BARBA · ESTILO · AUTO STILO · 
+              </span>
             </div>
           </div>
         ))}
       </div>
       <footer className="site-footer">
-        <Link className="footer-brand-mark" href="/" aria-label={t("Barbearia Modelo, início")}>
+        <Link className="footer-brand-mark" href="/" aria-label="Auto Stilo, início">
           <BrandLogo tone="dark" />
         </Link>
-        <p className="footer-wordmark"><RegionalText text="Barbearia Modelo."/></p>
+        <p className="footer-wordmark">Auto Stilo.</p>
         <div>
-          <Link href="/agendar"><RegionalText text="Agendar horário"/></Link>
-          <Link href="/meu-agendamento"><RegionalText text="Consultar agendamento"/></Link>
-          <Link href="/politica-de-privacidade"><RegionalText text="Privacidade (LGPD)"/></Link>
-          <Link href="/termos-de-uso"><RegionalText text="Termos de Uso"/></Link>
+          <Link href="/agendar">Agendar horário</Link>
+          <Link href="/meu-agendamento">Consultar agendamento</Link>
+          <Link href="/politica-de-privacidade">Privacidade (LGPD)</Link>
+          <Link href="/termos-de-uso">Termos de Uso</Link>
           <button
             type="button"
             onClick={() => window.dispatchEvent(new Event("open-cookie-preferences"))}
             className="text-text-muted hover:text-white transition-colors underline cursor-pointer"
-          ><RegionalText text="Configurações de cookies"/></button>
+          >
+            Configurações de cookies
+          </button>
           <MotionToggle />
         </div>
         <p>
-          {shop.address}<RegionalText text="· WhatsApp"/>{shop.phone}<RegionalText text="· Horário:"/>{shop.hours}
+          R. do Tanque, 395 – Bela Vista, Monte Sião · MG · CEP 37580-000 · WhatsApp (35) 99737-4960
         </p>
         <div className="barber-stripe" aria-hidden="true" />
       </footer>

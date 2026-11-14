@@ -1,5 +1,4 @@
 "use client";
-import {RegionalText,useRegional} from '@/components/regional/provider';
 import {useEffect,useRef} from 'react';
 import Link from 'next/link';
 import {heroPlayer as framePlayer} from '@/lib/cinematic/video-player';
@@ -7,8 +6,6 @@ import {createScrollEngine} from '@/lib/cinematic/scroll-engine';
 import frames from '@/config/frames.json';
 import {useMotionEnabled} from '@/components/motion-preferences';
 export function Hero(){
-const {t}=useRegional();
-
  const track=useRef<HTMLDivElement>(null),root=useRef<HTMLElement>(null),canvas=useRef<HTMLCanvasElement>(null),poster=useRef<HTMLImageElement>(null);
  const enabled=useMotionEnabled();
  const skipIntro=useRef<(()=>void)|null>(null);
@@ -109,10 +106,10 @@ const {t}=useRegional();
  return <div ref={track} className="hero-track"><section id="inicio" ref={root} className="hero cinematic" aria-labelledby="hero-title">
  <picture className="hero-picture"><source media="(max-width:768px), (orientation:portrait)" srcSet={frames.mobile.poster}/>
  {/* eslint-disable-next-line @next/next/no-img-element */}
- <img ref={poster} className="poster" src={frames.pc.poster} alt={t("Cena de atendimento em uma barbearia, sequência de demonstração")} width={1920} height={1080} fetchPriority="high"/></picture>
+ <img ref={poster} className="poster" src={frames.pc.poster} alt="Cena de atendimento em uma barbearia, sequência de demonstração" width={1920} height={1080} fetchPriority="high"/></picture>
  <canvas ref={canvas} aria-hidden="true" style={{opacity:0}}/><div className="shade"/>
- <a href="#assinatura" className="button-secondary hero-skip-intro" onClick={event=>{if(skipIntro.current){event.preventDefault();skipIntro.current()}}}><RegionalText text="Pular introdução"/><span aria-hidden="true">↓</span></a>
- <div className="hero-copy"><p><RegionalText text="BARBEARIA · MONTE SIÃO — MG"/></p><h1 id="hero-title"><RegionalText text="Seu estilo,"/><br/><RegionalText text="do corte ao"/><em><RegionalText text="detalhe."/></em></h1><p><RegionalText text="Atendimento sob medida, ambiente confortável e cuidado em cada detalhe. Agende seu horário em poucos toques."/></p><div className="hero-buttons"><Link className="cta" href="/agendar"><RegionalText text="Agendar horário"/></Link><a className="text-link" href="#servicos"><RegionalText text="Ver serviços"/></a></div></div>
+ <a href="#assinatura" className="button-secondary hero-skip-intro" onClick={event=>{if(skipIntro.current){event.preventDefault();skipIntro.current()}}}>Pular introdução <span aria-hidden="true">↓</span></a>
+ <div className="hero-copy"><p>BARBEARIA · MONTE SIÃO — MG</p><h1 id="hero-title">Seu estilo,<br/>do corte ao <em>detalhe.</em></h1><p>Atendimento sob medida, ambiente confortável e cuidado em cada detalhe. Agende seu horário em poucos toques.</p><div className="hero-buttons"><Link className="cta" href="/agendar">Agendar horário</Link><a className="text-link" href="#servicos">Ver serviços</a></div></div>
  <noscript><style>{'.hero-copy > *,.shade{opacity:1!important;transform:none!important}.hero-track{height:auto!important}'}</style></noscript>
  </section></div>;
 }
